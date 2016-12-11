@@ -48,3 +48,12 @@ Configuration
 | `nodeClickHandler` | function | | | A function called when a node is clicked.  The node key is passed as an argument. |
 | `nodeOffset` | number | | `3.5` | The height offset for the label of a node.  May need to be adjusted depending on radius and font size. |
 | `nodeRadius` | number | | `5` | The radius of the rendered node. |
+
+Node properties can be set for individual nodes by setting them on the node with the following mapping:
+
+| Global | Node |
+|:---|:---|
+| `nodeClass` | `className` |
+| `nodeClickHandler` | `onClick` |
+| `nodeOffset` | `offset` |
+| `nodeRadius` | `radius` |
