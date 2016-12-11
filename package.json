@@ -1,6 +1,6 @@
 {
   "name": "react-tree-graph",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates a tree graph from data",
   "main": "dist/index.js",
   "repository": {
@@ -11,7 +11,7 @@
     "d3",
     "graph",
     "react",
-	"svg",
+    "svg",
     "tree",
     "ui"
   ],
@@ -40,6 +40,6 @@
     "react": "^15.3"
   },
   "scripts": {
-	  "build": "webpack -d --progress"
+    "build": "webpack -d --progress"
   }
 }
