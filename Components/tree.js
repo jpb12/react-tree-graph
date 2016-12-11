@@ -2,7 +2,7 @@ import clone from 'clone';
 import d3 from 'd3';
 import React from 'react';
 import Link from './link';
-import Node from './node'; 
+import Node from './node';
 
 const propTypes = {
 	data: React.PropTypes.object.isRequired,
