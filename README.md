@@ -2,6 +2,9 @@ react-tree-graph
 ================
 A simple react component which renders data as a tree using svg.
 
+[Demo](http://jpb12.github.io/tree-viewer/)
+-------------------------------------------
+
 Installing
 ----------
 ```sh
@@ -36,7 +39,7 @@ Configuration
 
 | Property | Type | Mandatory | Default | Description |
 |:---|:---|:---|:---|:---|
-| `data` | object | yes | | The data to be rendered as a tree. |
+| `data` | object | yes | | The data to be rendered as a tree. Must be in a format accepted by [d3.hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md#hierarchy). |
 | `margins` | object | | `{ bottom : 10, left : 20, right : 150, top : 10}` | The margins around the content.  The right margin should be larger to include the rendered label text. |
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
