@@ -1,4 +1,5 @@
 const path = require('path');
+const isProduction = process.env.NODE_ENV.trim() === 'production';
 
 module.exports = {
 	context: __dirname,
@@ -23,7 +24,7 @@ module.exports = {
 	output: {
 		library: 'react-tree-graph',
 		libraryTarget: 'umd',
-		filename: 'index.js',
+		filename: isProduction ? 'index.min.js' : 'index.js',
 		path: path.join(__dirname, 'dist')
 	},
 	target: 'node'

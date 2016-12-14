@@ -40,6 +40,7 @@
     "react": "^15.3"
   },
   "scripts": {
-    "build": "webpack -d --progress"
+    "build": "set NODE_ENV=production && webpack -p",
+    "build-dev": "set NODE_ENV=development && webpack -d --progress"
   }
 }
