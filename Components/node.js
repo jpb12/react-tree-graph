@@ -11,12 +11,6 @@ const propTypes = {
 	radius: React.PropTypes.number.isRequired
 };
 
-const defaultProps = {
-	className: 'node',
-	offset: 3.5,
-	radius: 5
-};
-
 export default class Node extends React.PureComponent{
 	constructor(props) {
 		super(props);
@@ -40,4 +34,3 @@ export default class Node extends React.PureComponent{
 }
 
 Node.propTypes = propTypes;
-Node.defaultProps = defaultProps;

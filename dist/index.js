@@ -73,8 +73,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _d = __webpack_require__(/*! d3 */ 2);
 	
-	var _d2 = _interopRequireDefault(_d);
-	
 	var _react = __webpack_require__(/*! react */ 3);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -123,7 +121,11 @@ return /******/ (function(modules) { // webpackBootstrap
 			left: 20,
 			right: 150,
 			top: 10
-		}
+		},
+		linkClass: 'link',
+		nodeClass: 'node',
+		nodeOffset: 3.5,
+		nodeRadius: 5
 	};
 	
 	var Tree = function (_React$PureComponent) {
@@ -144,38 +146,41 @@ return /******/ (function(modules) { // webpackBootstrap
 				var contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
 	
 				// data is cloned because d3 will mutate the object passed in
-				var data = (0, _clone2.default)(this.props.data);
+				var data = (0, _d.hierarchy)((0, _clone2.default)(this.props.data));
 	
-				var tree = _d2.default.layout.tree().size([contentHeight, contentWidth]);
-				var nodes = tree.nodes(data);
+				var root = (0, _d.tree)().size([contentHeight, contentWidth])(data);
+				var nodes = root.descendants();
+				var links = root.links();
 	
 				nodes.forEach(function (node) {
 					node.y += _this2.props.margins.top;
 				});
-	
-				var links = tree.links(nodes);
 	
 				return _react2.default.createElement(
 					'svg',
 					{ height: this.props.height, width: this.props.width },
 					links.map(function (link) {
 						return _react2.default.createElement(_link2.default, _extends({
-							key: link.target[_this2.props.keyProp],
+							key: link.target.data[_this2.props.keyProp],
 							className: _this2.props.linkClass,
 							keyProp: _this2.props.keyProp,
-							onClick: _this2.props.linkClickHandler
-						}, link));
+							onClick: _this2.props.linkClickHandler,
+							source: link.source,
+							target: link.target
+						}, link.data));
 					}),
 					nodes.map(function (node) {
 						return _react2.default.createElement(_node2.default, _extends({
-							key: node[_this2.props.keyProp],
+							key: node.data[_this2.props.keyProp],
 							className: _this2.props.nodeClass,
 							keyProp: _this2.props.keyProp,
 							labelProp: _this2.props.labelProp,
 							onClick: _this2.props.nodeClickHandler,
 							offset: _this2.props.nodeOffset,
-							radius: _this2.props.nodeRadius
-						}, node));
+							radius: _this2.props.nodeRadius,
+							x: node.x,
+							y: node.y
+						}, node.data));
 					})
 				);
 			}
@@ -232,10 +237,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _d = __webpack_require__(/*! d3 */ 2);
-	
-	var _d2 = _interopRequireDefault(_d);
-	
 	var _react = __webpack_require__(/*! react */ 3);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -256,13 +257,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		onClick: _react2.default.PropTypes.func
 	};
 	
-	var defaultProps = {
-		className: 'link'
-	};
-	
-	var diagonal = _d2.default.svg.diagonal().projection(function (d) {
-		return [d.y, d.x];
-	});
+	function diagonal(x1, y1, x2, y2) {
+		return 'M' + y1 + ',' + x1 + 'C' + (y1 + y2) / 2 + ',' + x1 + ' ' + (y1 + y2) / 2 + ',' + x2 + ' ' + y2 + ',' + x2;
+	}
 	
 	var Link = function (_React$PureComponent) {
 		_inherits(Link, _React$PureComponent);
@@ -284,10 +281,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		}, {
 			key: 'render',
 			value: function render() {
-				var d = diagonal({
-					source: this.props.source,
-					target: this.props.target
-				});
+				var d = diagonal(this.props.source.x, this.props.source.y, this.props.target.x, this.props.target.y);
 	
 				return _react2.default.createElement('path', { className: this.props.className, d: d, onClick: this.handleClick });
 			}
@@ -300,7 +294,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	Link.propTypes = propTypes;
-	Link.defaultProps = defaultProps;
 
 /***/ },
 /* 5 */
@@ -338,12 +331,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		onClick: _react2.default.PropTypes.func,
 		offset: _react2.default.PropTypes.number.isRequired,
 		radius: _react2.default.PropTypes.number.isRequired
-	};
-	
-	var defaultProps = {
-		className: 'node',
-		offset: 3.5,
-		radius: 5
 	};
 	
 	var Node = function (_React$PureComponent) {
@@ -391,7 +378,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	Node.propTypes = propTypes;
-	Node.defaultProps = defaultProps;
 
 /***/ }
 /******/ ])

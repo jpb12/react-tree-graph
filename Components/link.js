@@ -1,4 +1,3 @@
-import d3 from 'd3';
 import React from 'react';
 
 const propTypes = {
@@ -9,11 +8,9 @@ const propTypes = {
 	onClick: React.PropTypes.func
 };
 
-const defaultProps = {
-	className: 'link'
-};
-
-const diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
+function diagonal(x1, y1, x2, y2) {
+	return `M${y1},${x1}C${(y1+y2)/2},${x1} ${(y1+y2)/2},${x2} ${y2},${x2}`;
+}
 
 export default class Link extends React.PureComponent{
 	constructor(props) {
@@ -24,10 +21,11 @@ export default class Link extends React.PureComponent{
 		this.props.onClick && this.props.onClick(this.props.source[this.props.keyProp], this.props.target[this.props.keyProp]);
 	}
 	render() {
-		let d = diagonal({
-			source: this.props.source,
-			target: this.props.target
-		});
+		let d = diagonal(
+			this.props.source.x,
+			this.props.source.y,
+			this.props.target.x,
+			this.props.target.y);
 
 		return (
 			<path className={this.props.className} d={d} onClick={this.handleClick}/>);
@@ -35,4 +33,3 @@ export default class Link extends React.PureComponent{
 }
 
 Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;

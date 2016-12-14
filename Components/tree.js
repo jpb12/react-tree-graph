@@ -1,5 +1,5 @@
 import clone from 'clone';
-import d3 from 'd3';
+import { hierarchy, tree } from 'd3';
 import React from 'react';
 import Link from './link';
 import Node from './node';
@@ -32,7 +32,11 @@ const defaultProps = {
 		left: 20,
 		right: 150,
 		top: 10
-	}
+	},
+	linkClass: 'link',
+	nodeClass: 'node',
+	nodeOffset: 3.5,
+	nodeRadius: 5
 };
 
 export default class Tree extends React.PureComponent{
@@ -41,37 +45,40 @@ export default class Tree extends React.PureComponent{
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
 
 		// data is cloned because d3 will mutate the object passed in
-		let data = clone(this.props.data);
+		let data = hierarchy(clone(this.props.data));
 
-		let tree =  d3.layout.tree().size([contentHeight, contentWidth]);
-		let nodes = tree.nodes(data);
-		
+		let root =  tree().size([contentHeight, contentWidth])(data);
+		let nodes = root.descendants();
+		let links = root.links();
+
 		nodes.forEach(node => {
 			node.y += this.props.margins.top;
 		});
-		
-		let links = tree.links(nodes);
 
 		return (
 			<svg height={this.props.height} width={this.props.width}>
 				{ links.map(link =>
 					<Link
-						key={link.target[this.props.keyProp]}
+						key={link.target.data[this.props.keyProp]}
 						className={this.props.linkClass}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
-						{...link}/>)
+						source={link.source}
+						target={link.target}
+						{...link.data}/>)
 				}
 				{ nodes.map(node =>
 					<Node
-						key={node[this.props.keyProp]}
+						key={node.data[this.props.keyProp]}
 						className={this.props.nodeClass}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}
 						onClick={this.props.nodeClickHandler}
 						offset={this.props.nodeOffset}
 						radius={this.props.nodeRadius}
-						{...node}/>)
+						x={node.x}
+						y={node.y}
+						{...node.data}/>)
 				}
 			</svg>);
 	}
