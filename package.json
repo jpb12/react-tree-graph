@@ -22,25 +22,25 @@
   },
   "homepage": "http://jpb12.github.io/react-tree-view/",
   "devDependencies": {
-    "babel-core": "^6.20.0",
-    "babel-loader": "^6.2.9",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2016": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
-    "eslint": "^3.12.1",
-    "eslint-plugin-react": "^6.8.0",
-    "webpack": "^1.14.0"
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2016": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "eslint": "^3.17.0",
+    "eslint-plugin-react": "^6.10.0",
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "clone": "^2.1.0",
-    "d3": "^4.4.0",
-    "react": "^15.4.1"
+    "d3": "^4.7.1",
+    "react": "^15.4.2"
   },
   "peerDependencies": {
     "react": "^15.3"
   },
   "scripts": {
     "build": "set NODE_ENV=production && webpack -p",
-    "build-dev": "set NODE_ENV=development && webpack -d --progress"
+    "build-dev": "set NODE_ENV=development && webpack"
   }
 }

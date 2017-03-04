@@ -3,6 +3,7 @@ const isProduction = process.env.NODE_ENV.trim() === 'production';
 
 module.exports = {
 	context: __dirname,
+	devtool: isProduction ? false : 'source-map',
 	entry: './Components/tree.js',
 	externals: [
 		'clone',
@@ -10,12 +11,12 @@ module.exports = {
 		'react'
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader',
-				query: {
+				options: {
 					presets: ['react', 'es2015', 'es2016']
 				}
 			}
