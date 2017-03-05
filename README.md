@@ -2,8 +2,10 @@ react-tree-graph
 ================
 A simple react component which renders data as a tree using svg.
 
-[Demo](http://jpb12.github.io/tree-viewer/)
--------------------------------------------
+Demo
+----
+
+[Demo tree view](http://jpb12.github.io/tree-viewer/)
 
 Installing
 ----------
@@ -33,6 +35,14 @@ let data = {
 	height={400}
 	width={400}/>);
 ```
+
+If you are using webpack, and have [css-loader](https://www.npmjs.com/package/css-loader), you can include some default styles with:
+
+```javascript
+import 'react-tree-graph/dist/style.css'
+```
+
+Alternatively, both the JavaScript and CSS can be included directly from the dist folder with script tags.
 
 Configuration
 -------------
