@@ -1,5 +1,5 @@
 import clone from 'clone';
-import { hierarchy, tree } from 'd3';
+import { hierarchy, tree } from 'd3-hierarchy';
 import React from 'react';
 import Link from './link';
 import Node from './node';

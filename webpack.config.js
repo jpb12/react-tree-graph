@@ -7,7 +7,7 @@ module.exports = {
 	entry: './index.js',
 	externals: [
 		'clone',
-		'd3',
+		'd3-hierarchy',
 		'react'
 	],
 	module: {
