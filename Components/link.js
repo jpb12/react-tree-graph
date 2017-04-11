@@ -18,7 +18,7 @@ export default class Link extends React.PureComponent{
 		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick() {
-		this.props.onClick && this.props.onClick(this.props.source[this.props.keyProp], this.props.target[this.props.keyProp]);
+		this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp]);
 	}
 	render() {
 		let d = diagonal(
