@@ -283,7 +283,7 @@ var Link = function (_React$PureComponent) {
 	_createClass(Link, [{
 		key: 'handleClick',
 		value: function handleClick() {
-			this.props.onClick && this.props.onClick(this.props.source[this.props.keyProp], this.props.target[this.props.keyProp]);
+			this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp]);
 		}
 	}, {
 		key: 'render',
