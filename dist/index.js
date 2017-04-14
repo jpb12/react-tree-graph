@@ -282,8 +282,8 @@ var Link = function (_React$PureComponent) {
 
 	_createClass(Link, [{
 		key: 'handleClick',
-		value: function handleClick() {
-			this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp]);
+		value: function handleClick(event) {
+			this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp], event);
 		}
 	}, {
 		key: 'render',
@@ -352,8 +352,8 @@ var Node = function (_React$PureComponent) {
 
 	_createClass(Node, [{
 		key: 'handleClick',
-		value: function handleClick() {
-			this.props.onClick && this.props.onClick(this.props[this.props.keyProp]);
+		value: function handleClick(event) {
+			this.props.onClick && this.props.onClick(this.props[this.props.keyProp], event);
 		}
 	}, {
 		key: 'getTransform',
