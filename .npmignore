@@ -1,5 +1,7 @@
+.babelrc
 .eslintrc.js
 .gitignore
 .npmignore
 webpack.config.js
+__tests__
 Components

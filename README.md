@@ -56,9 +56,9 @@ Configuration
 | `keyProp` | string | | `"name"` | The property on each node to use as a key. |
 | `labelProp` | string | | `"name"` | The property on each node to render as label text. |
 | `linkClass` | string | | `"link"` | The class to add to each `<path>` element linking two nodes. |
-| `linkClickHandler` | function | | | A function called when a link is clicked.  The source key, target key, and click event are passed in as parameters. |
+| `linkClickHandler` | function(sourceKey, targetKey, event) | | | A function called when a link is clicked. |
 | `nodeClass` | string | | `"node"` | The class to add to each `<g>` element, representing a node. |
-| `nodeClickHandler` | function | | | A function called when a node is clicked.  The node key and click event are passed as arguments. |
+| `nodeClickHandler` | function(nodeKey, event) | | | A function called when a node is clicked. |
 | `nodeOffset` | number | | `3.5` | The height offset for the label of a node.  May need to be adjusted depending on radius and font size. |
 | `nodeRadius` | number | | `5` | The radius of the rendered node. |
 

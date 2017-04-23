@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Node> renders correctly 1`] = `
+<g
+  className="test"
+  onClick={[Function]}
+  transform="translate(2, 1)"
+>
+  <circle
+    r={4}
+  />
+  <text
+    dx={4.5}
+    dy={3}
+  >
+    Test Node
+  </text>
+</g>
+`;
