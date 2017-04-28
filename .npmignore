@@ -5,4 +5,5 @@
 .travis.yml
 webpack.config.js
 __tests__
+coverage
 Components

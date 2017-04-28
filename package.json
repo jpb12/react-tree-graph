@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.13.1",
     "css-loader": "^0.28.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
@@ -45,8 +46,15 @@
     "react": "^15.4.2"
   },
   "jest": {
-      "snapshotSerializers": ["enzyme-to-json/serializer"],
-      "testPathIgnorePatterns": [".eslintrc.js"]
+    "collectCoverageFrom" : [
+      "Components/**/*.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "testPathIgnorePatterns": [
+      ".eslintrc.js"
+    ]
   },
   "peerDependencies": {
     "react": "^15.3"
@@ -54,6 +62,7 @@
   "scripts": {
     "build": "set NODE_ENV=production && webpack -p --progress",
     "build-dev": "set NODE_ENV=development && webpack --progress",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint Components __tests__",
     "test": "jest"
   }
