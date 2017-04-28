@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Link from '../../Components/link';
-import Node from '../../Components/node';
 import Tree from '../../Components/tree';
 
 const data = {
