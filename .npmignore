@@ -2,6 +2,7 @@
 .eslintrc.js
 .gitignore
 .npmignore
+.travis.yml
 webpack.config.js
 __tests__
 Components

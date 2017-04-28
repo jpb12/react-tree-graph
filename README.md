@@ -1,4 +1,4 @@
-react-tree-graph
+react-tree-graph &middot; [![Build Status](https://travis-ci.org/jpb12/react-tree-graph.svg?branch=master)](https://travis-ci.org/jpb12/react-tree-graph)
 ================
 A simple react component which renders data as a tree using svg.
 
