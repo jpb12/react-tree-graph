@@ -45,7 +45,8 @@
     "react": "^15.4.2"
   },
   "jest": {
-	  "snapshotSerializers": ["enzyme-to-json/serializer"]
+      "snapshotSerializers": ["enzyme-to-json/serializer"],
+      "testPathIgnorePatterns": [".eslintrc.js"]
   },
   "peerDependencies": {
     "react": "^15.3"

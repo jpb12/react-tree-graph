@@ -19,10 +19,6 @@ module.exports = {
             "tab",
 			{ "SwitchCase": 1 }
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "quotes": [
             "error",
             "single"
