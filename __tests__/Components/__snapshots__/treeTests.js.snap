@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tree> renders correctly 1`] = `
+<svg
+  height={100}
+  width={200}
+>
+  <Link
+    className="link"
+    keyProp="name"
+    source={
+      Node {
+        "children": Array [
+          Node {
+            "data": Object {
+              "name": "Black",
+            },
+            "depth": 1,
+            "height": 0,
+            "parent": [Circular],
+            "x": 40,
+            "y": 40,
+          },
+        ],
+        "data": Object {
+          "childs": Array [
+            Object {
+              "name": "Black",
+            },
+          ],
+          "name": "Colour",
+        },
+        "depth": 0,
+        "height": 1,
+        "parent": null,
+        "x": 40,
+        "y": 10,
+      }
+    }
+    target={
+      Node {
+        "data": Object {
+          "name": "Black",
+        },
+        "depth": 1,
+        "height": 0,
+        "parent": Node {
+          "children": Array [
+            [Circular],
+          ],
+          "data": Object {
+            "childs": Array [
+              Object {
+                "name": "Black",
+              },
+            ],
+            "name": "Colour",
+          },
+          "depth": 0,
+          "height": 1,
+          "parent": null,
+          "x": 40,
+          "y": 10,
+        },
+        "x": 40,
+        "y": 40,
+      }
+    }
+  />
+  <Node
+    childs={
+      Array [
+        Object {
+          "name": "Black",
+        },
+      ]
+    }
+    className="node"
+    keyProp="name"
+    labelProp="name"
+    name="Colour"
+    offset={3.5}
+    radius={5}
+    x={40}
+    y={10}
+  />
+  <Node
+    className="node"
+    keyProp="name"
+    labelProp="name"
+    name="Black"
+    offset={3.5}
+    radius={5}
+    x={40}
+    y={40}
+  />
+</svg>
+`;

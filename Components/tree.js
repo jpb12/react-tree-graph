@@ -10,6 +10,7 @@ const propTypes = {
 	width: React.PropTypes.number.isRequired,
 	keyProp: React.PropTypes.string.isRequired,
 	labelProp: React.PropTypes.string.isRequired,
+	getChildren: React.PropTypes.func,
 	linkClass: React.PropTypes.string,
 	linkClickHandler: React.PropTypes.func,
 	margins: React.PropTypes.shape({
@@ -45,7 +46,7 @@ export default class Tree extends React.PureComponent{
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
 
 		// data is cloned because d3 will mutate the object passed in
-		let data = hierarchy(clone(this.props.data));
+		let data = hierarchy(clone(this.props.data), this.props.getChildren);
 
 		let root =  tree().size([contentHeight, contentWidth])(data);
 		let nodes = root.descendants();
