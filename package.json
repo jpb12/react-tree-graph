@@ -36,14 +36,14 @@
     "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "jest": "^19.0.2",
+	"react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "webpack": "^2.4.1"
   },
   "dependencies": {
     "clone": "^2.1.1",
-    "d3-hierarchy": "^1.1.4",
-    "react": "^15.4.2"
+    "d3-hierarchy": "^1.1.4"
   },
   "jest": {
     "collectCoverageFrom" : [

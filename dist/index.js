@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -129,6 +129,7 @@ var propTypes = {
 	width: _react2.default.PropTypes.number.isRequired,
 	keyProp: _react2.default.PropTypes.string.isRequired,
 	labelProp: _react2.default.PropTypes.string.isRequired,
+	getChildren: _react2.default.PropTypes.func,
 	linkClass: _react2.default.PropTypes.string,
 	linkClickHandler: _react2.default.PropTypes.func,
 	margins: _react2.default.PropTypes.shape({
@@ -176,7 +177,7 @@ var Tree = function (_React$PureComponent) {
 			var contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
 
 			// data is cloned because d3 will mutate the object passed in
-			var data = (0, _d3Hierarchy.hierarchy)((0, _clone2.default)(this.props.data));
+			var data = (0, _d3Hierarchy.hierarchy)((0, _clone2.default)(this.props.data), this.props.getChildren);
 
 			var root = (0, _d3Hierarchy.tree)().size([contentHeight, contentWidth])(data);
 			var nodes = root.descendants();

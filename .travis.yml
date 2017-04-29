@@ -6,5 +6,7 @@ node_js:
 script:
   - npm run eslint
   - npm test -- --coverage
+  - npm run build-dev
+  - npm run build
 
 after_success: npm run coverage

@@ -21,7 +21,7 @@ module.exports = {
 				}
 			}, {
 				test: /\.css$/,
-				loader: ExtractTextPlugin.extract({
+				use: ExtractTextPlugin.extract({
 					loader: 'css-loader',
 					options: {
 						minimize: isProduction
