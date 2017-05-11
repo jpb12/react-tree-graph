@@ -5,7 +5,7 @@ A simple react component which renders data as a tree using svg.
 Demo
 ----
 
-[Demo tree view](http://jpb12.github.io/tree-viewer/)
+[Demo tree view](https://jpb12.github.io/tree-viewer/)
 
 Installing
 ----------
