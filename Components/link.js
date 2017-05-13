@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-	source: React.PropTypes.object.isRequired,
-	target: React.PropTypes.object.isRequired,
-	className: React.PropTypes.string,
-	keyProp: React.PropTypes.string.isRequired,
-	onClick: React.PropTypes.func
+	source: PropTypes.object.isRequired,
+	target: PropTypes.object.isRequired,
+	className: PropTypes.string,
+	keyProp: PropTypes.string.isRequired,
+	onClick: PropTypes.func
 };
 
 function diagonal(x1, y1, x2, y2) {

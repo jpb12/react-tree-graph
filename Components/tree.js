@@ -1,28 +1,29 @@
 import clone from 'clone';
 import { hierarchy, tree } from 'd3-hierarchy';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link';
 import Node from './node';
 
 const propTypes = {
-	data: React.PropTypes.object.isRequired,
-	height: React.PropTypes.number.isRequired,
-	width: React.PropTypes.number.isRequired,
-	keyProp: React.PropTypes.string.isRequired,
-	labelProp: React.PropTypes.string.isRequired,
-	getChildren: React.PropTypes.func,
-	linkClass: React.PropTypes.string,
-	linkClickHandler: React.PropTypes.func,
-	margins: React.PropTypes.shape({
-		bottom: React.PropTypes.number.isRequired,
-		left: React.PropTypes.number.isRequired,
-		right: React.PropTypes.number.isRequired,
-		top: React.PropTypes.number.isRequired
+	data: PropTypes.object.isRequired,
+	height: PropTypes.number.isRequired,
+	width: PropTypes.number.isRequired,
+	keyProp: PropTypes.string.isRequired,
+	labelProp: PropTypes.string.isRequired,
+	getChildren: PropTypes.func,
+	linkClass: PropTypes.string,
+	linkClickHandler: PropTypes.func,
+	margins: PropTypes.shape({
+		bottom: PropTypes.number.isRequired,
+		left: PropTypes.number.isRequired,
+		right: PropTypes.number.isRequired,
+		top: PropTypes.number.isRequired
 	}).isRequired,
-	nodeClass: React.PropTypes.string,
-	nodeClickHandler: React.PropTypes.func,
-	nodeOffset: React.PropTypes.number,
-	nodeRadius: React.PropTypes.number
+	nodeClass: PropTypes.string,
+	nodeClickHandler: PropTypes.func,
+	nodeOffset: PropTypes.number,
+	nodeRadius: PropTypes.number
 };
 
 const defaultProps = {

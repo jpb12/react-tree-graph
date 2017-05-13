@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-	x: React.PropTypes.number.isRequired,
-	y: React.PropTypes.number.isRequired,
-	className: React.PropTypes.string,
-	keyProp: React.PropTypes.string.isRequired,
-	labelProp: React.PropTypes.string.isRequired,
-	onClick: React.PropTypes.func,
-	offset: React.PropTypes.number.isRequired,
-	radius: React.PropTypes.number.isRequired
+	x: PropTypes.number.isRequired,
+	y: PropTypes.number.isRequired,
+	className: PropTypes.string,
+	keyProp: PropTypes.string.isRequired,
+	labelProp: PropTypes.string.isRequired,
+	onClick: PropTypes.func,
+	offset: PropTypes.number.isRequired,
+	radius: PropTypes.number.isRequired
 };
 
 export default class Node extends React.PureComponent{
