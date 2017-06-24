@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("prop-types"), require("react"), require("clone"), require("d3-hierarchy"));
+		module.exports = factory(require("prop-types"), require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"));
 	else if(typeof define === 'function' && define.amd)
-		define(["prop-types", "react", "clone", "d3-hierarchy"], factory);
+		define(["prop-types", "react", "clone", "d3-ease", "d3-hierarchy"], factory);
 	else if(typeof exports === 'object')
-		exports["react-tree-graph"] = factory(require("prop-types"), require("react"), require("clone"), require("d3-hierarchy"));
+		exports["react-tree-graph"] = factory(require("prop-types"), require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"));
 	else
-		root["react-tree-graph"] = factory(root["prop-types"], root["react"], root["clone"], root["d3-hierarchy"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
+		root["react-tree-graph"] = factory(root["prop-types"], root["react"], root["clone"], root["d3-ease"], root["d3-hierarchy"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -103,11 +103,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _clone = __webpack_require__(7);
+var _clone = __webpack_require__(8);
 
 var _clone2 = _interopRequireDefault(_clone);
 
-var _d3Hierarchy = __webpack_require__(8);
+var _d3Hierarchy = __webpack_require__(10);
 
 var _propTypes = __webpack_require__(0);
 
@@ -117,11 +117,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _link = __webpack_require__(4);
+var _animated = __webpack_require__(4);
+
+var _animated2 = _interopRequireDefault(_animated);
+
+var _link = __webpack_require__(5);
 
 var _link2 = _interopRequireDefault(_link);
 
-var _node = __webpack_require__(5);
+var _node = __webpack_require__(6);
 
 var _node2 = _interopRequireDefault(_node);
 
@@ -135,6 +139,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var propTypes = {
 	data: _propTypes2.default.object.isRequired,
+	animated: _propTypes2.default.bool.isRequired,
+	duration: _propTypes2.default.number.isRequired,
+	steps: _propTypes2.default.number.isRequired,
 	height: _propTypes2.default.number.isRequired,
 	width: _propTypes2.default.number.isRequired,
 	keyProp: _propTypes2.default.string.isRequired,
@@ -155,6 +162,9 @@ var propTypes = {
 };
 
 var defaultProps = {
+	animated: false,
+	duration: 500,
+	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
 	margins: {
@@ -201,18 +211,32 @@ var Tree = function (_React$PureComponent) {
 				'svg',
 				{ height: this.props.height, width: this.props.width },
 				links.map(function (link) {
-					return _react2.default.createElement(_link2.default, _extends({
+					return _react2.default.createElement(_animated2.default, _extends({
 						key: link.target.data[_this2.props.keyProp],
+						enabled: _this2.props.animated,
+						duration: _this2.props.duration,
+						steps: _this2.props.steps,
+						animatedProps: ['x1', 'x2', 'y1', 'y2'],
+						component: _link2.default,
 						className: _this2.props.linkClass,
 						keyProp: _this2.props.keyProp,
 						onClick: _this2.props.linkClickHandler,
 						source: link.source,
-						target: link.target
+						target: link.target,
+						x1: link.source.x,
+						x2: link.target.x,
+						y1: link.source.y,
+						y2: link.target.y
 					}, link.data));
 				}),
 				nodes.map(function (node) {
-					return _react2.default.createElement(_node2.default, _extends({
+					return _react2.default.createElement(_animated2.default, _extends({
 						key: node.data[_this2.props.keyProp],
+						enabled: _this2.props.animated,
+						duration: _this2.props.duration,
+						steps: _this2.props.steps,
+						animatedProps: ['x', 'y'],
+						component: _node2.default,
 						className: _this2.props.nodeClass,
 						keyProp: _this2.props.keyProp,
 						labelProp: _this2.props.labelProp,
@@ -253,6 +277,111 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _d3Ease = __webpack_require__(9);
+
+var _propTypes = __webpack_require__(0);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var propTypes = {
+	animatedProps: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+	component: _propTypes2.default.func.isRequired,
+	duration: _propTypes2.default.number.isRequired,
+	enabled: _propTypes2.default.bool.isRequired,
+	steps: _propTypes2.default.number.isRequired
+};
+
+var Animated = function (_React$PureComponent) {
+	_inherits(Animated, _React$PureComponent);
+
+	function Animated(props) {
+		_classCallCheck(this, Animated);
+
+		var _this = _possibleConstructorReturn(this, (Animated.__proto__ || Object.getPrototypeOf(Animated)).call(this, props));
+
+		_this.state = props.animatedProps.reduce(function (state, prop) {
+			state[prop] = props[prop];
+			return state;
+		}, {});
+		return _this;
+	}
+
+	_createClass(Animated, [{
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			var _this2 = this;
+
+			if (!nextProps.enabled || nextProps.animatedProps.every(function (prop) {
+				return _this2.props[prop] === nextProps[prop];
+			})) {
+				return;
+			}
+
+			clearInterval(this.animation);
+
+			var counter = 0;
+			var initialState = this.state;
+			this.animation = setInterval(function () {
+				counter++;
+
+				_this2.setState(nextProps.animatedProps.reduce(function (state, prop) {
+					state[prop] = _this2.calculateNewValue(initialState[prop], nextProps[prop], counter / nextProps.steps);
+					return state;
+				}, {}));
+
+				if (counter === nextProps.steps) {
+					clearInterval(_this2.animation);
+					_this2.animation == null;
+				}
+			}, nextProps.duration / nextProps.steps);
+		}
+	}, {
+		key: 'calculateNewValue',
+		value: function calculateNewValue(start, end, interval) {
+			return start + (end - start) * (0, _d3Ease.easeQuadOut)(interval);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return this.props.enabled ? _react2.default.createElement(this.props.component, _extends({}, this.props, this.state)) : _react2.default.createElement(this.props.component, this.props);
+		}
+	}]);
+
+	return Animated;
+}(_react2.default.PureComponent);
+
+exports.default = Animated;
+
+
+Animated.propTypes = propTypes;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _propTypes = __webpack_require__(0);
@@ -276,7 +405,11 @@ var propTypes = {
 	target: _propTypes2.default.object.isRequired,
 	className: _propTypes2.default.string,
 	keyProp: _propTypes2.default.string.isRequired,
-	onClick: _propTypes2.default.func
+	onClick: _propTypes2.default.func,
+	x1: _propTypes2.default.number.isRequired,
+	x2: _propTypes2.default.number.isRequired,
+	y1: _propTypes2.default.number.isRequired,
+	y2: _propTypes2.default.number.isRequired
 };
 
 function diagonal(x1, y1, x2, y2) {
@@ -303,7 +436,7 @@ var Link = function (_React$PureComponent) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var d = diagonal(this.props.source.x, this.props.source.y, this.props.target.x, this.props.target.y);
+			var d = diagonal(this.props.x1, this.props.y1, this.props.x2, this.props.y2);
 
 			return _react2.default.createElement('path', { className: this.props.className, d: d, onClick: this.handleClick });
 		}
@@ -318,7 +451,7 @@ exports.default = Link;
 Link.propTypes = propTypes;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -404,7 +537,7 @@ exports.default = Node;
 Node.propTypes = propTypes;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -425,16 +558,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _tree2.default;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ })
 /******/ ]);

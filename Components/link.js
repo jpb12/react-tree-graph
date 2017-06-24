@@ -6,7 +6,11 @@ const propTypes = {
 	target: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	keyProp: PropTypes.string.isRequired,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	x1: PropTypes.number.isRequired,
+	x2: PropTypes.number.isRequired,
+	y1: PropTypes.number.isRequired,
+	y2: PropTypes.number.isRequired
 };
 
 function diagonal(x1, y1, x2, y2) {
@@ -23,10 +27,10 @@ export default class Link extends React.PureComponent{
 	}
 	render() {
 		let d = diagonal(
-			this.props.source.x,
-			this.props.source.y,
-			this.props.target.x,
-			this.props.target.y);
+			this.props.x1,
+			this.props.y1,
+			this.props.x2,
+			this.props.y2);
 
 		return (
 			<path className={this.props.className} d={d} onClick={this.handleClick}/>);

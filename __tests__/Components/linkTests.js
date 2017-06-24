@@ -6,16 +6,14 @@ import Link from '../../Components/link';
 describe('<Link>', () => {
 	test('renders correctly', () => {
 		const props = {
-			source: {
-				x: 1,
-				y: 2
-			},
-			target: {
-				x: 5,
-				y: 9
-			},
+			source: {},
+			target: {},
 			className: 'Link',
-			keyProp: ''
+			keyProp: '',
+			x1: 1,
+			x2: 5,
+			y1: 2,
+			y2: 9
 		};
 
 		const tree = shallow(<Link {...props}/>);
@@ -28,22 +26,22 @@ describe('<Link>', () => {
 
 		const props = {
 			source: {
-				x: 1,
-				y: 2,
 				data: {
 					id: 'origin'
 				}
 			},
 			target: {
-				x: 5,
-				y: 9,
 				data: {
 					id: 'target'
 				}
 			},
 			className: 'Link',
 			keyProp: 'id',
-			onClick: clickMock
+			onClick: clickMock,
+			x1: 1,
+			x2: 5,
+			y1: 2,
+			y2: 9
 		};
 
 		const tree = shallow(<Link {...props}/>);

@@ -2,11 +2,15 @@ import clone from 'clone';
 import { hierarchy, tree } from 'd3-hierarchy';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Animated from './animated';
 import Link from './link';
 import Node from './node';
 
 const propTypes = {
 	data: PropTypes.object.isRequired,
+	animated: PropTypes.bool.isRequired,
+	duration: PropTypes.number.isRequired,
+	steps: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 	width: PropTypes.number.isRequired,
 	keyProp: PropTypes.string.isRequired,
@@ -27,6 +31,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+	animated: false,
+	duration: 500,
+	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
 	margins: {
@@ -60,18 +67,32 @@ export default class Tree extends React.PureComponent{
 		return (
 			<svg height={this.props.height} width={this.props.width}>
 				{ links.map(link =>
-					<Link
+					<Animated
 						key={link.target.data[this.props.keyProp]}
+						enabled={this.props.animated}
+						duration={this.props.duration}
+						steps={this.props.steps}
+						animatedProps={['x1', 'x2', 'y1', 'y2']}
+						component={Link}
 						className={this.props.linkClass}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
 						source={link.source}
 						target={link.target}
+						x1={link.source.x}
+						x2={link.target.x}
+						y1={link.source.y}
+						y2={link.target.y}
 						{...link.data}/>)
 				}
 				{ nodes.map(node =>
-					<Node
+					<Animated
 						key={node.data[this.props.keyProp]}
+						enabled={this.props.animated}
+						duration={this.props.duration}
+						steps={this.props.steps}
+						animatedProps={['x', 'y']}
+						component={Node}
 						className={this.props.nodeClass}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}

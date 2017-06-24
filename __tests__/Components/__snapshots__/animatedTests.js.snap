@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Animated> animates when props change 1`] = `
+<DummyComponent
+  animatedProps={
+    Array [
+      "x",
+      "y",
+    ]
+  }
+  component={[Function]}
+  duration={100}
+  enabled={true}
+  steps={2}
+  x={2}
+  y={3}
+/>
+`;
+
+exports[`<Animated> animates when props change 2`] = `
+<DummyComponent
+  animatedProps={
+    Array [
+      "x",
+      "y",
+    ]
+  }
+  component={[Function]}
+  duration={100}
+  enabled={true}
+  steps={2}
+  x={2}
+  y={3}
+/>
+`;
+
+exports[`<Animated> does nothing when not enabled 1`] = `
+<DummyComponent
+  animatedProps={
+    Array [
+      "x",
+      "y",
+    ]
+  }
+  component={[Function]}
+  duration={1}
+  enabled={false}
+  steps={1}
+  x={5}
+  y={6}
+/>
+`;
+
+exports[`<Animated> renders correctly and sets initial state 1`] = `
+<DummyComponent
+  animatedProps={
+    Array [
+      "x",
+      "y",
+    ]
+  }
+  component={[Function]}
+  duration={1}
+  enabled={true}
+  steps={1}
+  x={2}
+  y={3}
+/>
+`;

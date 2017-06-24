@@ -5,8 +5,19 @@ exports[`<Tree> renders correctly 1`] = `
   height={100}
   width={200}
 >
-  <Link
+  <Animated
+    animatedProps={
+      Array [
+        "x1",
+        "x2",
+        "y1",
+        "y2",
+      ]
+    }
     className="link"
+    component={[Function]}
+    duration={500}
+    enabled={false}
     keyProp="name"
     source={
       Node {
@@ -37,6 +48,7 @@ exports[`<Tree> renders correctly 1`] = `
         "y": 10,
       }
     }
+    steps={20}
     target={
       Node {
         "data": Object {
@@ -66,8 +78,18 @@ exports[`<Tree> renders correctly 1`] = `
         "y": 40,
       }
     }
+    x1={40}
+    x2={40}
+    y1={10}
+    y2={40}
   />
-  <Node
+  <Animated
+    animatedProps={
+      Array [
+        "x",
+        "y",
+      ]
+    }
     childs={
       Array [
         Object {
@@ -76,21 +98,35 @@ exports[`<Tree> renders correctly 1`] = `
       ]
     }
     className="node"
+    component={[Function]}
+    duration={500}
+    enabled={false}
     keyProp="name"
     labelProp="name"
     name="Colour"
     offset={3.5}
     radius={5}
+    steps={20}
     x={40}
     y={10}
   />
-  <Node
+  <Animated
+    animatedProps={
+      Array [
+        "x",
+        "y",
+      ]
+    }
     className="node"
+    component={[Function]}
+    duration={500}
+    enabled={false}
     keyProp="name"
     labelProp="name"
     name="Black"
     offset={3.5}
     radius={5}
+    steps={20}
     x={40}
     y={40}
   />

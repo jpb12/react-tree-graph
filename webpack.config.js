@@ -8,6 +8,7 @@ module.exports = {
 	externals: [
 		'clone',
 		'd3-hierarchy',
+		'd3-ease',
 		'prop-types',
 		'react'
 	],
