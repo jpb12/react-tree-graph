@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
+import { easeQuadOut } from 'd3-ease';
 import Animated from '../../Components/animated';
 
 jest.useFakeTimers();
@@ -23,6 +24,7 @@ describe('<Animated>', () => {
 			],
 			component: DummyComponent,
 			duration: 1,
+			easing: easeQuadOut,
 			enabled: true,
 			steps: 1,
 			x: 2,
@@ -49,6 +51,7 @@ describe('<Animated>', () => {
 			],
 			component: DummyComponent,
 			duration: 100,
+			easing: easeQuadOut,
 			enabled: true,
 			steps: 2,
 			x: 2,
@@ -89,6 +92,7 @@ describe('<Animated>', () => {
 			],
 			component: DummyComponent,
 			duration: 100,
+			easing: easeQuadOut,
 			enabled: true,
 			steps: 1,
 			x: 2,
@@ -121,6 +125,7 @@ describe('<Animated>', () => {
 			],
 			component: DummyComponent,
 			duration: 1,
+			easing: easeQuadOut,
 			enabled: false,
 			steps: 1,
 			x: 2,
@@ -145,6 +150,7 @@ describe('<Animated>', () => {
 			],
 			component: DummyComponent,
 			duration: 100,
+			easing: easeQuadOut,
 			enabled: true,
 			steps: 2,
 			x: 2,

@@ -1,4 +1,5 @@
 import clone from 'clone';
+import { easeQuadOut } from 'd3-ease';
 import { hierarchy, tree } from 'd3-hierarchy';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,6 +11,7 @@ const propTypes = {
 	data: PropTypes.object.isRequired,
 	animated: PropTypes.bool.isRequired,
 	duration: PropTypes.number.isRequired,
+	easing: PropTypes.func.isRequired,
 	steps: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 	width: PropTypes.number.isRequired,
@@ -33,6 +35,7 @@ const propTypes = {
 const defaultProps = {
 	animated: false,
 	duration: 500,
+	easing: easeQuadOut,
 	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -91,6 +94,7 @@ export default class Tree extends React.PureComponent{
 							}
 						]}
 						component={Link}
+						easing={this.props.easing}
 						className={this.props.linkClass}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
@@ -118,6 +122,7 @@ export default class Tree extends React.PureComponent{
 							}
 						]}
 						component={Node}
+						easing={this.props.easing}
 						className={this.props.nodeClass}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}

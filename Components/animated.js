@@ -1,4 +1,3 @@
-import { easeQuadOut } from 'd3-ease';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,6 +8,7 @@ const propTypes = {
 	})).isRequired,
 	component: PropTypes.func.isRequired,
 	duration: PropTypes.number.isRequired,
+	easing: PropTypes.func.isRequired,
 	enabled: PropTypes.bool.isRequired,
 	steps: PropTypes.number.isRequired
 };
@@ -56,7 +56,7 @@ export default class Animated extends React.PureComponent{
 		}, props.duration / props.steps);
 	}
 	calculateNewValue(start, end, interval) {
-		return start + (end - start) * easeQuadOut(interval);
+		return start + (end - start) * this.props.easing(interval);
 	}
 	render() {
 		return this.props.enabled
