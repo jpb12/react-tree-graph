@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import Animated from '../../Components/animated';
 
@@ -14,7 +14,13 @@ class DummyComponent extends React.PureComponent{
 describe('<Animated>', () => {
 	test('renders correctly and sets initial state', () => {
 		const props = {
-			animatedProps: ['x', 'y'],
+			animatedProps: [
+				{
+					name: 'x'
+				}, {
+					name: 'y'
+				}
+			],
 			component: DummyComponent,
 			duration: 1,
 			enabled: true,
@@ -34,7 +40,13 @@ describe('<Animated>', () => {
 
 	test('animates when props change', () => {
 		const props = {
-			animatedProps: ['x', 'y'],
+			animatedProps: [
+				{
+					name: 'x'
+				}, {
+					name: 'y'
+				}
+			],
 			component: DummyComponent,
 			duration: 100,
 			enabled: true,
@@ -64,9 +76,49 @@ describe('<Animated>', () => {
 		expect(tree).toMatchSnapshot();
 	});
 
+	test('animates from inital value on mount', () => {
+		const props = {
+			animatedProps: [
+				{
+					name: 'x',
+					initialValue: 1
+				}, {
+					name: 'y',
+					initialValue: 1
+				}
+			],
+			component: DummyComponent,
+			duration: 100,
+			enabled: true,
+			steps: 1,
+			x: 2,
+			y: 3
+		};
+
+		const tree = mount(<Animated {...props}/>);
+		
+		expect(tree.state()).toMatchObject({
+			x: 1,
+			y: 1
+		});
+
+		jest.runTimersToTime(100);
+
+		expect(tree.state()).toMatchObject({
+			x: 2,
+			y: 3
+		});
+	});
+
 	test('does nothing when not enabled', () => {
 		const props = {
-			animatedProps: ['x', 'y'],
+			animatedProps: [
+				{
+					name: 'x'
+				}, {
+					name: 'y'
+				}
+			],
 			component: DummyComponent,
 			duration: 1,
 			enabled: false,
@@ -80,5 +132,33 @@ describe('<Animated>', () => {
 		tree.setProps({x: 5, y: 6});
 
 		expect(tree).toMatchSnapshot();
+	});
+
+	test('does nothing when props change does not change animated value', () => {
+		const props = {
+			animatedProps: [
+				{
+					name: 'x'
+				}, {
+					name: 'y'
+				}
+			],
+			component: DummyComponent,
+			duration: 100,
+			enabled: true,
+			steps: 2,
+			x: 2,
+			y: 3,
+			z: 4
+		};
+
+		const tree = shallow(<Animated {...props}/>);
+		
+		tree.setProps({z: 7});
+
+		expect(tree.state()).toMatchObject({
+			x: 2,
+			y: 3
+		});
 	});
 });

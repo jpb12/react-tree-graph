@@ -8,10 +8,22 @@ exports[`<Tree> renders correctly 1`] = `
   <Animated
     animatedProps={
       Array [
-        "x1",
-        "x2",
-        "y1",
-        "y2",
+        Object {
+          "initialValue": 40,
+          "name": "x1",
+        },
+        Object {
+          "initialValue": 40,
+          "name": "x2",
+        },
+        Object {
+          "initialValue": 10,
+          "name": "y1",
+        },
+        Object {
+          "initialValue": 10,
+          "name": "y2",
+        },
       ]
     }
     className="link"
@@ -86,8 +98,14 @@ exports[`<Tree> renders correctly 1`] = `
   <Animated
     animatedProps={
       Array [
-        "x",
-        "y",
+        Object {
+          "initialValue": 40,
+          "name": "x",
+        },
+        Object {
+          "initialValue": 10,
+          "name": "y",
+        },
       ]
     }
     childs={
@@ -113,8 +131,14 @@ exports[`<Tree> renders correctly 1`] = `
   <Animated
     animatedProps={
       Array [
-        "x",
-        "y",
+        Object {
+          "initialValue": 40,
+          "name": "x",
+        },
+        Object {
+          "initialValue": 10,
+          "name": "y",
+        },
       ]
     }
     className="node"

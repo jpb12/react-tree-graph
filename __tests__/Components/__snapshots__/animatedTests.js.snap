@@ -4,8 +4,12 @@ exports[`<Animated> animates when props change 1`] = `
 <DummyComponent
   animatedProps={
     Array [
-      "x",
-      "y",
+      Object {
+        "name": "x",
+      },
+      Object {
+        "name": "y",
+      },
     ]
   }
   component={[Function]}
@@ -21,8 +25,12 @@ exports[`<Animated> animates when props change 2`] = `
 <DummyComponent
   animatedProps={
     Array [
-      "x",
-      "y",
+      Object {
+        "name": "x",
+      },
+      Object {
+        "name": "y",
+      },
     ]
   }
   component={[Function]}
@@ -38,8 +46,12 @@ exports[`<Animated> does nothing when not enabled 1`] = `
 <DummyComponent
   animatedProps={
     Array [
-      "x",
-      "y",
+      Object {
+        "name": "x",
+      },
+      Object {
+        "name": "y",
+      },
     ]
   }
   component={[Function]}
@@ -55,8 +67,12 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
 <DummyComponent
   animatedProps={
     Array [
-      "x",
-      "y",
+      Object {
+        "name": "x",
+      },
+      Object {
+        "name": "y",
+      },
     ]
   }
   component={[Function]}

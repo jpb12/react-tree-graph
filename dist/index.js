@@ -207,6 +207,9 @@ var Tree = function (_React$PureComponent) {
 				node.y += _this2.props.margins.top;
 			});
 
+			var initialX = nodes[0].x;
+			var initialY = nodes[0].y;
+
 			return _react2.default.createElement(
 				'svg',
 				{ height: this.props.height, width: this.props.width },
@@ -216,7 +219,19 @@ var Tree = function (_React$PureComponent) {
 						enabled: _this2.props.animated,
 						duration: _this2.props.duration,
 						steps: _this2.props.steps,
-						animatedProps: ['x1', 'x2', 'y1', 'y2'],
+						animatedProps: [{
+							name: 'x1',
+							initialValue: initialX
+						}, {
+							name: 'x2',
+							initialValue: initialX
+						}, {
+							name: 'y1',
+							initialValue: initialY
+						}, {
+							name: 'y2',
+							initialValue: initialY
+						}],
 						component: _link2.default,
 						className: _this2.props.linkClass,
 						keyProp: _this2.props.keyProp,
@@ -235,7 +250,13 @@ var Tree = function (_React$PureComponent) {
 						enabled: _this2.props.animated,
 						duration: _this2.props.duration,
 						steps: _this2.props.steps,
-						animatedProps: ['x', 'y'],
+						animatedProps: [{
+							name: 'x',
+							initialValue: initialX
+						}, {
+							name: 'y',
+							initialValue: initialY
+						}],
 						component: _node2.default,
 						className: _this2.props.nodeClass,
 						keyProp: _this2.props.keyProp,
@@ -300,7 +321,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var propTypes = {
-	animatedProps: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+	animatedProps: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+		name: _propTypes2.default.string.isRequired,
+		initialValue: _propTypes2.default.number
+	})).isRequired,
 	component: _propTypes2.default.func.isRequired,
 	duration: _propTypes2.default.number.isRequired,
 	enabled: _propTypes2.default.bool.isRequired,
@@ -316,20 +340,36 @@ var Animated = function (_React$PureComponent) {
 		var _this = _possibleConstructorReturn(this, (Animated.__proto__ || Object.getPrototypeOf(Animated)).call(this, props));
 
 		_this.state = props.animatedProps.reduce(function (state, prop) {
-			state[prop] = props[prop];
+			state[prop.name] = prop.initialValue || props[prop.name];
 			return state;
 		}, {});
 		return _this;
 	}
 
 	_createClass(Animated, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.animate(this.props);
+		}
+	}, {
 		key: 'componentWillReceiveProps',
 		value: function componentWillReceiveProps(nextProps) {
 			var _this2 = this;
 
-			if (!nextProps.enabled || nextProps.animatedProps.every(function (prop) {
-				return _this2.props[prop] === nextProps[prop];
+			if (nextProps.animatedProps.every(function (prop) {
+				return _this2.props[prop.name] === nextProps[prop.name];
 			})) {
+				return;
+			}
+
+			this.animate(nextProps);
+		}
+	}, {
+		key: 'animate',
+		value: function animate(props) {
+			var _this3 = this;
+
+			if (!props.enabled) {
 				return;
 			}
 
@@ -340,16 +380,16 @@ var Animated = function (_React$PureComponent) {
 			this.animation = setInterval(function () {
 				counter++;
 
-				_this2.setState(nextProps.animatedProps.reduce(function (state, prop) {
-					state[prop] = _this2.calculateNewValue(initialState[prop], nextProps[prop], counter / nextProps.steps);
+				_this3.setState(props.animatedProps.reduce(function (state, prop) {
+					state[prop.name] = _this3.calculateNewValue(initialState[prop.name], props[prop.name], counter / props.steps);
 					return state;
 				}, {}));
 
-				if (counter === nextProps.steps) {
-					clearInterval(_this2.animation);
-					_this2.animation == null;
+				if (counter === props.steps) {
+					clearInterval(_this3.animation);
+					_this3.animation == null;
 				}
-			}, nextProps.duration / nextProps.steps);
+			}, props.duration / props.steps);
 		}
 	}, {
 		key: 'calculateNewValue',

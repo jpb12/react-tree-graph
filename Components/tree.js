@@ -64,6 +64,9 @@ export default class Tree extends React.PureComponent{
 			node.y += this.props.margins.top;
 		});
 
+		let initialX = nodes[0].x;
+		let initialY = nodes[0].y;
+
 		return (
 			<svg height={this.props.height} width={this.props.width}>
 				{ links.map(link =>
@@ -72,7 +75,21 @@ export default class Tree extends React.PureComponent{
 						enabled={this.props.animated}
 						duration={this.props.duration}
 						steps={this.props.steps}
-						animatedProps={['x1', 'x2', 'y1', 'y2']}
+						animatedProps={[
+							{
+								name: 'x1',
+								initialValue: initialX
+							}, {
+								name: 'x2',
+								initialValue: initialX
+							}, {
+								name: 'y1',
+								initialValue: initialY
+							}, {
+								name: 'y2',
+								initialValue: initialY
+							}
+						]}
 						component={Link}
 						className={this.props.linkClass}
 						keyProp={this.props.keyProp}
@@ -91,7 +108,15 @@ export default class Tree extends React.PureComponent{
 						enabled={this.props.animated}
 						duration={this.props.duration}
 						steps={this.props.steps}
-						animatedProps={['x', 'y']}
+						animatedProps={[
+							{
+								name: 'x',
+								initialValue: initialX
+							}, {
+								name: 'y',
+								initialValue: initialY
+							}
+						]}
 						component={Node}
 						className={this.props.nodeClass}
 						keyProp={this.props.keyProp}

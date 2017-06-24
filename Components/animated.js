@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
-	animatedProps: PropTypes.arrayOf(PropTypes.string).isRequired,
+	animatedProps: PropTypes.arrayOf(PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		initialValue: PropTypes.number
+	})).isRequired,
 	component: PropTypes.func.isRequired,
 	duration: PropTypes.number.isRequired,
 	enabled: PropTypes.bool.isRequired,
@@ -14,12 +17,22 @@ export default class Animated extends React.PureComponent{
 	constructor(props) {
 		super(props);
 		this.state = props.animatedProps.reduce((state, prop) => {
-			state[prop] = props[prop];
+			state[prop.name] = prop.initialValue || props[prop.name];
 			return state;
 		}, {});
 	}
+	componentDidMount() {
+		this.animate(this.props);
+	}
 	componentWillReceiveProps(nextProps) {
-		if (!nextProps.enabled || nextProps.animatedProps.every(prop => this.props[prop] === nextProps[prop])) {
+		if (nextProps.animatedProps.every(prop => this.props[prop.name] === nextProps[prop.name])) {
+			return;
+		}
+
+		this.animate(nextProps);
+	}
+	animate(props) {
+		if (!props.enabled) {
 			return;
 		}
 
@@ -30,17 +43,17 @@ export default class Animated extends React.PureComponent{
 		this.animation = setInterval(() => {
 			counter++;
 
-			this.setState(nextProps.animatedProps.reduce((state, prop) => {
-				state[prop] = this.calculateNewValue(initialState[prop], nextProps[prop], counter / nextProps.steps);
+			this.setState(props.animatedProps.reduce((state, prop) => {
+				state[prop.name] = this.calculateNewValue(initialState[prop.name], props[prop.name], counter / props.steps);
 				return state;
 			}, {}));
 
-			if (counter === nextProps.steps) {
+			if (counter === props.steps) {
 				clearInterval(this.animation);
 				this.animation == null;
 			}
 
-		}, nextProps.duration / nextProps.steps);
+		}, props.duration / props.steps);
 	}
 	calculateNewValue(start, end, interval) {
 		return start + (end - start) * easeQuadOut(interval);
