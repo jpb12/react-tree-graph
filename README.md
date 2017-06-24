@@ -22,11 +22,9 @@ import Tree from 'react-tree-graph';
 let data = {
 	name: 'Parent',
 	children: [{
-		name: 'Child One',
-		children: []
+		name: 'Child One'
 	}, {
-		name: 'Child Two',
-		children: []
+		name: 'Child Two'
 	}]
 };
 
