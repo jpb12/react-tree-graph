@@ -6,6 +6,7 @@ exports[`<Tree> renders correctly 1`] = `
   width={200}
 >
   <Animated
+    animated={false}
     animatedProps={
       Array [
         Object {
@@ -30,7 +31,6 @@ exports[`<Tree> renders correctly 1`] = `
     component={[Function]}
     duration={500}
     easing={[Function]}
-    enabled={false}
     keyProp="name"
     source={
       Node {
@@ -97,6 +97,7 @@ exports[`<Tree> renders correctly 1`] = `
     y2={40}
   />
   <Animated
+    animated={false}
     animatedProps={
       Array [
         Object {
@@ -120,7 +121,6 @@ exports[`<Tree> renders correctly 1`] = `
     component={[Function]}
     duration={500}
     easing={[Function]}
-    enabled={false}
     keyProp="name"
     labelProp="name"
     name="Colour"
@@ -131,6 +131,7 @@ exports[`<Tree> renders correctly 1`] = `
     y={10}
   />
   <Animated
+    animated={false}
     animatedProps={
       Array [
         Object {
@@ -147,7 +148,6 @@ exports[`<Tree> renders correctly 1`] = `
     component={[Function]}
     duration={500}
     easing={[Function]}
-    enabled={false}
     keyProp="name"
     labelProp="name"
     name="Black"

@@ -15,6 +15,7 @@ class DummyComponent extends React.PureComponent{
 describe('<Animated>', () => {
 	test('renders correctly and sets initial state', () => {
 		const props = {
+			animated: true,
 			animatedProps: [
 				{
 					name: 'x'
@@ -25,7 +26,6 @@ describe('<Animated>', () => {
 			component: DummyComponent,
 			duration: 1,
 			easing: easeQuadOut,
-			enabled: true,
 			steps: 1,
 			x: 2,
 			y: 3
@@ -42,6 +42,7 @@ describe('<Animated>', () => {
 
 	test('animates when props change', () => {
 		const props = {
+			animated: true,
 			animatedProps: [
 				{
 					name: 'x'
@@ -52,7 +53,6 @@ describe('<Animated>', () => {
 			component: DummyComponent,
 			duration: 100,
 			easing: easeQuadOut,
-			enabled: true,
 			steps: 2,
 			x: 2,
 			y: 3
@@ -81,6 +81,7 @@ describe('<Animated>', () => {
 
 	test('animates from inital value on mount', () => {
 		const props = {
+			animated: true,
 			animatedProps: [
 				{
 					name: 'x',
@@ -93,7 +94,6 @@ describe('<Animated>', () => {
 			component: DummyComponent,
 			duration: 100,
 			easing: easeQuadOut,
-			enabled: true,
 			steps: 1,
 			x: 2,
 			y: 3
@@ -116,6 +116,7 @@ describe('<Animated>', () => {
 
 	test('does nothing when not enabled', () => {
 		const props = {
+			animated: false,
 			animatedProps: [
 				{
 					name: 'x'
@@ -126,7 +127,6 @@ describe('<Animated>', () => {
 			component: DummyComponent,
 			duration: 1,
 			easing: easeQuadOut,
-			enabled: false,
 			steps: 1,
 			x: 2,
 			y: 3
@@ -141,6 +141,7 @@ describe('<Animated>', () => {
 
 	test('does nothing when props change does not change animated value', () => {
 		const props = {
+			animated: true,
 			animatedProps: [
 				{
 					name: 'x'
@@ -151,7 +152,6 @@ describe('<Animated>', () => {
 			component: DummyComponent,
 			duration: 100,
 			easing: easeQuadOut,
-			enabled: true,
 			steps: 2,
 			x: 2,
 			y: 3,

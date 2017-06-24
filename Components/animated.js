@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
+	animated: PropTypes.bool.isRequired,
 	animatedProps: PropTypes.arrayOf(PropTypes.shape({
 		name: PropTypes.string.isRequired,
 		initialValue: PropTypes.number
@@ -9,7 +10,6 @@ const propTypes = {
 	component: PropTypes.func.isRequired,
 	duration: PropTypes.number.isRequired,
 	easing: PropTypes.func.isRequired,
-	enabled: PropTypes.bool.isRequired,
 	steps: PropTypes.number.isRequired
 };
 
@@ -32,7 +32,7 @@ export default class Animated extends React.PureComponent{
 		this.animate(nextProps);
 	}
 	animate(props) {
-		if (!props.enabled) {
+		if (!props.animated) {
 			return;
 		}
 
@@ -59,7 +59,7 @@ export default class Animated extends React.PureComponent{
 		return start + (end - start) * this.props.easing(interval);
 	}
 	render() {
-		return this.props.enabled
+		return this.props.animated
 			? <this.props.component {...this.props} {...this.state}/>
 			: <this.props.component {...this.props}/>;
 	}

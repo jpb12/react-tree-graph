@@ -75,7 +75,7 @@ export default class Tree extends React.PureComponent{
 				{ links.map(link =>
 					<Animated
 						key={link.target.data[this.props.keyProp]}
-						enabled={this.props.animated}
+						animated={this.props.animated}
 						duration={this.props.duration}
 						steps={this.props.steps}
 						animatedProps={[
@@ -109,7 +109,7 @@ export default class Tree extends React.PureComponent{
 				{ nodes.map(node =>
 					<Animated
 						key={node.data[this.props.keyProp]}
-						enabled={this.props.animated}
+						animated={this.props.animated}
 						duration={this.props.duration}
 						steps={this.props.steps}
 						animatedProps={[

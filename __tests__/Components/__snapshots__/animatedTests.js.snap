@@ -2,6 +2,7 @@
 
 exports[`<Animated> animates when props change 1`] = `
 <DummyComponent
+  animated={true}
   animatedProps={
     Array [
       Object {
@@ -15,7 +16,6 @@ exports[`<Animated> animates when props change 1`] = `
   component={[Function]}
   duration={100}
   easing={[Function]}
-  enabled={true}
   steps={2}
   x={2}
   y={3}
@@ -24,6 +24,7 @@ exports[`<Animated> animates when props change 1`] = `
 
 exports[`<Animated> animates when props change 2`] = `
 <DummyComponent
+  animated={true}
   animatedProps={
     Array [
       Object {
@@ -37,7 +38,6 @@ exports[`<Animated> animates when props change 2`] = `
   component={[Function]}
   duration={100}
   easing={[Function]}
-  enabled={true}
   steps={2}
   x={2}
   y={3}
@@ -46,6 +46,7 @@ exports[`<Animated> animates when props change 2`] = `
 
 exports[`<Animated> does nothing when not enabled 1`] = `
 <DummyComponent
+  animated={false}
   animatedProps={
     Array [
       Object {
@@ -59,7 +60,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
   component={[Function]}
   duration={1}
   easing={[Function]}
-  enabled={false}
   steps={1}
   x={5}
   y={6}
@@ -68,6 +68,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
 
 exports[`<Animated> renders correctly and sets initial state 1`] = `
 <DummyComponent
+  animated={true}
   animatedProps={
     Array [
       Object {
@@ -81,7 +82,6 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
   component={[Function]}
   duration={1}
   easing={[Function]}
-  enabled={true}
   steps={1}
   x={2}
   y={3}

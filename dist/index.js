@@ -107,6 +107,8 @@ var _clone = __webpack_require__(8);
 
 var _clone2 = _interopRequireDefault(_clone);
 
+var _d3Ease = __webpack_require__(9);
+
 var _d3Hierarchy = __webpack_require__(10);
 
 var _propTypes = __webpack_require__(0);
@@ -141,6 +143,7 @@ var propTypes = {
 	data: _propTypes2.default.object.isRequired,
 	animated: _propTypes2.default.bool.isRequired,
 	duration: _propTypes2.default.number.isRequired,
+	easing: _propTypes2.default.func.isRequired,
 	steps: _propTypes2.default.number.isRequired,
 	height: _propTypes2.default.number.isRequired,
 	width: _propTypes2.default.number.isRequired,
@@ -164,6 +167,7 @@ var propTypes = {
 var defaultProps = {
 	animated: false,
 	duration: 500,
+	easing: _d3Ease.easeQuadOut,
 	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -216,7 +220,7 @@ var Tree = function (_React$PureComponent) {
 				links.map(function (link) {
 					return _react2.default.createElement(_animated2.default, _extends({
 						key: link.target.data[_this2.props.keyProp],
-						enabled: _this2.props.animated,
+						animated: _this2.props.animated,
 						duration: _this2.props.duration,
 						steps: _this2.props.steps,
 						animatedProps: [{
@@ -233,6 +237,7 @@ var Tree = function (_React$PureComponent) {
 							initialValue: initialY
 						}],
 						component: _link2.default,
+						easing: _this2.props.easing,
 						className: _this2.props.linkClass,
 						keyProp: _this2.props.keyProp,
 						onClick: _this2.props.linkClickHandler,
@@ -247,7 +252,7 @@ var Tree = function (_React$PureComponent) {
 				nodes.map(function (node) {
 					return _react2.default.createElement(_animated2.default, _extends({
 						key: node.data[_this2.props.keyProp],
-						enabled: _this2.props.animated,
+						animated: _this2.props.animated,
 						duration: _this2.props.duration,
 						steps: _this2.props.steps,
 						animatedProps: [{
@@ -258,6 +263,7 @@ var Tree = function (_React$PureComponent) {
 							initialValue: initialY
 						}],
 						component: _node2.default,
+						easing: _this2.props.easing,
 						className: _this2.props.nodeClass,
 						keyProp: _this2.props.keyProp,
 						labelProp: _this2.props.labelProp,
@@ -302,8 +308,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _d3Ease = __webpack_require__(9);
-
 var _propTypes = __webpack_require__(0);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -321,13 +325,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var propTypes = {
+	animated: _propTypes2.default.bool.isRequired,
 	animatedProps: _propTypes2.default.arrayOf(_propTypes2.default.shape({
 		name: _propTypes2.default.string.isRequired,
 		initialValue: _propTypes2.default.number
 	})).isRequired,
 	component: _propTypes2.default.func.isRequired,
 	duration: _propTypes2.default.number.isRequired,
-	enabled: _propTypes2.default.bool.isRequired,
+	easing: _propTypes2.default.func.isRequired,
 	steps: _propTypes2.default.number.isRequired
 };
 
@@ -369,7 +374,7 @@ var Animated = function (_React$PureComponent) {
 		value: function animate(props) {
 			var _this3 = this;
 
-			if (!props.enabled) {
+			if (!props.animated) {
 				return;
 			}
 
@@ -394,12 +399,12 @@ var Animated = function (_React$PureComponent) {
 	}, {
 		key: 'calculateNewValue',
 		value: function calculateNewValue(start, end, interval) {
-			return start + (end - start) * (0, _d3Ease.easeQuadOut)(interval);
+			return start + (end - start) * this.props.easing(interval);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			return this.props.enabled ? _react2.default.createElement(this.props.component, _extends({}, this.props, this.state)) : _react2.default.createElement(this.props.component, this.props);
+			return this.props.animated ? _react2.default.createElement(this.props.component, _extends({}, this.props, this.state)) : _react2.default.createElement(this.props.component, this.props);
 		}
 	}]);
 
