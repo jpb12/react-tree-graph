@@ -18,6 +18,8 @@ const propTypes = {
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	getChildren: PropTypes.func,
+	treeClass: PropTypes.string,
+	treeClickHandler: PropTypes.func,
 	linkClass: PropTypes.string,
 	linkClickHandler: PropTypes.func,
 	margins: PropTypes.shape({
@@ -71,7 +73,11 @@ export default class Tree extends React.PureComponent{
 		let initialY = nodes[0].y;
 
 		return (
-			<svg height={this.props.height} width={this.props.width}>
+			<svg
+				className={this.props.treeClass}
+				onClick={this.props.treeClickHandler}
+				height={this.props.height}
+				width={this.props.width}>
 				{ links.map(link =>
 					<Animated
 						key={link.target.data[this.props.keyProp]}

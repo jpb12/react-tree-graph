@@ -58,6 +58,8 @@ Configuration
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
 | `keyProp` | string | | `"name"` | The property on each node to use as a key. |
 | `labelProp` | string | | `"name"` | The property on each node to render as label text. |
+| `treeClass` | string | | | The class to add to the `<svg>` element containing the tree. |
+| `treeClickHandler` | function(event) | | | A function called when the tree is clicked. |
 | `linkClass` | string | | `"link"` | The class to add to each `<path>` element linking two nodes. |
 | `linkClickHandler` | function(sourceKey, targetKey, event) | | | A function called when a link is clicked. |
 | `nodeClass` | string | | `"node"` | The class to add to each `<g>` element, representing a node. |
