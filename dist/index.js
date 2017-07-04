@@ -150,6 +150,8 @@ var propTypes = {
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
 	getChildren: _propTypes2.default.func,
+	treeClass: _propTypes2.default.string,
+	treeClickHandler: _propTypes2.default.func,
 	linkClass: _propTypes2.default.string,
 	linkClickHandler: _propTypes2.default.func,
 	margins: _propTypes2.default.shape({
@@ -216,7 +218,11 @@ var Tree = function (_React$PureComponent) {
 
 			return _react2.default.createElement(
 				'svg',
-				{ height: this.props.height, width: this.props.width },
+				{
+					className: this.props.treeClass,
+					onClick: this.props.treeClickHandler,
+					height: this.props.height,
+					width: this.props.width },
 				links.map(function (link) {
 					return _react2.default.createElement(_animated2.default, _extends({
 						key: link.target.data[_this2.props.keyProp],
