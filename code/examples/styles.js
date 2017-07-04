@@ -24,7 +24,6 @@ svg.custom .node circle {
 
 svg.custom .node text {
 	font-size: 11px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-color: #444;
 	fill: #F4F4F4;
 	text-shadow: 0 1px 4px black;
@@ -40,7 +39,7 @@ svg.custom path.link {
 	stroke-width: 1.5px;
 }
 
-<div className="custom">
+<div className="custom-container">
 	<Tree
 		data={data}
 		height={200}

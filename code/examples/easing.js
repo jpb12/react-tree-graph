@@ -50,6 +50,8 @@ const code =
 	duration={1000}
 	easing={easeElastic}/>`;
 
+const description = 'You can customise the animation by specifying an easing function, duration and number of steps.';
+
 export default class EasingExample extends React.PureComponent {
 	constructor(props) {
 		super(props);
@@ -69,7 +71,7 @@ export default class EasingExample extends React.PureComponent {
 	}
 	render() {
 		return (
-			<Example code={code} id="easing" title="Custom easing function">
+			<Example code={code} id="easing" title="Custom easing" description={description}>
 				<Tree
 					data={this.state.data}
 					height={200}
