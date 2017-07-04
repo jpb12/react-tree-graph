@@ -731,6 +731,11 @@
       "resolved": "https://registry.npmjs.org/clap/-/clap-1.2.0.tgz",
       "dev": true
     },
+    "classnames": {
+      "version": "2.2.5",
+      "from": "classnames@>=2.2.5 <3.0.0",
+      "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.5.tgz"
+    },
     "clean-css": {
       "version": "4.1.5",
       "from": "clean-css@>=4.1.0 <4.2.0",
@@ -786,6 +791,11 @@
       "from": "code-point-at@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz",
       "dev": true
+    },
+    "codemirror": {
+      "version": "5.27.4",
+      "from": "codemirror@latest",
+      "resolved": "https://registry.npmjs.org/codemirror/-/codemirror-5.27.4.tgz"
     },
     "color": {
       "version": "0.11.4",
@@ -1957,6 +1967,16 @@
       "resolved": "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz",
       "dev": true
     },
+    "lodash.debounce": {
+      "version": "4.0.8",
+      "from": "lodash.debounce@>=4.0.8 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
+    },
+    "lodash.isequal": {
+      "version": "4.5.0",
+      "from": "lodash.isequal@>=4.5.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+    },
     "lodash.memoize": {
       "version": "4.1.2",
       "from": "lodash.memoize@>=4.1.2 <5.0.0",
@@ -2699,7 +2719,7 @@
     },
     "prop-types": {
       "version": "15.5.10",
-      "from": "prop-types@>=15.5.10 <16.0.0",
+      "from": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz",
       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz"
     },
     "prr": {
@@ -2782,6 +2802,11 @@
       "version": "15.6.1",
       "from": "react@latest",
       "resolved": "https://registry.npmjs.org/react/-/react-15.6.1.tgz"
+    },
+    "react-codemirror": {
+      "version": "1.0.0",
+      "from": "react-codemirror@latest",
+      "resolved": "https://registry.npmjs.org/react-codemirror/-/react-codemirror-1.0.0.tgz"
     },
     "react-dom": {
       "version": "15.6.1",

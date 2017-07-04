@@ -29,7 +29,10 @@
     "webpack": "^2.6.1"
   },
   "dependencies": {
+    "codemirror": "^5.27.4",
+    "prop-types": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz",
     "react": "^15.6.1",
+    "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
     "react-tree-graph": "^1.7.0"
   }
