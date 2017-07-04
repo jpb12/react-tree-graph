@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/jpb12/react-tree-graph/issues"
   },
-  "homepage": "https://github.com/jpb12/react-tree-graph",
+  "homepage": "https://jpb12.github.io/react-tree-graph",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-jest": "^20.0.3",
