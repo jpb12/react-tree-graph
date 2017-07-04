@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "codemirror": "^5.27.4",
+    "d3-ease": "https://registry.npmjs.org/d3-ease/-/d3-ease-1.0.3.tgz",
     "prop-types": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz",
     "react": "^15.6.1",
     "react-codemirror": "^1.0.0",

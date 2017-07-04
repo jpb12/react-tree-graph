@@ -974,7 +974,7 @@
     },
     "d3-ease": {
       "version": "1.0.3",
-      "from": "d3-ease@>=1.0.3 <2.0.0",
+      "from": "https://registry.npmjs.org/d3-ease/-/d3-ease-1.0.3.tgz",
       "resolved": "https://registry.npmjs.org/d3-ease/-/d3-ease-1.0.3.tgz"
     },
     "d3-hierarchy": {

@@ -12,28 +12,29 @@ const data = {
 };
 
 const code = 
-`const data = {
-	name: 'Parent',
-	children: [{
-		name: 'Child One'
-	}, {
-		name: 'Child Two'
-	}]
-};
+`function onClick(nodeKey) {
+	alert(nodeKey);
+}
 
 <Tree
 	data={data}
 	height={200}
-	width={400}/>`;
+	width={400}
+	nodeClickHandler={onClick}/>`;
 
-export default class SimpleExample extends React.PureComponent {
+function onClick(nodeKey) {
+	alert(nodeKey);
+}
+
+export default class ClickingExample extends React.PureComponent {
 	render() {
 		return (
-			<Example code={code} id="basic" title="Basic">
+			<Example code={code} id="clicking" title="Click events">
 				<Tree
 					data={data}
 					height={200}
-					width={400}/>
+					width={400}
+					nodeClickHandler={onClick}/>
 			</Example>);
 	}
 }
