@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import AnimatedExample from './examples/animated';
 import SimpleExample from './examples/simple';
 
 import 'react-tree-graph/dist/style.css';
@@ -11,7 +12,8 @@ class App extends React.PureComponent {
 		return (
 			<div>
 				<SimpleExample/>
-			</div>)
+				<AnimatedExample/>
+			</div>);
 	}
 }
 
