@@ -8,10 +8,7 @@ react-tree-graph &middot; [![Build Status](https://travis-ci.org/jpb12/react-tre
 ================
 A simple react component which renders data as a tree using svg.
 
-Demo
-----
-
-[Demo tree view](https://jpb12.github.io/tree-viewer/)
+Check out the [docs](https://jpb12.github.io/react-tree-graph) and the [demo](https://jpb12.github.io/tree-viewer/).
 
 Installing
 ----------
