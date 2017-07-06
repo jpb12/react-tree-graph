@@ -128,3 +128,8 @@ svg.custom path.link {
 	stroke: #2593B8;
 	stroke-width: 1.5px;
 }
+
+.red-node {
+	fill: red;
+	stroke: red;
+}
