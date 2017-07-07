@@ -2829,9 +2829,9 @@
       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.6.1.tgz"
     },
     "react-tree-graph": {
-      "version": "1.7.1",
-      "from": "react-tree-graph@>=1.7.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/react-tree-graph/-/react-tree-graph-1.7.1.tgz"
+      "version": "1.7.2",
+      "from": "react-tree-graph@latest",
+      "resolved": "https://registry.npmjs.org/react-tree-graph/-/react-tree-graph-1.7.2.tgz"
     },
     "read-pkg": {
       "version": "1.1.0",
