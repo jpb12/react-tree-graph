@@ -213,8 +213,11 @@ var Tree = function (_React$PureComponent) {
 				node.y += _this2.props.margins.top;
 			});
 
-			var initialX = nodes[0].x;
-			var initialY = nodes[0].y;
+			var initialX = this.initialX !== undefined ? this.initialX : nodes[0].x;
+			var initialY = this.initialY !== undefined ? this.initialY : nodes[0].y;
+
+			this.initialX = nodes[0].x;
+			this.initialY = nodes[0].y;
 
 			return _react2.default.createElement(
 				'svg',

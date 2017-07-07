@@ -53,7 +53,7 @@ const defaultProps = {
 	nodeRadius: 5
 };
 
-export default class Tree extends React.PureComponent{
+export default class Tree extends React.PureComponent {
 	render() {
 		const contentWidth = this.props.width - this.props.margins.left - this.props.margins.right;
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
@@ -69,8 +69,11 @@ export default class Tree extends React.PureComponent{
 			node.y += this.props.margins.top;
 		});
 
-		let initialX = nodes[0].x;
-		let initialY = nodes[0].y;
+		let initialX = this.initialX !== undefined ? this.initialX : nodes[0].x;
+		let initialY = this.initialY !== undefined ? this.initialY : nodes[0].y;
+
+		this.initialX = nodes[0].x;
+		this.initialY = nodes[0].y;
 
 		return (
 			<svg
