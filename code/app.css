@@ -33,6 +33,7 @@ div.header span {
 
 div.header a {
 	color: #737373;
+	margin-right: 10px;
 }
 
 div.header a:hover {
