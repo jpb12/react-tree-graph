@@ -1,38 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Tree> renders correctly 1`] = `
-<svg
+<Animated
+  animated={false}
+  duration={500}
+  easing={[Function]}
   height={100}
-  width={200}
->
-  <Animated
-    animated={false}
-    animatedProps={
-      Array [
-        Object {
-          "initialValue": 40,
-          "name": "x1",
+  keyProp="name"
+  labelProp="name"
+  linkClass="link"
+  links={
+    Array [
+      Object {
+        "source": Node {
+          "children": Array [
+            Node {
+              "data": Object {
+                "name": "Black",
+              },
+              "depth": 1,
+              "height": 0,
+              "parent": [Circular],
+              "x": 40,
+              "y": 40,
+            },
+          ],
+          "data": Object {
+            "childs": Array [
+              Object {
+                "name": "Black",
+              },
+            ],
+            "name": "Colour",
+          },
+          "depth": 0,
+          "height": 1,
+          "parent": null,
+          "x": 40,
+          "y": 10,
         },
-        Object {
-          "initialValue": 40,
-          "name": "x2",
+        "target": Node {
+          "data": Object {
+            "name": "Black",
+          },
+          "depth": 1,
+          "height": 0,
+          "parent": Node {
+            "children": Array [
+              [Circular],
+            ],
+            "data": Object {
+              "childs": Array [
+                Object {
+                  "name": "Black",
+                },
+              ],
+              "name": "Colour",
+            },
+            "depth": 0,
+            "height": 1,
+            "parent": null,
+            "x": 40,
+            "y": 10,
+          },
+          "x": 40,
+          "y": 40,
         },
-        Object {
-          "initialValue": 10,
-          "name": "y1",
-        },
-        Object {
-          "initialValue": 10,
-          "name": "y2",
-        },
-      ]
-    }
-    className="link"
-    component={[Function]}
-    duration={500}
-    easing={[Function]}
-    keyProp="name"
-    source={
+      },
+    ]
+  }
+  nodeClass="node"
+  nodeOffset={3.5}
+  nodeRadius={5}
+  nodes={
+    Array [
       Node {
         "children": Array [
           Node {
@@ -59,10 +100,7 @@ exports[`<Tree> renders correctly 1`] = `
         "parent": null,
         "x": 40,
         "y": 10,
-      }
-    }
-    steps={20}
-    target={
+      },
       Node {
         "data": Object {
           "name": "Black",
@@ -89,73 +127,10 @@ exports[`<Tree> renders correctly 1`] = `
         },
         "x": 40,
         "y": 40,
-      }
-    }
-    x1={40}
-    x2={40}
-    y1={10}
-    y2={40}
-  />
-  <Animated
-    animated={false}
-    animatedProps={
-      Array [
-        Object {
-          "initialValue": 40,
-          "name": "x",
-        },
-        Object {
-          "initialValue": 10,
-          "name": "y",
-        },
-      ]
-    }
-    childs={
-      Array [
-        Object {
-          "name": "Black",
-        },
-      ]
-    }
-    className="node"
-    component={[Function]}
-    duration={500}
-    easing={[Function]}
-    keyProp="name"
-    labelProp="name"
-    name="Colour"
-    offset={3.5}
-    radius={5}
-    steps={20}
-    x={40}
-    y={10}
-  />
-  <Animated
-    animated={false}
-    animatedProps={
-      Array [
-        Object {
-          "initialValue": 40,
-          "name": "x",
-        },
-        Object {
-          "initialValue": 10,
-          "name": "y",
-        },
-      ]
-    }
-    className="node"
-    component={[Function]}
-    duration={500}
-    easing={[Function]}
-    keyProp="name"
-    labelProp="name"
-    name="Black"
-    offset={3.5}
-    radius={5}
-    steps={20}
-    x={40}
-    y={40}
-  />
-</svg>
+      },
+    ]
+  }
+  steps={20}
+  width={200}
+/>
 `;

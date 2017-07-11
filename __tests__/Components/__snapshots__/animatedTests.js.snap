@@ -1,89 +1,295 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Animated> animates when props change 1`] = `
-<DummyComponent
+exports[`<Animated> does not animate when props other than nodes or links change 1`] = `
+<Container
   animated={true}
-  animatedProps={
+  duration={1}
+  easing={[Function]}
+  height={100}
+  keyProp="name"
+  labelProp="name"
+  links={
     Array [
       Object {
-        "name": "x",
-      },
-      Object {
-        "name": "y",
+        "source": Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        },
+        "target": Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 1,
+          "y": 2,
+        },
       },
     ]
   }
-  component={[Function]}
-  duration={100}
-  easing={[Function]}
-  steps={2}
-  x={2}
-  y={3}
-/>
-`;
-
-exports[`<Animated> animates when props change 2`] = `
-<DummyComponent
-  animated={true}
-  animatedProps={
+  nodeOffset={5}
+  nodeRadius={1}
+  nodes={
     Array [
       Object {
-        "name": "x",
+        "data": Object {
+          "name": "Colour",
+        },
+        "x": 1,
+        "y": 2,
       },
       Object {
-        "name": "y",
+        "data": Object {
+          "name": "Black",
+        },
+        "x": 1,
+        "y": 2,
       },
     ]
   }
-  component={[Function]}
-  duration={100}
-  easing={[Function]}
-  steps={2}
-  x={2}
-  y={3}
+  steps={1}
+  width={100}
 />
 `;
 
 exports[`<Animated> does nothing when not enabled 1`] = `
-<DummyComponent
+<Animated
   animated={false}
-  animatedProps={
+  duration={1}
+  easing={[Function]}
+  height={100}
+  keyProp="name"
+  labelProp="name"
+  links={
     Array [
       Object {
-        "name": "x",
-      },
-      Object {
-        "name": "y",
+        "source": Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        },
+        "target": Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 100,
+          "y": 50,
+        },
       },
     ]
   }
-  component={[Function]}
-  duration={1}
-  easing={[Function]}
+  nodeOffset={1}
+  nodeRadius={1}
+  nodes={
+    Array [
+      Object {
+        "data": Object {
+          "name": "Colour",
+        },
+        "x": 1,
+        "y": 2,
+      },
+      Object {
+        "data": Object {
+          "name": "Black",
+        },
+        "x": 120,
+        "y": 80,
+      },
+    ]
+  }
   steps={1}
-  x={5}
-  y={6}
-/>
+  width={100}
+>
+  <Container
+    animated={false}
+    duration={1}
+    easing={[Function]}
+    height={100}
+    keyProp="name"
+    labelProp="name"
+    links={
+      Array [
+        Object {
+          "source": Object {
+            "data": Object {
+              "name": "Colour",
+            },
+            "x": 1,
+            "y": 2,
+          },
+          "target": Object {
+            "data": Object {
+              "name": "Black",
+            },
+            "x": 100,
+            "y": 50,
+          },
+        },
+      ]
+    }
+    nodeOffset={1}
+    nodeRadius={1}
+    nodes={
+      Array [
+        Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        },
+        Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 120,
+          "y": 80,
+        },
+      ]
+    }
+    steps={1}
+    width={100}
+  >
+    <svg
+      height={100}
+      width={100}
+    >
+      <Link
+        keyProp="name"
+        source={
+          Object {
+            "data": Object {
+              "name": "Colour",
+            },
+            "x": 1,
+            "y": 2,
+          }
+        }
+        target={
+          Object {
+            "data": Object {
+              "name": "Black",
+            },
+            "x": 100,
+            "y": 50,
+          }
+        }
+        x1={1}
+        x2={100}
+        y1={2}
+        y2={50}
+      >
+        <path
+          d="M2,1C26,1 26,100 50,100"
+          onClick={[Function]}
+        />
+      </Link>
+      <Node
+        keyProp="name"
+        labelProp="name"
+        name="Colour"
+        offset={1}
+        radius={1}
+        x={1}
+        y={2}
+      >
+        <g
+          onClick={[Function]}
+          transform="translate(2, 1)"
+        >
+          <circle
+            r={1}
+          />
+          <text
+            dx={1.5}
+            dy={1}
+          >
+            Colour
+          </text>
+        </g>
+      </Node>
+      <Node
+        keyProp="name"
+        labelProp="name"
+        name="Black"
+        offset={1}
+        radius={1}
+        x={120}
+        y={80}
+      >
+        <g
+          onClick={[Function]}
+          transform="translate(80, 120)"
+        >
+          <circle
+            r={1}
+          />
+          <text
+            dx={1.5}
+            dy={1}
+          >
+            Black
+          </text>
+        </g>
+      </Node>
+    </svg>
+  </Container>
+</Animated>
 `;
 
 exports[`<Animated> renders correctly and sets initial state 1`] = `
-<DummyComponent
+<Container
   animated={true}
-  animatedProps={
+  duration={1}
+  easing={[Function]}
+  height={100}
+  keyProp="name"
+  labelProp="name"
+  links={
     Array [
       Object {
-        "name": "x",
-      },
-      Object {
-        "name": "y",
+        "source": Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        },
+        "target": Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 1,
+          "y": 2,
+        },
       },
     ]
   }
-  component={[Function]}
-  duration={1}
-  easing={[Function]}
+  nodeOffset={1}
+  nodeRadius={1}
+  nodes={
+    Array [
+      Object {
+        "data": Object {
+          "name": "Colour",
+        },
+        "x": 1,
+        "y": 2,
+      },
+      Object {
+        "data": Object {
+          "name": "Black",
+        },
+        "x": 1,
+        "y": 2,
+      },
+    ]
+  }
   steps={1}
-  x={2}
-  y={3}
+  width={100}
 />
 `;

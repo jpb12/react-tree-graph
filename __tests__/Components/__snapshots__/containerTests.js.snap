@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container> renders correctly 1`] = `
+<svg
+  height={100}
+  width={200}
+>
+  <Link
+    keyProp="name"
+    source={
+      Object {
+        "data": Object {
+          "name": "Colour",
+        },
+        "x": 1,
+        "y": 2,
+      }
+    }
+    target={
+      Object {
+        "data": Object {
+          "name": "Black",
+        },
+        "x": 100,
+        "y": 50,
+      }
+    }
+    x1={1}
+    x2={100}
+    y1={2}
+    y2={50}
+  />
+  <Node
+    keyProp="name"
+    labelProp="name"
+    name="Colour"
+    offset={3.5}
+    radius={5}
+    x={1}
+    y={2}
+  />
+  <Node
+    keyProp="name"
+    labelProp="name"
+    name="Black"
+    offset={3.5}
+    radius={5}
+    x={100}
+    y={50}
+  />
+</svg>
+`;

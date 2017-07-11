@@ -42,4 +42,20 @@ describe('<Node>', () => {
 		expect(clickMock).toHaveBeenCalledTimes(1);
 		expect(clickMock).toHaveBeenCalledWith('testKey', event);
 	});
+
+	test('clicking with no prop handler does nothing', () => {
+		const props = {
+			x: 1,
+			y: 2,
+			keyProp: 'id',
+			labelProp: 'name',
+			offset: 3,
+			radius: 4,
+			id: 'testKey',
+			name: 'Test Node'
+		};
+
+		const tree = shallow(<Node {...props}/>);
+		tree.find('g').simulate('click');
+	});
 });

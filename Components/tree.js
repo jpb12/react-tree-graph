@@ -4,8 +4,6 @@ import { hierarchy, tree } from 'd3-hierarchy';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Animated from './animated';
-import Link from './link';
-import Node from './node';
 
 const propTypes = {
 	data: PropTypes.object.isRequired,
@@ -30,8 +28,8 @@ const propTypes = {
 	}).isRequired,
 	nodeClass: PropTypes.string,
 	nodeClickHandler: PropTypes.func,
-	nodeOffset: PropTypes.number,
-	nodeRadius: PropTypes.number
+	nodeOffset: PropTypes.number.isRequired,
+	nodeRadius: PropTypes.number.isRequired
 };
 
 const defaultProps = {
@@ -69,80 +67,26 @@ export default class Tree extends React.PureComponent {
 			node.y += this.props.margins.top;
 		});
 
-		let initialX = this.initialX !== undefined ? this.initialX : nodes[0].x;
-		let initialY = this.initialY !== undefined ? this.initialY : nodes[0].y;
-
-		this.initialX = nodes[0].x;
-		this.initialY = nodes[0].y;
-
 		return (
-			<svg
-				className={this.props.treeClass}
-				onClick={this.props.treeClickHandler}
+			<Animated
+				animated={this.props.animated}
+				duration={this.props.duration}
+				easing={this.props.easing}
 				height={this.props.height}
-				width={this.props.width}>
-				{ links.map(link =>
-					<Animated
-						key={link.target.data[this.props.keyProp]}
-						animated={this.props.animated}
-						duration={this.props.duration}
-						steps={this.props.steps}
-						animatedProps={[
-							{
-								name: 'x1',
-								initialValue: initialX
-							}, {
-								name: 'x2',
-								initialValue: initialX
-							}, {
-								name: 'y1',
-								initialValue: initialY
-							}, {
-								name: 'y2',
-								initialValue: initialY
-							}
-						]}
-						component={Link}
-						easing={this.props.easing}
-						className={this.props.linkClass}
-						keyProp={this.props.keyProp}
-						onClick={this.props.linkClickHandler}
-						source={link.source}
-						target={link.target}
-						x1={link.source.x}
-						x2={link.target.x}
-						y1={link.source.y}
-						y2={link.target.y}
-						{...link.data}/>)
-				}
-				{ nodes.map(node =>
-					<Animated
-						key={node.data[this.props.keyProp]}
-						animated={this.props.animated}
-						duration={this.props.duration}
-						steps={this.props.steps}
-						animatedProps={[
-							{
-								name: 'x',
-								initialValue: initialX
-							}, {
-								name: 'y',
-								initialValue: initialY
-							}
-						]}
-						component={Node}
-						easing={this.props.easing}
-						className={this.props.nodeClass}
-						keyProp={this.props.keyProp}
-						labelProp={this.props.labelProp}
-						onClick={this.props.nodeClickHandler}
-						offset={this.props.nodeOffset}
-						radius={this.props.nodeRadius}
-						x={node.x}
-						y={node.y}
-						{...node.data}/>)
-				}
-			</svg>);
+				keyProp={this.props.keyProp}
+				labelProp={this.props.labelProp}
+				links={links}
+				linkClass={this.props.linkClass}
+				linkClickHandler={this.props.linkClickHandler}
+				nodes={nodes}
+				nodeClass={this.props.nodeClass}
+				nodeClickHandler={this.props.nodeClickHandler}
+				nodeOffset={this.props.nodeOffset}
+				nodeRadius={this.props.nodeRadius}
+				steps={this.props.steps}
+				treeClass={this.props.treeClass}
+				treeClickHandler={this.props.treeClickHandler}
+				width={this.props.width}/>);
 	}
 }
 

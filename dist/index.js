@@ -99,8 +99,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _clone = __webpack_require__(8);
@@ -122,14 +120,6 @@ var _react2 = _interopRequireDefault(_react);
 var _animated = __webpack_require__(4);
 
 var _animated2 = _interopRequireDefault(_animated);
-
-var _link = __webpack_require__(5);
-
-var _link2 = _interopRequireDefault(_link);
-
-var _node = __webpack_require__(6);
-
-var _node2 = _interopRequireDefault(_node);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -162,8 +152,8 @@ var propTypes = {
 	}).isRequired,
 	nodeClass: _propTypes2.default.string,
 	nodeClickHandler: _propTypes2.default.func,
-	nodeOffset: _propTypes2.default.number,
-	nodeRadius: _propTypes2.default.number
+	nodeOffset: _propTypes2.default.number.isRequired,
+	nodeRadius: _propTypes2.default.number.isRequired
 };
 
 var defaultProps = {
@@ -213,77 +203,25 @@ var Tree = function (_React$PureComponent) {
 				node.y += _this2.props.margins.top;
 			});
 
-			var initialX = this.initialX !== undefined ? this.initialX : nodes[0].x;
-			var initialY = this.initialY !== undefined ? this.initialY : nodes[0].y;
-
-			this.initialX = nodes[0].x;
-			this.initialY = nodes[0].y;
-
-			return _react2.default.createElement(
-				'svg',
-				{
-					className: this.props.treeClass,
-					onClick: this.props.treeClickHandler,
-					height: this.props.height,
-					width: this.props.width },
-				links.map(function (link) {
-					return _react2.default.createElement(_animated2.default, _extends({
-						key: link.target.data[_this2.props.keyProp],
-						animated: _this2.props.animated,
-						duration: _this2.props.duration,
-						steps: _this2.props.steps,
-						animatedProps: [{
-							name: 'x1',
-							initialValue: initialX
-						}, {
-							name: 'x2',
-							initialValue: initialX
-						}, {
-							name: 'y1',
-							initialValue: initialY
-						}, {
-							name: 'y2',
-							initialValue: initialY
-						}],
-						component: _link2.default,
-						easing: _this2.props.easing,
-						className: _this2.props.linkClass,
-						keyProp: _this2.props.keyProp,
-						onClick: _this2.props.linkClickHandler,
-						source: link.source,
-						target: link.target,
-						x1: link.source.x,
-						x2: link.target.x,
-						y1: link.source.y,
-						y2: link.target.y
-					}, link.data));
-				}),
-				nodes.map(function (node) {
-					return _react2.default.createElement(_animated2.default, _extends({
-						key: node.data[_this2.props.keyProp],
-						animated: _this2.props.animated,
-						duration: _this2.props.duration,
-						steps: _this2.props.steps,
-						animatedProps: [{
-							name: 'x',
-							initialValue: initialX
-						}, {
-							name: 'y',
-							initialValue: initialY
-						}],
-						component: _node2.default,
-						easing: _this2.props.easing,
-						className: _this2.props.nodeClass,
-						keyProp: _this2.props.keyProp,
-						labelProp: _this2.props.labelProp,
-						onClick: _this2.props.nodeClickHandler,
-						offset: _this2.props.nodeOffset,
-						radius: _this2.props.nodeRadius,
-						x: node.x,
-						y: node.y
-					}, node.data));
-				})
-			);
+			return _react2.default.createElement(_animated2.default, {
+				animated: this.props.animated,
+				duration: this.props.duration,
+				easing: this.props.easing,
+				height: this.props.height,
+				keyProp: this.props.keyProp,
+				labelProp: this.props.labelProp,
+				links: links,
+				linkClass: this.props.linkClass,
+				linkClickHandler: this.props.linkClickHandler,
+				nodes: nodes,
+				nodeClass: this.props.nodeClass,
+				nodeClickHandler: this.props.nodeClickHandler,
+				nodeOffset: this.props.nodeOffset,
+				nodeRadius: this.props.nodeRadius,
+				steps: this.props.steps,
+				treeClass: this.props.treeClass,
+				treeClickHandler: this.props.treeClickHandler,
+				width: this.props.width });
 		}
 	}]);
 
@@ -325,6 +263,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _container = __webpack_require__(12);
+
+var _container2 = _interopRequireDefault(_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -335,11 +277,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var propTypes = {
 	animated: _propTypes2.default.bool.isRequired,
-	animatedProps: _propTypes2.default.arrayOf(_propTypes2.default.shape({
-		name: _propTypes2.default.string.isRequired,
-		initialValue: _propTypes2.default.number
-	})).isRequired,
-	component: _propTypes2.default.func.isRequired,
+	keyProp: _propTypes2.default.string.isRequired,
+	links: _propTypes2.default.array.isRequired,
+	nodes: _propTypes2.default.array.isRequired,
 	duration: _propTypes2.default.number.isRequired,
 	easing: _propTypes2.default.func.isRequired,
 	steps: _propTypes2.default.number.isRequired
@@ -353,26 +293,47 @@ var Animated = function (_React$PureComponent) {
 
 		var _this = _possibleConstructorReturn(this, (Animated.__proto__ || Object.getPrototypeOf(Animated)).call(this, props));
 
-		_this.state = props.animatedProps.reduce(function (state, prop) {
-			state[prop.name] = prop.initialValue || props[prop.name];
-			return state;
-		}, {});
+		if (props.animated) {
+			// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
+			// and animate from there
+			var initialX = props.nodes[0].x;
+			var initialY = props.nodes[0].y;
+			_this.state = {
+				nodes: props.nodes.map(function (n) {
+					return Object.assign({}, n, { x: initialX, y: initialY });
+				}),
+				links: props.links.map(function (l) {
+					return {
+						source: Object.assign({}, l.source, { x: initialX, y: initialY }),
+						target: Object.assign({}, l.target, { x: initialX, y: initialY })
+					};
+				})
+			};
+		} else {
+			_this.state = {
+				nodes: props.nodes,
+				links: props.links
+			};
+		}
 		return _this;
 	}
 
 	_createClass(Animated, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			this.animate(this.props);
+			if (this.props.animated) {
+				this.animate(this.props);
+			}
 		}
 	}, {
 		key: 'componentWillReceiveProps',
 		value: function componentWillReceiveProps(nextProps) {
-			var _this2 = this;
+			if (nextProps.nodes === this.props.nodes && nextProps.links === this.props.links) {
+				return;
+			}
 
-			if (nextProps.animatedProps.every(function (prop) {
-				return _this2.props[prop.name] === nextProps[prop.name];
-			})) {
+			if (!nextProps.animated) {
+				this.setState({ nodes: nextProps.nodes, links: nextProps.links });
 				return;
 			}
 
@@ -381,29 +342,120 @@ var Animated = function (_React$PureComponent) {
 	}, {
 		key: 'animate',
 		value: function animate(props) {
-			var _this3 = this;
+			var _this2 = this;
 
-			if (!props.animated) {
-				return;
-			}
-
+			// Stop previous animation if one is already in progress.  We will start the next animation
+			// from the position we are currently in
 			clearInterval(this.animation);
 
 			var counter = 0;
-			var initialState = this.state;
+
+			// Do as much one-time calculation outside of the animation step, which needs to be fast
+			var animationContext = this.getAnimationContext(this.state, props);
+
 			this.animation = setInterval(function () {
 				counter++;
 
-				_this3.setState(props.animatedProps.reduce(function (state, prop) {
-					state[prop.name] = _this3.calculateNewValue(initialState[prop.name], props[prop.name], counter / props.steps);
-					return state;
-				}, {}));
-
 				if (counter === props.steps) {
-					clearInterval(_this3.animation);
-					_this3.animation == null;
+					clearInterval(_this2.animation);
+					_this2.animation = null;
+					_this2.setState({ nodes: props.nodes, links: props.links });
+					return;
 				}
+
+				_this2.setState(_this2.calculateNewState(animationContext, counter / props.steps));
 			}, props.duration / props.steps);
+		}
+	}, {
+		key: 'getAnimationContext',
+		value: function getAnimationContext(initialState, newState) {
+			var _this3 = this;
+
+			// We need to match changed nodes from the new and old props for the animation.  New nodes will be animated from the root node
+			// TODO: added nodes/links should be animated from the closest ancestor that previously existed
+			// TODO: removed nodes/links should be animated to the closest ancestor that has not been removed
+			return {
+				oldRoot: initialState.nodes[0],
+				changedNodes: initialState.nodes.filter(function (n1) {
+					return newState.nodes.some(function (n2) {
+						return _this3.areNodesSame(n1, n2);
+					});
+				}).map(function (n1) {
+					return { old: n1, new: newState.nodes.find(function (n2) {
+							return _this3.areNodesSame(n1, n2);
+						}) };
+				}),
+				addedNodes: newState.nodes.filter(function (n1) {
+					return initialState.nodes.every(function (n2) {
+						return !_this3.areNodesSame(n1, n2);
+					});
+				}),
+				changedLinks: initialState.links.filter(function (l1) {
+					return newState.links.some(function (l2) {
+						return _this3.areLinksSame(l1, l2);
+					});
+				}).map(function (l1) {
+					return { old: l1, new: newState.links.find(function (l2) {
+							return _this3.areLinksSame(l1, l2);
+						}) };
+				}),
+				addedLinks: newState.links.filter(function (l1) {
+					return initialState.links.every(function (l2) {
+						return !_this3.areLinksSame(l1, l2);
+					});
+				})
+			};
+		}
+	}, {
+		key: 'areNodesSame',
+		value: function areNodesSame(a, b) {
+			return a.data[this.props.keyProp] === b.data[this.props.keyProp];
+		}
+	}, {
+		key: 'areLinksSame',
+		value: function areLinksSame(a, b) {
+			return a.source.data[this.props.keyProp] === b.source.data[this.props.keyProp] && a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp];
+		}
+	}, {
+		key: 'calculateNewState',
+		value: function calculateNewState(animationContext, interval) {
+			var _this4 = this;
+
+			// TODO: Optimise this further.  This is the bulk of the execution time during an animation step and needs to be fast
+			return {
+				nodes: animationContext.changedNodes.map(function (n) {
+					return _this4.calculateNodePosition(n.new, n.old, n.new, interval);
+				}).concat(animationContext.addedNodes.map(function (n) {
+					return _this4.calculateNodePosition(n, animationContext.oldRoot, n, interval);
+				})),
+				links: animationContext.changedLinks.map(function (l) {
+					return _this4.calculateLinkPosition(l.new, l.old, l.new, interval);
+				}).concat(animationContext.addedLinks.map(function (l) {
+					return _this4.calculateLinkPosition(l, animationContext.oldRoot, l, interval);
+				}))
+			};
+		}
+	}, {
+		key: 'calculateNodePosition',
+		value: function calculateNodePosition(node, start, end, interval) {
+			return Object.assign({}, node, {
+				x: this.calculateNewValue(start.x, end.x, interval),
+				y: this.calculateNewValue(start.y, end.y, interval)
+			});
+		}
+	}, {
+		key: 'calculateLinkPosition',
+		value: function calculateLinkPosition(link, start, end, interval) {
+			return {
+				source: Object.assign({}, link.source, {
+					x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source.x, interval),
+					y: this.calculateNewValue(start.source ? start.source.y : start.y, end.source.y, interval)
+				}),
+				target: Object.assign({}, link.target, {
+					x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target.x, interval),
+					y: this.calculateNewValue(start.target ? start.target.y : start.y, end.target.y, interval)
+				})
+			};
 		}
 	}, {
 		key: 'calculateNewValue',
@@ -413,7 +465,7 @@ var Animated = function (_React$PureComponent) {
 	}, {
 		key: 'render',
 		value: function render() {
-			return this.props.animated ? _react2.default.createElement(this.props.component, _extends({}, this.props, this.state)) : _react2.default.createElement(this.props.component, this.props);
+			return _react2.default.createElement(_container2.default, _extends({}, this.props, this.state));
 		}
 	}]);
 
@@ -628,6 +680,123 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+
+/***/ }),
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _propTypes = __webpack_require__(0);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _link = __webpack_require__(5);
+
+var _link2 = _interopRequireDefault(_link);
+
+var _node = __webpack_require__(6);
+
+var _node2 = _interopRequireDefault(_node);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var propTypes = {
+	height: _propTypes2.default.number.isRequired,
+	keyProp: _propTypes2.default.string.isRequired,
+	labelProp: _propTypes2.default.string.isRequired,
+	links: _propTypes2.default.array.isRequired,
+	linkClass: _propTypes2.default.string,
+	linkClickHandler: _propTypes2.default.func,
+	nodes: _propTypes2.default.array.isRequired,
+	nodeClass: _propTypes2.default.string,
+	nodeClickHandler: _propTypes2.default.func,
+	nodeOffset: _propTypes2.default.number.isRequired,
+	nodeRadius: _propTypes2.default.number.isRequired,
+	treeClass: _propTypes2.default.string,
+	treeClickHandler: _propTypes2.default.func,
+	width: _propTypes2.default.number.isRequired
+};
+
+var Container = function (_React$PureComponent) {
+	_inherits(Container, _React$PureComponent);
+
+	function Container() {
+		_classCallCheck(this, Container);
+
+		return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
+	}
+
+	_createClass(Container, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			return _react2.default.createElement(
+				'svg',
+				{
+					className: this.props.treeClass,
+					onClick: this.props.treeClickHandler,
+					height: this.props.height,
+					width: this.props.width },
+				this.props.links.map(function (link) {
+					return _react2.default.createElement(_link2.default, _extends({
+						key: link.target.data[_this2.props.keyProp],
+						className: _this2.props.linkClass,
+						keyProp: _this2.props.keyProp,
+						onClick: _this2.props.linkClickHandler,
+						source: link.source,
+						target: link.target,
+						x1: link.source.x,
+						x2: link.target.x,
+						y1: link.source.y,
+						y2: link.target.y
+					}, link.data));
+				}),
+				this.props.nodes.map(function (node) {
+					return _react2.default.createElement(_node2.default, _extends({
+						key: node.data[_this2.props.keyProp],
+						className: _this2.props.nodeClass,
+						keyProp: _this2.props.keyProp,
+						labelProp: _this2.props.labelProp,
+						onClick: _this2.props.nodeClickHandler,
+						offset: _this2.props.nodeOffset,
+						radius: _this2.props.nodeRadius,
+						x: node.x,
+						y: node.y
+					}, node.data));
+				})
+			);
+		}
+	}]);
+
+	return Container;
+}(_react2.default.PureComponent);
+
+exports.default = Container;
+
+
+Container.propTypes = propTypes;
 
 /***/ })
 /******/ ]);

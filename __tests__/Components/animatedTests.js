@@ -6,165 +6,250 @@ import Animated from '../../Components/animated';
 
 jest.useFakeTimers();
 
-class DummyComponent extends React.PureComponent{
-	render() {
-		return <div/>;
+const nodes = [
+	{
+		x: 1,
+		y: 2,
+		data: {
+			name: 'Colour'
+		}
+	}, {
+		x: 100,
+		y: 50,
+		data: {
+			name: 'Black'
+		}
 	}
-}
+];
+
+const links = [{
+	source: nodes[0],
+	target: nodes[1]
+}];
+
+const defaultProps = {
+	animated: true,
+	height: 100,
+	width: 100,
+	keyProp: 'name',
+	labelProp: 'name',
+	nodeOffset: 1,
+	nodeRadius: 1,
+	duration: 1,
+	easing: easeQuadOut,
+	links: links,
+	nodes: nodes,
+	steps: 1
+};
 
 describe('<Animated>', () => {
 	test('renders correctly and sets initial state', () => {
-		const props = {
-			animated: true,
-			animatedProps: [
-				{
-					name: 'x'
-				}, {
-					name: 'y'
-				}
-			],
-			component: DummyComponent,
-			duration: 1,
-			easing: easeQuadOut,
-			steps: 1,
-			x: 2,
-			y: 3
-		};
-
-		const tree = shallow(<Animated {...props}/>);
+		const tree = shallow(<Animated {...defaultProps}/>);
 		expect(tree).toMatchSnapshot();
 
-		expect(tree.state()).toMatchObject({
-			x: 2,
-			y: 3
-		});
+		expect(tree.state().nodes[1].x).toBe(1);
+		expect(tree.state().nodes[1].y).toBe(2);
+
+		expect(tree.state().links[0].target.x).toBe(1);
+		expect(tree.state().links[0].target.y).toBe(2);
 	});
 
-	test('animates when props change', () => {
-		const props = {
-			animated: true,
-			animatedProps: [
-				{
-					name: 'x'
-				}, {
-					name: 'y'
-				}
-			],
-			component: DummyComponent,
-			duration: 100,
-			easing: easeQuadOut,
-			steps: 2,
-			x: 2,
-			y: 3
-		};
-
-		const tree = shallow(<Animated {...props}/>);
-		
-		tree.setProps({x: 5, y: 6});
-
-		jest.runTimersToTime(50);
-
-		expect(tree.state()).toMatchObject({
-			x: 4.25,
-			y: 5.25
-		});
-		expect(tree).toMatchSnapshot();
-
-		jest.runTimersToTime(50);
-
-		expect(tree.state()).toMatchObject({
-			x: 5,
-			y: 6
-		});
-		expect(tree).toMatchSnapshot();
-	});
-
-	test('animates from inital value on mount', () => {
-		const props = {
-			animated: true,
-			animatedProps: [
-				{
-					name: 'x',
-					initialValue: 1
-				}, {
-					name: 'y',
-					initialValue: 1
-				}
-			],
-			component: DummyComponent,
-			duration: 100,
-			easing: easeQuadOut,
-			steps: 1,
-			x: 2,
-			y: 3
-		};
+	test('animates node when moved', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
 		
-		expect(tree.state()).toMatchObject({
-			x: 1,
-			y: 1
-		});
-
 		jest.runTimersToTime(100);
 
-		expect(tree.state()).toMatchObject({
-			x: 2,
-			y: 3
+		expect(tree.state().nodes[1].x).toBe(100);
+		expect(tree.state().nodes[1].y).toBe(50);
+
+		tree.setProps({
+			nodes: [
+				nodes[0],
+				{
+					x: 120,
+					y: 80,
+					data: {
+						name: 'Black'
+					}
+				}
+			]
 		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[1].x).toBe(115);
+		expect(tree.state().nodes[1].y).toBe(72.5);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[1].x).toBe(120);
+		expect(tree.state().nodes[1].y).toBe(80);
 	});
 
-	test('does nothing when not enabled', () => {
-		const props = {
-			animated: false,
-			animatedProps: [
-				{
-					name: 'x'
-				}, {
-					name: 'y'
+	test('animates link when moved', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
+
+		const tree = mount(<Animated {...props}/>);
+		
+		jest.runTimersToTime(100);
+
+		expect(tree.state().links[0].source.x).toBe(1);
+		expect(tree.state().links[0].source.y).toBe(2);
+		expect(tree.state().links[0].target.x).toBe(100);
+		expect(tree.state().links[0].target.y).toBe(50);
+
+		tree.setProps({
+			links: [{
+				source: {
+					x: 5,
+					y: 10,
+					data: {
+						name: 'Colour'
+					}
+				},
+				target: {
+					x: 200,
+					y: 100,
+					data: {
+						name: 'Black'
+					}
 				}
-			],
-			component: DummyComponent,
-			duration: 1,
-			easing: easeQuadOut,
-			steps: 1,
-			x: 2,
-			y: 3
-		};
+			}]
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links[0].source.x).toBe(4);
+		expect(tree.state().links[0].source.y).toBe(8);
+		expect(tree.state().links[0].target.x).toBe(175);
+		expect(tree.state().links[0].target.y).toBe(87.5);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links[0].source.x).toBe(5);
+		expect(tree.state().links[0].source.y).toBe(10);
+		expect(tree.state().links[0].target.x).toBe(200);
+		expect(tree.state().links[0].target.y).toBe(100);
+	});
+
+	test('animates node when added', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = shallow(<Animated {...props}/>);
 		
-		tree.setProps({x: 5, y: 6});
+		tree.setProps({
+			nodes: [
+				nodes[0],
+				nodes[1],
+				{
+					x: 120,
+					y: 80,
+					data: {
+						name: 'Purple'
+					}
+				}
+			]
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[2].x).toBe(90.25);
+		expect(tree.state().nodes[2].y).toBe(60.5);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[2].x).toBe(120);
+		expect(tree.state().nodes[2].y).toBe(80);
+	});
+
+	test('animates link when added', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
+
+		const tree = shallow(<Animated {...props}/>);
+		
+		tree.setProps({
+			links: [
+				links[0],
+				{
+					source: {
+						x: 5,
+						y: 10,
+						data: {
+							name: 'Colour'
+						}
+					},
+					target: {
+						x: 200,
+						y: 100,
+						data: {
+							name: 'Purple'
+						}
+					}
+				}
+			]
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links[1].source.x).toBe(4);
+		expect(tree.state().links[1].source.y).toBe(8);
+		expect(tree.state().links[1].target.x).toBe(150.25);
+		expect(tree.state().links[1].target.y).toBe(75.5);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links[1].source.x).toBe(5);
+		expect(tree.state().links[1].source.y).toBe(10);
+		expect(tree.state().links[1].target.x).toBe(200);
+		expect(tree.state().links[1].target.y).toBe(100);
+	});
+
+	test('animates from inital value on mount', () => {
+		const props = Object.assign({}, defaultProps, { duration: 100 });
+
+		const tree = mount(<Animated {...props}/>);
+
+		expect(tree.state().nodes[1].x).toBe(1);
+		expect(tree.state().nodes[1].y).toBe(2);
+
+		jest.runTimersToTime(100);
+
+		expect(tree.state().nodes[1].x).toBe(100);
+		expect(tree.state().nodes[1].y).toBe(50);
+	});
+
+	test('does nothing when not enabled', () => {
+		const props = Object.assign({}, defaultProps, { animated: false });
+
+		const tree = mount(<Animated {...props}/>);
+		
+		tree.setProps({
+			nodes: [
+				nodes[0],
+				{
+					x: 120,
+					y: 80,
+					data: {
+						name: 'Black'
+					}
+				}
+			]
+		});
+
+
+		expect(tree.state().nodes[1].x).toBe(120);
+		expect(tree.state().nodes[1].y).toBe(80);
 
 		expect(tree).toMatchSnapshot();
 	});
 
-	test('does nothing when props change does not change animated value', () => {
-		const props = {
-			animated: true,
-			animatedProps: [
-				{
-					name: 'x'
-				}, {
-					name: 'y'
-				}
-			],
-			component: DummyComponent,
-			duration: 100,
-			easing: easeQuadOut,
-			steps: 2,
-			x: 2,
-			y: 3,
-			z: 4
-		};
-
-		const tree = shallow(<Animated {...props}/>);
+	test('does not animate when props other than nodes or links change', () => {
+		const tree = shallow(<Animated {...defaultProps}/>);
 		
-		tree.setProps({z: 7});
+		tree.setProps({nodeOffset: 5});
 
-		expect(tree.state()).toMatchObject({
-			x: 2,
-			y: 3
-		});
+		expect(tree).toMatchSnapshot();
 	});
 });
