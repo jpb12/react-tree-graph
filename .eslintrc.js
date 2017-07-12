@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-		"browser": true,
+        "browser": true,
         "es6": true
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
@@ -18,7 +18,7 @@ module.exports = {
         "indent": [
             "error",
             "tab",
-			{ "SwitchCase": 1 }
+            { "SwitchCase": 1 }
         ],
         "quotes": [
             "error",

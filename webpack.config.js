@@ -7,6 +7,8 @@ module.exports = {
 	entry: './index.js',
 	externals: [
 		'clone',
+		'core-js/fn/array/find',
+		'core-js/fn/object/assign',
 		'd3-hierarchy',
 		'd3-ease',
 		'prop-types',

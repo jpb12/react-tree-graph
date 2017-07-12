@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "clone": "^2.1.1",
+    "core-js": "^2.4.1",
     "d3-ease": "^1.0.3",
     "d3-hierarchy": "^1.1.5",
     "prop-types": "^15.5.7"
@@ -66,6 +67,7 @@
     "build-dev": "set NODE_ENV=development && webpack --progress",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint Components __tests__",
-    "test": "jest"
+    "test": "jest",
+    "version": "npm run build && npm run build-dev"
   }
 }

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("prop-types"), require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"));
+		module.exports = factory(require("prop-types"), require("react"), require("clone"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"), require("d3-ease"), require("d3-hierarchy"));
 	else if(typeof define === 'function' && define.amd)
-		define(["prop-types", "react", "clone", "d3-ease", "d3-hierarchy"], factory);
+		define(["prop-types", "react", "clone", "core-js/fn/array/find", "core-js/fn/object/assign", "d3-ease", "d3-hierarchy"], factory);
 	else if(typeof exports === 'object')
-		exports["react-tree-graph"] = factory(require("prop-types"), require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"));
+		exports["react-tree-graph"] = factory(require("prop-types"), require("react"), require("clone"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"), require("d3-ease"), require("d3-hierarchy"));
 	else
-		root["react-tree-graph"] = factory(root["prop-types"], root["react"], root["clone"], root["d3-ease"], root["d3-hierarchy"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__) {
+		root["react-tree-graph"] = factory(root["prop-types"], root["react"], root["clone"], root["core-js/fn/array/find"], root["core-js/fn/object/assign"], root["d3-ease"], root["d3-hierarchy"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -105,9 +105,9 @@ var _clone = __webpack_require__(9);
 
 var _clone2 = _interopRequireDefault(_clone);
 
-var _d3Ease = __webpack_require__(10);
+var _d3Ease = __webpack_require__(12);
 
-var _d3Hierarchy = __webpack_require__(11);
+var _d3Hierarchy = __webpack_require__(13);
 
 var _propTypes = __webpack_require__(0);
 
@@ -258,6 +258,10 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(10);
+
+__webpack_require__(11);
 
 var _propTypes = __webpack_require__(0);
 
@@ -848,6 +852,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ })
 /******/ ]);

@@ -3,6 +3,7 @@
 .gitignore
 .npmignore
 .travis.yml
+index.js
 webpack.config.js
 __tests__
 coverage
