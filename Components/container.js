@@ -8,14 +8,14 @@ const propTypes = {
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	links: PropTypes.array.isRequired,
-	linkClass: PropTypes.string,
+	linkClassName: PropTypes.string,
 	linkClickHandler: PropTypes.func,
 	nodes: PropTypes.array.isRequired,
-	nodeClass: PropTypes.string,
+	nodeClassName: PropTypes.string,
 	nodeClickHandler: PropTypes.func,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired,
-	treeClass: PropTypes.string,
+	treeClassName: PropTypes.string,
 	treeClickHandler: PropTypes.func,
 	width: PropTypes.number.isRequired
 };
@@ -24,14 +24,14 @@ export default class Container extends React.PureComponent {
 	render() {
 		return (
 			<svg
-				className={this.props.treeClass}
+				className={this.props.treeClassName}
 				onClick={this.props.treeClickHandler}
 				height={this.props.height}
 				width={this.props.width}>
 				{ this.props.links.map(link =>
 					<Link
 						key={link.target.data[this.props.keyProp]}
-						className={this.props.linkClass}
+						className={this.props.linkClassName}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
 						source={link.source}
@@ -45,7 +45,7 @@ export default class Container extends React.PureComponent {
 				{ this.props.nodes.map(node =>
 					<Node
 						key={node.data[this.props.keyProp]}
-						className={this.props.nodeClass}
+						className={this.props.nodeClassName}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}
 						onClick={this.props.nodeClickHandler}

@@ -9,7 +9,7 @@ exports[`<Tree> renders correctly 1`] = `
   height={100}
   keyProp="name"
   labelProp="name"
-  linkClass="link"
+  linkClassName="link"
   links={
     Array [
       Object {
@@ -70,7 +70,7 @@ exports[`<Tree> renders correctly 1`] = `
       },
     ]
   }
-  nodeClass="node"
+  nodeClassName="node"
   nodeOffset={3.5}
   nodeRadius={5}
   nodes={

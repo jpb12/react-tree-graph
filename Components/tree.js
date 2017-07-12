@@ -16,9 +16,9 @@ const propTypes = {
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	getChildren: PropTypes.func.isRequired,
-	treeClass: PropTypes.string,
+	treeClassName: PropTypes.string,
 	treeClickHandler: PropTypes.func,
-	linkClass: PropTypes.string,
+	linkClassName: PropTypes.string,
 	linkClickHandler: PropTypes.func,
 	margins: PropTypes.shape({
 		bottom: PropTypes.number.isRequired,
@@ -26,7 +26,7 @@ const propTypes = {
 		right: PropTypes.number.isRequired,
 		top: PropTypes.number.isRequired
 	}).isRequired,
-	nodeClass: PropTypes.string,
+	nodeClassName: PropTypes.string,
 	nodeClickHandler: PropTypes.func,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired
@@ -46,8 +46,8 @@ const defaultProps = {
 		right: 150,
 		top: 10
 	},
-	linkClass: 'link',
-	nodeClass: 'node',
+	linkClassName: 'link',
+	nodeClassName: 'node',
 	nodeOffset: 3.5,
 	nodeRadius: 5
 };
@@ -78,15 +78,15 @@ export default class Tree extends React.PureComponent {
 				keyProp={this.props.keyProp}
 				labelProp={this.props.labelProp}
 				links={links}
-				linkClass={this.props.linkClass}
+				linkClassName={this.props.linkClassName}
 				linkClickHandler={this.props.linkClickHandler}
 				nodes={nodes}
-				nodeClass={this.props.nodeClass}
+				nodeClassName={this.props.nodeClassName}
 				nodeClickHandler={this.props.nodeClickHandler}
 				nodeOffset={this.props.nodeOffset}
 				nodeRadius={this.props.nodeRadius}
 				steps={this.props.steps}
-				treeClass={this.props.treeClass}
+				treeClassName={this.props.treeClassName}
 				treeClickHandler={this.props.treeClickHandler}
 				width={this.props.width}/>);
 	}

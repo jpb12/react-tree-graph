@@ -140,9 +140,9 @@ var propTypes = {
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
 	getChildren: _propTypes2.default.func.isRequired,
-	treeClass: _propTypes2.default.string,
+	treeClassName: _propTypes2.default.string,
 	treeClickHandler: _propTypes2.default.func,
-	linkClass: _propTypes2.default.string,
+	linkClassName: _propTypes2.default.string,
 	linkClickHandler: _propTypes2.default.func,
 	margins: _propTypes2.default.shape({
 		bottom: _propTypes2.default.number.isRequired,
@@ -150,7 +150,7 @@ var propTypes = {
 		right: _propTypes2.default.number.isRequired,
 		top: _propTypes2.default.number.isRequired
 	}).isRequired,
-	nodeClass: _propTypes2.default.string,
+	nodeClassName: _propTypes2.default.string,
 	nodeClickHandler: _propTypes2.default.func,
 	nodeOffset: _propTypes2.default.number.isRequired,
 	nodeRadius: _propTypes2.default.number.isRequired
@@ -172,8 +172,8 @@ var defaultProps = {
 		right: 150,
 		top: 10
 	},
-	linkClass: 'link',
-	nodeClass: 'node',
+	linkClassName: 'link',
+	nodeClassName: 'node',
 	nodeOffset: 3.5,
 	nodeRadius: 5
 };
@@ -215,15 +215,15 @@ var Tree = function (_React$PureComponent) {
 				keyProp: this.props.keyProp,
 				labelProp: this.props.labelProp,
 				links: links,
-				linkClass: this.props.linkClass,
+				linkClassName: this.props.linkClassName,
 				linkClickHandler: this.props.linkClickHandler,
 				nodes: nodes,
-				nodeClass: this.props.nodeClass,
+				nodeClassName: this.props.nodeClassName,
 				nodeClickHandler: this.props.nodeClickHandler,
 				nodeOffset: this.props.nodeOffset,
 				nodeRadius: this.props.nodeRadius,
 				steps: this.props.steps,
-				treeClass: this.props.treeClass,
+				treeClassName: this.props.treeClassName,
 				treeClickHandler: this.props.treeClickHandler,
 				width: this.props.width });
 		}
@@ -573,14 +573,14 @@ var propTypes = {
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
 	links: _propTypes2.default.array.isRequired,
-	linkClass: _propTypes2.default.string,
+	linkClassName: _propTypes2.default.string,
 	linkClickHandler: _propTypes2.default.func,
 	nodes: _propTypes2.default.array.isRequired,
-	nodeClass: _propTypes2.default.string,
+	nodeClassName: _propTypes2.default.string,
 	nodeClickHandler: _propTypes2.default.func,
 	nodeOffset: _propTypes2.default.number.isRequired,
 	nodeRadius: _propTypes2.default.number.isRequired,
-	treeClass: _propTypes2.default.string,
+	treeClassName: _propTypes2.default.string,
 	treeClickHandler: _propTypes2.default.func,
 	width: _propTypes2.default.number.isRequired
 };
@@ -602,14 +602,14 @@ var Container = function (_React$PureComponent) {
 			return _react2.default.createElement(
 				'svg',
 				{
-					className: this.props.treeClass,
+					className: this.props.treeClassName,
 					onClick: this.props.treeClickHandler,
 					height: this.props.height,
 					width: this.props.width },
 				this.props.links.map(function (link) {
 					return _react2.default.createElement(_link2.default, _extends({
 						key: link.target.data[_this2.props.keyProp],
-						className: _this2.props.linkClass,
+						className: _this2.props.linkClassName,
 						keyProp: _this2.props.keyProp,
 						onClick: _this2.props.linkClickHandler,
 						source: link.source,
@@ -623,7 +623,7 @@ var Container = function (_React$PureComponent) {
 				this.props.nodes.map(function (node) {
 					return _react2.default.createElement(_node2.default, _extends({
 						key: node.data[_this2.props.keyProp],
-						className: _this2.props.nodeClass,
+						className: _this2.props.nodeClassName,
 						keyProp: _this2.props.keyProp,
 						labelProp: _this2.props.labelProp,
 						onClick: _this2.props.nodeClickHandler,
