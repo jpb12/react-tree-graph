@@ -44,7 +44,7 @@ svg.custom path.link {
 		data={data}
 		height={200}
 		width={400}
-		treeClass="custom"/>
+		treeClassName="custom"/>
 </div>`;
 
 export default class StylesExample extends React.PureComponent {
@@ -56,7 +56,7 @@ export default class StylesExample extends React.PureComponent {
 						data={data}
 						height={200}
 						width={400}
-						treeClass="custom"/>
+						treeClassName="custom"/>
 				</div>
 			</Example>);
 	}
