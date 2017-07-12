@@ -15,7 +15,7 @@ const propTypes = {
 	width: PropTypes.number.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
-	getChildren: PropTypes.func,
+	getChildren: PropTypes.func.isRequired,
 	treeClass: PropTypes.string,
 	treeClickHandler: PropTypes.func,
 	linkClass: PropTypes.string,
@@ -36,6 +36,7 @@ const defaultProps = {
 	animated: false,
 	duration: 500,
 	easing: easeQuadOut,
+	getChildren: n => n.children,
 	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -72,6 +73,7 @@ export default class Tree extends React.PureComponent {
 				animated={this.props.animated}
 				duration={this.props.duration}
 				easing={this.props.easing}
+				getChildren={this.props.getChildren}
 				height={this.props.height}
 				keyProp={this.props.keyProp}
 				labelProp={this.props.labelProp}

@@ -4,6 +4,7 @@ import Container from './container';
 
 const propTypes = {
 	animated: PropTypes.bool.isRequired,
+	getChildren: PropTypes.func.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	links: PropTypes.array.isRequired,
 	nodes: PropTypes.array.isRequired,
@@ -70,25 +71,59 @@ export default class Animated extends React.PureComponent{
 				this.setState({ nodes: props.nodes, links: props.links });
 				return;
 			}
-			
+
 			this.setState(this.calculateNewState(animationContext, counter / props.steps));
 		}, props.duration / props.steps);
 	}
 	getAnimationContext(initialState, newState) {
-		// We need to match changed nodes from the new and old props for the animation.  New nodes will be animated from the root node
-		// TODO: added nodes/links should be animated from the closest ancestor that previously existed
-		// TODO: removed nodes/links should be animated to the closest ancestor that has not been removed
+		// Nodes/links that are in both states need to be moved from the old position to the new one
+		// Nodes/links only in the initial state are being removed, and should be moved to the position
+		// of the closest ancestor that still exists, or the new root
+		// Nodes/links only in the new state are being added, and should be moved from the position of
+		// the closest ancestor that previously existed, or the old root
+
+		// The base determines which node/link the data (like classes and labels) comes from for rendering
+
+		// We only run this once at the start of the animation, so optimization is less important
+		let addedNodes = newState.nodes
+			.filter(n1 => initialState.nodes.every(n2 => !this.areNodesSame(n1, n2)))
+			.map(n1 => ({ base: n1, old: this.getClosestAncestor(n1, newState, initialState), new: n1}));
+		let changedNodes = newState.nodes
+			.filter(n1 => initialState.nodes.some(n2 => this.areNodesSame(n1, n2)))
+			.map(n1 => ({ base: n1, old: initialState.nodes.find(n2 => this.areNodesSame(n1, n2)), new: n1 }));
+		let removedNodes = initialState.nodes
+			.filter(n1 => newState.nodes.every(n2 => !this.areNodesSame(n1, n2)))
+			.map(n1 => ({ base: n1, old: n1, new: this.getClosestAncestor(n1, initialState, newState) }));
+
+		let addedLinks = newState.links
+			.filter(l1 => initialState.links.every(l2 => !this.areLinksSame(l1, l2)))
+			.map(l1 => ({ base: l1, old: this.getClosestAncestor(l1.target, newState, initialState), new: l1}));
+		let changedLinks = newState.links
+			.filter(l1 => initialState.links.some(l2 => this.areLinksSame(l1, l2)))
+			.map(l1 => ({ base: l1, old: initialState.links.find(l2 => this.areLinksSame(l1, l2)), new: l1 }));
+		let removedLinks = initialState.links
+			.filter(l1 => newState.links.every(l2 => !this.areLinksSame(l1, l2)))
+			.map(l1 => ({ base: l1, old: l1, new: this.getClosestAncestor(l1.target, initialState, newState) }));
+
 		return {
-			oldRoot: initialState.nodes[0],
-			changedNodes: initialState.nodes
-				.filter(n1 => newState.nodes.some(n2 => this.areNodesSame(n1, n2)))
-				.map(n1 => ({ old: n1, new: newState.nodes.find(n2 => this.areNodesSame(n1, n2)) })),
-			addedNodes: newState.nodes.filter(n1 => initialState.nodes.every(n2 => !this.areNodesSame(n1, n2))),
-			changedLinks: initialState.links
-				.filter(l1 => newState.links.some(l2 => this.areLinksSame(l1, l2)))
-				.map(l1 => ({ old: l1, new: newState.links.find(l2 => this.areLinksSame(l1, l2)) })),
-			addedLinks: newState.links.filter(l1 => initialState.links.every(l2 => !this.areLinksSame(l1, l2))),
+			nodes: changedNodes.concat(addedNodes).concat(removedNodes),
+			links: changedLinks.concat(addedLinks).concat(removedLinks),
 		};
+	}
+	getClosestAncestor(node, stateWithNode, stateWithoutNode) {
+		let oldParent = node;
+
+		while(oldParent) {
+			let newParent = stateWithoutNode.nodes.find(n => this.areNodesSame(oldParent, n));
+			
+			if (newParent) {
+				return newParent;
+			}
+			
+			oldParent = stateWithNode.nodes.find(n => (this.props.getChildren(n) || []).some(c => this.areNodesSame(oldParent, c)));
+		}
+
+		return stateWithoutNode.nodes[0];
 	}
 	areNodesSame(a, b) {
 		return a.data[this.props.keyProp] === b.data[this.props.keyProp];
@@ -97,12 +132,9 @@ export default class Animated extends React.PureComponent{
 		return a.source.data[this.props.keyProp] === b.source.data[this.props.keyProp] && a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp];
 	}
 	calculateNewState(animationContext, interval) {
-		// TODO: Optimise this further.  This is the bulk of the execution time during an animation step and needs to be fast
 		return {
-			nodes: animationContext.changedNodes.map(n => this.calculateNodePosition(n.new, n.old, n.new, interval))
-				.concat(animationContext.addedNodes.map(n => this.calculateNodePosition(n, animationContext.oldRoot, n, interval))),
-			links: animationContext.changedLinks.map(l => this.calculateLinkPosition(l.new, l.old, l.new, interval))
-				.concat(animationContext.addedLinks.map(l => this.calculateLinkPosition(l, animationContext.oldRoot, l, interval))),
+			nodes: animationContext.nodes.map(n => this.calculateNodePosition(n.base, n.old, n.new, interval)),
+			links: animationContext.links.map(l => this.calculateLinkPosition(l.base, l.old, l.new, interval))
 		};
 	}
 	calculateNodePosition(node, start, end, interval) {
@@ -120,15 +152,15 @@ export default class Animated extends React.PureComponent{
 				{},
 				link.source,
 				{
-					x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source.x, interval),
-					y: this.calculateNewValue(start.source ? start.source.y: start.y, end.source.y, interval)
+					x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source ? end.source.x : end.x, interval),
+					y: this.calculateNewValue(start.source ? start.source.y: start.y, end.source ? end.source.y : end.y, interval)
 				}),
 			target: Object.assign(
 				{},
 				link.target,
 				{
-					x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target.x, interval),
-					y: this.calculateNewValue(start.target ? start.target.y: start.y, end.target.y, interval)
+					x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target ? end.target.x : end.x, interval),
+					y: this.calculateNewValue(start.target ? start.target.y: start.y, end.target ? end.target.y : end.y, interval)
 				}),
 		};
 	}

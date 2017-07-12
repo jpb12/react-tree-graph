@@ -24,4 +24,16 @@ describe('<Tree>', () => {
 
 		expect(tree).toMatchSnapshot();
 	});
+
+	test('default getChildren looks at children prop', () => {
+		const node = {
+			children: [{
+				name: 'child'
+			}]
+		};
+
+		const children = Tree.defaultProps.getChildren(node);
+
+		expect(children).toBe(node.children);
+	});
 });

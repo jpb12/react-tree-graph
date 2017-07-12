@@ -29,6 +29,7 @@ const links = [{
 
 const defaultProps = {
 	animated: true,
+	getChildren: n => n.children,
 	height: 100,
 	width: 100,
 	keyProp: 'name',
@@ -164,6 +165,49 @@ describe('<Animated>', () => {
 		expect(tree.state().nodes[2].y).toBe(80);
 	});
 
+	test('animates node from parent when added', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
+
+		const tree = mount(<Animated {...props}/>);
+		
+		jest.runTimersToTime(100);
+
+		tree.setProps({
+			nodes: [
+				nodes[0],
+				{
+					x: 100,
+					y: 50,
+					data: {
+						name: 'Black'
+					},
+					children: [{
+						data: {
+							name: 'Purple'
+						}
+					}]
+				},
+				{
+					x: 120,
+					y: 80,
+					data: {
+						name: 'Purple'
+					}
+				}
+			]
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[2].x).toBe(115);
+		expect(tree.state().nodes[2].y).toBe(72.5);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[2].x).toBe(120);
+		expect(tree.state().nodes[2].y).toBe(80);
+	});
+
 	test('animates link when added', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
@@ -204,6 +248,52 @@ describe('<Animated>', () => {
 		expect(tree.state().links[1].source.y).toBe(10);
 		expect(tree.state().links[1].target.x).toBe(200);
 		expect(tree.state().links[1].target.y).toBe(100);
+	});
+
+	test('animates node when removed', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
+
+		const tree = mount(<Animated {...props}/>);
+		
+		jest.runTimersToTime(100);
+		
+		tree.setProps({
+			nodes: [
+				nodes[0]
+			]
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes[1].x).toBe(25.75);
+		expect(tree.state().nodes[1].y).toBe(14);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().nodes.length).toBe(1);
+	});
+
+	test('animates link when removed', () => {
+		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
+
+		const tree = mount(<Animated {...props}/>);
+		
+		jest.runTimersToTime(100);
+		
+		tree.setProps({
+			links: []
+		});
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links[0].source.x).toBe(75.25);
+		expect(tree.state().links[0].source.y).toBe(38);
+		expect(tree.state().links[0].target.x).toBe(100);
+		expect(tree.state().links[0].target.y).toBe(50);
+
+		jest.runTimersToTime(50);
+
+		expect(tree.state().links.length).toBe(0);
 	});
 
 	test('animates from inital value on mount', () => {
