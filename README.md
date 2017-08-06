@@ -4,7 +4,7 @@
   Author: James Brierley
 -->
 
-react-tree-graph &middot; [![Build Status](https://travis-ci.org/jpb12/react-tree-graph.svg?branch=master)](https://travis-ci.org/jpb12/react-tree-graph) [![Coverage Status](https://coveralls.io/repos/github/jpb12/react-tree-graph/badge.svg?branch=master)](https://coveralls.io/github/jpb12/react-tree-graph?branch=master) [![npm version](https://img.shields.io/npm/v/react-tree-graph.svg?style=flat)](https://www.npmjs.com/package/react-tree-graph)
+react-tree-graph &middot; [![Build Status](https://travis-ci.org/jpb12/react-tree-graph.svg?branch=master)](https://travis-ci.org/jpb12/react-tree-graph) [![Coverage Status](https://coveralls.io/repos/github/jpb12/react-tree-graph/badge.svg?branch=master)](https://coveralls.io/github/jpb12/react-tree-graph?branch=master) [![npm version](https://img.shields.io/npm/v/react-tree-graph.svg?style=flat)](https://www.npmjs.com/package/react-tree-graph) [![npm](https://img.shields.io/npm/dm/react-tree-graph.svg)](https://www.npmjs.com/package/react-tree-graph)
 ================
 A simple react component which renders data as a tree using svg.
 
