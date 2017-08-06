@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("prop-types"), require("react"), require("clone"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"), require("d3-ease"), require("d3-hierarchy"));
+		module.exports = factory(require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"), require("prop-types"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"));
 	else if(typeof define === 'function' && define.amd)
-		define(["prop-types", "react", "clone", "core-js/fn/array/find", "core-js/fn/object/assign", "d3-ease", "d3-hierarchy"], factory);
+		define(["react", "clone", "d3-ease", "d3-hierarchy", "prop-types", "core-js/fn/array/find", "core-js/fn/object/assign"], factory);
 	else if(typeof exports === 'object')
-		exports["react-tree-graph"] = factory(require("prop-types"), require("react"), require("clone"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"), require("d3-ease"), require("d3-hierarchy"));
+		exports["react-tree-graph"] = factory(require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"), require("prop-types"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"));
 	else
-		root["react-tree-graph"] = factory(root["prop-types"], root["react"], root["clone"], root["core-js/fn/array/find"], root["core-js/fn/object/assign"], root["d3-ease"], root["d3-hierarchy"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__) {
+		root["react-tree-graph"] = factory(root["react"], root["clone"], root["d3-ease"], root["d3-hierarchy"], root["prop-types"], root["core-js/fn/array/find"], root["core-js/fn/object/assign"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -43,9 +43,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -73,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -96,18 +93,45 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(3);
+
+var _tree = __webpack_require__(4);
+
+var _tree2 = _interopRequireDefault(_tree);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _tree2.default;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _clone = __webpack_require__(9);
+var _clone = __webpack_require__(5);
 
 var _clone2 = _interopRequireDefault(_clone);
 
-var _d3Ease = __webpack_require__(12);
+var _d3Ease = __webpack_require__(6);
 
-var _d3Hierarchy = __webpack_require__(13);
+var _d3Hierarchy = __webpack_require__(7);
 
 var _propTypes = __webpack_require__(0);
 
@@ -117,7 +141,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _animated = __webpack_require__(4);
+var _animated = __webpack_require__(8);
 
 var _animated2 = _interopRequireDefault(_animated);
 
@@ -239,13 +263,25 @@ Tree.propTypes = propTypes;
 Tree.defaultProps = defaultProps;
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ }),
-/* 4 */
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -259,9 +295,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(10);
+__webpack_require__(9);
 
-__webpack_require__(11);
+__webpack_require__(10);
 
 var _propTypes = __webpack_require__(0);
 
@@ -271,7 +307,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _container = __webpack_require__(5);
+var _container = __webpack_require__(11);
 
 var _container2 = _interopRequireDefault(_container);
 
@@ -534,7 +570,19 @@ exports.default = Animated;
 Animated.propTypes = propTypes;
 
 /***/ }),
-/* 5 */
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -556,11 +604,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _link = __webpack_require__(6);
+var _link = __webpack_require__(12);
 
 var _link2 = _interopRequireDefault(_link);
 
-var _node = __webpack_require__(7);
+var _node = __webpack_require__(13);
 
 var _node2 = _interopRequireDefault(_node);
 
@@ -650,7 +698,7 @@ exports.default = Container;
 Container.propTypes = propTypes;
 
 /***/ }),
-/* 6 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -729,7 +777,7 @@ exports.default = Link;
 Link.propTypes = propTypes;
 
 /***/ }),
-/* 7 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -813,57 +861,6 @@ exports.default = Node;
 
 
 Node.propTypes = propTypes;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(3);
-
-var _tree = __webpack_require__(2);
-
-var _tree2 = _interopRequireDefault(_tree);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _tree2.default;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ })
 /******/ ]);
