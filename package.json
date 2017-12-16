@@ -57,11 +57,13 @@
       "enzyme-to-json/serializer"
     ],
     "setupFiles": [
+      "./__tests__/shims.js",
       "./__tests__/startup.js"
     ],
     "testPathIgnorePatterns": [
       ".eslintrc.js",
-      "startup.js"
+      "startup.js",
+      "shims.js"
     ]
   },
   "peerDependencies": {

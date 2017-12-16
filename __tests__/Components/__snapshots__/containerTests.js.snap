@@ -6,6 +6,7 @@ exports[`<Container> renders correctly 1`] = `
   width={200}
 >
   <Link
+    htmlProps={Object {}}
     key="Black"
     keyProp="name"
     source={
@@ -32,6 +33,7 @@ exports[`<Container> renders correctly 1`] = `
     y2={50}
   />
   <Node
+    htmlProps={Object {}}
     key="Colour"
     keyProp="name"
     labelProp="name"
@@ -42,6 +44,7 @@ exports[`<Container> renders correctly 1`] = `
     y={2}
   />
   <Node
+    htmlProps={Object {}}
     key="Black"
     keyProp="name"
     labelProp="name"

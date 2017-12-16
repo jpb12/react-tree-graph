@@ -7,6 +7,7 @@ exports[`<Animated> does not animate when props other than nodes or links change
   easing={[Function]}
   getChildren={[Function]}
   height={100}
+  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -61,6 +62,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
   easing={[Function]}
   getChildren={[Function]}
   height={100}
+  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -112,6 +114,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
     easing={[Function]}
     getChildren={[Function]}
     height={100}
+    htmlProps={Object {}}
     keyProp="name"
     labelProp="name"
     links={
@@ -162,6 +165,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       width={100}
     >
       <Link
+        htmlProps={Object {}}
         key="Black"
         keyProp="name"
         source={
@@ -193,6 +197,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         />
       </Link>
       <Node
+        htmlProps={Object {}}
         key="Colour"
         keyProp="name"
         labelProp="name"
@@ -218,6 +223,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         </g>
       </Node>
       <Node
+        htmlProps={Object {}}
         key="Black"
         keyProp="name"
         labelProp="name"
@@ -254,6 +260,7 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
   easing={[Function]}
   getChildren={[Function]}
   height={100}
+  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={

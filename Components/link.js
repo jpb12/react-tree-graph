@@ -5,6 +5,7 @@ const propTypes = {
 	source: PropTypes.object.isRequired,
 	target: PropTypes.object.isRequired,
 	className: PropTypes.string,
+	htmlProps: PropTypes.object.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	onClick: PropTypes.func,
 	x1: PropTypes.number.isRequired,
@@ -33,7 +34,7 @@ export default class Link extends React.PureComponent{
 			this.props.y2);
 
 		return (
-			<path className={this.props.className} d={d} onClick={this.handleClick}/>);
+			<path {...this.props.htmlProps.path} className={this.props.className} d={d} onClick={this.handleClick}/>);
 	}
 }
 

@@ -5,6 +5,7 @@ import Node from './node';
 
 const propTypes = {
 	height: PropTypes.number.isRequired,
+	htmlProps: PropTypes.object.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	links: PropTypes.array.isRequired,
@@ -32,6 +33,7 @@ export default class Container extends React.PureComponent {
 					<Link
 						key={link.target.data[this.props.keyProp]}
 						className={this.props.linkClassName}
+						htmlProps={this.props.htmlProps}
 						keyProp={this.props.keyProp}
 						onClick={this.props.linkClickHandler}
 						source={link.source}
@@ -46,6 +48,7 @@ export default class Container extends React.PureComponent {
 					<Node
 						key={node.data[this.props.keyProp]}
 						className={this.props.nodeClassName}
+						htmlProps={this.props.htmlProps}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}
 						onClick={this.props.nodeClickHandler}

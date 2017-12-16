@@ -7,6 +7,7 @@ exports[`<Tree> renders correctly 1`] = `
   easing={[Function]}
   getChildren={[Function]}
   height={100}
+  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   linkClassName="link"

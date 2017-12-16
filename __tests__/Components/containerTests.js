@@ -29,7 +29,8 @@ describe('<Container>', () => {
 			}],
 			height: 100,
 			keyProp: 'name',
-			labelProp: 'name',
+			labelProp: 'name',			
+			htmlProps: {},
 			nodeOffset: 3.5,
 			nodeRadius: 5,
 			width: 200

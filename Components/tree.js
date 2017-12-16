@@ -16,6 +16,13 @@ const propTypes = {
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	getChildren: PropTypes.func.isRequired,
+	htmlProps: PropTypes.shape({
+		circle: PropTypes.object,
+		g: PropTypes.object,
+		path: PropTypes.object,
+		svg: PropTypes.object,
+		text: PropTypes.object
+	}).isRequired,
 	treeClassName: PropTypes.string,
 	treeClickHandler: PropTypes.func,
 	linkClassName: PropTypes.string,
@@ -37,6 +44,7 @@ const defaultProps = {
 	duration: 500,
 	easing: easeQuadOut,
 	getChildren: n => n.children,
+	htmlProps: {},
 	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -75,6 +83,7 @@ export default class Tree extends React.PureComponent {
 				easing={this.props.easing}
 				getChildren={this.props.getChildren}
 				height={this.props.height}
+				htmlProps={this.props.htmlProps}
 				keyProp={this.props.keyProp}
 				labelProp={this.props.labelProp}
 				links={links}

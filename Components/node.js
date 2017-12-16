@@ -5,6 +5,7 @@ const propTypes = {
 	x: PropTypes.number.isRequired,
 	y: PropTypes.number.isRequired,
 	className: PropTypes.string,
+	htmlProps: PropTypes.object.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	onClick: PropTypes.func,
@@ -25,9 +26,9 @@ export default class Node extends React.PureComponent{
 	}
 	render() {
 		return (
-			<g className={this.props.className} transform={this.getTransform()} onClick={this.handleClick}>
-				<circle r={this.props.radius}/>
-				<text dx={this.props.radius + 0.5} dy={this.props.offset}>
+			<g {...this.props.htmlProps.g} className={this.props.className} transform={this.getTransform()} onClick={this.handleClick}>
+				<circle {...this.props.htmlProps.r} r={this.props.radius}/>
+				<text {...this.props.htmlProps.text} dx={this.props.radius + 0.5} dy={this.props.offset}>
 					{this.props[this.props.labelProp]}
 				</text>
 			</g>);

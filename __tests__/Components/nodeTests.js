@@ -11,6 +11,7 @@ describe('<Node>', () => {
 			className: 'test',
 			keyProp: '',
 			labelProp: 'name',
+			htmlProps: {},
 			offset: 3,
 			radius: 4,
 			name: 'Test Node'
@@ -29,6 +30,7 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: 'id',
 			labelProp: 'name',
+			htmlProps: {},
 			offset: 3,
 			radius: 4,
 			id: 'testKey',
@@ -49,6 +51,7 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: 'id',
 			labelProp: 'name',
+			htmlProps: {},
 			offset: 3,
 			radius: 4,
 			id: 'testKey',

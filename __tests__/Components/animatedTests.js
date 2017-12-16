@@ -31,6 +31,7 @@ const defaultProps = {
 	animated: true,
 	getChildren: n => n.children,
 	height: 100,
+	htmlProps: {},
 	width: 100,
 	keyProp: 'name',
 	labelProp: 'name',
