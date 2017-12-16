@@ -15,26 +15,25 @@
   "license": "MIT",
   "homepage": "http://jpb12.github.io/react-tree-graph/",
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.4",
-    "eslint": "^4.1.1",
-    "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "^2.1.2",
-    "html-loader": "^0.4.5",
-    "html-webpack-plugin": "^2.29.0",
-    "webpack": "^2.6.1"
+    "css-loader": "^0.28.7",
+    "eslint": "^4.13.1",
+    "eslint-plugin-react": "^7.5.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
-    "codemirror": "^5.27.4",
-    "d3-ease": "https://registry.npmjs.org/d3-ease/-/d3-ease-1.0.3.tgz",
-    "prop-types": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz",
-    "react": "^15.6.1",
+    "codemirror": "^5.32.0",
+    "d3-ease": "^1.0.3",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.2.0",
     "react-tree-graph": "^2.0.0"
   }
 }
