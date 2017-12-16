@@ -10,11 +10,11 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: '',
 			labelProp: 'name',
-			htmlProps: {
-				g: {
-					className: 'test'
-				}
+			gProps: {
+				className: 'test'
 			},
+			circleProps: {},
+			textProps: {},
 			offset: 3,
 			radius: 4,
 			name: 'Test Node'
@@ -33,11 +33,11 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: 'id',
 			labelProp: 'name',
-			htmlProps: {
-				g: {
-					onClick: clickMock
-				}
+			gProps: {
+				onClick: clickMock
 			},
+			circleProps: {},
+			textProps: {},
 			offset: 3,
 			radius: 4,
 			id: 'testKey',
@@ -57,7 +57,9 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: 'id',
 			labelProp: 'name',
-			htmlProps: {},
+			gProps: {},
+			circleProps: {},
+			textProps: {},
 			offset: 3,
 			radius: 4,
 			id: 'testKey',
@@ -74,16 +76,14 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: '',
 			labelProp: 'name',
-			htmlProps: {
-				g: {
-					className: 'g'
-				},
-				circle: {
-					className: 'circle'
-				},
-				text: {
-					className: 'text'
-				}
+			gProps: {
+				className: 'g'
+			},
+			circleProps: {
+				className: 'circle'
+			},
+			textProps: {
+				className: 'text'
 			},
 			offset: 3,
 			radius: 4,

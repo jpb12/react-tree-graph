@@ -2,7 +2,9 @@
 
 exports[`<Container> html tree props added 1`] = `
 <svg
+  className="test-class"
   height={100}
+  stoke="none"
   width={200}
 />
 `;
@@ -13,16 +15,9 @@ exports[`<Container> renders correctly 1`] = `
   width={200}
 >
   <Link
-    htmlProps={
-      Object {
-        "circle": Object {},
-        "g": Object {},
-        "path": Object {},
-        "text": Object {},
-      }
-    }
     key="Black"
     keyProp="name"
+    pathProps={Object {}}
     source={
       Object {
         "data": Object {
@@ -47,38 +42,28 @@ exports[`<Container> renders correctly 1`] = `
     y2={50}
   />
   <Node
-    htmlProps={
-      Object {
-        "circle": Object {},
-        "g": Object {},
-        "path": Object {},
-        "text": Object {},
-      }
-    }
+    circleProps={Object {}}
+    gProps={Object {}}
     key="Colour"
     keyProp="name"
     labelProp="name"
     name="Colour"
     offset={3.5}
     radius={5}
+    textProps={Object {}}
     x={1}
     y={2}
   />
   <Node
-    htmlProps={
-      Object {
-        "circle": Object {},
-        "g": Object {},
-        "path": Object {},
-        "text": Object {},
-      }
-    }
+    circleProps={Object {}}
+    gProps={Object {}}
     key="Black"
     keyProp="name"
     labelProp="name"
     name="Black"
     offset={3.5}
     radius={5}
+    textProps={Object {}}
     x={100}
     y={50}
   />

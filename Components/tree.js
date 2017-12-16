@@ -16,13 +16,6 @@ const propTypes = {
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	getChildren: PropTypes.func.isRequired,
-	htmlProps: PropTypes.shape({
-		circle: PropTypes.object,
-		g: PropTypes.object,
-		path: PropTypes.object,
-		svg: PropTypes.object,
-		text: PropTypes.object
-	}).isRequired,
 	margins: PropTypes.shape({
 		bottom: PropTypes.number.isRequired,
 		left: PropTypes.number.isRequired,
@@ -30,7 +23,12 @@ const propTypes = {
 		top: PropTypes.number.isRequired
 	}).isRequired,
 	nodeOffset: PropTypes.number.isRequired,
-	nodeRadius: PropTypes.number.isRequired
+	nodeRadius: PropTypes.number.isRequired,
+	circleProps: PropTypes.object.isRequired,
+	gProps: PropTypes.object.isRequired,
+	pathProps: PropTypes.object.isRequired,
+	svgProps: PropTypes.object.isRequired,
+	textProps: PropTypes.object.isRequired
 };
 
 const defaultProps = {
@@ -38,7 +36,6 @@ const defaultProps = {
 	duration: 500,
 	easing: easeQuadOut,
 	getChildren: n => n.children,
-	htmlProps: {},
 	steps: 20,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -49,7 +46,16 @@ const defaultProps = {
 		top: 10
 	},
 	nodeOffset: 3.5,
-	nodeRadius: 5
+	nodeRadius: 5,
+	circleProps: {},
+	gProps: {
+		className: 'node'
+	},
+	pathProps: {
+		className: 'link'
+	},
+	svgProps: {},
+	textProps: {}
 };
 
 export default class Tree extends React.PureComponent {
@@ -75,7 +81,6 @@ export default class Tree extends React.PureComponent {
 				easing={this.props.easing}
 				getChildren={this.props.getChildren}
 				height={this.props.height}
-				htmlProps={this.props.htmlProps}
 				keyProp={this.props.keyProp}
 				labelProp={this.props.labelProp}
 				links={links}
@@ -83,7 +88,12 @@ export default class Tree extends React.PureComponent {
 				nodeOffset={this.props.nodeOffset}
 				nodeRadius={this.props.nodeRadius}
 				steps={this.props.steps}
-				width={this.props.width}/>);
+				width={this.props.width}
+				circleProps={this.props.circleProps}
+				gProps={this.props.gProps}
+				pathProps={this.props.pathProps}
+				svgProps={this.props.svgProps}
+				textProps={this.props.textProps}/>);
 	}
 }
 

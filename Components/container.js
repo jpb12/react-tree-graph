@@ -5,7 +5,6 @@ import Node from './node';
 
 const propTypes = {
 	height: PropTypes.number.isRequired,
-	htmlProps: PropTypes.object.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	links: PropTypes.array.isRequired,
@@ -13,28 +12,21 @@ const propTypes = {
 	nodeClassName: PropTypes.string,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired,
-	width: PropTypes.number.isRequired
+	width: PropTypes.number.isRequired,
+	circleProps: PropTypes.object.isRequired,
+	gProps: PropTypes.object.isRequired,
+	pathProps: PropTypes.object.isRequired,
+	svgProps: PropTypes.object.isRequired,
+	textProps: PropTypes.object.isRequired
 };
-
-function combineHtmlProps(...htmlProps) {
-	let combinedProps = {};
-	htmlProps.filter(h => h).forEach(h => combinedProps = {
-		circle: Object.assign({}, combinedProps.circle, h.circle),
-		g: Object.assign({}, combinedProps.g, h.g),
-		path: Object.assign({}, combinedProps.path, h.path),
-		text: Object.assign({}, combinedProps.text, h.text)
-	});
-	return combinedProps;
-}
 
 export default class Container extends React.PureComponent {
 	render() {
 		return (
-			<svg {...this.props.htmlProps.svg} height={this.props.height} width={this.props.width}>
+			<svg {...this.props.svgProps} height={this.props.height} width={this.props.width}>
 				{ this.props.links.map(link =>
 					<Link
 						key={link.target.data[this.props.keyProp]}
-						htmlProps={combineHtmlProps(this.props.htmlProps, link.source.data.htmlProps, link.target.data.htmlProps)}
 						keyProp={this.props.keyProp}
 						source={link.source}
 						target={link.target}
@@ -42,18 +34,20 @@ export default class Container extends React.PureComponent {
 						x2={link.target.x}
 						y1={link.source.y}
 						y2={link.target.y}
-						{...link.data}/>)
+						pathProps={this.props.pathProps}/>)
 				}
 				{ this.props.nodes.map(node =>
 					<Node
 						key={node.data[this.props.keyProp]}
-						htmlProps={combineHtmlProps(this.props.htmlProps, node.data.htmlProps)}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}
 						offset={this.props.nodeOffset}
 						radius={this.props.nodeRadius}
 						x={node.x}
 						y={node.y}
+						circleProps={Object.assign({}, this.props.circleProps, node.data.circleProps)}
+						gProps={Object.assign({}, this.props.gProps, node.data.gProps)}
+						textProps={Object.assign({}, this.props.textProps, node.data.textProps)}
 						{...node.data}/>)
 				}
 			</svg>);

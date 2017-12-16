@@ -3,11 +3,12 @@
 exports[`<Animated> does not animate when props other than nodes or links change 1`] = `
 <Container
   animated={true}
+  circleProps={Object {}}
   duration={1}
   easing={[Function]}
+  gProps={Object {}}
   getChildren={[Function]}
   height={100}
-  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -50,7 +51,10 @@ exports[`<Animated> does not animate when props other than nodes or links change
       },
     ]
   }
+  pathProps={Object {}}
   steps={1}
+  svgProps={Object {}}
+  textProps={Object {}}
   width={100}
 />
 `;
@@ -58,11 +62,12 @@ exports[`<Animated> does not animate when props other than nodes or links change
 exports[`<Animated> does nothing when not enabled 1`] = `
 <Animated
   animated={false}
+  circleProps={Object {}}
   duration={1}
   easing={[Function]}
+  gProps={Object {}}
   getChildren={[Function]}
   height={100}
-  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -105,16 +110,20 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       },
     ]
   }
+  pathProps={Object {}}
   steps={1}
+  svgProps={Object {}}
+  textProps={Object {}}
   width={100}
 >
   <Container
     animated={false}
+    circleProps={Object {}}
     duration={1}
     easing={[Function]}
+    gProps={Object {}}
     getChildren={[Function]}
     height={100}
-    htmlProps={Object {}}
     keyProp="name"
     labelProp="name"
     links={
@@ -157,7 +166,10 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         },
       ]
     }
+    pathProps={Object {}}
     steps={1}
+    svgProps={Object {}}
+    textProps={Object {}}
     width={100}
   >
     <svg
@@ -165,16 +177,9 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       width={100}
     >
       <Link
-        htmlProps={
-          Object {
-            "circle": Object {},
-            "g": Object {},
-            "path": Object {},
-            "text": Object {},
-          }
-        }
         key="Black"
         keyProp="name"
+        pathProps={Object {}}
         source={
           Object {
             "data": Object {
@@ -204,20 +209,15 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         />
       </Link>
       <Node
-        htmlProps={
-          Object {
-            "circle": Object {},
-            "g": Object {},
-            "path": Object {},
-            "text": Object {},
-          }
-        }
+        circleProps={Object {}}
+        gProps={Object {}}
         key="Colour"
         keyProp="name"
         labelProp="name"
         name="Colour"
         offset={1}
         radius={1}
+        textProps={Object {}}
         x={1}
         y={2}
       >
@@ -237,20 +237,15 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         </g>
       </Node>
       <Node
-        htmlProps={
-          Object {
-            "circle": Object {},
-            "g": Object {},
-            "path": Object {},
-            "text": Object {},
-          }
-        }
+        circleProps={Object {}}
+        gProps={Object {}}
         key="Black"
         keyProp="name"
         labelProp="name"
         name="Black"
         offset={1}
         radius={1}
+        textProps={Object {}}
         x={120}
         y={80}
       >
@@ -277,11 +272,12 @@ exports[`<Animated> does nothing when not enabled 1`] = `
 exports[`<Animated> renders correctly and sets initial state 1`] = `
 <Container
   animated={true}
+  circleProps={Object {}}
   duration={1}
   easing={[Function]}
+  gProps={Object {}}
   getChildren={[Function]}
   height={100}
-  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -324,7 +320,10 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
       },
     ]
   }
+  pathProps={Object {}}
   steps={1}
+  svgProps={Object {}}
+  textProps={Object {}}
   width={100}
 />
 `;

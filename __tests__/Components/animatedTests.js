@@ -31,7 +31,6 @@ const defaultProps = {
 	animated: true,
 	getChildren: n => n.children,
 	height: 100,
-	htmlProps: {},
 	width: 100,
 	keyProp: 'name',
 	labelProp: 'name',
@@ -41,7 +40,12 @@ const defaultProps = {
 	easing: easeQuadOut,
 	links: links,
 	nodes: nodes,
-	steps: 1
+	steps: 1,
+	circleProps: {},
+	gProps: {},
+	pathProps: {},
+	svgProps: {},
+	textProps: {}
 };
 
 describe('<Animated>', () => {

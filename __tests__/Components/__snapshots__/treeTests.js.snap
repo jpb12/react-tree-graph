@@ -3,11 +3,16 @@
 exports[`<Tree> renders correctly 1`] = `
 <Animated
   animated={false}
+  circleProps={Object {}}
   duration={500}
   easing={[Function]}
+  gProps={
+    Object {
+      "className": "node",
+    }
+  }
   getChildren={[Function]}
   height={100}
-  htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
   links={
@@ -130,7 +135,14 @@ exports[`<Tree> renders correctly 1`] = `
       },
     ]
   }
+  pathProps={
+    Object {
+      "className": "link",
+    }
+  }
   steps={20}
+  svgProps={Object {}}
+  textProps={Object {}}
   width={200}
 />
 `;

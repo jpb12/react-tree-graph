@@ -29,11 +29,15 @@ describe('<Container>', () => {
 			}],
 			height: 100,
 			keyProp: 'name',
-			labelProp: 'name',			
-			htmlProps: {},
+			labelProp: 'name',
 			nodeOffset: 3.5,
 			nodeRadius: 5,
-			width: 200
+			width: 200,
+			circleProps: {},
+			gProps: {},
+			pathProps: {},
+			svgProps: {},
+			textProps: {}
 		};
 
 		const tree = shallow(<Container {...props}/>);
@@ -47,16 +51,18 @@ describe('<Container>', () => {
 			links: [],
 			height: 100,
 			keyProp: 'name',
-			labelProp: 'name',			
-			htmlProps: {
-				tree: {
-					className: 'test-class',
-					stoke: 'none'
-				}
-			},
+			labelProp: 'name',
 			nodeOffset: 3.5,
 			nodeRadius: 5,
-			width: 200
+			width: 200,
+			circleProps: {},
+			gProps: {},
+			pathProps: {},
+			svgProps: {
+				className: 'test-class',
+				stoke: 'none'
+			},
+			textProps: {}
 		};
 
 		const tree = shallow(<Container {...props}/>);
