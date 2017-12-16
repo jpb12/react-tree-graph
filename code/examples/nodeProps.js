@@ -8,8 +8,10 @@ const data = {
 		name: 'Child One'
 	}, {
 		name: 'Child Two',
-		className: 'red-node',
-		onClick: () => alert('Clicked!')
+		gProps: {
+			className: 'red-node',
+			onClick: node => alert(`Clicked ${node}!`)
+		}
 	}]
 };
 
@@ -25,8 +27,11 @@ const data = {
 		name: 'Child One'
 	}, {
 		name: 'Child Two',
-		className: 'red',
-		onClick: () => alert('Clicked!')
+		gProps: {
+			className: 'red-node',
+			onClick: node =>
+				alert(\`Clicked \${node}!\`)
+		}
 	}]
 };
 

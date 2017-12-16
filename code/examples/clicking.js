@@ -20,7 +20,9 @@ const code =
 	data={data}
 	height={200}
 	width={400}
-	nodeClickHandler={onClick}/>`;
+	gProps={{
+		onClick: onClick
+	}}/>`;
 
 function onClick(nodeKey) {
 	alert(nodeKey);
@@ -36,7 +38,9 @@ export default class ClickingExample extends React.PureComponent {
 					data={data}
 					height={200}
 					width={400}
-					nodeClickHandler={onClick}/>
+					gProps={{
+						onClick: onClick
+					}}/>
 			</Example>);
 	}
 }
