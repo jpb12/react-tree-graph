@@ -1,9 +1,25 @@
+## 3.0.0 (16 Dec 2017)
+
+* New props for adding any prop to any DOM element
+	* circleProps
+	* gProps
+	* pathProps
+	* svgProps
+	* textProps
+* Redundant props have been removed
+	* linkClassName
+	* linkClassHandler
+	* nodeClassName
+	* nodeClassHandler
+	* treeClassName
+	* treeClickHandler
+
 ## 2.0.0 (12 Jul 2017)
 
 * Animations
-    * Significant performance improvements on large trees (tested with > 150 nodes)
-    * Added nodes now animate from the position of the closest, previously visible, ancestor
-    * Removed nodes now animate to the position of the closest, remaining ancestor
+	* Significant performance improvements on large trees (tested with > 150 nodes)
+	* Added nodes now animate from the position of the closest, previously visible, ancestor
+	* Removed nodes now animate to the position of the closest, remaining ancestor
 * Renamed Class props to ClassName props
 * Added importing of polyfills for IE support
 
