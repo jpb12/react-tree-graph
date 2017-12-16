@@ -8,10 +8,13 @@ describe('<Node>', () => {
 		const props = {
 			x: 1,
 			y: 2,
-			className: 'test',
 			keyProp: '',
 			labelProp: 'name',
-			htmlProps: {},
+			htmlProps: {
+				g: {
+					className: 'test'
+				}
+			},
 			offset: 3,
 			radius: 4,
 			name: 'Test Node'
@@ -30,12 +33,15 @@ describe('<Node>', () => {
 			y: 2,
 			keyProp: 'id',
 			labelProp: 'name',
-			htmlProps: {},
+			htmlProps: {
+				g: {
+					onClick: clickMock
+				}
+			},
 			offset: 3,
 			radius: 4,
 			id: 'testKey',
-			name: 'Test Node',
-			onClick: clickMock
+			name: 'Test Node'
 		};
 
 		const tree = shallow(<Node {...props}/>);
@@ -60,5 +66,31 @@ describe('<Node>', () => {
 
 		const tree = shallow(<Node {...props}/>);
 		tree.find('g').simulate('click');
+	});
+
+	test('htmlProps applied to all elements', () => {
+		const props = {
+			x: 1,
+			y: 2,
+			keyProp: '',
+			labelProp: 'name',
+			htmlProps: {
+				g: {
+					className: 'g'
+				},
+				circle: {
+					className: 'circle'
+				},
+				text: {
+					className: 'text'
+				}
+			},
+			offset: 3,
+			radius: 4,
+			name: 'Test Node'
+		};
+
+		const tree = shallow(<Node {...props}/>);
+		expect(tree).toMatchSnapshot();
 	});
 });

@@ -4,10 +4,8 @@ import React from 'react';
 const propTypes = {
 	source: PropTypes.object.isRequired,
 	target: PropTypes.object.isRequired,
-	className: PropTypes.string,
 	htmlProps: PropTypes.object.isRequired,
 	keyProp: PropTypes.string.isRequired,
-	onClick: PropTypes.func,
 	x1: PropTypes.number.isRequired,
 	x2: PropTypes.number.isRequired,
 	y1: PropTypes.number.isRequired,
@@ -24,7 +22,12 @@ export default class Link extends React.PureComponent{
 		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick(event) {
-		this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp], event);
+		this.props.htmlProps.path
+			&& this.props.htmlProps.path.onClick
+			&& this.props.htmlProps.path.onClick(
+				this.props.source.data[this.props.keyProp],
+				this.props.target.data[this.props.keyProp],
+				event);
 	}
 	render() {
 		let d = diagonal(
@@ -34,7 +37,7 @@ export default class Link extends React.PureComponent{
 			this.props.y2);
 
 		return (
-			<path {...this.props.htmlProps.path} className={this.props.className} d={d} onClick={this.handleClick}/>);
+			<path {...this.props.htmlProps.path} d={d} onClick={this.handleClick}/>);
 	}
 }
 

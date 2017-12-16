@@ -40,4 +40,27 @@ describe('<Container>', () => {
 
 		expect(tree).toMatchSnapshot();
 	});
+
+	test('html tree props added', () => {
+		const props = {
+			nodes: [],
+			links: [],
+			height: 100,
+			keyProp: 'name',
+			labelProp: 'name',			
+			htmlProps: {
+				tree: {
+					className: 'test-class',
+					stoke: 'none'
+				}
+			},
+			nodeOffset: 3.5,
+			nodeRadius: 5,
+			width: 200
+		};
+
+		const tree = shallow(<Container {...props}/>);
+
+		expect(tree).toMatchSnapshot();
+	});
 });

@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Container> html tree props added 1`] = `
+<svg
+  className="test-class"
+  height={100}
+  stoke="none"
+  width={200}
+/>
+`;
+
 exports[`<Container> renders correctly 1`] = `
 <svg
   height={100}

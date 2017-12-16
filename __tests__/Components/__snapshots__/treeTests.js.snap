@@ -10,7 +10,6 @@ exports[`<Tree> renders correctly 1`] = `
   htmlProps={Object {}}
   keyProp="name"
   labelProp="name"
-  linkClassName="link"
   links={
     Array [
       Object {
@@ -71,7 +70,6 @@ exports[`<Tree> renders correctly 1`] = `
       },
     ]
   }
-  nodeClassName="node"
   nodeOffset={3.5}
   nodeRadius={5}
   nodes={

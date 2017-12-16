@@ -8,9 +8,12 @@ describe('<Link>', () => {
 		const props = {
 			source: {},
 			target: {},
-			className: 'Link',
 			keyProp: '',
-			htmlProps: {},
+			htmlProps: {
+				path: {
+					className: 'Link'
+				}
+			},
 			x1: 1,
 			x2: 5,
 			y1: 2,
@@ -36,10 +39,12 @@ describe('<Link>', () => {
 					id: 'target'
 				}
 			},
-			className: 'Link',
 			keyProp: 'id',
-			htmlProps: {},
-			onClick: clickMock,
+			htmlProps: {
+				path: {
+					onClick: clickMock,
+				}
+			},
 			x1: 1,
 			x2: 5,
 			y1: 2,
@@ -65,7 +70,6 @@ describe('<Link>', () => {
 					id: 'target'
 				}
 			},
-			className: 'Link',
 			keyProp: 'id',
 			htmlProps: {},
 			x1: 1,

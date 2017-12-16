@@ -17,7 +17,7 @@ describe('<Tree>', () => {
 			// Must not use children prop due to special meaning in react causing shallow renderer errors
 			getChildren: d => d.childs,
 			height: 100,
-			width: 200,
+			width: 200
 		};
 
 		const tree = shallow(<Tree {...props}/>);

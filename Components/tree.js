@@ -23,18 +23,12 @@ const propTypes = {
 		svg: PropTypes.object,
 		text: PropTypes.object
 	}).isRequired,
-	treeClassName: PropTypes.string,
-	treeClickHandler: PropTypes.func,
-	linkClassName: PropTypes.string,
-	linkClickHandler: PropTypes.func,
 	margins: PropTypes.shape({
 		bottom: PropTypes.number.isRequired,
 		left: PropTypes.number.isRequired,
 		right: PropTypes.number.isRequired,
 		top: PropTypes.number.isRequired
 	}).isRequired,
-	nodeClassName: PropTypes.string,
-	nodeClickHandler: PropTypes.func,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired
 };
@@ -54,8 +48,6 @@ const defaultProps = {
 		right: 150,
 		top: 10
 	},
-	linkClassName: 'link',
-	nodeClassName: 'node',
 	nodeOffset: 3.5,
 	nodeRadius: 5
 };
@@ -87,16 +79,10 @@ export default class Tree extends React.PureComponent {
 				keyProp={this.props.keyProp}
 				labelProp={this.props.labelProp}
 				links={links}
-				linkClassName={this.props.linkClassName}
-				linkClickHandler={this.props.linkClickHandler}
 				nodes={nodes}
-				nodeClassName={this.props.nodeClassName}
-				nodeClickHandler={this.props.nodeClickHandler}
 				nodeOffset={this.props.nodeOffset}
 				nodeRadius={this.props.nodeRadius}
 				steps={this.props.steps}
-				treeClassName={this.props.treeClassName}
-				treeClickHandler={this.props.treeClickHandler}
 				width={this.props.width}/>);
 	}
 }
