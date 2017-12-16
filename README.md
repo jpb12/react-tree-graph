@@ -59,22 +59,21 @@ Configuration
 | `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |
 | `steps` | number | | 20 | The number of steps in animations. |
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
-| `keyProp` | string | | `"name"` | The property on each node to use as a key. |
-| `labelProp` | string | | `"name"` | The property on each node to render as label text. |
-| `treeClassName` | string | | | The class to add to the `<svg>` element containing the tree. |
-| `treeClickHandler` | function(event) | | | A function called when the tree is clicked. |
-| `linkClassName` | string | | `"link"` | The class to add to each `<path>` element linking two nodes. |
-| `linkClickHandler` | function(sourceKey, targetKey, event) | | | A function called when a link is clicked. |
-| `nodeClassName` | string | | `"node"` | The class to add to each `<g>` element, representing a node. |
-| `nodeClickHandler` | function(nodeKey, event) | | | A function called when a node is clicked. |
-| `nodeOffset` | number | | `3.5` | The height offset for the label of a node. May need to be adjusted depending on radius and font size. |
-| `nodeRadius` | number | | `5` | The radius of the rendered node. |
+| `keyProp` | string | | "name" | The property on each node to use as a key. |
+| `labelProp` | string | | "name" | The property on each node to render as label text. |
+| `nodeOffset` | number | | 3.5 | The height offset for the label of a node. May need to be adjusted depending on radius and font size. |
+| `nodeRadius` | number | | 5 | The radius of the rendered node. |
+| `circleProps` | object | | `{}` | Props to be added to the `<circle>` element. |
+| `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |
+| `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. |
+| `svgProps` | object | | `{}` | Props to be added to the `<svg>` element. |
+| `textProps` | object | | `{}` | Props to be added to the `<text>` element. |
 
-Node properties can be set for individual nodes by setting them on the node with the following mapping:
+The following properties can also be set individually on each node.  They will combine with the properties above:
 
-| Global | Node |
+| Prop | Description |
 |:---|:---|
-| `nodeClassName` | `className` |
-| `nodeClickHandler` | `onClick` |
-| `nodeOffset` | `offset` |
-| `nodeRadius` | `radius` |
+| `circleProps` | |
+| `gProps` | |
+| `pathProps` | Props for a path are taken from the target node. |
+| `textProps` | |
