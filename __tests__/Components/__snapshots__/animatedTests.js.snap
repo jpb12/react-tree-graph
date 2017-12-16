@@ -165,7 +165,14 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       width={100}
     >
       <Link
-        htmlProps={Object {}}
+        htmlProps={
+          Object {
+            "circle": Object {},
+            "g": Object {},
+            "path": Object {},
+            "text": Object {},
+          }
+        }
         key="Black"
         keyProp="name"
         source={
@@ -197,7 +204,14 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         />
       </Link>
       <Node
-        htmlProps={Object {}}
+        htmlProps={
+          Object {
+            "circle": Object {},
+            "g": Object {},
+            "path": Object {},
+            "text": Object {},
+          }
+        }
         key="Colour"
         keyProp="name"
         labelProp="name"
@@ -223,7 +237,14 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         </g>
       </Node>
       <Node
-        htmlProps={Object {}}
+        htmlProps={
+          Object {
+            "circle": Object {},
+            "g": Object {},
+            "path": Object {},
+            "text": Object {},
+          }
+        }
         key="Black"
         keyProp="name"
         labelProp="name"

@@ -16,6 +16,17 @@ const propTypes = {
 	width: PropTypes.number.isRequired
 };
 
+function combineHtmlProps(...htmlProps) {
+	let combinedProps = {};
+	htmlProps.filter(h => h).forEach(h => combinedProps = {
+		circle: Object.assign({}, combinedProps.circle, h.circle),
+		g: Object.assign({}, combinedProps.g, h.g),
+		path: Object.assign({}, combinedProps.path, h.path),
+		text: Object.assign({}, combinedProps.text, h.text)
+	});
+	return combinedProps;
+}
+
 export default class Container extends React.PureComponent {
 	render() {
 		return (
@@ -23,7 +34,7 @@ export default class Container extends React.PureComponent {
 				{ this.props.links.map(link =>
 					<Link
 						key={link.target.data[this.props.keyProp]}
-						htmlProps={this.props.htmlProps}
+						htmlProps={combineHtmlProps(this.props.htmlProps, link.source.data.htmlProps, link.target.data.htmlProps)}
 						keyProp={this.props.keyProp}
 						source={link.source}
 						target={link.target}
@@ -36,7 +47,7 @@ export default class Container extends React.PureComponent {
 				{ this.props.nodes.map(node =>
 					<Node
 						key={node.data[this.props.keyProp]}
-						htmlProps={this.props.htmlProps}
+						htmlProps={combineHtmlProps(this.props.htmlProps, node.data.htmlProps)}
 						keyProp={this.props.keyProp}
 						labelProp={this.props.labelProp}
 						offset={this.props.nodeOffset}
