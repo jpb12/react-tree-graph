@@ -1,9 +1,9 @@
-.node circle {
+circle {
 	fill: white;
 	stroke: black;
 }
 
-path.link {
+path {
 	fill: none;
 	stroke: black;
 }

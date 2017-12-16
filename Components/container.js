@@ -19,7 +19,7 @@ const propTypes = {
 export default class Container extends React.PureComponent {
 	render() {
 		return (
-			<svg {...this.props.htmlProps.tree} height={this.props.height} width={this.props.width}>
+			<svg {...this.props.htmlProps.svg} height={this.props.height} width={this.props.width}>
 				{ this.props.links.map(link =>
 					<Link
 						key={link.target.data[this.props.keyProp]}
