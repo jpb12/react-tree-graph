@@ -7,7 +7,7 @@
 		exports["react-tree-graph"] = factory(require("react"), require("clone"), require("d3-ease"), require("d3-hierarchy"), require("prop-types"), require("core-js/fn/array/find"), require("core-js/fn/object/assign"));
 	else
 		root["react-tree-graph"] = factory(root["react"], root["clone"], root["d3-ease"], root["d3-hierarchy"], root["prop-types"], root["core-js/fn/array/find"], root["core-js/fn/object/assign"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -164,20 +164,19 @@ var propTypes = {
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
 	getChildren: _propTypes2.default.func.isRequired,
-	treeClassName: _propTypes2.default.string,
-	treeClickHandler: _propTypes2.default.func,
-	linkClassName: _propTypes2.default.string,
-	linkClickHandler: _propTypes2.default.func,
 	margins: _propTypes2.default.shape({
 		bottom: _propTypes2.default.number.isRequired,
 		left: _propTypes2.default.number.isRequired,
 		right: _propTypes2.default.number.isRequired,
 		top: _propTypes2.default.number.isRequired
 	}).isRequired,
-	nodeClassName: _propTypes2.default.string,
-	nodeClickHandler: _propTypes2.default.func,
 	nodeOffset: _propTypes2.default.number.isRequired,
-	nodeRadius: _propTypes2.default.number.isRequired
+	nodeRadius: _propTypes2.default.number.isRequired,
+	circleProps: _propTypes2.default.object.isRequired,
+	gProps: _propTypes2.default.object.isRequired,
+	pathProps: _propTypes2.default.object.isRequired,
+	svgProps: _propTypes2.default.object.isRequired,
+	textProps: _propTypes2.default.object.isRequired
 };
 
 var defaultProps = {
@@ -196,10 +195,17 @@ var defaultProps = {
 		right: 150,
 		top: 10
 	},
-	linkClassName: 'link',
-	nodeClassName: 'node',
 	nodeOffset: 3.5,
-	nodeRadius: 5
+	nodeRadius: 5,
+	circleProps: {},
+	gProps: {
+		className: 'node'
+	},
+	pathProps: {
+		className: 'link'
+	},
+	svgProps: {},
+	textProps: {}
 };
 
 var Tree = function (_React$PureComponent) {
@@ -239,17 +245,16 @@ var Tree = function (_React$PureComponent) {
 				keyProp: this.props.keyProp,
 				labelProp: this.props.labelProp,
 				links: links,
-				linkClassName: this.props.linkClassName,
-				linkClickHandler: this.props.linkClickHandler,
 				nodes: nodes,
-				nodeClassName: this.props.nodeClassName,
-				nodeClickHandler: this.props.nodeClickHandler,
 				nodeOffset: this.props.nodeOffset,
 				nodeRadius: this.props.nodeRadius,
 				steps: this.props.steps,
-				treeClassName: this.props.treeClassName,
-				treeClickHandler: this.props.treeClickHandler,
-				width: this.props.width });
+				width: this.props.width,
+				circleProps: this.props.circleProps,
+				gProps: this.props.gProps,
+				pathProps: this.props.pathProps,
+				svgProps: this.props.svgProps,
+				textProps: this.props.textProps });
 		}
 	}]);
 
@@ -625,16 +630,16 @@ var propTypes = {
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
 	links: _propTypes2.default.array.isRequired,
-	linkClassName: _propTypes2.default.string,
-	linkClickHandler: _propTypes2.default.func,
 	nodes: _propTypes2.default.array.isRequired,
 	nodeClassName: _propTypes2.default.string,
-	nodeClickHandler: _propTypes2.default.func,
 	nodeOffset: _propTypes2.default.number.isRequired,
 	nodeRadius: _propTypes2.default.number.isRequired,
-	treeClassName: _propTypes2.default.string,
-	treeClickHandler: _propTypes2.default.func,
-	width: _propTypes2.default.number.isRequired
+	width: _propTypes2.default.number.isRequired,
+	circleProps: _propTypes2.default.object.isRequired,
+	gProps: _propTypes2.default.object.isRequired,
+	pathProps: _propTypes2.default.object.isRequired,
+	svgProps: _propTypes2.default.object.isRequired,
+	textProps: _propTypes2.default.object.isRequired
 };
 
 var Container = function (_React$PureComponent) {
@@ -653,36 +658,31 @@ var Container = function (_React$PureComponent) {
 
 			return _react2.default.createElement(
 				'svg',
-				{
-					className: this.props.treeClassName,
-					onClick: this.props.treeClickHandler,
-					height: this.props.height,
-					width: this.props.width },
+				_extends({}, this.props.svgProps, { height: this.props.height, width: this.props.width }),
 				this.props.links.map(function (link) {
-					return _react2.default.createElement(_link2.default, _extends({
+					return _react2.default.createElement(_link2.default, {
 						key: link.target.data[_this2.props.keyProp],
-						className: _this2.props.linkClassName,
 						keyProp: _this2.props.keyProp,
-						onClick: _this2.props.linkClickHandler,
 						source: link.source,
 						target: link.target,
 						x1: link.source.x,
 						x2: link.target.x,
 						y1: link.source.y,
-						y2: link.target.y
-					}, link.data));
+						y2: link.target.y,
+						pathProps: Object.assign({}, _this2.props.pathProps, link.target.data.pathProps) });
 				}),
 				this.props.nodes.map(function (node) {
 					return _react2.default.createElement(_node2.default, _extends({
 						key: node.data[_this2.props.keyProp],
-						className: _this2.props.nodeClassName,
 						keyProp: _this2.props.keyProp,
 						labelProp: _this2.props.labelProp,
-						onClick: _this2.props.nodeClickHandler,
 						offset: _this2.props.nodeOffset,
 						radius: _this2.props.nodeRadius,
 						x: node.x,
-						y: node.y
+						y: node.y,
+						circleProps: Object.assign({}, _this2.props.circleProps, node.data.circleProps),
+						gProps: Object.assign({}, _this2.props.gProps, node.data.gProps),
+						textProps: Object.assign({}, _this2.props.textProps, node.data.textProps)
 					}, node.data));
 				})
 			);
@@ -708,6 +708,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _propTypes = __webpack_require__(0);
@@ -729,13 +731,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var propTypes = {
 	source: _propTypes2.default.object.isRequired,
 	target: _propTypes2.default.object.isRequired,
-	className: _propTypes2.default.string,
 	keyProp: _propTypes2.default.string.isRequired,
-	onClick: _propTypes2.default.func,
 	x1: _propTypes2.default.number.isRequired,
 	x2: _propTypes2.default.number.isRequired,
 	y1: _propTypes2.default.number.isRequired,
-	y2: _propTypes2.default.number.isRequired
+	y2: _propTypes2.default.number.isRequired,
+	pathProps: _propTypes2.default.object.isRequired
 };
 
 function diagonal(x1, y1, x2, y2) {
@@ -757,14 +758,14 @@ var Link = function (_React$PureComponent) {
 	_createClass(Link, [{
 		key: 'handleClick',
 		value: function handleClick(event) {
-			this.props.onClick && this.props.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp], event);
+			this.props.pathProps.onClick && this.props.pathProps.onClick(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp], event);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			var d = diagonal(this.props.x1, this.props.y1, this.props.x2, this.props.y2);
 
-			return _react2.default.createElement('path', { className: this.props.className, d: d, onClick: this.handleClick });
+			return _react2.default.createElement('path', _extends({}, this.props.pathProps, { d: d, onClick: this.handleClick }));
 		}
 	}]);
 
@@ -787,6 +788,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _propTypes = __webpack_require__(0);
@@ -808,12 +811,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var propTypes = {
 	x: _propTypes2.default.number.isRequired,
 	y: _propTypes2.default.number.isRequired,
-	className: _propTypes2.default.string,
 	keyProp: _propTypes2.default.string.isRequired,
 	labelProp: _propTypes2.default.string.isRequired,
-	onClick: _propTypes2.default.func,
 	offset: _propTypes2.default.number.isRequired,
-	radius: _propTypes2.default.number.isRequired
+	radius: _propTypes2.default.number.isRequired,
+	circleProps: _propTypes2.default.object.isRequired,
+	gProps: _propTypes2.default.object.isRequired,
+	textProps: _propTypes2.default.object.isRequired
 };
 
 var Node = function (_React$PureComponent) {
@@ -831,7 +835,7 @@ var Node = function (_React$PureComponent) {
 	_createClass(Node, [{
 		key: 'handleClick',
 		value: function handleClick(event) {
-			this.props.onClick && this.props.onClick(this.props[this.props.keyProp], event);
+			this.props.gProps.onClick && this.props.gProps.onClick(this.props[this.props.keyProp], event);
 		}
 	}, {
 		key: 'getTransform',
@@ -843,11 +847,11 @@ var Node = function (_React$PureComponent) {
 		value: function render() {
 			return _react2.default.createElement(
 				'g',
-				{ className: this.props.className, transform: this.getTransform(), onClick: this.handleClick },
-				_react2.default.createElement('circle', { r: this.props.radius }),
+				_extends({}, this.props.gProps, { transform: this.getTransform(), onClick: this.handleClick }),
+				_react2.default.createElement('circle', _extends({}, this.props.circleProps, { r: this.props.radius })),
 				_react2.default.createElement(
 					'text',
-					{ dx: this.props.radius + 0.5, dy: this.props.offset },
+					_extends({}, this.props.textProps, { dx: this.props.radius + 0.5, dy: this.props.offset }),
 					this.props[this.props.labelProp]
 				)
 			);
