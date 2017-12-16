@@ -162,6 +162,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       width={100}
     >
       <Link
+        key="Black"
         keyProp="name"
         source={
           Object {
@@ -192,6 +193,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         />
       </Link>
       <Node
+        key="Colour"
         keyProp="name"
         labelProp="name"
         name="Colour"
@@ -216,6 +218,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         </g>
       </Node>
       <Node
+        key="Black"
         keyProp="name"
         labelProp="name"
         name="Black"
