@@ -1,3 +1,7 @@
+## 3.1.0 (21 Dec 2017)
+
+* Changed babel transform settings to reduce minified bundle size
+
 ## 3.0.0 (16 Dec 2017)
 
 * New props for adding any prop to any DOM element
