@@ -21,7 +21,16 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				options: {
-					presets: ['react', 'es2015', 'es2016']
+					babelrc: false,
+					presets: [
+						[
+							'env',
+							{
+								'modules': false
+							}
+						],
+						'react'
+					]
 				}
 			}, {
 				test: /\.css$/,
