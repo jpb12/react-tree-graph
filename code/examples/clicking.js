@@ -28,7 +28,7 @@ function onClick(nodeKey) {
 	alert(nodeKey);
 }
 
-const description = 'Click on a node to trigger the custom event.  You can also configure custom events for clicking on links or the whole tree';
+const description = 'Click on a node to trigger the custom event.  You can also configure custom events for clicking on any of the rendered SVG elements.';
 
 export default class ClickingExample extends React.PureComponent {
 	render() {

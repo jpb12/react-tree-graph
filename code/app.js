@@ -7,6 +7,7 @@ import EasingExample from './examples/easing';
 import NodePropsExample from './examples/nodeProps';
 import SimpleExample from './examples/simple';
 import StylesExample from './examples/styles';
+import VerticalExample from './examples/vertical';
 import Header from './header';
 import SidePanel from './sidepanel';
 
@@ -25,6 +26,7 @@ class App extends React.PureComponent {
 					<NodePropsExample/>
 					<AnimatedExample/>
 					<EasingExample/>
+					<VerticalExample/>
 					<StylesExample/>
 				</div>
 			</div>);

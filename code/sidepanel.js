@@ -9,6 +9,7 @@ export default class SidePanel extends React.PureComponent {
 				<div><a href="#nodeProps">Custom node props</a></div>
 				<div><a href="#animation">Animation</a></div>
 				<div><a href="#easing">Custom easing</a></div>
+				<div><a href="#vertical">Vertical</a></div>
 				<div><a href="#styles">Custom styles</a></div>
 			</div>);
 	}

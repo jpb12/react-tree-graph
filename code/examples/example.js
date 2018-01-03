@@ -20,7 +20,7 @@ const defaultProps = {
 	mode: 'javascript'
 };
 
-export default class SimpleExample extends React.PureComponent {
+export default class Example extends React.PureComponent {
 	render() {
 		const options = {
 			mode: this.props.mode,
@@ -46,5 +46,5 @@ export default class SimpleExample extends React.PureComponent {
 	}
 }
 
-SimpleExample.propTypes = propTypes;
-SimpleExample.defaultProps = defaultProps;
+Example.propTypes = propTypes;
+Example.defaultProps = defaultProps;
