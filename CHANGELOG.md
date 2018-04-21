@@ -1,3 +1,7 @@
+## 3.1.1 (21 Apr 2018)
+
+* Replaced webpack with rollup for smaller bundle size and better performance
+
 ## 3.1.0 (21 Dec 2017)
 
 * Changed babel transform settings to reduce minified bundle size
