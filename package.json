@@ -24,23 +24,26 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.0.3",
-    "babel-loader": "^7.1.2",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.0",
-    "css-loader": "^0.28.7",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
     "eslint": "^4.13.1",
     "eslint-plugin-react": "^7.5.1",
-    "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^22.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
-    "webpack": "^3.10.0",
-    "webpackbar": "^2.6.1"
+    "rollup": "^0.58.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-postcss": "^1.6.1",
+    "rollup-plugin-prettier": "^0.4.0",
+    "rollup-plugin-progress": "^0.4.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "dependencies": {
     "clone": "^2.1.1",
@@ -70,11 +73,10 @@
     "react": "^15.3 || ^16"
   },
   "scripts": {
-    "build": "set NODE_ENV=production && webpack -p --progress",
-    "build-dev": "set NODE_ENV=development && webpack --progress",
+    "build": "rollup --config",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint Components __tests__",
     "test": "jest",
-    "version": "npm run build && npm run build-dev"
+    "version": "npm run build"
   }
 }
