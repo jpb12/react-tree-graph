@@ -1,6 +1,7 @@
 const path = require('path');
 const isProduction = process.env.NODE_ENV.trim() === 'production';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackBar = require('webpackbar');
 
 module.exports = {
 	context: __dirname,
@@ -50,7 +51,8 @@ module.exports = {
 		path: path.join(__dirname, 'dist')
 	},
 	plugins: [
-		new ExtractTextPlugin(isProduction ? 'style.min.css' : 'style.css')
+		new ExtractTextPlugin(isProduction ? 'style.min.css' : 'style.css'),
+		new WebpackBar()
 	],
 	target: 'node'
 };

@@ -39,7 +39,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpackbar": "^2.6.1"
   },
   "dependencies": {
     "clone": "^2.1.1",
