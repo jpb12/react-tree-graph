@@ -16,7 +16,7 @@ const propTypes = {
 	steps: PropTypes.number.isRequired
 };
 
-export default class Animated extends React.PureComponent{
+export default class Animated extends React.PureComponent{ // eslint-disable-line react/no-deprecated
 	constructor(props) {
 		super(props);
 		if (props.animated) {
