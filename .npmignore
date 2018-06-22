@@ -4,7 +4,7 @@
 .npmignore
 .travis.yml
 index.js
-webpack.config.js
+rollup.config.js
 __tests__
 coverage
 Components
