@@ -3,7 +3,7 @@ import clear from 'rollup-plugin-clear';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 
 import clone from 'clone';
 
