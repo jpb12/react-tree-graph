@@ -11,7 +11,12 @@ react-tree-graph
 
 A simple react component which renders data as a tree using svg.
 
-Check out the [docs](https://jpb12.github.io/react-tree-graph) and the [demo](https://jpb12.github.io/tree-viewer/).
+Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo](https://jpb12.github.io/tree-viewer/).
+
+Older Versions
+--------------
+[2.X](https://github.com/jpb12/react-tree-graph/tree/v2.0.0)
+[1.X](https://github.com/jpb12/react-tree-graph/tree/v1.7.2)
 
 Installing
 ----------
