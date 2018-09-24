@@ -36,15 +36,12 @@ const defaultConfig = {
 			exclude: 'node_modules/**',
 			presets: [
 				[
-					'env',
+					'@babel/env',
 					{
 						'modules': false
 					}
 				],
-				'react'
-			],
-			plugins: [
-				'external-helpers'
+				'@babel/react'
 			]
 		}),
 		clear({
