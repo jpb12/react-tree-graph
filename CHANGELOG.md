@@ -1,3 +1,7 @@
+## 3.2.0 (24 Sep 2018)
+
+* Adding rendering of custom children
+
 ## 3.1.1 (21 Apr 2018)
 
 * Replaced webpack with rollup for smaller bundle size and better performance
