@@ -8,6 +8,7 @@ import Animated from './animated';
 const propTypes = {
 	data: PropTypes.object.isRequired,
 	animated: PropTypes.bool.isRequired,
+	children: PropTypes.node,
 	duration: PropTypes.number.isRequired,
 	easing: PropTypes.func.isRequired,
 	steps: PropTypes.number.isRequired,
@@ -93,7 +94,9 @@ export default class Tree extends React.PureComponent {
 				gProps={this.props.gProps}
 				pathProps={this.props.pathProps}
 				svgProps={this.props.svgProps}
-				textProps={this.props.textProps}/>);
+				textProps={this.props.textProps}>
+				{ this.props.children }
+			</Animated>);
 	}
 }
 

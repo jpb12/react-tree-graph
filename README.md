@@ -62,6 +62,7 @@ Configuration
 | `margins` | object | | `{ bottom : 10, left : 20, right : 150, top : 10}` | The margins around the content. The right margin should be larger to include the rendered label text. |
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
+| `children` | node | no | | Will be rendered as children of the SVG, before the links and nodes. |
 | `animated` | boolean | | false | If true, the tree will animate. |
 | `duration` | number | | 500 | The duration in milliseconds of animations. |
 | `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |

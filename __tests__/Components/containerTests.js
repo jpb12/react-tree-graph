@@ -52,6 +52,20 @@ describe('<Container>', () => {
 		expect(tree).toMatchSnapshot();
 	});
 
+	test('renders children', () => {
+		const props = {
+			nodes: nodes,
+			links: [{
+				source: nodes[0],
+				target: nodes[1]
+			}]
+		};
+
+		const tree = shallow(<Container {...defaultProps} {...props}><text>Extra child</text></Container>);
+
+		expect(tree).toMatchSnapshot();
+	});
+
 	test('html tree props added', () => {
 		const props = {
 			svgProps: {

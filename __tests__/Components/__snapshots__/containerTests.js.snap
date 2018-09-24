@@ -9,6 +9,70 @@ exports[`<Container> html tree props added 1`] = `
 />
 `;
 
+exports[`<Container> renders children 1`] = `
+<svg
+  height={100}
+  width={200}
+>
+  <text>
+    Extra child
+  </text>
+  <Link
+    key="Black"
+    keyProp="name"
+    pathProps={Object {}}
+    source={
+      Object {
+        "data": Object {
+          "name": "Colour",
+        },
+        "x": 1,
+        "y": 2,
+      }
+    }
+    target={
+      Object {
+        "data": Object {
+          "name": "Black",
+        },
+        "x": 100,
+        "y": 50,
+      }
+    }
+    x1={1}
+    x2={100}
+    y1={2}
+    y2={50}
+  />
+  <Node
+    circleProps={Object {}}
+    gProps={Object {}}
+    key="Colour"
+    keyProp="name"
+    labelProp="name"
+    name="Colour"
+    offset={3.5}
+    radius={5}
+    textProps={Object {}}
+    x={1}
+    y={2}
+  />
+  <Node
+    circleProps={Object {}}
+    gProps={Object {}}
+    key="Black"
+    keyProp="name"
+    labelProp="name"
+    name="Black"
+    offset={3.5}
+    radius={5}
+    textProps={Object {}}
+    x={100}
+    y={50}
+  />
+</svg>
+`;
+
 exports[`<Container> renders correctly 1`] = `
 <svg
   height={100}

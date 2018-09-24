@@ -35,8 +35,7 @@ export default class Link extends React.PureComponent{
 			this.props.x2,
 			this.props.y2);
 
-		return (
-			<path {...this.props.pathProps} d={d} onClick={this.handleClick}/>);
+		return <path {...this.props.pathProps} d={d} onClick={this.handleClick}/>;
 	}
 }
 

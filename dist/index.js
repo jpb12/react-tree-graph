@@ -326,6 +326,7 @@
 								height: this.props.height,
 								width: this.props.width
 							}),
+							this.props.children,
 							this.props.links.map(function(link) {
 								return React.createElement(Link, {
 									key: link.target.data[_this.props.keyProp],
@@ -754,6 +755,7 @@
 	var propTypes$4 = {
 		data: PropTypes.object.isRequired,
 		animated: PropTypes.bool.isRequired,
+		children: PropTypes.node,
 		duration: PropTypes.number.isRequired,
 		easing: PropTypes.func.isRequired,
 		steps: PropTypes.number.isRequired,
@@ -846,26 +848,30 @@
 						nodes.forEach(function(node) {
 							node.y += _this.props.margins.top;
 						});
-						return React.createElement(Animated, {
-							animated: this.props.animated,
-							duration: this.props.duration,
-							easing: this.props.easing,
-							getChildren: this.props.getChildren,
-							height: this.props.height,
-							keyProp: this.props.keyProp,
-							labelProp: this.props.labelProp,
-							links: links,
-							nodes: nodes,
-							nodeOffset: this.props.nodeOffset,
-							nodeRadius: this.props.nodeRadius,
-							steps: this.props.steps,
-							width: this.props.width,
-							circleProps: this.props.circleProps,
-							gProps: this.props.gProps,
-							pathProps: this.props.pathProps,
-							svgProps: this.props.svgProps,
-							textProps: this.props.textProps
-						});
+						return React.createElement(
+							Animated,
+							{
+								animated: this.props.animated,
+								duration: this.props.duration,
+								easing: this.props.easing,
+								getChildren: this.props.getChildren,
+								height: this.props.height,
+								keyProp: this.props.keyProp,
+								labelProp: this.props.labelProp,
+								links: links,
+								nodes: nodes,
+								nodeOffset: this.props.nodeOffset,
+								nodeRadius: this.props.nodeRadius,
+								steps: this.props.steps,
+								width: this.props.width,
+								circleProps: this.props.circleProps,
+								gProps: this.props.gProps,
+								pathProps: this.props.pathProps,
+								svgProps: this.props.svgProps,
+								textProps: this.props.textProps
+							},
+							this.props.children
+						);
 					}
 				}
 			]);
