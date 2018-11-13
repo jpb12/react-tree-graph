@@ -41,7 +41,7 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-prettier": "^0.4.0",
+    "rollup-plugin-prettier": "^0.5.0",
     "rollup-plugin-progress": "^0.4.0",
     "rollup-plugin-uglify": "^6.0.0"
   },
