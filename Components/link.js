@@ -28,6 +28,13 @@ export default class Link extends React.PureComponent{
 				this.props.target.data[this.props.keyProp],
 				event);
 	}
+	handleRightClick(event){	
+		this.props.pathProps.onConextMenu
+			 && this.props.pathProps.onConextMenu(
+				 this.props.source.data[this.props.keyProp],
+				 this.props.target.data[this.props.keyProp],
+				 event);
+	}
 	render() {
 		let d = diagonal(
 			this.props.x1,
@@ -35,7 +42,10 @@ export default class Link extends React.PureComponent{
 			this.props.x2,
 			this.props.y2);
 
-		return <path {...this.props.pathProps} d={d} onClick={this.handleClick}/>;
+		return <path {...this.props.pathProps} d={d} 
+		onClick={this.handleClick}
+		onContextMenu={this.handleRightClick}
+		/>;
 	}
 }
 
