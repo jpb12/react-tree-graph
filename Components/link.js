@@ -31,8 +31,8 @@ export default class Link extends React.PureComponent{
 				event);
 	}
 	handleRightClick(event){	
-		this.props.pathProps.onConextMenu
-			 && this.props.pathProps.onConextMenu(
+		this.props.pathProps.onContextMenu
+			 && this.props.pathProps.onContextMenu(
 				 this.props.source.data[this.props.keyProp],
 				 this.props.target.data[this.props.keyProp],
 				 event);
