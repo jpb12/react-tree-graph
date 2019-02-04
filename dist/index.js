@@ -266,8 +266,8 @@
 				{
 					key: 'handleRightClick',
 					value: function handleRightClick(event) {
-						this.props.gProps.onConextMenu &&
-							this.props.gProps.onConextMenu(
+						this.props.gProps.onContextMenu &&
+							this.props.gProps.onContextMenu(
 								this.props[this.props.keyProp],
 								event
 							);

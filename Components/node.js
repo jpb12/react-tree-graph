@@ -23,7 +23,7 @@ export default class Node extends React.PureComponent{
 		this.props.gProps.onClick && this.props.gProps.onClick(this.props[this.props.keyProp], event);
 	}
 	handleRightClick(event){	
-		this.props.gProps.onConextMenu && this.props.gProps.onConextMenu(this.props[this.props.keyProp], event);
+		this.props.gProps.onContextMenu && this.props.gProps.onContextMenu(this.props[this.props.keyProp], event);
 	}
 	getTransform() {
 		return 'translate(' + this.props.y + ', ' + this.props.x + ')';
