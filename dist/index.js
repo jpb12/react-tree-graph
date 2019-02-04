@@ -166,6 +166,9 @@
 				_this.handleClick = _this.handleClick.bind(
 					_assertThisInitialized(_assertThisInitialized(_this))
 				);
+				_this.handleRightClick = _this.handleRightClick.bind(
+					_assertThisInitialized(_assertThisInitialized(_this))
+				);
 				return _this;
 			}
 
@@ -175,6 +178,17 @@
 					value: function handleClick(event) {
 						this.props.pathProps.onClick &&
 							this.props.pathProps.onClick(
+								this.props.source.data[this.props.keyProp],
+								this.props.target.data[this.props.keyProp],
+								event
+							);
+					}
+				},
+				{
+					key: 'handleRightClick',
+					value: function handleRightClick(event) {
+						this.props.pathProps.onConextMenu &&
+							this.props.pathProps.onConextMenu(
 								this.props.source.data[this.props.keyProp],
 								this.props.target.data[this.props.keyProp],
 								event
@@ -194,7 +208,8 @@
 							'path',
 							_extends({}, this.props.pathProps, {
 								d: d,
-								onClick: this.handleClick
+								onClick: this.handleClick,
+								onContextMenu: this.handleRightClick
 							})
 						);
 					}
@@ -234,6 +249,9 @@
 				_this.handleClick = _this.handleClick.bind(
 					_assertThisInitialized(_assertThisInitialized(_this))
 				);
+				_this.handleRightClick = _this.handleRightClick.bind(
+					_assertThisInitialized(_assertThisInitialized(_this))
+				);
 				return _this;
 			}
 
@@ -243,6 +261,16 @@
 					value: function handleClick(event) {
 						this.props.gProps.onClick &&
 							this.props.gProps.onClick(this.props[this.props.keyProp], event);
+					}
+				},
+				{
+					key: 'handleRightClick',
+					value: function handleRightClick(event) {
+						this.props.gProps.onConextMenu &&
+							this.props.gProps.onConextMenu(
+								this.props[this.props.keyProp],
+								event
+							);
 					}
 				},
 				{
@@ -258,6 +286,7 @@
 							'g',
 							_extends({}, this.props.gProps, {
 								transform: this.getTransform(),
+								onContextMenu: this.handleRightClick,
 								onClick: this.handleClick
 							}),
 							React.createElement(
