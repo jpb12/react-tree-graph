@@ -51,6 +51,34 @@ describe('<Node>', () => {
 		expect(clickMock).toHaveBeenCalledWith('testKey', event);
 	});
 
+	test('right click event has correct parameters', () => {
+		const clickMock = jest.fn();
+		const event = {};
+
+		const props = {
+			x: 1,
+			y: 2,
+			keyProp: 'id',
+			labelProp: 'name',
+			gProps: {
+				onContextMenu: clickMock
+			},
+			circleProps: {},
+			textProps: {},
+			offset: 3,
+			radius: 4,
+			id: 'testKey',
+			name: 'Test Node'
+		};
+
+		const tree = shallow(<Node {...props}/>);
+		tree.find('g').simulate('contextmenu', event);
+
+		expect(clickMock).toHaveBeenCalledTimes(1);
+		expect(clickMock).toHaveBeenCalledWith('testKey', event);
+	});
+
+
 	test('clicking with no prop handler does nothing', () => {
 		const props = {
 			x: 1,

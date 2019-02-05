@@ -22,7 +22,7 @@ export default class Node extends React.PureComponent{
 	handleClick(event) {
 		this.props.gProps.onClick && this.props.gProps.onClick(this.props[this.props.keyProp], event);
 	}
-	handleRightClick(event){	
+	handleRightClick(event){
 		this.props.gProps.onContextMenu && this.props.gProps.onContextMenu(this.props[this.props.keyProp], event);
 	}
 	getTransform() {
@@ -30,9 +30,7 @@ export default class Node extends React.PureComponent{
 	}
 	render() {
 		return (
-			<g {...this.props.gProps} transform={this.getTransform()}
-				 onContextMenu={this.handleRightClick}
-				 onClick={this.handleClick}>
+			<g {...this.props.gProps} transform={this.getTransform()} onContextMenu={this.handleRightClick} onClick={this.handleClick}>
 				<circle {...this.props.circleProps} r={this.props.radius}/>
 				<text {...this.props.textProps} dx={this.props.radius + 0.5} dy={this.props.offset}>
 					{this.props[this.props.labelProp]}

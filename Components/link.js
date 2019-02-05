@@ -13,30 +13,32 @@ const propTypes = {
 };
 
 function diagonal(x1, y1, x2, y2) {
-	return `M${y1},${x1}C${(y1+y2)/2},${x1} ${(y1+y2)/2},${x2} ${y2},${x2}`;
+	return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 }
 
-export default class Link extends React.PureComponent{
+export default class Link extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleRightClick = this.handleRightClick.bind(this);
 
 	}
+
 	handleClick(event) {
 		this.props.pathProps.onClick
-			&& this.props.pathProps.onClick(
-				this.props.source.data[this.props.keyProp],
-				this.props.target.data[this.props.keyProp],
-				event);
+		&& this.props.pathProps.onClick(
+			this.props.source.data[this.props.keyProp],
+			this.props.target.data[this.props.keyProp],
+			event);
 	}
-	handleRightClick(event){	
-		this.props.pathProps.onContextMenu
-			 && this.props.pathProps.onContextMenu(
-				 this.props.source.data[this.props.keyProp],
-				 this.props.target.data[this.props.keyProp],
-				 event);
+
+	handleRightClick(event) {
+		this.props.pathProps.onContextMenu && this.props.pathProps.onContextMenu(
+			this.props.source.data[this.props.keyProp],
+			this.props.target.data[this.props.keyProp],
+			event);
 	}
+
 	render() {
 		let d = diagonal(
 			this.props.x1,
@@ -44,9 +46,8 @@ export default class Link extends React.PureComponent{
 			this.props.x2,
 			this.props.y2);
 
-		return <path {...this.props.pathProps} d={d} 
-		onClick={this.handleClick}
-		onContextMenu={this.handleRightClick}
+		return <path {...this.props.pathProps} d={d} onClick={this.handleClick}
+					 onContextMenu={this.handleRightClick}
 		/>;
 	}
 }
