@@ -276,7 +276,9 @@
 				{
 					key: 'getTransform',
 					value: function getTransform() {
-						return 'translate(' + this.props.y + ', ' + this.props.x + ')';
+						return 'translate('
+							.concat(this.props.y, ', ')
+							.concat(this.props.x, ')');
 					}
 				},
 				{
