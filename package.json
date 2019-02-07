@@ -77,6 +77,7 @@
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint Components __tests__",
     "test": "jest",
-    "version": "npm run build"
+    "version": "npm run build",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
   }
 }
