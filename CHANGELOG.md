@@ -1,3 +1,8 @@
+## 3.3.0 (7 Feb 2019)
+
+* onContextMenu handlers for nodes and links now have the same additional parameters as onClick (thanks @Linton-Samuel-Dawson)
+
+
 ## 3.2.0 (24 Sep 2018)
 
 * Adding rendering of custom children
