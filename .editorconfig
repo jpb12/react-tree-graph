@@ -1,0 +1,10 @@
+root = true
+
+[*]
+indent_style = tab
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+[{package.json,package-lock.json,.travis.yml}]
+indent_style = space
+indent_size = 2

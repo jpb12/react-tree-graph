@@ -64,7 +64,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		jest.runTimersToTime(100);
 
 		expect(tree.state().nodes[1].x).toBe(100);
@@ -98,7 +98,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		jest.runTimersToTime(100);
 
 		expect(tree.state().links[0].source.x).toBe(1);
@@ -144,7 +144,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = shallow(<Animated {...props}/>);
-		
+
 		tree.setProps({
 			nodes: [
 				nodes[0],
@@ -174,7 +174,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		jest.runTimersToTime(100);
 
 		tree.setProps({
@@ -217,7 +217,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = shallow(<Animated {...props}/>);
-		
+
 		tree.setProps({
 			links: [
 				links[0],
@@ -259,9 +259,9 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		jest.runTimersToTime(100);
-		
+
 		tree.setProps({
 			nodes: [
 				nodes[0]
@@ -282,9 +282,9 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		jest.runTimersToTime(100);
-		
+
 		tree.setProps({
 			links: []
 		});
@@ -319,7 +319,7 @@ describe('<Animated>', () => {
 		const props = Object.assign({}, defaultProps, { animated: false });
 
 		const tree = mount(<Animated {...props}/>);
-		
+
 		tree.setProps({
 			nodes: [
 				nodes[0],
@@ -342,8 +342,8 @@ describe('<Animated>', () => {
 
 	test('does not animate when props other than nodes or links change', () => {
 		const tree = shallow(<Animated {...defaultProps}/>);
-		
-		tree.setProps({nodeOffset: 5});
+
+		tree.setProps({ nodeOffset: 5 });
 
 		expect(tree).toMatchSnapshot();
 	});

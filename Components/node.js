@@ -13,21 +13,25 @@ const propTypes = {
 	textProps: PropTypes.object.isRequired
 };
 
-export default class Node extends React.PureComponent{
+export default class Node extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleRightClick = this.handleRightClick.bind(this);
 	}
+
 	handleClick(event) {
 		this.props.gProps.onClick && this.props.gProps.onClick(this.props[this.props.keyProp], event);
 	}
-	handleRightClick(event){
+
+	handleRightClick(event) {
 		this.props.gProps.onContextMenu && this.props.gProps.onContextMenu(this.props[this.props.keyProp], event);
 	}
+
 	getTransform() {
-		return 'translate(' + this.props.y + ', ' + this.props.x + ')';
+		return `translate(${this.props.y}, ${this.props.x})`;
 	}
+
 	render() {
 		return (
 			<g {...this.props.gProps} transform={this.getTransform()} onContextMenu={this.handleRightClick} onClick={this.handleClick}>

@@ -21,7 +21,6 @@ export default class Link extends React.PureComponent {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleRightClick = this.handleRightClick.bind(this);
-
 	}
 
 	handleClick(event) {
@@ -29,14 +28,16 @@ export default class Link extends React.PureComponent {
 		&& this.props.pathProps.onClick(
 			this.props.source.data[this.props.keyProp],
 			this.props.target.data[this.props.keyProp],
-			event);
+			event
+		);
 	}
 
 	handleRightClick(event) {
 		this.props.pathProps.onContextMenu && this.props.pathProps.onContextMenu(
 			this.props.source.data[this.props.keyProp],
 			this.props.target.data[this.props.keyProp],
-			event);
+			event
+		);
 	}
 
 	render() {
@@ -44,11 +45,10 @@ export default class Link extends React.PureComponent {
 			this.props.x1,
 			this.props.y1,
 			this.props.x2,
-			this.props.y2);
+			this.props.y2
+		);
 
-		return <path {...this.props.pathProps} d={d} onClick={this.handleClick}
-					 onContextMenu={this.handleRightClick}
-		/>;
+		return <path {...this.props.pathProps} d={d} onClick={this.handleClick} onContextMenu={this.handleRightClick}/>;
 	}
 }
 

@@ -82,14 +82,15 @@ describe('<Container>', () => {
 	test('path props combined', () => {
 		const props = {
 			links: [{
-				
+
 				source: nodes[0],
 				target: Object.assign(
 					{},
 					nodes[1],
 					{
 						data: { name: 1 }
-					})
+					}
+				)
 			}, {
 				name: 2,
 				source: nodes[0],
@@ -103,7 +104,8 @@ describe('<Container>', () => {
 								className: 'override'
 							}
 						}
-					})
+					}
+				)
 			}],
 			pathProps: {
 				className: 'default'
@@ -114,8 +116,8 @@ describe('<Container>', () => {
 
 		const links = tree.find(Link);
 		expect(links.length).toBe(2);
-		expect(links.at(0).props().pathProps).toEqual({className: 'default'});
-		expect(links.at(1).props().pathProps).toEqual({className: 'override'});
+		expect(links.at(0).props().pathProps).toEqual({ className: 'default' });
+		expect(links.at(1).props().pathProps).toEqual({ className: 'override' });
 	});
 
 	test('node props combined', () => {
@@ -131,7 +133,8 @@ describe('<Container>', () => {
 								className: 'default'
 							}
 						}
-					}),
+					}
+				),
 				Object.assign(
 					{},
 					nodes[1],
@@ -142,7 +145,8 @@ describe('<Container>', () => {
 								className: 'override'
 							}
 						}
-					})
+					}
+				)
 			]
 		};
 
@@ -150,7 +154,7 @@ describe('<Container>', () => {
 
 		const domNodes = tree.find(Node);
 		expect(domNodes.length).toBe(2);
-		expect(domNodes.at(0).props().gProps).toEqual({className: 'default'});
-		expect(domNodes.at(1).props().gProps).toEqual({className: 'override'});
+		expect(domNodes.at(0).props().gProps).toEqual({ className: 'default' });
+		expect(domNodes.at(1).props().gProps).toEqual({ className: 'override' });
 	});
 });

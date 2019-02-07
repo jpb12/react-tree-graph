@@ -67,7 +67,7 @@ export default class Tree extends React.PureComponent {
 		// data is cloned because d3 will mutate the object passed in
 		let data = hierarchy(clone(this.props.data), this.props.getChildren);
 
-		let root =  tree().size([contentHeight, contentWidth])(data);
+		let root = tree().size([contentHeight, contentWidth])(data);
 		let nodes = root.descendants();
 		let links = root.links();
 

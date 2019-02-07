@@ -16,7 +16,7 @@ const propTypes = {
 	steps: PropTypes.number.isRequired
 };
 
-export default class Animated extends React.PureComponent{
+export default class Animated extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		if (props.animated) {
@@ -38,11 +38,13 @@ export default class Animated extends React.PureComponent{
 			};
 		}
 	}
+
 	componentDidMount() {
 		if (this.props.animated) {
 			this.animate(this.props);
 		}
 	}
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.nodes === this.props.nodes && nextProps.links === this.props.links) {
 			return;
@@ -55,6 +57,7 @@ export default class Animated extends React.PureComponent{
 
 		this.animate(nextProps);
 	}
+
 	animate(props) {
 		// Stop previous animation if one is already in progress.  We will start the next animation
 		// from the position we are currently in
@@ -78,6 +81,7 @@ export default class Animated extends React.PureComponent{
 			this.setState(this.calculateNewState(animationContext, counter / props.steps));
 		}, props.duration / props.steps);
 	}
+
 	getAnimationContext(initialState, newState) {
 		// Nodes/links that are in both states need to be moved from the old position to the new one
 		// Nodes/links only in the initial state are being removed, and should be moved to the position
@@ -90,7 +94,7 @@ export default class Animated extends React.PureComponent{
 		// We only run this once at the start of the animation, so optimization is less important
 		let addedNodes = newState.nodes
 			.filter(n1 => initialState.nodes.every(n2 => !this.areNodesSame(n1, n2)))
-			.map(n1 => ({ base: n1, old: this.getClosestAncestor(n1, newState, initialState), new: n1}));
+			.map(n1 => ({ base: n1, old: this.getClosestAncestor(n1, newState, initialState), new: n1 }));
 		let changedNodes = newState.nodes
 			.filter(n1 => initialState.nodes.some(n2 => this.areNodesSame(n1, n2)))
 			.map(n1 => ({ base: n1, old: initialState.nodes.find(n2 => this.areNodesSame(n1, n2)), new: n1 }));
@@ -100,7 +104,7 @@ export default class Animated extends React.PureComponent{
 
 		let addedLinks = newState.links
 			.filter(l1 => initialState.links.every(l2 => !this.areLinksSame(l1, l2)))
-			.map(l1 => ({ base: l1, old: this.getClosestAncestor(l1.target, newState, initialState), new: l1}));
+			.map(l1 => ({ base: l1, old: this.getClosestAncestor(l1.target, newState, initialState), new: l1 }));
 		let changedLinks = newState.links
 			.filter(l1 => initialState.links.some(l2 => this.areLinksSame(l1, l2)))
 			.map(l1 => ({ base: l1, old: initialState.links.find(l2 => this.areLinksSame(l1, l2)), new: l1 }));
@@ -110,45 +114,52 @@ export default class Animated extends React.PureComponent{
 
 		return {
 			nodes: changedNodes.concat(addedNodes).concat(removedNodes),
-			links: changedLinks.concat(addedLinks).concat(removedLinks),
+			links: changedLinks.concat(addedLinks).concat(removedLinks)
 		};
 	}
+
 	getClosestAncestor(node, stateWithNode, stateWithoutNode) {
 		let oldParent = node;
 
-		while(oldParent) {
+		while (oldParent) {
 			let newParent = stateWithoutNode.nodes.find(n => this.areNodesSame(oldParent, n));
-			
+
 			if (newParent) {
 				return newParent;
 			}
-			
+
 			oldParent = stateWithNode.nodes.find(n => (this.props.getChildren(n) || []).some(c => this.areNodesSame(oldParent, c)));
 		}
 
 		return stateWithoutNode.nodes[0];
 	}
+
 	areNodesSame(a, b) {
 		return a.data[this.props.keyProp] === b.data[this.props.keyProp];
 	}
+
 	areLinksSame(a, b) {
 		return a.source.data[this.props.keyProp] === b.source.data[this.props.keyProp] && a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp];
 	}
+
 	calculateNewState(animationContext, interval) {
 		return {
 			nodes: animationContext.nodes.map(n => this.calculateNodePosition(n.base, n.old, n.new, interval)),
 			links: animationContext.links.map(l => this.calculateLinkPosition(l.base, l.old, l.new, interval))
 		};
 	}
+
 	calculateNodePosition(node, start, end, interval) {
 		return Object.assign(
 			{},
 			node,
 			{
 				x: this.calculateNewValue(start.x, end.x, interval),
-				y: this.calculateNewValue(start.y, end.y, interval),
-			});
+				y: this.calculateNewValue(start.y, end.y, interval)
+			}
+		);
 	}
+
 	calculateLinkPosition(link, start, end, interval) {
 		return {
 			source: Object.assign(
@@ -156,20 +167,24 @@ export default class Animated extends React.PureComponent{
 				link.source,
 				{
 					x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source ? end.source.x : end.x, interval),
-					y: this.calculateNewValue(start.source ? start.source.y: start.y, end.source ? end.source.y : end.y, interval)
-				}),
+					y: this.calculateNewValue(start.source ? start.source.y : start.y, end.source ? end.source.y : end.y, interval)
+				}
+			),
 			target: Object.assign(
 				{},
 				link.target,
 				{
 					x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target ? end.target.x : end.x, interval),
-					y: this.calculateNewValue(start.target ? start.target.y: start.y, end.target ? end.target.y : end.y, interval)
-				}),
+					y: this.calculateNewValue(start.target ? start.target.y : start.y, end.target ? end.target.y : end.y, interval)
+				}
+			)
 		};
 	}
+
 	calculateNewValue(start, end, interval) {
 		return start + (end - start) * this.props.easing(interval);
 	}
+
 	render() {
 		return (
 			<Container {...this.props} {...this.state}/>);
