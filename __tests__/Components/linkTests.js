@@ -3,22 +3,22 @@ import { shallow } from 'enzyme';
 
 import Link from '../../Components/link';
 
+const defaultProps = {
+	source: {},
+	target: {},
+	keyProp: '',
+	pathProps: {
+		className: 'Link'
+	},
+	x1: 1,
+	x2: 5,
+	y1: 2,
+	y2: 9
+};
+
 describe('<Link>', () => {
 	test('renders correctly', () => {
-		const props = {
-			source: {},
-			target: {},
-			keyProp: '',
-			pathProps: {
-				className: 'Link'
-			},
-			x1: 1,
-			x2: 5,
-			y1: 2,
-			y2: 9
-		};
-
-		const tree = shallow(<Link {...props}/>);
+		const tree = shallow(<Link {...defaultProps}/>);
 		expect(tree).toMatchSnapshot();
 	});
 
@@ -40,14 +40,10 @@ describe('<Link>', () => {
 			keyProp: 'id',
 			pathProps: {
 				onClick: clickMock
-			},
-			x1: 1,
-			x2: 5,
-			y1: 2,
-			y2: 9
+			}
 		};
 
-		const tree = shallow(<Link {...props}/>);
+		const tree = shallow(<Link {...defaultProps} {...props}/>);
 		tree.find('path').simulate('click', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
@@ -71,14 +67,10 @@ describe('<Link>', () => {
 			keyProp: 'id',
 			pathProps: {
 				onContextMenu: clickMock
-			},
-			x1: 1,
-			x2: 5,
-			y1: 2,
-			y2: 9
+			}
 		};
 
-		const tree = shallow(<Link {...props}/>);
+		const tree = shallow(<Link {...defaultProps} {...props}/>);
 		tree.find('path').simulate('contextmenu', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
@@ -96,15 +88,10 @@ describe('<Link>', () => {
 					id: 'target'
 				}
 			},
-			keyProp: 'id',
-			pathProps: {},
-			x1: 1,
-			x2: 5,
-			y1: 2,
-			y2: 9
+			keyProp: 'id'
 		};
 
-		const tree = shallow(<Link {...props}/>);
+		const tree = shallow(<Link {...defaultProps} {...props}/>);
 		tree.find('path').simulate('click');
 	});
 });

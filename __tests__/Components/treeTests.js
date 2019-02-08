@@ -3,17 +3,15 @@ import { shallow } from 'enzyme';
 
 import Tree from '../../Components/tree';
 
-const data = {
-	name: 'Colour',
-	childs: [{
-		name: 'Black'
-	}]
-};
-
 describe('<Tree>', () => {
 	test('renders correctly', () => {
 		const props = {
-			data: data,
+			data: {
+				name: 'Colour',
+				childs: [{
+					name: 'Black'
+				}]
+			},
 			// Must not use children prop due to special meaning in react causing shallow renderer errors
 			getChildren: d => d.childs,
 			height: 100,

@@ -53,6 +53,21 @@
 		return Constructor;
 	}
 
+	function _defineProperty(obj, key, value) {
+		if (key in obj) {
+			Object.defineProperty(obj, key, {
+				value: value,
+				enumerable: true,
+				configurable: true,
+				writable: true
+			});
+		} else {
+			obj[key] = value;
+		}
+
+		return obj;
+	}
+
 	function _extends() {
 		_extends =
 			Object.assign ||
@@ -71,6 +86,27 @@
 			};
 
 		return _extends.apply(this, arguments);
+	}
+
+	function _objectSpread(target) {
+		for (var i = 1; i < arguments.length; i++) {
+			var source = arguments[i] != null ? arguments[i] : {};
+			var ownKeys = Object.keys(source);
+
+			if (typeof Object.getOwnPropertySymbols === 'function') {
+				ownKeys = ownKeys.concat(
+					Object.getOwnPropertySymbols(source).filter(function(sym) {
+						return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+					})
+				);
+			}
+
+			ownKeys.forEach(function(key) {
+				_defineProperty(target, key, source[key]);
+			});
+		}
+
+		return target;
 	}
 
 	function _inherits(subClass, superClass) {
@@ -368,7 +404,7 @@
 									x2: link.target.x,
 									y1: link.source.y,
 									y2: link.target.y,
-									pathProps: Object.assign(
+									pathProps: _objectSpread(
 										{},
 										_this.props.pathProps,
 										link.target.data.pathProps
@@ -387,17 +423,17 @@
 											radius: _this.props.nodeRadius,
 											x: node.x,
 											y: node.y,
-											circleProps: Object.assign(
+											circleProps: _objectSpread(
 												{},
 												_this.props.circleProps,
 												node.data.circleProps
 											),
-											gProps: Object.assign(
+											gProps: _objectSpread(
 												{},
 												_this.props.gProps,
 												node.data.gProps
 											),
-											textProps: Object.assign(
+											textProps: _objectSpread(
 												{},
 												_this.props.textProps,
 												node.data.textProps
@@ -449,18 +485,18 @@
 					var initialY = props.nodes[0].y;
 					_this.state = {
 						nodes: props.nodes.map(function(n) {
-							return Object.assign({}, n, {
+							return _objectSpread({}, n, {
 								x: initialX,
 								y: initialY
 							});
 						}),
 						links: props.links.map(function(l) {
 							return {
-								source: Object.assign({}, l.source, {
+								source: _objectSpread({}, l.source, {
 									x: initialX,
 									y: initialY
 								}),
-								target: Object.assign({}, l.target, {
+								target: _objectSpread({}, l.target, {
 									x: initialX,
 									y: initialY
 								})
@@ -725,7 +761,7 @@
 				{
 					key: 'calculateNodePosition',
 					value: function calculateNodePosition(node, start, end, interval) {
-						return Object.assign({}, node, {
+						return _objectSpread({}, node, {
 							x: this.calculateNewValue(start.x, end.x, interval),
 							y: this.calculateNewValue(start.y, end.y, interval)
 						});
@@ -735,7 +771,7 @@
 					key: 'calculateLinkPosition',
 					value: function calculateLinkPosition(link, start, end, interval) {
 						return {
-							source: Object.assign({}, link.source, {
+							source: _objectSpread({}, link.source, {
 								x: this.calculateNewValue(
 									start.source ? start.source.x : start.x,
 									end.source ? end.source.x : end.x,
@@ -747,7 +783,7 @@
 									interval
 								)
 							}),
-							target: Object.assign({}, link.target, {
+							target: _objectSpread({}, link.target, {
 								x: this.calculateNewValue(
 									start.target ? start.target.x : start.x,
 									end.target ? end.target.x : end.x,

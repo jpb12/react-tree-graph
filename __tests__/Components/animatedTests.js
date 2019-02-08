@@ -61,9 +61,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates node when moved', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		jest.runTimersToTime(100);
 
@@ -95,9 +93,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates link when moved', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		jest.runTimersToTime(100);
 
@@ -141,9 +137,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates node when added', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = shallow(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		tree.setProps({
 			nodes: [
@@ -171,9 +165,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates node from parent when added', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		jest.runTimersToTime(100);
 
@@ -214,9 +206,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates link when added', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = shallow(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		tree.setProps({
 			links: [
@@ -256,9 +246,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates node when removed', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		jest.runTimersToTime(100);
 
@@ -279,9 +267,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates link when removed', () => {
-		const props = Object.assign({}, defaultProps, { steps: 2, duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
 		jest.runTimersToTime(100);
 
@@ -302,9 +288,7 @@ describe('<Animated>', () => {
 	});
 
 	test('animates from inital value on mount', () => {
-		const props = Object.assign({}, defaultProps, { duration: 100 });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} duration={100}/>);
 
 		expect(tree.state().nodes[1].x).toBe(1);
 		expect(tree.state().nodes[1].y).toBe(2);
@@ -316,9 +300,7 @@ describe('<Animated>', () => {
 	});
 
 	test('does nothing when not enabled', () => {
-		const props = Object.assign({}, defaultProps, { animated: false });
-
-		const tree = mount(<Animated {...props}/>);
+		const tree = mount(<Animated {...defaultProps} animated={false}/>);
 
 		tree.setProps({
 			nodes: [

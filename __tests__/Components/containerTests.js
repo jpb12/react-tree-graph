@@ -84,28 +84,11 @@ describe('<Container>', () => {
 			links: [{
 
 				source: nodes[0],
-				target: Object.assign(
-					{},
-					nodes[1],
-					{
-						data: { name: 1 }
-					}
-				)
+				target: { ...nodes[1], data: { name: 1 } }
 			}, {
 				name: 2,
 				source: nodes[0],
-				target: Object.assign(
-					{},
-					nodes[1],
-					{
-						data: {
-							name: 2,
-							pathProps: {
-								className: 'override'
-							}
-						}
-					}
-				)
+				target: { ...nodes[1], data: { name: 1, pathProps: { className: 'override' } } }
 			}],
 			pathProps: {
 				className: 'default'
@@ -123,30 +106,8 @@ describe('<Container>', () => {
 	test('node props combined', () => {
 		const props = {
 			nodes: [
-				Object.assign(
-					{},
-					nodes[0],
-					{
-						data: {
-							name: 1,
-							gProps: {
-								className: 'default'
-							}
-						}
-					}
-				),
-				Object.assign(
-					{},
-					nodes[1],
-					{
-						data: {
-							name: 2,
-							gProps: {
-								className: 'override'
-							}
-						}
-					}
-				)
+				{ ...nodes[0], data: { name: 1, gProps: { className: 'default' } } },
+				{ ...nodes[1], data: { name: 2, gProps: { className: 'override' } } }
 			]
 		};
 

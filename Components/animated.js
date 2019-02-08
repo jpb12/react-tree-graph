@@ -25,10 +25,10 @@ export default class Animated extends React.PureComponent {
 			let initialX = props.nodes[0].x;
 			let initialY = props.nodes[0].y;
 			this.state = {
-				nodes: props.nodes.map(n => Object.assign({}, n, { x: initialX, y: initialY })),
+				nodes: props.nodes.map(n => ({ ...n, x: initialX, y: initialY })),
 				links: props.links.map(l => ({
-					source: Object.assign({}, l.source, { x: initialX, y: initialY }),
-					target: Object.assign({}, l.target, { x: initialX, y: initialY })
+					source: { ...l.source, x: initialX, y: initialY },
+					target: { ...l.target, x: initialX, y: initialY }
 				}))
 			};
 		} else {
@@ -150,34 +150,25 @@ export default class Animated extends React.PureComponent {
 	}
 
 	calculateNodePosition(node, start, end, interval) {
-		return Object.assign(
-			{},
-			node,
-			{
-				x: this.calculateNewValue(start.x, end.x, interval),
-				y: this.calculateNewValue(start.y, end.y, interval)
-			}
-		);
+		return {
+			...node,
+			x: this.calculateNewValue(start.x, end.x, interval),
+			y: this.calculateNewValue(start.y, end.y, interval)
+		};
 	}
 
 	calculateLinkPosition(link, start, end, interval) {
 		return {
-			source: Object.assign(
-				{},
-				link.source,
-				{
-					x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source ? end.source.x : end.x, interval),
-					y: this.calculateNewValue(start.source ? start.source.y : start.y, end.source ? end.source.y : end.y, interval)
-				}
-			),
-			target: Object.assign(
-				{},
-				link.target,
-				{
-					x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target ? end.target.x : end.x, interval),
-					y: this.calculateNewValue(start.target ? start.target.y : start.y, end.target ? end.target.y : end.y, interval)
-				}
-			)
+			source: {
+				...link.source,
+				x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source ? end.source.x : end.x, interval),
+				y: this.calculateNewValue(start.source ? start.source.y : start.y, end.source ? end.source.y : end.y, interval)
+			},
+			target: {
+				...link.target,
+				x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target ? end.target.x : end.x, interval),
+				y: this.calculateNewValue(start.target ? start.target.y : start.y, end.target ? end.target.y : end.y, interval)
+			}
 		};
 	}
 

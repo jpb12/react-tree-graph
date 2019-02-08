@@ -3,24 +3,24 @@ import { shallow } from 'enzyme';
 
 import Node from '../../Components/node';
 
+const defaultProps = {
+	x: 1,
+	y: 2,
+	keyProp: '',
+	labelProp: 'name',
+	gProps: {
+		className: 'test'
+	},
+	circleProps: {},
+	textProps: {},
+	offset: 3,
+	radius: 4,
+	name: 'Test Node'
+};
+
 describe('<Node>', () => {
 	test('renders correctly', () => {
-		const props = {
-			x: 1,
-			y: 2,
-			keyProp: '',
-			labelProp: 'name',
-			gProps: {
-				className: 'test'
-			},
-			circleProps: {},
-			textProps: {},
-			offset: 3,
-			radius: 4,
-			name: 'Test Node'
-		};
-
-		const tree = shallow(<Node {...props}/>);
+		const tree = shallow(<Node {...defaultProps}/>);
 		expect(tree).toMatchSnapshot();
 	});
 
@@ -29,22 +29,14 @@ describe('<Node>', () => {
 		const event = {};
 
 		const props = {
-			x: 1,
-			y: 2,
 			keyProp: 'id',
-			labelProp: 'name',
 			gProps: {
 				onClick: clickMock
 			},
-			circleProps: {},
-			textProps: {},
-			offset: 3,
-			radius: 4,
-			id: 'testKey',
-			name: 'Test Node'
+			id: 'testKey'
 		};
 
-		const tree = shallow(<Node {...props}/>);
+		const tree = shallow(<Node {...defaultProps} {...props}/>);
 		tree.find('g').simulate('click', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
@@ -56,22 +48,14 @@ describe('<Node>', () => {
 		const event = {};
 
 		const props = {
-			x: 1,
-			y: 2,
 			keyProp: 'id',
-			labelProp: 'name',
 			gProps: {
 				onContextMenu: clickMock
 			},
-			circleProps: {},
-			textProps: {},
-			offset: 3,
-			radius: 4,
-			id: 'testKey',
-			name: 'Test Node'
+			id: 'testKey'
 		};
 
-		const tree = shallow(<Node {...props}/>);
+		const tree = shallow(<Node {...defaultProps} {...props}/>);
 		tree.find('g').simulate('contextmenu', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
@@ -81,29 +65,16 @@ describe('<Node>', () => {
 
 	test('clicking with no prop handler does nothing', () => {
 		const props = {
-			x: 1,
-			y: 2,
 			keyProp: 'id',
-			labelProp: 'name',
-			gProps: {},
-			circleProps: {},
-			textProps: {},
-			offset: 3,
-			radius: 4,
-			id: 'testKey',
-			name: 'Test Node'
+			id: 'testKey'
 		};
 
-		const tree = shallow(<Node {...props}/>);
+		const tree = shallow(<Node {...defaultProps} {...props}/>);
 		tree.find('g').simulate('click');
 	});
 
 	test('htmlProps applied to all elements', () => {
 		const props = {
-			x: 1,
-			y: 2,
-			keyProp: '',
-			labelProp: 'name',
 			gProps: {
 				className: 'g'
 			},
@@ -112,13 +83,10 @@ describe('<Node>', () => {
 			},
 			textProps: {
 				className: 'text'
-			},
-			offset: 3,
-			radius: 4,
-			name: 'Test Node'
+			}
 		};
 
-		const tree = shallow(<Node {...props}/>);
+		const tree = shallow(<Node {...defaultProps} {...props}/>);
 		expect(tree).toMatchSnapshot();
 	});
 });

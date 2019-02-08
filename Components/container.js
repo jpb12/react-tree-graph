@@ -35,7 +35,7 @@ export default class Container extends React.PureComponent {
 						x2={link.target.x}
 						y1={link.source.y}
 						y2={link.target.y}
-						pathProps={Object.assign({}, this.props.pathProps, link.target.data.pathProps)}/>)
+						pathProps={{ ...this.props.pathProps, ...link.target.data.pathProps }}/>)
 				}
 				{ this.props.nodes.map(node =>
 					<Node
@@ -46,9 +46,9 @@ export default class Container extends React.PureComponent {
 						radius={this.props.nodeRadius}
 						x={node.x}
 						y={node.y}
-						circleProps={Object.assign({}, this.props.circleProps, node.data.circleProps)}
-						gProps={Object.assign({}, this.props.gProps, node.data.gProps)}
-						textProps={Object.assign({}, this.props.textProps, node.data.textProps)}
+						circleProps={{ ...this.props.circleProps, ...node.data.circleProps }}
+						gProps={{ ...this.props.gProps, ...node.data.gProps }}
+						textProps={{ ...this.props.textProps, ...node.data.textProps }}
 						{...node.data}/>)
 				}
 			</svg>);
