@@ -4,8 +4,8 @@
   "description": "Github pages site for the react-tree-graph project",
   "main": "code/index.js",
   "scripts": {
-    "build": "webpack -p --progress --mode production",
-    "build-dev": "webpack -d --progress --mode development",
+    "build": "webpack --progress --mode production",
+    "build-dev": "webpack --progress --mode development",
     "eslint": "eslint code"
   },
   "repository": {
