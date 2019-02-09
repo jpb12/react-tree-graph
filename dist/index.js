@@ -1,34 +1,33 @@
 (function(global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined'
 		? (module.exports = factory(
+				require('clone'),
+				require('d3-ease'),
+				require('d3-hierarchy'),
 				require('prop-types'),
 				require('react'),
 				require('core-js/fn/array/find'),
-				require('core-js/fn/object/assign'),
-				require('clone'),
-				require('d3-ease'),
-				require('d3-hierarchy')
+				require('core-js/fn/object/assign')
 		  ))
 		: typeof define === 'function' && define.amd
-			? define([
-					'prop-types',
-					'react',
-					'core-js/fn/array/find',
-					'core-js/fn/object/assign',
-					'clone',
-					'd3-ease',
-					'd3-hierarchy'
-			  ], factory)
-			: (global.ReactTreeGraph = factory(
-					global.PropTypes,
-					global.React,
-					null,
-					null,
-					global.clone,
-					global.d3,
-					global.d3
-			  ));
-})(this, function(PropTypes, React, find, assign, clone, d3Ease, d3Hierarchy) {
+		? define([
+				'clone',
+				'd3-ease',
+				'd3-hierarchy',
+				'prop-types',
+				'react',
+				'core-js/fn/array/find',
+				'core-js/fn/object/assign'
+		  ], factory)
+		: ((global = global || self),
+		  (global.ReactTreeGraph = factory(
+				global.clone,
+				global.d3,
+				global.d3,
+				global.PropTypes,
+				global.React
+		  )));
+})(this, function(clone, d3Ease, d3Hierarchy, PropTypes, React) {
 	'use strict';
 
 	function _classCallCheck(instance, Constructor) {
@@ -351,6 +350,7 @@
 	Node.propTypes = propTypes$1;
 
 	var propTypes$2 = {
+		children: PropTypes.node,
 		height: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		labelProp: PropTypes.string.isRequired,
