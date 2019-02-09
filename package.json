@@ -4,8 +4,9 @@
   "description": "Github pages site for the react-tree-graph project",
   "main": "code/index.js",
   "scripts": {
-    "build": "set NODE_ENV=production && webpack -p --progress",
-    "build-dev": "set NODE_ENV=development && webpack -d --progress"
+    "build": "webpack -p --progress --mode production",
+    "build-dev": "webpack -d --progress --mode development",
+    "eslint": "eslint code"
   },
   "repository": {
     "type": "git",
@@ -15,24 +16,28 @@
   "license": "MIT",
   "homepage": "http://jpb12.github.io/react-tree-graph/",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.13.1",
-    "eslint-plugin-react": "^7.5.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.10.0"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.13.0",
+    "eslint-plugin-react": "^7.12.4",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "codemirror": "^5.33.0",
-    "d3-ease": "^1.0.3",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
+    "codemirror": "^5.43.0",
+    "d3-ease": "^1.0.5",
+    "prop-types": "^15.6.2",
+    "react": "^16.8.1",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^16.2.0",
-    "react-tree-graph": "^3.2.0"
+    "react-dom": "^16.8.1",
+    "react-tree-graph": "^3.3.0"
   }
 }

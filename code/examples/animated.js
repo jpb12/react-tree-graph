@@ -38,8 +38,7 @@ const data = [
 	}
 ];
 
-const code = 
-`<Tree
+const code = `<Tree
 	data={data}
 	height={200}
 	width={400}
@@ -52,6 +51,7 @@ export default class AnimatedExample extends React.PureComponent {
 			data: data[0]
 		};
 	}
+
 	componentDidMount() {
 		let position = 0;
 		setInterval(() => {
@@ -62,6 +62,7 @@ export default class AnimatedExample extends React.PureComponent {
 			this.setState({ data: data[order[position]] });
 		}, 2000);
 	}
+
 	render() {
 		return (
 			<Example code={code} id="animation" title="Animation">

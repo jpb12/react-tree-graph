@@ -39,8 +39,7 @@ const data = [
 	}
 ];
 
-const code = 
-`import { easeElastic } from 'd3-ease';
+const code = `import { easeElastic } from 'd3-ease';
 
 <Tree
 	data={data}
@@ -59,6 +58,7 @@ export default class EasingExample extends React.PureComponent {
 			data: data[0]
 		};
 	}
+
 	componentDidMount() {
 		let position = 0;
 		setInterval(() => {
@@ -69,6 +69,7 @@ export default class EasingExample extends React.PureComponent {
 			this.setState({ data: data[order[position]] });
 		}, 2000);
 	}
+
 	render() {
 		return (
 			<Example code={code} id="easing" title="Custom easing" description={description}>

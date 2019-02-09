@@ -11,8 +11,7 @@ const data = {
 	}]
 };
 
-const code = 
-`div.custom-container {
+const code = `div.custom-container {
 	background-color: #242424;
 }
 

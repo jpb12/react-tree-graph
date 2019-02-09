@@ -11,8 +11,7 @@ const data = {
 	}]
 };
 
-const code = 
-`function onClick(nodeKey) {
+const code = `function onClick(nodeKey) {
 	alert(nodeKey);
 }
 

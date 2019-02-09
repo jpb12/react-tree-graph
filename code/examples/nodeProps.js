@@ -15,8 +15,7 @@ const data = {
 	}]
 };
 
-const code = 
-`.red-node {
+const code = `.red-node {
 	fill: red;
 	stroke: red;
 }

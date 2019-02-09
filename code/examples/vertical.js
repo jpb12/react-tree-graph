@@ -11,8 +11,7 @@ const data = {
 	}]
 };
 
-const code = 
-`const data = {
+const code = `const data = {
 	name: 'Parent',
 	children: [{
 		name: 'Child One'
