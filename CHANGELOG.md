@@ -1,7 +1,11 @@
+## 4.0.0 (11 Feb 2019)
+
+* Breaking change: additional parameters are now passed in after the event parameter
+* Added support for additional parameters in arbitrary event handlers
+
 ## 3.3.0 (7 Feb 2019)
 
 * onContextMenu handlers for nodes and links now have the same additional parameters as onClick (thanks @Linton-Samuel-Dawson)
-
 
 ## 3.2.0 (24 Sep 2018)
 
