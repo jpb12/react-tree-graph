@@ -38,6 +38,6 @@
     "react": "^16.8.1",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.8.1",
-    "react-tree-graph": "^3.3.0"
+    "react-tree-graph": "^4.0.0"
   }
 }

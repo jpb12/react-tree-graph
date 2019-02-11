@@ -10,7 +10,7 @@ const data = {
 		name: 'Child Two',
 		gProps: {
 			className: 'red-node',
-			onClick: node => alert(`Clicked ${node}!`)
+			onClick: (event, node) => alert(`Clicked ${node}!`)
 		}
 	}]
 };
@@ -28,7 +28,7 @@ const data = {
 		name: 'Child Two',
 		gProps: {
 			className: 'red-node',
-			onClick: node =>
+			onClick: (event, node) =>
 				alert(\`Clicked \${node}!\`)
 		}
 	}]
