@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import wrapHandlers from '../wrapHandlers';
 
 const propTypes = {
 	source: PropTypes.object.isRequired,
@@ -17,30 +18,13 @@ function diagonal(x1, y1, x2, y2) {
 }
 
 export default class Link extends React.PureComponent {
-	constructor(props) {
-		super(props);
-		this.handleClick = this.handleClick.bind(this);
-		this.handleRightClick = this.handleRightClick.bind(this);
-	}
-
-	handleClick(event) {
-		this.props.pathProps.onClick
-		&& this.props.pathProps.onClick(
-			this.props.source.data[this.props.keyProp],
-			this.props.target.data[this.props.keyProp],
-			event
-		);
-	}
-
-	handleRightClick(event) {
-		this.props.pathProps.onContextMenu && this.props.pathProps.onContextMenu(
-			this.props.source.data[this.props.keyProp],
-			this.props.target.data[this.props.keyProp],
-			event
-		);
-	}
-
 	render() {
+		const wrappedProps = wrapHandlers(
+			this.props.pathProps,
+			this.props.source.data[this.props.keyProp],
+			this.props.target.data[this.props.keyProp]
+		);
+
 		let d = diagonal(
 			this.props.x1,
 			this.props.y1,
@@ -48,7 +32,7 @@ export default class Link extends React.PureComponent {
 			this.props.y2
 		);
 
-		return <path {...this.props.pathProps} d={d} onClick={this.handleClick} onContextMenu={this.handleRightClick}/>;
+		return <path {...wrappedProps} d={d}/>;
 	}
 }
 

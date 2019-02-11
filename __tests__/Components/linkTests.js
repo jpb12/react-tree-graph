@@ -1,12 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Link from '../../Components/link';
+import Link from '../../src/components/link';
 
 const defaultProps = {
-	source: {},
-	target: {},
-	keyProp: '',
+	source: {
+		data: {
+			id: 'origin'
+		}
+	},
+	target: {
+		data: {
+			id: 'target'
+		}
+	},
+	keyProp: 'id',
 	pathProps: {
 		className: 'Link'
 	},
@@ -27,17 +35,6 @@ describe('<Link>', () => {
 		const event = {};
 
 		const props = {
-			source: {
-				data: {
-					id: 'origin'
-				}
-			},
-			target: {
-				data: {
-					id: 'target'
-				}
-			},
-			keyProp: 'id',
 			pathProps: {
 				onClick: clickMock
 			}
@@ -47,51 +44,28 @@ describe('<Link>', () => {
 		tree.find('path').simulate('click', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
-		expect(clickMock).toHaveBeenCalledWith('origin', 'target', event);
+		expect(clickMock).toHaveBeenCalledWith(event, 'origin', 'target');
 	});
+
 	test('right click event has correct parameters', () => {
-		const clickMock = jest.fn();
+		const rightClickMock = jest.fn();
 		const event = {};
 
 		const props = {
-			source: {
-				data: {
-					id: 'origin'
-				}
-			},
-			target: {
-				data: {
-					id: 'target'
-				}
-			},
-			keyProp: 'id',
 			pathProps: {
-				onContextMenu: clickMock
+				onContextMenu: rightClickMock
 			}
 		};
 
 		const tree = shallow(<Link {...defaultProps} {...props}/>);
 		tree.find('path').simulate('contextmenu', event);
 
-		expect(clickMock).toHaveBeenCalledTimes(1);
-		expect(clickMock).toHaveBeenCalledWith('origin', 'target', event);
+		expect(rightClickMock).toHaveBeenCalledTimes(1);
+		expect(rightClickMock).toHaveBeenCalledWith(event, 'origin', 'target');
 	});
-	test('clicking with no prop handler does nothing', () => {
-		const props = {
-			source: {
-				data: {
-					id: 'origin'
-				}
-			},
-			target: {
-				data: {
-					id: 'target'
-				}
-			},
-			keyProp: 'id'
-		};
 
-		const tree = shallow(<Link {...defaultProps} {...props}/>);
+	test('clicking with no prop handler does nothing', () => {
+		const tree = shallow(<Link {...defaultProps}/>);
 		tree.find('path').simulate('click');
 	});
 });

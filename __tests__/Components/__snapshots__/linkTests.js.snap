@@ -4,7 +4,5 @@ exports[`<Link> renders correctly 1`] = `
 <path
   className="Link"
   d="M2,1C5.5,1 5.5,5 9,5"
-  onClick={[Function]}
-  onContextMenu={[Function]}
 />
 `;

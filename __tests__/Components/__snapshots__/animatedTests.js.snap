@@ -205,8 +205,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       >
         <path
           d="M2,1C26,1 26,100 50,100"
-          onClick={[Function]}
-          onContextMenu={[Function]}
         />
       </Link>
       <Node
@@ -223,8 +221,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         y={2}
       >
         <g
-          onClick={[Function]}
-          onContextMenu={[Function]}
           transform="translate(2, 1)"
         >
           <circle
@@ -252,8 +248,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         y={80}
       >
         <g
-          onClick={[Function]}
-          onContextMenu={[Function]}
           transform="translate(80, 120)"
         >
           <circle

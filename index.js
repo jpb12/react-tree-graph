@@ -1,4 +1,4 @@
-import './Styles/style.css';
-import Tree from './Components/tree';
+import './styles/style.css';
+import Tree from './src/components/tree';
 
 export default Tree;

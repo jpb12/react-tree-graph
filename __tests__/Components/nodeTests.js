@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Node from '../../Components/node';
+import Node from '../../src/components/node';
 
 const defaultProps = {
 	x: 1,
@@ -40,17 +40,17 @@ describe('<Node>', () => {
 		tree.find('g').simulate('click', event);
 
 		expect(clickMock).toHaveBeenCalledTimes(1);
-		expect(clickMock).toHaveBeenCalledWith('testKey', event);
+		expect(clickMock).toHaveBeenCalledWith(event, 'testKey');
 	});
 
 	test('right click event has correct parameters', () => {
-		const clickMock = jest.fn();
+		const rightClickMock = jest.fn();
 		const event = {};
 
 		const props = {
 			keyProp: 'id',
 			gProps: {
-				onContextMenu: clickMock
+				onContextMenu: rightClickMock
 			},
 			id: 'testKey'
 		};
@@ -58,8 +58,8 @@ describe('<Node>', () => {
 		const tree = shallow(<Node {...defaultProps} {...props}/>);
 		tree.find('g').simulate('contextmenu', event);
 
-		expect(clickMock).toHaveBeenCalledTimes(1);
-		expect(clickMock).toHaveBeenCalledWith('testKey', event);
+		expect(rightClickMock).toHaveBeenCalledTimes(1);
+		expect(rightClickMock).toHaveBeenCalledWith(event, 'testKey');
 	});
 
 
