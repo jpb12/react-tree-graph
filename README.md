@@ -15,6 +15,7 @@ Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo
 
 Older Versions
 --------------
+[3.X](https://github.com/jpb12/react-tree-graph/tree/v3.3.0)
 [2.X](https://github.com/jpb12/react-tree-graph/tree/v2.0.0)
 [1.X](https://github.com/jpb12/react-tree-graph/tree/v1.7.2)
 
@@ -73,12 +74,33 @@ Configuration
 | `nodeOffset` | number | | 3.5 | The height offset for the label of a node. May need to be adjusted depending on radius and font size. |
 | `nodeRadius` | number | | 5 | The radius of the rendered node. |
 | `circleProps` | object | | `{}` | Props to be added to the `<circle>` element. |
-| `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. `onClick` and `onContextMenu` events configured here will have the node passed as a parameter. |
-| `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. `onClick` and `onContextMenu` events configured here will have the source and target nodes passed as parameters. |
+| `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |
+| `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. |
 | `svgProps` | object | | `{}` | Props to be added to the `<svg>` element. |
 | `textProps` | object | | `{}` | Props to be added to the `<text>` element. |
 
-The following properties can also be set individually on each node.  They will combine with the properties above:
+### Events
+
+Event handlers in `circleProps`, `gProp` and `textProps` will be called with the node ID as an additional parameter.
+
+`function(event, nodeId) { ... }`
+
+Event handlers in `pathProps` will be called with the source and node IDs as additional parameters.
+
+`function(event, sourceNodeId, targetNodeId) { ... }`
+
+### Overriding props
+
+The following properties can also be overridden by setting then for individual nodes.
+
+| Prop |
+|:---|
+| `keyProp` |
+| `labelProp` |
+| `nodeOffset` |
+| `nodeRadius` |
+
+The following object properties, if set on individual nodes, will be combined with the object properties set on the tree. If a property exists in both objects, the value from the node will be taken.
 
 | Prop | Description |
 |:---|:---|

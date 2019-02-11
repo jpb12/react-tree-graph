@@ -161,6 +161,62 @@
 		return _assertThisInitialized(self);
 	}
 
+	function _toConsumableArray(arr) {
+		return (
+			_arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread()
+		);
+	}
+
+	function _arrayWithoutHoles(arr) {
+		if (Array.isArray(arr)) {
+			for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++)
+				arr2[i] = arr[i];
+
+			return arr2;
+		}
+	}
+
+	function _iterableToArray(iter) {
+		if (
+			Symbol.iterator in Object(iter) ||
+			Object.prototype.toString.call(iter) === '[object Arguments]'
+		)
+			return Array.from(iter);
+	}
+
+	function _nonIterableSpread() {
+		throw new TypeError('Invalid attempt to spread non-iterable instance');
+	}
+
+	var regex = /on[A-Z]/;
+
+	function wrapper(func, args) {
+		return function(event) {
+			return func.apply(void 0, [event].concat(_toConsumableArray(args)));
+		};
+	} // Wraps any event handlers passed in as props with a function that passes additional arguments
+
+	function wrapHandlers(props) {
+		for (
+			var _len = arguments.length,
+				args = new Array(_len > 1 ? _len - 1 : 0),
+				_key = 1;
+			_key < _len;
+			_key++
+		) {
+			args[_key - 1] = arguments[_key];
+		}
+
+		var handlers = Object.keys(props).filter(function(propName) {
+			return regex.test(propName) && typeof props[propName] === 'function';
+		});
+		var wrappedHandlers = handlers.reduce(function(acc, handler) {
+			acc[handler] = wrapper(props[handler], args);
+			return acc;
+		}, {});
+		return _objectSpread({}, props, wrappedHandlers);
+	}
+
 	var propTypes = {
 		source: PropTypes.object.isRequired,
 		target: PropTypes.object.isRequired,
@@ -189,50 +245,24 @@
 		(function(_React$PureComponent) {
 			_inherits(Link, _React$PureComponent);
 
-			function Link(props) {
-				var _this;
-
+			function Link() {
 				_classCallCheck(this, Link);
 
-				_this = _possibleConstructorReturn(
+				return _possibleConstructorReturn(
 					this,
-					_getPrototypeOf(Link).call(this, props)
+					_getPrototypeOf(Link).apply(this, arguments)
 				);
-				_this.handleClick = _this.handleClick.bind(
-					_assertThisInitialized(_assertThisInitialized(_this))
-				);
-				_this.handleRightClick = _this.handleRightClick.bind(
-					_assertThisInitialized(_assertThisInitialized(_this))
-				);
-				return _this;
 			}
 
 			_createClass(Link, [
 				{
-					key: 'handleClick',
-					value: function handleClick(event) {
-						this.props.pathProps.onClick &&
-							this.props.pathProps.onClick(
-								this.props.source.data[this.props.keyProp],
-								this.props.target.data[this.props.keyProp],
-								event
-							);
-					}
-				},
-				{
-					key: 'handleRightClick',
-					value: function handleRightClick(event) {
-						this.props.pathProps.onContextMenu &&
-							this.props.pathProps.onContextMenu(
-								this.props.source.data[this.props.keyProp],
-								this.props.target.data[this.props.keyProp],
-								event
-							);
-					}
-				},
-				{
 					key: 'render',
 					value: function render() {
+						var wrappedProps = wrapHandlers(
+							this.props.pathProps,
+							this.props.source.data[this.props.keyProp],
+							this.props.target.data[this.props.keyProp]
+						);
 						var d = diagonal(
 							this.props.x1,
 							this.props.y1,
@@ -241,10 +271,8 @@
 						);
 						return React.createElement(
 							'path',
-							_extends({}, this.props.pathProps, {
-								d: d,
-								onClick: this.handleClick,
-								onContextMenu: this.handleRightClick
+							_extends({}, wrappedProps, {
+								d: d
 							})
 						);
 					}
@@ -272,42 +300,16 @@
 		(function(_React$PureComponent) {
 			_inherits(Node, _React$PureComponent);
 
-			function Node(props) {
-				var _this;
-
+			function Node() {
 				_classCallCheck(this, Node);
 
-				_this = _possibleConstructorReturn(
+				return _possibleConstructorReturn(
 					this,
-					_getPrototypeOf(Node).call(this, props)
+					_getPrototypeOf(Node).apply(this, arguments)
 				);
-				_this.handleClick = _this.handleClick.bind(
-					_assertThisInitialized(_assertThisInitialized(_this))
-				);
-				_this.handleRightClick = _this.handleRightClick.bind(
-					_assertThisInitialized(_assertThisInitialized(_this))
-				);
-				return _this;
 			}
 
 			_createClass(Node, [
-				{
-					key: 'handleClick',
-					value: function handleClick(event) {
-						this.props.gProps.onClick &&
-							this.props.gProps.onClick(this.props[this.props.keyProp], event);
-					}
-				},
-				{
-					key: 'handleRightClick',
-					value: function handleRightClick(event) {
-						this.props.gProps.onContextMenu &&
-							this.props.gProps.onContextMenu(
-								this.props[this.props.keyProp],
-								event
-							);
-					}
-				},
 				{
 					key: 'getTransform',
 					value: function getTransform() {
@@ -319,22 +321,32 @@
 				{
 					key: 'render',
 					value: function render() {
+						var wrappedCircleProps = wrapHandlers(
+							this.props.circleProps,
+							this.props[this.props.keyProp]
+						);
+						var wrappedGProps = wrapHandlers(
+							this.props.gProps,
+							this.props[this.props.keyProp]
+						);
+						var wrappedTextProps = wrapHandlers(
+							this.props.textProps,
+							this.props[this.props.keyProp]
+						);
 						return React.createElement(
 							'g',
-							_extends({}, this.props.gProps, {
-								transform: this.getTransform(),
-								onContextMenu: this.handleRightClick,
-								onClick: this.handleClick
+							_extends({}, wrappedGProps, {
+								transform: this.getTransform()
 							}),
 							React.createElement(
 								'circle',
-								_extends({}, this.props.circleProps, {
+								_extends({}, wrappedCircleProps, {
 									r: this.props.radius
 								})
 							),
 							React.createElement(
 								'text',
-								_extends({}, this.props.textProps, {
+								_extends({}, wrappedTextProps, {
 									dx: this.props.radius + 0.5,
 									dy: this.props.offset
 								}),

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Tree from '../../Components/tree';
+import Tree from '../../src/components/tree';
 
 describe('<Tree>', () => {
 	test('renders correctly', () => {

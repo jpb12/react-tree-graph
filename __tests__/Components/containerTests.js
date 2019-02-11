@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Container from '../../Components/container';
-import Link from '../../Components/link';
-import Node from '../../Components/node';
+import Container from '../../src/components/container';
+import Link from '../../src/components/link';
+import Node from '../../src/components/node';
 
 const nodes = [
 	{

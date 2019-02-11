@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { easeQuadOut } from 'd3-ease';
-import Animated from '../../Components/animated';
+import Animated from '../../src/components/animated';
 
 jest.useFakeTimers();
 
