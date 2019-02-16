@@ -85,7 +85,7 @@ Event handlers in `circleProps`, `gProp` and `textProps` will be called with the
 
 `function(event, nodeId) { ... }`
 
-Event handlers in `pathProps` will be called with the source and node IDs as additional parameters.
+Event handlers in `pathProps` will be called with the source and target node IDs as additional parameters.
 
 `function(event, sourceNodeId, targetNodeId) { ... }`
 
