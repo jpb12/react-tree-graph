@@ -1,6 +1,3 @@
-import 'core-js/fn/array/find';
-import 'core-js/fn/object/assign';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import Container from './container';

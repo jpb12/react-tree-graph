@@ -1,33 +1,35 @@
 (function(global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined'
 		? (module.exports = factory(
+				require('core-js/fn/array/find'),
+				require('core-js/fn/object/assign'),
 				require('clone'),
 				require('d3-ease'),
 				require('d3-hierarchy'),
 				require('prop-types'),
-				require('react'),
-				require('core-js/fn/array/find'),
-				require('core-js/fn/object/assign')
+				require('react')
 		  ))
 		: typeof define === 'function' && define.amd
 		? define([
+				'core-js/fn/array/find',
+				'core-js/fn/object/assign',
 				'clone',
 				'd3-ease',
 				'd3-hierarchy',
 				'prop-types',
-				'react',
-				'core-js/fn/array/find',
-				'core-js/fn/object/assign'
+				'react'
 		  ], factory)
 		: ((global = global || self),
 		  (global.ReactTreeGraph = factory(
+				null,
+				null,
 				global.clone,
 				global.d3,
 				global.d3,
 				global.PropTypes,
 				global.React
 		  )));
-})(this, function(clone, d3Ease, d3Hierarchy, PropTypes, React) {
+})(this, function(find, assign, clone, d3Ease, d3Hierarchy, PropTypes, React) {
 	'use strict';
 
 	function _classCallCheck(instance, Constructor) {

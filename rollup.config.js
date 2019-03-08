@@ -17,7 +17,7 @@ const defaultConfig = {
 		'prop-types',
 		'react'
 	],
-	input: 'index.js',
+	input: 'src/index.js',
 	output: {
 		format: 'umd',
 		globals: {
@@ -32,17 +32,7 @@ const defaultConfig = {
 	},
 	plugins: [
 		babel({
-			babelrc: false,
-			exclude: 'node_modules/**',
-			presets: [
-				[
-					'@babel/env',
-					{
-						'modules': false
-					}
-				],
-				'@babel/react'
-			]
+			exclude: 'node_modules/**'
 		}),
 		clear({
 			targets: ['dist']
