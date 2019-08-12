@@ -903,12 +903,8 @@
 		nodeOffset: 3.5,
 		nodeRadius: 5,
 		circleProps: {},
-		gProps: {
-			className: 'node'
-		},
-		pathProps: {
-			className: 'link'
-		},
+		gProps: {},
+		pathProps: {},
 		svgProps: {},
 		textProps: {}
 	};
@@ -971,8 +967,18 @@
 								steps: this.props.steps,
 								width: this.props.width,
 								circleProps: this.props.circleProps,
-								gProps: this.props.gProps,
-								pathProps: this.props.pathProps,
+								gProps: _objectSpread2(
+									{
+										className: 'node'
+									},
+									this.props.gProps
+								),
+								pathProps: _objectSpread2(
+									{
+										className: 'link'
+									},
+									this.props.pathProps
+								),
 								svgProps: this.props.svgProps,
 								textProps: this.props.textProps
 							},
