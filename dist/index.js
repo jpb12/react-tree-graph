@@ -89,22 +89,43 @@
 		return _extends.apply(this, arguments);
 	}
 
-	function _objectSpread(target) {
+	function ownKeys(object, enumerableOnly) {
+		var keys = Object.keys(object);
+
+		if (Object.getOwnPropertySymbols) {
+			var symbols = Object.getOwnPropertySymbols(object);
+			if (enumerableOnly)
+				symbols = symbols.filter(function(sym) {
+					return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+				});
+			keys.push.apply(keys, symbols);
+		}
+
+		return keys;
+	}
+
+	function _objectSpread2(target) {
 		for (var i = 1; i < arguments.length; i++) {
 			var source = arguments[i] != null ? arguments[i] : {};
-			var ownKeys = Object.keys(source);
 
-			if (typeof Object.getOwnPropertySymbols === 'function') {
-				ownKeys = ownKeys.concat(
-					Object.getOwnPropertySymbols(source).filter(function(sym) {
-						return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-					})
+			if (i % 2) {
+				ownKeys(source, true).forEach(function(key) {
+					_defineProperty(target, key, source[key]);
+				});
+			} else if (Object.getOwnPropertyDescriptors) {
+				Object.defineProperties(
+					target,
+					Object.getOwnPropertyDescriptors(source)
 				);
+			} else {
+				ownKeys(source).forEach(function(key) {
+					Object.defineProperty(
+						target,
+						key,
+						Object.getOwnPropertyDescriptor(source, key)
+					);
+				});
 			}
-
-			ownKeys.forEach(function(key) {
-				_defineProperty(target, key, source[key]);
-			});
 		}
 
 		return target;
@@ -216,7 +237,7 @@
 			acc[handler] = wrapper(props[handler], args);
 			return acc;
 		}, {});
-		return _objectSpread({}, props, wrappedHandlers);
+		return _objectSpread2({}, props, {}, wrappedHandlers);
 	}
 
 	var propTypes = {
@@ -418,9 +439,10 @@
 									x2: link.target.x,
 									y1: link.source.y,
 									y2: link.target.y,
-									pathProps: _objectSpread(
+									pathProps: _objectSpread2(
 										{},
 										_this.props.pathProps,
+										{},
 										link.target.data.pathProps
 									)
 								});
@@ -437,19 +459,22 @@
 											radius: _this.props.nodeRadius,
 											x: node.x,
 											y: node.y,
-											circleProps: _objectSpread(
+											circleProps: _objectSpread2(
 												{},
 												_this.props.circleProps,
+												{},
 												node.data.circleProps
 											),
-											gProps: _objectSpread(
+											gProps: _objectSpread2(
 												{},
 												_this.props.gProps,
+												{},
 												node.data.gProps
 											),
-											textProps: _objectSpread(
+											textProps: _objectSpread2(
 												{},
 												_this.props.textProps,
+												{},
 												node.data.textProps
 											)
 										},
@@ -499,18 +524,18 @@
 					var initialY = props.nodes[0].y;
 					_this.state = {
 						nodes: props.nodes.map(function(n) {
-							return _objectSpread({}, n, {
+							return _objectSpread2({}, n, {
 								x: initialX,
 								y: initialY
 							});
 						}),
 						links: props.links.map(function(l) {
 							return {
-								source: _objectSpread({}, l.source, {
+								source: _objectSpread2({}, l.source, {
 									x: initialX,
 									y: initialY
 								}),
-								target: _objectSpread({}, l.target, {
+								target: _objectSpread2({}, l.target, {
 									x: initialX,
 									y: initialY
 								})
@@ -757,7 +782,7 @@
 								return _this5.calculateNodePosition(
 									n.base,
 									n.old,
-									n.new,
+									n['new'],
 									interval
 								);
 							}),
@@ -765,7 +790,7 @@
 								return _this5.calculateLinkPosition(
 									l.base,
 									l.old,
-									l.new,
+									l['new'],
 									interval
 								);
 							})
@@ -775,7 +800,7 @@
 				{
 					key: 'calculateNodePosition',
 					value: function calculateNodePosition(node, start, end, interval) {
-						return _objectSpread({}, node, {
+						return _objectSpread2({}, node, {
 							x: this.calculateNewValue(start.x, end.x, interval),
 							y: this.calculateNewValue(start.y, end.y, interval)
 						});
@@ -785,7 +810,7 @@
 					key: 'calculateLinkPosition',
 					value: function calculateLinkPosition(link, start, end, interval) {
 						return {
-							source: _objectSpread({}, link.source, {
+							source: _objectSpread2({}, link.source, {
 								x: this.calculateNewValue(
 									start.source ? start.source.x : start.x,
 									end.source ? end.source.x : end.x,
@@ -797,7 +822,7 @@
 									interval
 								)
 							}),
-							target: _objectSpread({}, link.target, {
+							target: _objectSpread2({}, link.target, {
 								x: this.calculateNewValue(
 									start.target ? start.target.x : start.x,
 									end.target ? end.target.x : end.x,

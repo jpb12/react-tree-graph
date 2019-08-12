@@ -174,8 +174,7 @@ export default class Animated extends React.PureComponent {
 	}
 
 	render() {
-		return (
-			<Container {...this.props} {...this.state}/>);
+		return <Container {...this.props} {...this.state}/>;
 	}
 }
 
