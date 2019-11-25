@@ -12,7 +12,12 @@ const data = {
 };
 
 const code = `function onClick(event, nodeKey) {
-	alert(nodeKey);
+	alert(\`Left clicked \${nodeKey}\`);
+}
+
+function onRightClick(event, nodeKey) {
+	event.preventDefault();
+	alert(\`Right clicked \${nodeKey}\`);
 }
 
 <Tree
@@ -20,11 +25,17 @@ const code = `function onClick(event, nodeKey) {
 	height={200}
 	width={400}
 	gProps={{
-		onClick: onClick
+		onClick: onClick,
+		onContextMenu: onRightClick
 	}}/>`;
 
 function onClick(event, nodeKey) {
-	alert(nodeKey);
+	alert(`Left clicked ${nodeKey}`);
+}
+
+function onRightClick(event, nodeKey) {
+	event.preventDefault();
+	alert(`Right clicked ${nodeKey}`);
 }
 
 const description = 'Click on a node to trigger the custom event.  You can also configure custom events for clicking on any of the rendered SVG elements.';
@@ -38,7 +49,8 @@ export default class ClickingExample extends React.PureComponent {
 					height={200}
 					width={400}
 					gProps={{
-						onClick: onClick
+						onClick: onClick,
+						onContextMenu: onRightClick
 					}}/>
 			</Example>);
 	}
