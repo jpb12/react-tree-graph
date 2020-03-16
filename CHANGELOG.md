@@ -1,5 +1,9 @@
 ## 4.0.0 (11 Feb 2019)
 
+* Added pathFunc prop to configure custom paths
+
+## 4.0.0 (11 Feb 2019)
+
 * Breaking change: additional parameters are now passed in after the event parameter
 * Added support for additional parameters in arbitrary event handlers
 
