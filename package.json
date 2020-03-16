@@ -16,28 +16,28 @@
   "license": "MIT",
   "homepage": "http://jpb12.github.io/react-tree-graph/",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^10.0.2",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "eslint": "^6.1.0",
-    "eslint-plugin-react": "^7.14.3",
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "codemirror": "^5.48.2",
-    "d3-ease": "^1.0.5",
+    "codemirror": "^5.52.0",
+    "d3-ease": "^1.0.6",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
+    "react": "^16.13.0",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^16.9.0",
-    "react-tree-graph": "^4.0.1"
+    "react-dom": "^16.13.0",
+    "react-tree-graph": "^4.1.0"
   }
 }

@@ -7,6 +7,7 @@ import ClickingExample from './examples/clicking';
 import EasingExample from './examples/easing';
 import NodePropsExample from './examples/nodeProps';
 import SimpleExample from './examples/simple';
+import StraightExample from './examples/straight';
 import StylesExample from './examples/styles';
 import VerticalExample from './examples/vertical';
 import Header from './header';
@@ -26,6 +27,7 @@ class App extends React.PureComponent {
 					<ClickingExample/>
 					<ChildrenExample/>
 					<NodePropsExample/>
+					<StraightExample/>
 					<AnimatedExample/>
 					<EasingExample/>
 					<VerticalExample/>
