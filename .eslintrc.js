@@ -103,7 +103,7 @@ module.exports = {
 	},
 	"settings": {
 		"react": {
-			"version": "detect",
+			"version": "15.3",
 		}
 	}
 };

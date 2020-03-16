@@ -23,6 +23,7 @@ const propTypes = {
 		right: PropTypes.number.isRequired,
 		top: PropTypes.number.isRequired
 	}).isRequired,
+	pathFunc: PropTypes.string,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired,
 	circleProps: PropTypes.object.isRequired,
@@ -84,6 +85,7 @@ export default class Tree extends React.PureComponent {
 				nodes={nodes}
 				nodeOffset={this.props.nodeOffset}
 				nodeRadius={this.props.nodeRadius}
+				pathFunc={this.props.pathFunc}
 				steps={this.props.steps}
 				width={this.props.width}
 				circleProps={this.props.circleProps}

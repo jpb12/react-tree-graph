@@ -10,12 +10,17 @@ const propTypes = {
 	x2: PropTypes.number.isRequired,
 	y1: PropTypes.number.isRequired,
 	y2: PropTypes.number.isRequired,
+	pathFunc: PropTypes.func.isRequired,
 	pathProps: PropTypes.object.isRequired
 };
 
 function diagonal(x1, y1, x2, y2) {
 	return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 }
+
+const defaultProps = {
+	pathFunc: diagonal
+};
 
 export default class Link extends React.PureComponent {
 	render() {
@@ -25,7 +30,7 @@ export default class Link extends React.PureComponent {
 			this.props.target.data[this.props.keyProp]
 		);
 
-		let d = diagonal(
+		const d = this.props.pathFunc(
 			this.props.x1,
 			this.props.y1,
 			this.props.x2,
@@ -36,4 +41,5 @@ export default class Link extends React.PureComponent {
 	}
 }
 
+Link.defaultProps = defaultProps;
 Link.propTypes = propTypes;

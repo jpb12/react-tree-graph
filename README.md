@@ -63,7 +63,7 @@ Configuration
 | `margins` | object | | `{ bottom : 10, left : 20, right : 150, top : 10}` | The margins around the content. The right margin should be larger to include the rendered label text. |
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
-| `children` | node | no | | Will be rendered as children of the SVG, before the links and nodes. |
+| `children` | node | | | Will be rendered as children of the SVG, before the links and nodes. |
 | `animated` | boolean | | false | If true, the tree will animate. |
 | `duration` | number | | 500 | The duration in milliseconds of animations. |
 | `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |
@@ -76,6 +76,7 @@ Configuration
 | `circleProps` | object | | `{}` | Props to be added to the `<circle>` element. |
 | `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |
 | `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. |
+| `pathFunc` | function(x1,y1,x2,y2) | | curved | Function to calculate the co-ordinates of the path between nodes. |
 | `svgProps` | object | | `{}` | Props to be added to the `<svg>` element. |
 | `textProps` | object | | `{}` | Props to be added to the `<text>` element. |
 

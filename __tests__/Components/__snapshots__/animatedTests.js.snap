@@ -179,6 +179,7 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       <Link
         key="Black"
         keyProp="name"
+        pathFunc={[Function]}
         pathProps={Object {}}
         source={
           Object {

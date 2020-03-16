@@ -30,6 +30,14 @@ describe('<Link>', () => {
 		expect(tree).toMatchSnapshot();
 	});
 
+	test('renders correctly with custom path', () => {
+		function straightPath(x1, y1, x2, y2) {
+			return `M${y1},${x1} ${y2},${x2}`;
+		}
+		const tree = shallow(<Link {...defaultProps} pathFunc={straightPath}/>);
+		expect(tree).toMatchSnapshot();
+	});
+
 	test('click event has correct parameters', () => {
 		const clickMock = jest.fn();
 		const event = {};

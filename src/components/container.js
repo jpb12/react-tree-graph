@@ -13,6 +13,7 @@ const propTypes = {
 	nodeClassName: PropTypes.string,
 	nodeOffset: PropTypes.number.isRequired,
 	nodeRadius: PropTypes.number.isRequired,
+	pathFunc: PropTypes.func,
 	width: PropTypes.number.isRequired,
 	circleProps: PropTypes.object.isRequired,
 	gProps: PropTypes.object.isRequired,
@@ -30,6 +31,7 @@ export default class Container extends React.PureComponent {
 					<Link
 						key={link.target.data[this.props.keyProp]}
 						keyProp={this.props.keyProp}
+						pathFunc={this.props.pathFunc}
 						source={link.source}
 						target={link.target}
 						x1={link.source.x}
