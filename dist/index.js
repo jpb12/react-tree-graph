@@ -873,7 +873,7 @@
 			right: PropTypes.number.isRequired,
 			top: PropTypes.number.isRequired
 		}).isRequired,
-		pathFunc: PropTypes.string,
+		pathFunc: PropTypes.func,
 		nodeOffset: PropTypes.number.isRequired,
 		nodeRadius: PropTypes.number.isRequired,
 		circleProps: PropTypes.object.isRequired,

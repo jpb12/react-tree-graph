@@ -1,6 +1,14 @@
-## 4.0.0 (11 Feb 2019)
+## 4.1.1 (5 June 2020)
+
+* Fixed incorrect proptype (thanks @josh-stevens)
+
+## 4.1.0 (16 March 2020)
 
 * Added pathFunc prop to configure custom paths
+
+## 4.0.1 (12 August 2019)
+
+* Fixing default classname being removed when any props configured
 
 ## 4.0.0 (11 Feb 2019)
 
