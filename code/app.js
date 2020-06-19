@@ -6,6 +6,8 @@ import ChildrenExample from './examples/children';
 import ClickingExample from './examples/clicking';
 import EasingExample from './examples/easing';
 import NodePropsExample from './examples/nodeProps';
+import PolygonExample from './examples/polygon';
+import RectExample from './examples/rect';
 import SimpleExample from './examples/simple';
 import StraightExample from './examples/straight';
 import StylesExample from './examples/styles';
@@ -25,6 +27,8 @@ class App extends React.PureComponent {
 				<div className="centre">
 					<SimpleExample/>
 					<ClickingExample/>
+					<RectExample/>
+					<PolygonExample/>
 					<ChildrenExample/>
 					<NodePropsExample/>
 					<StraightExample/>
