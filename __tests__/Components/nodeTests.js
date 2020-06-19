@@ -8,19 +8,33 @@ const defaultProps = {
 	y: 2,
 	keyProp: '',
 	labelProp: 'name',
+	shape: 'circle',
 	gProps: {
 		className: 'test'
 	},
-	circleProps: {},
+	nodeProps: {},
 	textProps: {},
-	offset: 3,
-	radius: 4,
 	name: 'Test Node'
 };
 
 describe('<Node>', () => {
-	test('renders correctly', () => {
+	test('renders circle correctly', () => {
 		const tree = shallow(<Node {...defaultProps}/>);
+		expect(tree).toMatchSnapshot();
+	});
+
+	test('renders circle correctly with custom radius', () => {
+		const tree = shallow(<Node {...defaultProps} nodeProps={{ r: 10 }}/>);
+		expect(tree).toMatchSnapshot();
+	});
+
+	test('renders rect correctly', () => {
+		const tree = shallow(<Node {...defaultProps} shape="rect"/>);
+		expect(tree).toMatchSnapshot();
+	});
+
+	test('renders rect correctly with custom size', () => {
+		const tree = shallow(<Node {...defaultProps} shape="rect" nodeProps={{ height: 20, width: 30 }}/>);
 		expect(tree).toMatchSnapshot();
 	});
 
@@ -78,7 +92,7 @@ describe('<Node>', () => {
 			gProps: {
 				className: 'g'
 			},
-			circleProps: {
+			nodeProps: {
 				className: 'circle'
 			},
 			textProps: {

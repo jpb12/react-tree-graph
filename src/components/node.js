@@ -7,9 +7,8 @@ const propTypes = {
 	y: PropTypes.number.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
-	offset: PropTypes.number.isRequired,
-	radius: PropTypes.number.isRequired,
-	circleProps: PropTypes.object.isRequired,
+	shape: PropTypes.string.isRequired,
+	nodeProps: PropTypes.object.isRequired,
 	gProps: PropTypes.object.isRequired,
 	textProps: PropTypes.object.isRequired
 };
@@ -20,8 +19,22 @@ export default class Node extends React.PureComponent {
 	}
 
 	render() {
-		const wrappedCircleProps = wrapHandlers(
-			this.props.circleProps,
+		let offset = 0;
+		let nodePropsWithDefaults = this.props.nodeProps;
+		switch (this.props.shape) {
+			case 'circle':
+				nodePropsWithDefaults = { r: 5, ...nodePropsWithDefaults };
+				offset = nodePropsWithDefaults.r;
+				break;
+			case 'rect':
+				nodePropsWithDefaults = { height: 10, width: 10, ...nodePropsWithDefaults };
+				nodePropsWithDefaults = { x: -nodePropsWithDefaults.width / 2, y: -nodePropsWithDefaults.height / 2, ...nodePropsWithDefaults };
+				offset = nodePropsWithDefaults.width / 2;
+				break;
+		}
+
+		const wrappedNodeProps = wrapHandlers(
+			nodePropsWithDefaults,
 			this.props[this.props.keyProp]
 		);
 
@@ -37,8 +50,8 @@ export default class Node extends React.PureComponent {
 
 		return (
 			<g {...wrappedGProps} transform={this.getTransform()}>
-				<circle {...wrappedCircleProps} r={this.props.radius}/>
-				<text {...wrappedTextProps} dx={this.props.radius + 0.5} dy={this.props.offset}>
+				<this.props.shape {...wrappedNodeProps}/>
+				<text dx={offset + 0.5} dy={5} {...wrappedTextProps}>
 					{this.props[this.props.labelProp]}
 				</text>
 			</g>);

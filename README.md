@@ -15,6 +15,7 @@ Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo
 
 Older Versions
 --------------
+[4.X](https://github.com/jpb12/react-tree-graph/tree/v4.1.1)
 [3.X](https://github.com/jpb12/react-tree-graph/tree/v3.3.0)
 [2.X](https://github.com/jpb12/react-tree-graph/tree/v2.0.0)
 [1.X](https://github.com/jpb12/react-tree-graph/tree/v1.7.2)
@@ -71,9 +72,8 @@ Configuration
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
 | `keyProp` | string | | "name" | The property on each node to use as a key. |
 | `labelProp` | string | | "name" | The property on each node to render as label text. |
-| `nodeOffset` | number | | 3.5 | The height offset for the label of a node. May need to be adjusted depending on radius and font size. |
-| `nodeRadius` | number | | 5 | The radius of the rendered node. |
-| `circleProps` | object | | `{}` | Props to be added to the `<circle>` element. |
+| `nodeShape` | `circle`,`rect`,`polygon` | | `circle` | The shape of the node icons |
+| `nodeProps` | object | | `{}` | Props to be added to the `<circle>`, `<rect>` or `<polygon>` element. These will take priority over the default `r` added to `circle` and `height`, `width`, `x` and `y` added to `rect` |
 | `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |
 | `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. |
 | `pathFunc` | function(x1,y1,x2,y2) | | curved | Function to calculate the co-ordinates of the path between nodes. |
@@ -82,7 +82,7 @@ Configuration
 
 ### Events
 
-Event handlers in `circleProps`, `gProp` and `textProps` will be called with the node ID as an additional parameter.
+Event handlers in `nodeProps`, `gProps` and `textProps` will be called with the node ID as an additional parameter.
 
 `function(event, nodeId) { ... }`
 
@@ -98,14 +98,12 @@ The following properties can also be overridden by setting then for individual n
 |:---|
 | `keyProp` |
 | `labelProp` |
-| `nodeOffset` |
-| `nodeRadius` |
 
 The following object properties, if set on individual nodes, will be combined with the object properties set on the tree. If a property exists in both objects, the value from the node will be taken.
 
 | Prop | Description |
 |:---|:---|
-| `circleProps` | |
+| `nodeProps` | |
 | `gProps` | |
 | `pathProps` | Props for a path are taken from the target node. |
 | `textProps` | |

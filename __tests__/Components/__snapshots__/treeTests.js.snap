@@ -3,7 +3,6 @@
 exports[`<Tree> renders correctly 1`] = `
 <Animated
   animated={false}
-  circleProps={Object {}}
   duration={500}
   easing={[Function]}
   gProps={
@@ -75,8 +74,8 @@ exports[`<Tree> renders correctly 1`] = `
       },
     ]
   }
-  nodeOffset={3.5}
-  nodeRadius={5}
+  nodeProps={Object {}}
+  nodeShape="circle"
   nodes={
     Array [
       Node {

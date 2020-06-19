@@ -34,14 +34,13 @@ const defaultProps = {
 	width: 100,
 	keyProp: 'name',
 	labelProp: 'name',
-	nodeOffset: 1,
-	nodeRadius: 1,
+	nodeShape: 'circle',
 	duration: 1,
 	easing: easeQuadOut,
 	links: links,
 	nodes: nodes,
 	steps: 1,
-	circleProps: {},
+	nodeProps: {},
 	gProps: {},
 	pathProps: {},
 	svgProps: {},
@@ -325,7 +324,7 @@ describe('<Animated>', () => {
 	test('does not animate when props other than nodes or links change', () => {
 		const tree = shallow(<Animated {...defaultProps}/>);
 
-		tree.setProps({ nodeOffset: 5 });
+		tree.setProps({ nodeShape: 'rect' });
 
 		expect(tree).toMatchSnapshot();
 	});

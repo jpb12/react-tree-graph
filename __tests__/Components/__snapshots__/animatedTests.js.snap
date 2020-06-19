@@ -3,7 +3,6 @@
 exports[`<Animated> does not animate when props other than nodes or links change 1`] = `
 <Container
   animated={true}
-  circleProps={Object {}}
   duration={1}
   easing={[Function]}
   gProps={Object {}}
@@ -31,8 +30,8 @@ exports[`<Animated> does not animate when props other than nodes or links change
       },
     ]
   }
-  nodeOffset={5}
-  nodeRadius={1}
+  nodeProps={Object {}}
+  nodeShape="rect"
   nodes={
     Array [
       Object {
@@ -62,7 +61,6 @@ exports[`<Animated> does not animate when props other than nodes or links change
 exports[`<Animated> does nothing when not enabled 1`] = `
 <Animated
   animated={false}
-  circleProps={Object {}}
   duration={1}
   easing={[Function]}
   gProps={Object {}}
@@ -90,8 +88,8 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       },
     ]
   }
-  nodeOffset={1}
-  nodeRadius={1}
+  nodeProps={Object {}}
+  nodeShape="circle"
   nodes={
     Array [
       Object {
@@ -118,7 +116,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
 >
   <Container
     animated={false}
-    circleProps={Object {}}
     duration={1}
     easing={[Function]}
     gProps={Object {}}
@@ -146,8 +143,8 @@ exports[`<Animated> does nothing when not enabled 1`] = `
         },
       ]
     }
-    nodeOffset={1}
-    nodeRadius={1}
+    nodeProps={Object {}}
+    nodeShape="circle"
     nodes={
       Array [
         Object {
@@ -176,92 +173,92 @@ exports[`<Animated> does nothing when not enabled 1`] = `
       height={100}
       width={100}
     >
-      <Link
-        key="Black"
-        keyProp="name"
-        pathFunc={[Function]}
-        pathProps={Object {}}
-        source={
-          Object {
-            "data": Object {
-              "name": "Colour",
-            },
-            "x": 1,
-            "y": 2,
+      <g>
+        <Link
+          key="Black"
+          keyProp="name"
+          pathFunc={[Function]}
+          pathProps={Object {}}
+          source={
+            Object {
+              "data": Object {
+                "name": "Colour",
+              },
+              "x": 1,
+              "y": 2,
+            }
           }
-        }
-        target={
-          Object {
-            "data": Object {
-              "name": "Black",
-            },
-            "x": 100,
-            "y": 50,
+          target={
+            Object {
+              "data": Object {
+                "name": "Black",
+              },
+              "x": 100,
+              "y": 50,
+            }
           }
-        }
-        x1={1}
-        x2={100}
-        y1={2}
-        y2={50}
-      >
-        <path
-          d="M2,1C26,1 26,100 50,100"
-        />
-      </Link>
-      <Node
-        circleProps={Object {}}
-        gProps={Object {}}
-        key="Colour"
-        keyProp="name"
-        labelProp="name"
-        name="Colour"
-        offset={1}
-        radius={1}
-        textProps={Object {}}
-        x={1}
-        y={2}
-      >
-        <g
-          transform="translate(2, 1)"
+          x1={1}
+          x2={100}
+          y1={2}
+          y2={50}
         >
-          <circle
-            r={1}
+          <path
+            d="M2,1C26,1 26,100 50,100"
           />
-          <text
-            dx={1.5}
-            dy={1}
-          >
-            Colour
-          </text>
-        </g>
-      </Node>
-      <Node
-        circleProps={Object {}}
-        gProps={Object {}}
-        key="Black"
-        keyProp="name"
-        labelProp="name"
-        name="Black"
-        offset={1}
-        radius={1}
-        textProps={Object {}}
-        x={120}
-        y={80}
-      >
-        <g
-          transform="translate(80, 120)"
+        </Link>
+        <Node
+          gProps={Object {}}
+          key="Colour"
+          keyProp="name"
+          labelProp="name"
+          name="Colour"
+          nodeProps={Object {}}
+          shape="circle"
+          textProps={Object {}}
+          x={1}
+          y={2}
         >
-          <circle
-            r={1}
-          />
-          <text
-            dx={1.5}
-            dy={1}
+          <g
+            transform="translate(2, 1)"
           >
-            Black
-          </text>
-        </g>
-      </Node>
+            <circle
+              r={5}
+            />
+            <text
+              dx={5.5}
+              dy={5}
+            >
+              Colour
+            </text>
+          </g>
+        </Node>
+        <Node
+          gProps={Object {}}
+          key="Black"
+          keyProp="name"
+          labelProp="name"
+          name="Black"
+          nodeProps={Object {}}
+          shape="circle"
+          textProps={Object {}}
+          x={120}
+          y={80}
+        >
+          <g
+            transform="translate(80, 120)"
+          >
+            <circle
+              r={5}
+            />
+            <text
+              dx={5.5}
+              dy={5}
+            >
+              Black
+            </text>
+          </g>
+        </Node>
+      </g>
     </svg>
   </Container>
 </Animated>
@@ -270,7 +267,6 @@ exports[`<Animated> does nothing when not enabled 1`] = `
 exports[`<Animated> renders correctly and sets initial state 1`] = `
 <Container
   animated={true}
-  circleProps={Object {}}
   duration={1}
   easing={[Function]}
   gProps={Object {}}
@@ -298,8 +294,8 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
       },
     ]
   }
-  nodeOffset={1}
-  nodeRadius={1}
+  nodeProps={Object {}}
+  nodeShape="circle"
   nodes={
     Array [
       Object {

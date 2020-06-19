@@ -315,9 +315,8 @@
 		y: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		labelProp: PropTypes.string.isRequired,
-		offset: PropTypes.number.isRequired,
-		radius: PropTypes.number.isRequired,
-		circleProps: PropTypes.object.isRequired,
+		shape: PropTypes.string.isRequired,
+		nodeProps: PropTypes.object.isRequired,
 		gProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired
 	};
@@ -346,8 +345,41 @@
 			{
 				key: 'render',
 				value: function render() {
-					var wrappedCircleProps = wrapHandlers(
-						this.props.circleProps,
+					var offset = 0;
+					var nodePropsWithDefaults = this.props.nodeProps;
+
+					switch (this.props.shape) {
+						case 'circle':
+							nodePropsWithDefaults = _objectSpread2(
+								{
+									r: 5
+								},
+								nodePropsWithDefaults
+							);
+							offset = nodePropsWithDefaults.r;
+							break;
+
+						case 'rect':
+							nodePropsWithDefaults = _objectSpread2(
+								{
+									height: 10,
+									width: 10
+								},
+								nodePropsWithDefaults
+							);
+							nodePropsWithDefaults = _objectSpread2(
+								{
+									x: -nodePropsWithDefaults.width / 2,
+									y: -nodePropsWithDefaults.height / 2
+								},
+								nodePropsWithDefaults
+							);
+							offset = nodePropsWithDefaults.width / 2;
+							break;
+					}
+
+					var wrappedNodeProps = wrapHandlers(
+						nodePropsWithDefaults,
 						this.props[this.props.keyProp]
 					);
 					var wrappedGProps = wrapHandlers(
@@ -363,18 +395,16 @@
 						_extends({}, wrappedGProps, {
 							transform: this.getTransform()
 						}),
-						React.createElement(
-							'circle',
-							_extends({}, wrappedCircleProps, {
-								r: this.props.radius
-							})
-						),
+						React.createElement(this.props.shape, wrappedNodeProps),
 						React.createElement(
 							'text',
-							_extends({}, wrappedTextProps, {
-								dx: this.props.radius + 0.5,
-								dy: this.props.offset
-							}),
+							_extends(
+								{
+									dx: offset + 0.5,
+									dy: 5
+								},
+								wrappedTextProps
+							),
 							this.props[this.props.labelProp]
 						)
 					);
@@ -394,11 +424,10 @@
 		links: PropTypes.array.isRequired,
 		nodes: PropTypes.array.isRequired,
 		nodeClassName: PropTypes.string,
-		nodeOffset: PropTypes.number.isRequired,
-		nodeRadius: PropTypes.number.isRequired,
+		nodeShape: PropTypes.string.isRequired,
+		nodeProps: PropTypes.object.isRequired,
 		pathFunc: PropTypes.func,
 		width: PropTypes.number.isRequired,
-		circleProps: PropTypes.object.isRequired,
 		gProps: PropTypes.object.isRequired,
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
@@ -430,60 +459,63 @@
 							width: this.props.width
 						}),
 						this.props.children,
-						this.props.links.map(function(link) {
-							return React.createElement(Link, {
-								key: link.target.data[_this.props.keyProp],
-								keyProp: _this.props.keyProp,
-								pathFunc: _this.props.pathFunc,
-								source: link.source,
-								target: link.target,
-								x1: link.source.x,
-								x2: link.target.x,
-								y1: link.source.y,
-								y2: link.target.y,
-								pathProps: _objectSpread2(
-									{},
-									_this.props.pathProps,
-									{},
-									link.target.data.pathProps
-								)
-							});
-						}),
-						this.props.nodes.map(function(node) {
-							return React.createElement(
-								Node,
-								_extends(
-									{
-										key: node.data[_this.props.keyProp],
-										keyProp: _this.props.keyProp,
-										labelProp: _this.props.labelProp,
-										offset: _this.props.nodeOffset,
-										radius: _this.props.nodeRadius,
-										x: node.x,
-										y: node.y,
-										circleProps: _objectSpread2(
-											{},
-											_this.props.circleProps,
-											{},
-											node.data.circleProps
-										),
-										gProps: _objectSpread2(
-											{},
-											_this.props.gProps,
-											{},
-											node.data.gProps
-										),
-										textProps: _objectSpread2(
-											{},
-											_this.props.textProps,
-											{},
-											node.data.textProps
-										)
-									},
-									node.data
-								)
-							);
-						})
+						React.createElement(
+							'g',
+							null,
+							this.props.links.map(function(link) {
+								return React.createElement(Link, {
+									key: link.target.data[_this.props.keyProp],
+									keyProp: _this.props.keyProp,
+									pathFunc: _this.props.pathFunc,
+									source: link.source,
+									target: link.target,
+									x1: link.source.x,
+									x2: link.target.x,
+									y1: link.source.y,
+									y2: link.target.y,
+									pathProps: _objectSpread2(
+										{},
+										_this.props.pathProps,
+										{},
+										link.target.data.pathProps
+									)
+								});
+							}),
+							this.props.nodes.map(function(node) {
+								return React.createElement(
+									Node,
+									_extends(
+										{
+											key: node.data[_this.props.keyProp],
+											keyProp: _this.props.keyProp,
+											labelProp: _this.props.labelProp,
+											shape: _this.props.nodeShape,
+											x: node.x,
+											y: node.y,
+											nodeProps: _objectSpread2(
+												{},
+												_this.props.nodeProps,
+												{},
+												node.data.nodeProps
+											),
+											gProps: _objectSpread2(
+												{},
+												_this.props.gProps,
+												{},
+												node.data.gProps
+											),
+											textProps: _objectSpread2(
+												{},
+												_this.props.textProps,
+												{},
+												node.data.textProps
+											)
+										},
+										node.data
+									)
+								);
+							})
+						)
 					);
 				}
 			}
@@ -874,9 +906,8 @@
 			top: PropTypes.number.isRequired
 		}).isRequired,
 		pathFunc: PropTypes.func,
-		nodeOffset: PropTypes.number.isRequired,
-		nodeRadius: PropTypes.number.isRequired,
-		circleProps: PropTypes.object.isRequired,
+		nodeShape: PropTypes.oneOf(['circle', 'rect', 'polygon']).isRequired,
+		nodeProps: PropTypes.object.isRequired,
 		gProps: PropTypes.object.isRequired,
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
@@ -898,9 +929,8 @@
 			right: 150,
 			top: 10
 		},
-		nodeOffset: 3.5,
-		nodeRadius: 5,
-		circleProps: {},
+		nodeShape: 'circle',
+		nodeProps: {},
 		gProps: {},
 		pathProps: {},
 		svgProps: {},
@@ -958,12 +988,11 @@
 							labelProp: this.props.labelProp,
 							links: links,
 							nodes: nodes,
-							nodeOffset: this.props.nodeOffset,
-							nodeRadius: this.props.nodeRadius,
+							nodeShape: this.props.nodeShape,
+							nodeProps: this.props.nodeProps,
 							pathFunc: this.props.pathFunc,
 							steps: this.props.steps,
 							width: this.props.width,
-							circleProps: this.props.circleProps,
 							gProps: _objectSpread2(
 								{
 									className: 'node'

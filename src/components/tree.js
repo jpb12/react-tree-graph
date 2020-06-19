@@ -24,9 +24,8 @@ const propTypes = {
 		top: PropTypes.number.isRequired
 	}).isRequired,
 	pathFunc: PropTypes.func,
-	nodeOffset: PropTypes.number.isRequired,
-	nodeRadius: PropTypes.number.isRequired,
-	circleProps: PropTypes.object.isRequired,
+	nodeShape: PropTypes.oneOf(['circle', 'rect', 'polygon']).isRequired,
+	nodeProps: PropTypes.object.isRequired,
 	gProps: PropTypes.object.isRequired,
 	pathProps: PropTypes.object.isRequired,
 	svgProps: PropTypes.object.isRequired,
@@ -47,9 +46,8 @@ const defaultProps = {
 		right: 150,
 		top: 10
 	},
-	nodeOffset: 3.5,
-	nodeRadius: 5,
-	circleProps: {},
+	nodeShape: 'circle',
+	nodeProps: {},
 	gProps: {},
 	pathProps: {},
 	svgProps: {},
@@ -83,12 +81,11 @@ export default class Tree extends React.PureComponent {
 				labelProp={this.props.labelProp}
 				links={links}
 				nodes={nodes}
-				nodeOffset={this.props.nodeOffset}
-				nodeRadius={this.props.nodeRadius}
+				nodeShape={this.props.nodeShape}
+				nodeProps={this.props.nodeProps}
 				pathFunc={this.props.pathFunc}
 				steps={this.props.steps}
 				width={this.props.width}
-				circleProps={this.props.circleProps}
 				gProps={{ className: 'node', ...this.props.gProps }}
 				pathProps={{ className: 'link', ...this.props.pathProps }}
 				svgProps={this.props.svgProps}

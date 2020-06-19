@@ -1,3 +1,16 @@
+## 5.0.0 (19 June 2020)
+* Breaking change: Adding support for rect and polygon
+* Breaking change: Allowing textProps to override default offsets
+* Breaking change: Fixing incorrect default offsets
+* Breaking change: Wrapping nodes and links in a <g> node for easier transformations
+
+### Migrating:
+* If you were using `circleProps`, use `nodeProps` instead. The format is the same.
+* If you were using `nodeRadius`, instead pass an `r` prop through `nodeProps`.
+* If you were using `nodeOffset`, instead pass a `dy` prop through `textProps`.
+* If you had css selectors relying on the `path` and `g` nodes being immediate children of `svg`, you will have to modify these due to the additional `g` node inbetween.
+* If you weren't using `nodeOffset`, node text position will change slightly.
+
 ## 4.1.1 (5 June 2020)
 
 * Fixed incorrect proptype (thanks @josh-stevens)

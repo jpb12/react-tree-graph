@@ -7,29 +7,86 @@ exports[`<Node> htmlProps applied to all elements 1`] = `
 >
   <circle
     className="circle"
-    r={4}
+    r={5}
   />
   <text
     className="text"
-    dx={4.5}
-    dy={3}
+    dx={5.5}
+    dy={5}
   >
     Test Node
   </text>
 </g>
 `;
 
-exports[`<Node> renders correctly 1`] = `
+exports[`<Node> renders circle correctly 1`] = `
 <g
   className="test"
   transform="translate(2, 1)"
 >
   <circle
-    r={4}
+    r={5}
   />
   <text
-    dx={4.5}
-    dy={3}
+    dx={5.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
+exports[`<Node> renders circle correctly with custom radius 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <circle
+    r={10}
+  />
+  <text
+    dx={10.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
+exports[`<Node> renders rect correctly 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <rect
+    height={10}
+    width={10}
+    x={-5}
+    y={-5}
+  />
+  <text
+    dx={5.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
+exports[`<Node> renders rect correctly with custom size 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <rect
+    height={20}
+    width={30}
+    x={-15}
+    y={-10}
+  />
+  <text
+    dx={15.5}
+    dy={5}
   >
     Test Node
   </text>

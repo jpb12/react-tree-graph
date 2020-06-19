@@ -1,4 +1,4 @@
-.node circle {
+.node circle, .node rect {
 	fill: white;
 	stroke: black;
 }

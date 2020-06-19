@@ -6,7 +6,9 @@ exports[`<Container> html tree props added 1`] = `
   height={100}
   stoke="none"
   width={200}
-/>
+>
+  <g />
+</svg>
 `;
 
 exports[`<Container> renders children 1`] = `
@@ -17,60 +19,60 @@ exports[`<Container> renders children 1`] = `
   <text>
     Extra child
   </text>
-  <Link
-    key="Black"
-    keyProp="name"
-    pathFunc={[Function]}
-    pathProps={Object {}}
-    source={
-      Object {
-        "data": Object {
-          "name": "Colour",
-        },
-        "x": 1,
-        "y": 2,
+  <g>
+    <Link
+      key="Black"
+      keyProp="name"
+      pathFunc={[Function]}
+      pathProps={Object {}}
+      source={
+        Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        }
       }
-    }
-    target={
-      Object {
-        "data": Object {
-          "name": "Black",
-        },
-        "x": 100,
-        "y": 50,
+      target={
+        Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 100,
+          "y": 50,
+        }
       }
-    }
-    x1={1}
-    x2={100}
-    y1={2}
-    y2={50}
-  />
-  <Node
-    circleProps={Object {}}
-    gProps={Object {}}
-    key="Colour"
-    keyProp="name"
-    labelProp="name"
-    name="Colour"
-    offset={3.5}
-    radius={5}
-    textProps={Object {}}
-    x={1}
-    y={2}
-  />
-  <Node
-    circleProps={Object {}}
-    gProps={Object {}}
-    key="Black"
-    keyProp="name"
-    labelProp="name"
-    name="Black"
-    offset={3.5}
-    radius={5}
-    textProps={Object {}}
-    x={100}
-    y={50}
-  />
+      x1={1}
+      x2={100}
+      y1={2}
+      y2={50}
+    />
+    <Node
+      gProps={Object {}}
+      key="Colour"
+      keyProp="name"
+      labelProp="name"
+      name="Colour"
+      nodeProps={Object {}}
+      shape="circle"
+      textProps={Object {}}
+      x={1}
+      y={2}
+    />
+    <Node
+      gProps={Object {}}
+      key="Black"
+      keyProp="name"
+      labelProp="name"
+      name="Black"
+      nodeProps={Object {}}
+      shape="circle"
+      textProps={Object {}}
+      x={100}
+      y={50}
+    />
+  </g>
 </svg>
 `;
 
@@ -79,59 +81,59 @@ exports[`<Container> renders correctly 1`] = `
   height={100}
   width={200}
 >
-  <Link
-    key="Black"
-    keyProp="name"
-    pathFunc={[Function]}
-    pathProps={Object {}}
-    source={
-      Object {
-        "data": Object {
-          "name": "Colour",
-        },
-        "x": 1,
-        "y": 2,
+  <g>
+    <Link
+      key="Black"
+      keyProp="name"
+      pathFunc={[Function]}
+      pathProps={Object {}}
+      source={
+        Object {
+          "data": Object {
+            "name": "Colour",
+          },
+          "x": 1,
+          "y": 2,
+        }
       }
-    }
-    target={
-      Object {
-        "data": Object {
-          "name": "Black",
-        },
-        "x": 100,
-        "y": 50,
+      target={
+        Object {
+          "data": Object {
+            "name": "Black",
+          },
+          "x": 100,
+          "y": 50,
+        }
       }
-    }
-    x1={1}
-    x2={100}
-    y1={2}
-    y2={50}
-  />
-  <Node
-    circleProps={Object {}}
-    gProps={Object {}}
-    key="Colour"
-    keyProp="name"
-    labelProp="name"
-    name="Colour"
-    offset={3.5}
-    radius={5}
-    textProps={Object {}}
-    x={1}
-    y={2}
-  />
-  <Node
-    circleProps={Object {}}
-    gProps={Object {}}
-    key="Black"
-    keyProp="name"
-    labelProp="name"
-    name="Black"
-    offset={3.5}
-    radius={5}
-    textProps={Object {}}
-    x={100}
-    y={50}
-  />
+      x1={1}
+      x2={100}
+      y1={2}
+      y2={50}
+    />
+    <Node
+      gProps={Object {}}
+      key="Colour"
+      keyProp="name"
+      labelProp="name"
+      name="Colour"
+      nodeProps={Object {}}
+      shape="circle"
+      textProps={Object {}}
+      x={1}
+      y={2}
+    />
+    <Node
+      gProps={Object {}}
+      key="Black"
+      keyProp="name"
+      labelProp="name"
+      name="Black"
+      nodeProps={Object {}}
+      shape="circle"
+      textProps={Object {}}
+      x={100}
+      y={50}
+    />
+  </g>
 </svg>
 `;
