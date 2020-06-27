@@ -8,6 +8,7 @@ export default class SidePanel extends React.PureComponent {
 				<div><a href="#clicking">Click events</a></div>
 				<div><a href="#rect">Rectangular nodes</a></div>
 				<div><a href="#polygon">Polygon nodes</a></div>
+				<div><a href="#image">Image nodes</a></div>
 				<div><a href="#children">Custom children</a></div>
 				<div><a href="#nodeProps">Custom node props</a></div>
 				<div><a href="#customPath">Custom path</a></div>

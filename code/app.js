@@ -5,6 +5,7 @@ import AnimatedExample from './examples/animated';
 import ChildrenExample from './examples/children';
 import ClickingExample from './examples/clicking';
 import EasingExample from './examples/easing';
+import ImageExample from './examples/image';
 import NodePropsExample from './examples/nodeProps';
 import PolygonExample from './examples/polygon';
 import RectExample from './examples/rect';
@@ -29,6 +30,7 @@ class App extends React.PureComponent {
 					<ClickingExample/>
 					<RectExample/>
 					<PolygonExample/>
+					<ImageExample/>
 					<ChildrenExample/>
 					<NodePropsExample/>
 					<StraightExample/>
