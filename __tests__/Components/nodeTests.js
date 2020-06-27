@@ -38,6 +38,18 @@ describe('<Node>', () => {
 		expect(tree).toMatchSnapshot();
 	});
 
+	test('renders image correctly', () => {
+		const tree = shallow(<Node {...defaultProps} shape="image" nodeProps={{ href: 'http://example.com' }}/>);
+		expect(tree).toMatchSnapshot();
+	});
+
+	test('renders image correctly with custom size', () => {
+		const tree = shallow(
+			<Node {...defaultProps} shape="image" nodeProps={{ href: 'http://example.com', height: 20, width: 30 }}/>
+		);
+		expect(tree).toMatchSnapshot();
+	});
+
 	test('click event has correct parameters', () => {
 		const clickMock = jest.fn();
 		const event = {};

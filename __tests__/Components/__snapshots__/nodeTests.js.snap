@@ -53,6 +53,48 @@ exports[`<Node> renders circle correctly with custom radius 1`] = `
 </g>
 `;
 
+exports[`<Node> renders image correctly 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <image
+    height={10}
+    href="http://example.com"
+    width={10}
+    x={-5}
+    y={-5}
+  />
+  <text
+    dx={5.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
+exports[`<Node> renders image correctly with custom size 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <image
+    height={20}
+    href="http://example.com"
+    width={30}
+    x={-15}
+    y={-10}
+  />
+  <text
+    dx={15.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
 exports[`<Node> renders rect correctly 1`] = `
 <g
   className="test"

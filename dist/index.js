@@ -359,6 +359,7 @@
 							offset = nodePropsWithDefaults.r;
 							break;
 
+						case 'image':
 						case 'rect':
 							nodePropsWithDefaults = _objectSpread2(
 								{
@@ -906,7 +907,8 @@
 			top: PropTypes.number.isRequired
 		}).isRequired,
 		pathFunc: PropTypes.func,
-		nodeShape: PropTypes.oneOf(['circle', 'rect', 'polygon']).isRequired,
+		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect'])
+			.isRequired,
 		nodeProps: PropTypes.object.isRequired,
 		gProps: PropTypes.object.isRequired,
 		pathProps: PropTypes.object.isRequired,

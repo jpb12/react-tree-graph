@@ -26,6 +26,7 @@ export default class Node extends React.PureComponent {
 				nodePropsWithDefaults = { r: 5, ...nodePropsWithDefaults };
 				offset = nodePropsWithDefaults.r;
 				break;
+			case 'image':
 			case 'rect':
 				nodePropsWithDefaults = { height: 10, width: 10, ...nodePropsWithDefaults };
 				nodePropsWithDefaults = { x: -nodePropsWithDefaults.width / 2, y: -nodePropsWithDefaults.height / 2, ...nodePropsWithDefaults };
