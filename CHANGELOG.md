@@ -1,3 +1,6 @@
+## 5.1.0 (27 June 2020)
+* Adding support for image
+
 ## 5.0.0 (19 June 2020)
 * Breaking change: Adding support for rect and polygon
 * Breaking change: Allowing textProps to override default offsets
