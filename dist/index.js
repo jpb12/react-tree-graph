@@ -19,7 +19,8 @@
 				'prop-types',
 				'react'
 		  ], factory)
-		: ((global = global || self),
+		: ((global =
+				typeof globalThis !== 'undefined' ? globalThis : global || self),
 		  (global.ReactTreeGraph = factory(
 				null,
 				null,
@@ -166,6 +167,19 @@
 		return _setPrototypeOf(o, p);
 	}
 
+	function _isNativeReflectConstruct() {
+		if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
+		if (Reflect.construct.sham) return false;
+		if (typeof Proxy === 'function') return true;
+
+		try {
+			Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+			return true;
+		} catch (e) {
+			return false;
+		}
+	}
+
 	function _assertThisInitialized(self) {
 		if (self === void 0) {
 			throw new ReferenceError(
@@ -184,31 +198,65 @@
 		return _assertThisInitialized(self);
 	}
 
+	function _createSuper(Derived) {
+		var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+		return function _createSuperInternal() {
+			var Super = _getPrototypeOf(Derived),
+				result;
+
+			if (hasNativeReflectConstruct) {
+				var NewTarget = _getPrototypeOf(this).constructor;
+
+				result = Reflect.construct(Super, arguments, NewTarget);
+			} else {
+				result = Super.apply(this, arguments);
+			}
+
+			return _possibleConstructorReturn(this, result);
+		};
+	}
+
 	function _toConsumableArray(arr) {
 		return (
-			_arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread()
+			_arrayWithoutHoles(arr) ||
+			_iterableToArray(arr) ||
+			_unsupportedIterableToArray(arr) ||
+			_nonIterableSpread()
 		);
 	}
 
 	function _arrayWithoutHoles(arr) {
-		if (Array.isArray(arr)) {
-			for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++)
-				arr2[i] = arr[i];
-
-			return arr2;
-		}
+		if (Array.isArray(arr)) return _arrayLikeToArray(arr);
 	}
 
 	function _iterableToArray(iter) {
-		if (
-			Symbol.iterator in Object(iter) ||
-			Object.prototype.toString.call(iter) === '[object Arguments]'
-		)
+		if (typeof Symbol !== 'undefined' && Symbol.iterator in Object(iter))
 			return Array.from(iter);
 	}
 
+	function _unsupportedIterableToArray(o, minLen) {
+		if (!o) return;
+		if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
+		var n = Object.prototype.toString.call(o).slice(8, -1);
+		if (n === 'Object' && o.constructor) n = o.constructor.name;
+		if (n === 'Map' || n === 'Set') return Array.from(o);
+		if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+			return _arrayLikeToArray(o, minLen);
+	}
+
+	function _arrayLikeToArray(arr, len) {
+		if (len == null || len > arr.length) len = arr.length;
+
+		for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+		return arr2;
+	}
+
 	function _nonIterableSpread() {
-		throw new TypeError('Invalid attempt to spread non-iterable instance');
+		throw new TypeError(
+			'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+		);
 	}
 
 	var regex = /on[A-Z]/;
@@ -237,7 +285,7 @@
 			acc[handler] = wrapper(props[handler], args);
 			return acc;
 		}, {});
-		return _objectSpread2({}, props, {}, wrappedHandlers);
+		return _objectSpread2(_objectSpread2({}, props), wrappedHandlers);
 	}
 
 	var propTypes = {
@@ -271,13 +319,12 @@
 	var Link = /*#__PURE__*/ (function(_React$PureComponent) {
 		_inherits(Link, _React$PureComponent);
 
+		var _super = _createSuper(Link);
+
 		function Link() {
 			_classCallCheck(this, Link);
 
-			return _possibleConstructorReturn(
-				this,
-				_getPrototypeOf(Link).apply(this, arguments)
-			);
+			return _super.apply(this, arguments);
 		}
 
 		_createClass(Link, [
@@ -295,7 +342,7 @@
 						this.props.x2,
 						this.props.y2
 					);
-					return React.createElement(
+					return /*#__PURE__*/ React.createElement(
 						'path',
 						_extends({}, wrappedProps, {
 							d: d
@@ -324,13 +371,12 @@
 	var Node = /*#__PURE__*/ (function(_React$PureComponent) {
 		_inherits(Node, _React$PureComponent);
 
+		var _super = _createSuper(Node);
+
 		function Node() {
 			_classCallCheck(this, Node);
 
-			return _possibleConstructorReturn(
-				this,
-				_getPrototypeOf(Node).apply(this, arguments)
-			);
+			return _super.apply(this, arguments);
 		}
 
 		_createClass(Node, [
@@ -391,13 +437,16 @@
 						this.props.textProps,
 						this.props[this.props.keyProp]
 					);
-					return React.createElement(
+					return /*#__PURE__*/ React.createElement(
 						'g',
 						_extends({}, wrappedGProps, {
 							transform: this.getTransform()
 						}),
-						React.createElement(this.props.shape, wrappedNodeProps),
-						React.createElement(
+						/*#__PURE__*/ React.createElement(
+							this.props.shape,
+							wrappedNodeProps
+						),
+						/*#__PURE__*/ React.createElement(
 							'text',
 							_extends(
 								{
@@ -438,13 +487,12 @@
 	var Container = /*#__PURE__*/ (function(_React$PureComponent) {
 		_inherits(Container, _React$PureComponent);
 
+		var _super = _createSuper(Container);
+
 		function Container() {
 			_classCallCheck(this, Container);
 
-			return _possibleConstructorReturn(
-				this,
-				_getPrototypeOf(Container).apply(this, arguments)
-			);
+			return _super.apply(this, arguments);
 		}
 
 		_createClass(Container, [
@@ -453,18 +501,18 @@
 				value: function render() {
 					var _this = this;
 
-					return React.createElement(
+					return /*#__PURE__*/ React.createElement(
 						'svg',
 						_extends({}, this.props.svgProps, {
 							height: this.props.height,
 							width: this.props.width
 						}),
 						this.props.children,
-						React.createElement(
+						/*#__PURE__*/ React.createElement(
 							'g',
 							null,
 							this.props.links.map(function(link) {
-								return React.createElement(Link, {
+								return /*#__PURE__*/ React.createElement(Link, {
 									key: link.target.data[_this.props.keyProp],
 									keyProp: _this.props.keyProp,
 									pathFunc: _this.props.pathFunc,
@@ -475,15 +523,13 @@
 									y1: link.source.y,
 									y2: link.target.y,
 									pathProps: _objectSpread2(
-										{},
-										_this.props.pathProps,
-										{},
+										_objectSpread2({}, _this.props.pathProps),
 										link.target.data.pathProps
 									)
 								});
 							}),
 							this.props.nodes.map(function(node) {
-								return React.createElement(
+								return /*#__PURE__*/ React.createElement(
 									Node,
 									_extends(
 										{
@@ -494,21 +540,15 @@
 											x: node.x,
 											y: node.y,
 											nodeProps: _objectSpread2(
-												{},
-												_this.props.nodeProps,
-												{},
+												_objectSpread2({}, _this.props.nodeProps),
 												node.data.nodeProps
 											),
 											gProps: _objectSpread2(
-												{},
-												_this.props.gProps,
-												{},
+												_objectSpread2({}, _this.props.gProps),
 												node.data.gProps
 											),
 											textProps: _objectSpread2(
-												{},
-												_this.props.textProps,
-												{},
+												_objectSpread2({}, _this.props.textProps),
 												node.data.textProps
 											)
 										},
@@ -540,15 +580,14 @@
 	var Animated = /*#__PURE__*/ (function(_React$PureComponent) {
 		_inherits(Animated, _React$PureComponent);
 
+		var _super = _createSuper(Animated);
+
 		function Animated(props) {
 			var _this;
 
 			_classCallCheck(this, Animated);
 
-			_this = _possibleConstructorReturn(
-				this,
-				_getPrototypeOf(Animated).call(this, props)
-			);
+			_this = _super.call(this, props);
 
 			if (props.animated) {
 				// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
@@ -557,21 +596,33 @@
 				var initialY = props.nodes[0].y;
 				_this.state = {
 					nodes: props.nodes.map(function(n) {
-						return _objectSpread2({}, n, {
-							x: initialX,
-							y: initialY
-						});
+						return _objectSpread2(
+							_objectSpread2({}, n),
+							{},
+							{
+								x: initialX,
+								y: initialY
+							}
+						);
 					}),
 					links: props.links.map(function(l) {
 						return {
-							source: _objectSpread2({}, l.source, {
-								x: initialX,
-								y: initialY
-							}),
-							target: _objectSpread2({}, l.target, {
-								x: initialX,
-								y: initialY
-							})
+							source: _objectSpread2(
+								_objectSpread2({}, l.source),
+								{},
+								{
+									x: initialX,
+									y: initialY
+								}
+							),
+							target: _objectSpread2(
+								_objectSpread2({}, l.target),
+								{},
+								{
+									x: initialX,
+									y: initialY
+								}
+							)
 						};
 					})
 				};
@@ -830,40 +881,52 @@
 			{
 				key: 'calculateNodePosition',
 				value: function calculateNodePosition(node, start, end, interval) {
-					return _objectSpread2({}, node, {
-						x: this.calculateNewValue(start.x, end.x, interval),
-						y: this.calculateNewValue(start.y, end.y, interval)
-					});
+					return _objectSpread2(
+						_objectSpread2({}, node),
+						{},
+						{
+							x: this.calculateNewValue(start.x, end.x, interval),
+							y: this.calculateNewValue(start.y, end.y, interval)
+						}
+					);
 				}
 			},
 			{
 				key: 'calculateLinkPosition',
 				value: function calculateLinkPosition(link, start, end, interval) {
 					return {
-						source: _objectSpread2({}, link.source, {
-							x: this.calculateNewValue(
-								start.source ? start.source.x : start.x,
-								end.source ? end.source.x : end.x,
-								interval
-							),
-							y: this.calculateNewValue(
-								start.source ? start.source.y : start.y,
-								end.source ? end.source.y : end.y,
-								interval
-							)
-						}),
-						target: _objectSpread2({}, link.target, {
-							x: this.calculateNewValue(
-								start.target ? start.target.x : start.x,
-								end.target ? end.target.x : end.x,
-								interval
-							),
-							y: this.calculateNewValue(
-								start.target ? start.target.y : start.y,
-								end.target ? end.target.y : end.y,
-								interval
-							)
-						})
+						source: _objectSpread2(
+							_objectSpread2({}, link.source),
+							{},
+							{
+								x: this.calculateNewValue(
+									start.source ? start.source.x : start.x,
+									end.source ? end.source.x : end.x,
+									interval
+								),
+								y: this.calculateNewValue(
+									start.source ? start.source.y : start.y,
+									end.source ? end.source.y : end.y,
+									interval
+								)
+							}
+						),
+						target: _objectSpread2(
+							_objectSpread2({}, link.target),
+							{},
+							{
+								x: this.calculateNewValue(
+									start.target ? start.target.x : start.x,
+									end.target ? end.target.x : end.x,
+									interval
+								),
+								y: this.calculateNewValue(
+									start.target ? start.target.y : start.y,
+									end.target ? end.target.y : end.y,
+									interval
+								)
+							}
+						)
 					};
 				}
 			},
@@ -876,7 +939,7 @@
 			{
 				key: 'render',
 				value: function render() {
-					return React.createElement(
+					return /*#__PURE__*/ React.createElement(
 						Container,
 						_extends({}, this.props, this.state)
 					);
@@ -942,13 +1005,12 @@
 	var Tree = /*#__PURE__*/ (function(_React$PureComponent) {
 		_inherits(Tree, _React$PureComponent);
 
+		var _super = _createSuper(Tree);
+
 		function Tree() {
 			_classCallCheck(this, Tree);
 
-			return _possibleConstructorReturn(
-				this,
-				_getPrototypeOf(Tree).apply(this, arguments)
-			);
+			return _super.apply(this, arguments);
 		}
 
 		_createClass(Tree, [
@@ -978,7 +1040,7 @@
 					nodes.forEach(function(node) {
 						node.y += _this.props.margins.top;
 					});
-					return React.createElement(
+					return /*#__PURE__*/ React.createElement(
 						Animated,
 						{
 							animated: this.props.animated,

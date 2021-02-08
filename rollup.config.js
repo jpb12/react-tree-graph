@@ -48,14 +48,14 @@ devConfig.plugins.push(prettier({
 	useTabs: true
 }));
 devConfig.plugins.unshift(postcss({
-	extract: 'dist/style.css'
+	extract: 'style.css'
 }));
 
 const prodConfig = clone(defaultConfig);
 prodConfig.output.file = 'dist/index.min.js';
 prodConfig.plugins.push(uglify());
 prodConfig.plugins.unshift(postcss({
-	extract: 'dist/style.min.css',
+	extract: 'style.min.css',
 	minimize: true
 }));
 
