@@ -1,3 +1,6 @@
+## 5.1.1 (8 Jan 2021)
+* Added support for react 17 as a peer dependency
+
 ## 5.1.0 (27 June 2020)
 * Adding support for image
 

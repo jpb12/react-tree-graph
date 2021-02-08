@@ -1,4 +1,4 @@
-(function(global, factory) {
+(function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined'
 		? (module.exports = factory(
 				require('core-js/fn/array/find'),
@@ -17,7 +17,7 @@
 				'd3-ease',
 				'd3-hierarchy',
 				'prop-types',
-				'react'
+				'react',
 		  ], factory)
 		: ((global =
 				typeof globalThis !== 'undefined' ? globalThis : global || self),
@@ -30,7 +30,7 @@
 				global.PropTypes,
 				global.React
 		  )));
-})(this, function(find, assign, clone, d3Ease, d3Hierarchy, PropTypes, React) {
+})(this, function (find, assign, clone, d3Ease, d3Hierarchy, PropTypes, React) {
 	'use strict';
 
 	function _classCallCheck(instance, Constructor) {
@@ -61,7 +61,7 @@
 				value: value,
 				enumerable: true,
 				configurable: true,
-				writable: true
+				writable: true,
 			});
 		} else {
 			obj[key] = value;
@@ -73,7 +73,7 @@
 	function _extends() {
 		_extends =
 			Object.assign ||
-			function(target) {
+			function (target) {
 				for (var i = 1; i < arguments.length; i++) {
 					var source = arguments[i];
 
@@ -96,7 +96,7 @@
 		if (Object.getOwnPropertySymbols) {
 			var symbols = Object.getOwnPropertySymbols(object);
 			if (enumerableOnly)
-				symbols = symbols.filter(function(sym) {
+				symbols = symbols.filter(function (sym) {
 					return Object.getOwnPropertyDescriptor(object, sym).enumerable;
 				});
 			keys.push.apply(keys, symbols);
@@ -110,7 +110,7 @@
 			var source = arguments[i] != null ? arguments[i] : {};
 
 			if (i % 2) {
-				ownKeys(Object(source), true).forEach(function(key) {
+				ownKeys(Object(source), true).forEach(function (key) {
 					_defineProperty(target, key, source[key]);
 				});
 			} else if (Object.getOwnPropertyDescriptors) {
@@ -119,7 +119,7 @@
 					Object.getOwnPropertyDescriptors(source)
 				);
 			} else {
-				ownKeys(Object(source)).forEach(function(key) {
+				ownKeys(Object(source)).forEach(function (key) {
 					Object.defineProperty(
 						target,
 						key,
@@ -141,8 +141,8 @@
 			constructor: {
 				value: subClass,
 				writable: true,
-				configurable: true
-			}
+				configurable: true,
+			},
 		});
 		if (superClass) _setPrototypeOf(subClass, superClass);
 	}
@@ -173,7 +173,7 @@
 		if (typeof Proxy === 'function') return true;
 
 		try {
-			Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+			Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
 			return true;
 		} catch (e) {
 			return false;
@@ -262,7 +262,7 @@
 	var regex = /on[A-Z]/;
 
 	function wrapper(func, args) {
-		return function(event) {
+		return function (event) {
 			return func.apply(void 0, [event].concat(_toConsumableArray(args)));
 		};
 	} // Wraps any event handlers passed in as props with a function that passes additional arguments
@@ -278,10 +278,10 @@
 			args[_key - 1] = arguments[_key];
 		}
 
-		var handlers = Object.keys(props).filter(function(propName) {
+		var handlers = Object.keys(props).filter(function (propName) {
 			return regex.test(propName) && typeof props[propName] === 'function';
 		});
-		var wrappedHandlers = handlers.reduce(function(acc, handler) {
+		var wrappedHandlers = handlers.reduce(function (acc, handler) {
 			acc[handler] = wrapper(props[handler], args);
 			return acc;
 		}, {});
@@ -297,7 +297,7 @@
 		y1: PropTypes.number.isRequired,
 		y2: PropTypes.number.isRequired,
 		pathFunc: PropTypes.func.isRequired,
-		pathProps: PropTypes.object.isRequired
+		pathProps: PropTypes.object.isRequired,
 	};
 
 	function diagonal(x1, y1, x2, y2) {
@@ -313,10 +313,10 @@
 	}
 
 	var defaultProps = {
-		pathFunc: diagonal
+		pathFunc: diagonal,
 	};
 
-	var Link = /*#__PURE__*/ (function(_React$PureComponent) {
+	var Link = /*#__PURE__*/ (function (_React$PureComponent) {
 		_inherits(Link, _React$PureComponent);
 
 		var _super = _createSuper(Link);
@@ -345,11 +345,11 @@
 					return /*#__PURE__*/ React.createElement(
 						'path',
 						_extends({}, wrappedProps, {
-							d: d
+							d: d,
 						})
 					);
-				}
-			}
+				},
+			},
 		]);
 
 		return Link;
@@ -365,10 +365,10 @@
 		shape: PropTypes.string.isRequired,
 		nodeProps: PropTypes.object.isRequired,
 		gProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired
+		textProps: PropTypes.object.isRequired,
 	};
 
-	var Node = /*#__PURE__*/ (function(_React$PureComponent) {
+	var Node = /*#__PURE__*/ (function (_React$PureComponent) {
 		_inherits(Node, _React$PureComponent);
 
 		var _super = _createSuper(Node);
@@ -386,7 +386,7 @@
 					return 'translate('
 						.concat(this.props.y, ', ')
 						.concat(this.props.x, ')');
-				}
+				},
 			},
 			{
 				key: 'render',
@@ -398,7 +398,7 @@
 						case 'circle':
 							nodePropsWithDefaults = _objectSpread2(
 								{
-									r: 5
+									r: 5,
 								},
 								nodePropsWithDefaults
 							);
@@ -410,14 +410,14 @@
 							nodePropsWithDefaults = _objectSpread2(
 								{
 									height: 10,
-									width: 10
+									width: 10,
 								},
 								nodePropsWithDefaults
 							);
 							nodePropsWithDefaults = _objectSpread2(
 								{
 									x: -nodePropsWithDefaults.width / 2,
-									y: -nodePropsWithDefaults.height / 2
+									y: -nodePropsWithDefaults.height / 2,
 								},
 								nodePropsWithDefaults
 							);
@@ -440,7 +440,7 @@
 					return /*#__PURE__*/ React.createElement(
 						'g',
 						_extends({}, wrappedGProps, {
-							transform: this.getTransform()
+							transform: this.getTransform(),
 						}),
 						/*#__PURE__*/ React.createElement(
 							this.props.shape,
@@ -451,15 +451,15 @@
 							_extends(
 								{
 									dx: offset + 0.5,
-									dy: 5
+									dy: 5,
 								},
 								wrappedTextProps
 							),
 							this.props[this.props.labelProp]
 						)
 					);
-				}
-			}
+				},
+			},
 		]);
 
 		return Node;
@@ -481,10 +481,10 @@
 		gProps: PropTypes.object.isRequired,
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired
+		textProps: PropTypes.object.isRequired,
 	};
 
-	var Container = /*#__PURE__*/ (function(_React$PureComponent) {
+	var Container = /*#__PURE__*/ (function (_React$PureComponent) {
 		_inherits(Container, _React$PureComponent);
 
 		var _super = _createSuper(Container);
@@ -505,13 +505,13 @@
 						'svg',
 						_extends({}, this.props.svgProps, {
 							height: this.props.height,
-							width: this.props.width
+							width: this.props.width,
 						}),
 						this.props.children,
 						/*#__PURE__*/ React.createElement(
 							'g',
 							null,
-							this.props.links.map(function(link) {
+							this.props.links.map(function (link) {
 								return /*#__PURE__*/ React.createElement(Link, {
 									key: link.target.data[_this.props.keyProp],
 									keyProp: _this.props.keyProp,
@@ -525,10 +525,10 @@
 									pathProps: _objectSpread2(
 										_objectSpread2({}, _this.props.pathProps),
 										link.target.data.pathProps
-									)
+									),
 								});
 							}),
-							this.props.nodes.map(function(node) {
+							this.props.nodes.map(function (node) {
 								return /*#__PURE__*/ React.createElement(
 									Node,
 									_extends(
@@ -550,7 +550,7 @@
 											textProps: _objectSpread2(
 												_objectSpread2({}, _this.props.textProps),
 												node.data.textProps
-											)
+											),
 										},
 										node.data
 									)
@@ -558,8 +558,8 @@
 							})
 						)
 					);
-				}
-			}
+				},
+			},
 		]);
 
 		return Container;
@@ -574,10 +574,10 @@
 		nodes: PropTypes.array.isRequired,
 		duration: PropTypes.number.isRequired,
 		easing: PropTypes.func.isRequired,
-		steps: PropTypes.number.isRequired
+		steps: PropTypes.number.isRequired,
 	};
 
-	var Animated = /*#__PURE__*/ (function(_React$PureComponent) {
+	var Animated = /*#__PURE__*/ (function (_React$PureComponent) {
 		_inherits(Animated, _React$PureComponent);
 
 		var _super = _createSuper(Animated);
@@ -595,24 +595,24 @@
 				var initialX = props.nodes[0].x;
 				var initialY = props.nodes[0].y;
 				_this.state = {
-					nodes: props.nodes.map(function(n) {
+					nodes: props.nodes.map(function (n) {
 						return _objectSpread2(
 							_objectSpread2({}, n),
 							{},
 							{
 								x: initialX,
-								y: initialY
+								y: initialY,
 							}
 						);
 					}),
-					links: props.links.map(function(l) {
+					links: props.links.map(function (l) {
 						return {
 							source: _objectSpread2(
 								_objectSpread2({}, l.source),
 								{},
 								{
 									x: initialX,
-									y: initialY
+									y: initialY,
 								}
 							),
 							target: _objectSpread2(
@@ -620,16 +620,16 @@
 								{},
 								{
 									x: initialX,
-									y: initialY
+									y: initialY,
 								}
-							)
+							),
 						};
-					})
+					}),
 				};
 			} else {
 				_this.state = {
 					nodes: props.nodes,
-					links: props.links
+					links: props.links,
 				};
 			}
 
@@ -643,7 +643,7 @@
 					if (this.props.animated) {
 						this.animate(this.props);
 					}
-				}
+				},
 			},
 			{
 				key: 'componentWillReceiveProps',
@@ -658,13 +658,13 @@
 					if (!nextProps.animated) {
 						this.setState({
 							nodes: nextProps.nodes,
-							links: nextProps.links
+							links: nextProps.links,
 						});
 						return;
 					}
 
 					this.animate(nextProps);
-				}
+				},
 			},
 			{
 				key: 'animate',
@@ -677,7 +677,7 @@
 					var counter = 0; // Do as much one-time calculation outside of the animation step, which needs to be fast
 
 					var animationContext = this.getAnimationContext(this.state, props);
-					this.animation = setInterval(function() {
+					this.animation = setInterval(function () {
 						counter++;
 
 						if (counter === props.steps) {
@@ -686,7 +686,7 @@
 
 							_this2.setState({
 								nodes: props.nodes,
-								links: props.links
+								links: props.links,
 							});
 
 							return;
@@ -696,7 +696,7 @@
 							_this2.calculateNewState(animationContext, counter / props.steps)
 						);
 					}, props.duration / props.steps);
-				}
+				},
 			},
 			{
 				key: 'getAnimationContext',
@@ -711,53 +711,53 @@
 					// The base determines which node/link the data (like classes and labels) comes from for rendering
 					// We only run this once at the start of the animation, so optimization is less important
 					var addedNodes = newState.nodes
-						.filter(function(n1) {
-							return initialState.nodes.every(function(n2) {
+						.filter(function (n1) {
+							return initialState.nodes.every(function (n2) {
 								return !_this3.areNodesSame(n1, n2);
 							});
 						})
-						.map(function(n1) {
+						.map(function (n1) {
 							return {
 								base: n1,
 								old: _this3.getClosestAncestor(n1, newState, initialState),
-								new: n1
+								new: n1,
 							};
 						});
 					var changedNodes = newState.nodes
-						.filter(function(n1) {
-							return initialState.nodes.some(function(n2) {
+						.filter(function (n1) {
+							return initialState.nodes.some(function (n2) {
 								return _this3.areNodesSame(n1, n2);
 							});
 						})
-						.map(function(n1) {
+						.map(function (n1) {
 							return {
 								base: n1,
-								old: initialState.nodes.find(function(n2) {
+								old: initialState.nodes.find(function (n2) {
 									return _this3.areNodesSame(n1, n2);
 								}),
-								new: n1
+								new: n1,
 							};
 						});
 					var removedNodes = initialState.nodes
-						.filter(function(n1) {
-							return newState.nodes.every(function(n2) {
+						.filter(function (n1) {
+							return newState.nodes.every(function (n2) {
 								return !_this3.areNodesSame(n1, n2);
 							});
 						})
-						.map(function(n1) {
+						.map(function (n1) {
 							return {
 								base: n1,
 								old: n1,
-								new: _this3.getClosestAncestor(n1, initialState, newState)
+								new: _this3.getClosestAncestor(n1, initialState, newState),
 							};
 						});
 					var addedLinks = newState.links
-						.filter(function(l1) {
-							return initialState.links.every(function(l2) {
+						.filter(function (l1) {
+							return initialState.links.every(function (l2) {
 								return !_this3.areLinksSame(l1, l2);
 							});
 						})
-						.map(function(l1) {
+						.map(function (l1) {
 							return {
 								base: l1,
 								old: _this3.getClosestAncestor(
@@ -765,31 +765,31 @@
 									newState,
 									initialState
 								),
-								new: l1
+								new: l1,
 							};
 						});
 					var changedLinks = newState.links
-						.filter(function(l1) {
-							return initialState.links.some(function(l2) {
+						.filter(function (l1) {
+							return initialState.links.some(function (l2) {
 								return _this3.areLinksSame(l1, l2);
 							});
 						})
-						.map(function(l1) {
+						.map(function (l1) {
 							return {
 								base: l1,
-								old: initialState.links.find(function(l2) {
+								old: initialState.links.find(function (l2) {
 									return _this3.areLinksSame(l1, l2);
 								}),
-								new: l1
+								new: l1,
 							};
 						});
 					var removedLinks = initialState.links
-						.filter(function(l1) {
-							return newState.links.every(function(l2) {
+						.filter(function (l1) {
+							return newState.links.every(function (l2) {
 								return !_this3.areLinksSame(l1, l2);
 							});
 						})
-						.map(function(l1) {
+						.map(function (l1) {
 							return {
 								base: l1,
 								old: l1,
@@ -797,14 +797,14 @@
 									l1.target,
 									initialState,
 									newState
-								)
+								),
 							};
 						});
 					return {
 						nodes: changedNodes.concat(addedNodes).concat(removedNodes),
-						links: changedLinks.concat(addedLinks).concat(removedLinks)
+						links: changedLinks.concat(addedLinks).concat(removedLinks),
 					};
-				}
+				},
 			},
 			{
 				key: 'getClosestAncestor',
@@ -818,7 +818,7 @@
 					var oldParent = node;
 
 					while (oldParent) {
-						var newParent = stateWithoutNode.nodes.find(function(n) {
+						var newParent = stateWithoutNode.nodes.find(function (n) {
 							return _this4.areNodesSame(oldParent, n);
 						});
 
@@ -826,21 +826,21 @@
 							return newParent;
 						}
 
-						oldParent = stateWithNode.nodes.find(function(n) {
-							return (_this4.props.getChildren(n) || []).some(function(c) {
+						oldParent = stateWithNode.nodes.find(function (n) {
+							return (_this4.props.getChildren(n) || []).some(function (c) {
 								return _this4.areNodesSame(oldParent, c);
 							});
 						});
 					}
 
 					return stateWithoutNode.nodes[0];
-				}
+				},
 			},
 			{
 				key: 'areNodesSame',
 				value: function areNodesSame(a, b) {
 					return a.data[this.props.keyProp] === b.data[this.props.keyProp];
-				}
+				},
 			},
 			{
 				key: 'areLinksSame',
@@ -851,7 +851,7 @@
 						a.target.data[this.props.keyProp] ===
 							b.target.data[this.props.keyProp]
 					);
-				}
+				},
 			},
 			{
 				key: 'calculateNewState',
@@ -859,7 +859,7 @@
 					var _this5 = this;
 
 					return {
-						nodes: animationContext.nodes.map(function(n) {
+						nodes: animationContext.nodes.map(function (n) {
 							return _this5.calculateNodePosition(
 								n.base,
 								n.old,
@@ -867,16 +867,16 @@
 								interval
 							);
 						}),
-						links: animationContext.links.map(function(l) {
+						links: animationContext.links.map(function (l) {
 							return _this5.calculateLinkPosition(
 								l.base,
 								l.old,
 								l['new'],
 								interval
 							);
-						})
+						}),
 					};
-				}
+				},
 			},
 			{
 				key: 'calculateNodePosition',
@@ -886,10 +886,10 @@
 						{},
 						{
 							x: this.calculateNewValue(start.x, end.x, interval),
-							y: this.calculateNewValue(start.y, end.y, interval)
+							y: this.calculateNewValue(start.y, end.y, interval),
 						}
 					);
-				}
+				},
 			},
 			{
 				key: 'calculateLinkPosition',
@@ -908,7 +908,7 @@
 									start.source ? start.source.y : start.y,
 									end.source ? end.source.y : end.y,
 									interval
-								)
+								),
 							}
 						),
 						target: _objectSpread2(
@@ -924,17 +924,17 @@
 									start.target ? start.target.y : start.y,
 									end.target ? end.target.y : end.y,
 									interval
-								)
+								),
 							}
-						)
+						),
 					};
-				}
+				},
 			},
 			{
 				key: 'calculateNewValue',
 				value: function calculateNewValue(start, end, interval) {
 					return start + (end - start) * this.props.easing(interval);
-				}
+				},
 			},
 			{
 				key: 'render',
@@ -943,8 +943,8 @@
 						Container,
 						_extends({}, this.props, this.state)
 					);
-				}
-			}
+				},
+			},
 		]);
 
 		return Animated;
@@ -967,7 +967,7 @@
 			bottom: PropTypes.number.isRequired,
 			left: PropTypes.number.isRequired,
 			right: PropTypes.number.isRequired,
-			top: PropTypes.number.isRequired
+			top: PropTypes.number.isRequired,
 		}).isRequired,
 		pathFunc: PropTypes.func,
 		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect'])
@@ -976,7 +976,7 @@
 		gProps: PropTypes.object.isRequired,
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired
+		textProps: PropTypes.object.isRequired,
 	};
 	var defaultProps$1 = {
 		animated: false,
@@ -992,17 +992,17 @@
 			bottom: 10,
 			left: 20,
 			right: 150,
-			top: 10
+			top: 10,
 		},
 		nodeShape: 'circle',
 		nodeProps: {},
 		gProps: {},
 		pathProps: {},
 		svgProps: {},
-		textProps: {}
+		textProps: {},
 	};
 
-	var Tree = /*#__PURE__*/ (function(_React$PureComponent) {
+	var Tree = /*#__PURE__*/ (function (_React$PureComponent) {
 		_inherits(Tree, _React$PureComponent);
 
 		var _super = _createSuper(Tree);
@@ -1037,7 +1037,7 @@
 					);
 					var nodes = root.descendants();
 					var links = root.links();
-					nodes.forEach(function(node) {
+					nodes.forEach(function (node) {
 						node.y += _this.props.margins.top;
 					});
 					return /*#__PURE__*/ React.createElement(
@@ -1059,23 +1059,23 @@
 							width: this.props.width,
 							gProps: _objectSpread2(
 								{
-									className: 'node'
+									className: 'node',
 								},
 								this.props.gProps
 							),
 							pathProps: _objectSpread2(
 								{
-									className: 'link'
+									className: 'link',
 								},
 								this.props.pathProps
 							),
 							svgProps: this.props.svgProps,
-							textProps: this.props.textProps
+							textProps: this.props.textProps,
 						},
 						this.props.children
 					);
-				}
-			}
+				},
+			},
 		]);
 
 		return Tree;
