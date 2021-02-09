@@ -3,15 +3,13 @@ import clear from 'rollup-plugin-clear';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 
 import clone from 'clone';
 
 const defaultConfig = {
 	external: [
 		'clone',
-		'core-js/fn/array/find',
-		'core-js/fn/object/assign',
 		'd3-hierarchy',
 		'd3-ease',
 		'prop-types',
@@ -53,7 +51,7 @@ devConfig.plugins.unshift(postcss({
 
 const prodConfig = clone(defaultConfig);
 prodConfig.output.file = 'dist/index.min.js';
-prodConfig.plugins.push(uglify());
+prodConfig.plugins.push(terser());
 prodConfig.plugins.unshift(postcss({
 	extract: 'style.min.css',
 	minimize: true
