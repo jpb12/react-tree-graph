@@ -1,10 +1,14 @@
-## 5.1.1 (8 Jan 2021)
+## 6.0.0 (9 Feb 2021)
+* Breaking change: Dropped support for IE (reduces bundle size by about 1/3)
+* Updated to d3 2.0.0
+
+## 5.1.1 (8 Feb 2021)
 * Added support for react 17 as a peer dependency
 
-## 5.1.0 (27 June 2020)
+## 5.1.0 (27 Jun 2020)
 * Adding support for image
 
-## 5.0.0 (19 June 2020)
+## 5.0.0 (19 Jun 2020)
 * Breaking change: Adding support for rect and polygon
 * Breaking change: Allowing textProps to override default offsets
 * Breaking change: Fixing incorrect default offsets
@@ -17,15 +21,15 @@
 * If you had css selectors relying on the `path` and `g` nodes being immediate children of `svg`, you will have to modify these due to the additional `g` node inbetween.
 * If you weren't using `nodeOffset`, node text position will change slightly.
 
-## 4.1.1 (5 June 2020)
+## 4.1.1 (5 Jun 2020)
 
 * Fixed incorrect proptype (thanks @josh-stevens)
 
-## 4.1.0 (16 March 2020)
+## 4.1.0 (16 Mar 2020)
 
 * Added pathFunc prop to configure custom paths
 
-## 4.0.1 (12 August 2019)
+## 4.0.1 (12 Aug 2019)
 
 * Fixing default classname being removed when any props configured
 
