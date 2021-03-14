@@ -15,6 +15,7 @@ Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo
 
 Older Versions
 --------------
+[5.X](https://github.com/jpb12/react-tree-graph/tree/v5.1.1)
 [4.X](https://github.com/jpb12/react-tree-graph/tree/v4.1.1)
 [3.X](https://github.com/jpb12/react-tree-graph/tree/v3.3.0)
 [2.X](https://github.com/jpb12/react-tree-graph/tree/v2.0.0)
