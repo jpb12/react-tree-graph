@@ -77,12 +77,6 @@ const childCountD = (n, levelDepth) => {
 
 export default class Tree extends React.PureComponent {
 
-	componentDidUpdate(){
-		if(this.props.renderingCompletedCB){
-			this.props.renderingCompletedCB();
-		}
-	}
-
 	render() {
 		const contentWidth = this.props.width - this.props.margins.left - this.props.margins.right;
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
@@ -127,7 +121,8 @@ export default class Tree extends React.PureComponent {
 				gProps={{ className: 'node', ...this.props.gProps }}
 				pathProps={{ className: 'link', ...this.props.pathProps }}
 				svgProps={this.props.svgProps}
-				textProps={this.props.textProps}>
+				textProps={this.props.textProps}
+				animationCompleted={this.props.renderingCompletedCB}>
 				{ this.props.children }
 			</Animated>);
 	}

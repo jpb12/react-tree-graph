@@ -10,7 +10,8 @@ const propTypes = {
 	nodes: PropTypes.array.isRequired,
 	duration: PropTypes.number.isRequired,
 	easing: PropTypes.func.isRequired,
-	steps: PropTypes.number.isRequired
+	steps: PropTypes.number.isRequired,
+	animationCompleted: PropTypes.func
 };
 
 export default class Animated extends React.PureComponent {
@@ -72,6 +73,8 @@ export default class Animated extends React.PureComponent {
 				clearInterval(this.animation);
 				this.animation = null;
 				this.setState({ nodes: props.nodes, links: props.links });
+				if(this.props.animationCompleted)
+					this.props.animationCompleted();
 				return;
 			}
 

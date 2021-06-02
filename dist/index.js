@@ -295,6 +295,7 @@
 		duration: PropTypes.number.isRequired,
 		easing: PropTypes.func.isRequired,
 		steps: PropTypes.number.isRequired,
+		animationCompleted: PropTypes.func,
 	};
 	class Animated extends React.PureComponent {
 		constructor(props) {
@@ -362,6 +363,7 @@
 						nodes: props.nodes,
 						links: props.links,
 					});
+					if (this.props.animationCompleted) this.props.animationCompleted();
 					return;
 				}
 
@@ -609,12 +611,6 @@
 	};
 
 	class Tree extends React.PureComponent {
-		componentDidUpdate() {
-			if (this.props.renderingCompletedCB) {
-				this.props.renderingCompletedCB();
-			}
-		}
-
 		render() {
 			const contentWidth =
 				this.props.width - this.props.margins.left - this.props.margins.right;
@@ -671,6 +667,7 @@
 					},
 					svgProps: this.props.svgProps,
 					textProps: this.props.textProps,
+					animationCompleted: this.props.renderingCompletedCB,
 				},
 				this.props.children
 			);
