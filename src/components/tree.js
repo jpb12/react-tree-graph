@@ -29,7 +29,8 @@ const propTypes = {
 	gProps: PropTypes.object.isRequired,
 	pathProps: PropTypes.object.isRequired,
 	svgProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
+	textProps: PropTypes.object.isRequired,
+	renderingCompletedCB: PropTypes.func
 };
 
 const defaultProps = {
@@ -54,7 +55,34 @@ const defaultProps = {
 	textProps: {}
 };
 
+const childCountB = (level, n, levelWidth) => {
+	if (n.children && n.children.length > 0) {
+		if(levelWidth.length <= level + 1) levelWidth.push(0);
+		levelWidth[level + 1] += n.children.length;
+		n.children.forEach(d => {
+			childCountB(level + 1, d, levelWidth);
+		});
+	}
+}
+
+const childCountD = (n, levelDepth) => {
+	let res = levelDepth;
+	if (n.children && n.children.length > 0) {
+		n.children.forEach(d => {
+			res = Math.max(res, childCountD(d, levelDepth + 1));
+		});
+	}
+	return res;
+}
+
 export default class Tree extends React.PureComponent {
+
+	componentDidUpdate(){
+		if(this.props.renderingCompletedCB){
+			this.props.renderingCompletedCB();
+		}
+	}
+
 	render() {
 		const contentWidth = this.props.width - this.props.margins.left - this.props.margins.right;
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
@@ -63,6 +91,16 @@ export default class Tree extends React.PureComponent {
 		let data = hierarchy(clone(this.props.data), this.props.getChildren);
 
 		let root = tree().size([contentHeight, contentWidth])(data);
+
+		//TO DO : optimize
+		let levelWidth = [1];
+		childCountB(0, root, levelWidth);
+		let newHeight = Math.max(...levelWidth) * 70; // 70 pixels per line
+		let levelDepth = childCountD(root, 1);
+		let newWidth = levelDepth * 120; // 120 pixels per line
+		
+		root = tree().size([Math.max(newHeight, contentHeight), Math.max(newWidth, 0)])(data);
+
 		let nodes = root.descendants();
 		let links = root.links();
 

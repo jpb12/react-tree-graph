@@ -8,13 +8,10 @@
 				require('react')
 		  ))
 		: typeof define === 'function' && define.amd
-		? define([
-				'clone',
-				'd3-ease',
-				'd3-hierarchy',
-				'prop-types',
-				'react',
-		  ], factory)
+		? define(
+				['clone', 'd3-ease', 'd3-hierarchy', 'prop-types', 'react'],
+				factory
+		  )
 		: ((global =
 				typeof globalThis !== 'undefined' ? globalThis : global || self),
 		  (global.ReactTreeGraph = factory(
@@ -65,7 +62,7 @@
 		return { ...props, ...wrappedHandlers };
 	}
 
-	const propTypes = {
+	const propTypes$4 = {
 		source: PropTypes.object.isRequired,
 		target: PropTypes.object.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -81,7 +78,7 @@
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
 
-	const defaultProps = {
+	const defaultProps$1 = {
 		pathFunc: diagonal,
 	};
 	class Link extends React.PureComponent {
@@ -105,16 +102,17 @@
 			);
 		}
 	}
-	Link.defaultProps = defaultProps;
-	Link.propTypes = propTypes;
+	Link.defaultProps = defaultProps$1;
+	Link.propTypes = propTypes$4;
 
-	const propTypes$1 = {
+	const propTypes$3 = {
 		x: PropTypes.number.isRequired,
 		y: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		labelProp: PropTypes.string.isRequired,
 		shape: PropTypes.string.isRequired,
 		nodeProps: PropTypes.object.isRequired,
+		partner: PropTypes.object,
 		gProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
 	};
@@ -164,30 +162,55 @@
 				this.props.textProps,
 				this.props[this.props.keyProp]
 			);
+			const fontSize = wrappedTextProps.fontSize;
 			return /*#__PURE__*/ React.createElement(
 				'g',
 				_extends({}, wrappedGProps, {
 					transform: this.getTransform(),
+					id: this.props[this.props.keyProp],
 				}),
 				/*#__PURE__*/ React.createElement(this.props.shape, wrappedNodeProps),
 				/*#__PURE__*/ React.createElement(
 					'text',
-					_extends(
-						{
-							dx: offset + 0.5,
-							dy: 5,
-						},
-						wrappedTextProps
-					),
-					this.props[this.props.labelProp]
+					_extends({}, wrappedTextProps, {
+						dx: offset + 0.5,
+					}),
+					(!this.props.partner.name || !this.props.partner.name.length) &&
+						/*#__PURE__*/ React.createElement(
+							'tspan',
+							{
+								dy: fontSize / 2.5,
+							},
+							this.props[this.props.labelProp]
+						),
+					this.props.partner.name &&
+						this.props.partner.name.length &&
+						/*#__PURE__*/ React.createElement(
+							'tspan',
+							{
+								dy: -fontSize / 2.5,
+							},
+							this.props[this.props.labelProp]
+						),
+					this.props.partner.name &&
+						this.props.partner.name.length &&
+						/*#__PURE__*/ React.createElement(
+							'tspan',
+							{
+								x: offset + 0.5,
+								dy: fontSize + 0.5,
+							},
+							this.props.partner.name
+						)
 				)
 			);
 		}
 	}
-	Node.propTypes = propTypes$1;
+	Node.propTypes = propTypes$3;
 
 	const propTypes$2 = {
 		children: PropTypes.node,
+		partner: PropTypes.node,
 		height: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		labelProp: PropTypes.string.isRequired,
@@ -263,7 +286,7 @@
 	}
 	Container.propTypes = propTypes$2;
 
-	const propTypes$3 = {
+	const propTypes$1 = {
 		animated: PropTypes.bool.isRequired,
 		getChildren: PropTypes.func.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -511,9 +534,9 @@
 			);
 		}
 	}
-	Animated.propTypes = propTypes$3;
+	Animated.propTypes = propTypes$1;
 
-	const propTypes$4 = {
+	const propTypes = {
 		data: PropTypes.object.isRequired,
 		animated: PropTypes.bool.isRequired,
 		children: PropTypes.node,
@@ -539,8 +562,9 @@
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
+		renderingCompletedCB: PropTypes.func,
 	};
-	const defaultProps$1 = {
+	const defaultProps = {
 		animated: false,
 		duration: 500,
 		easing: d3Ease.easeQuadOut,
@@ -561,7 +585,36 @@
 		svgProps: {},
 		textProps: {},
 	};
+
+	const childCountB = (level, n, levelWidth) => {
+		if (n.children && n.children.length > 0) {
+			if (levelWidth.length <= level + 1) levelWidth.push(0);
+			levelWidth[level + 1] += n.children.length;
+			n.children.forEach((d) => {
+				childCountB(level + 1, d, levelWidth);
+			});
+		}
+	};
+
+	const childCountD = (n, levelDepth) => {
+		let res = levelDepth;
+
+		if (n.children && n.children.length > 0) {
+			n.children.forEach((d) => {
+				res = Math.max(res, childCountD(d, levelDepth + 1));
+			});
+		}
+
+		return res;
+	};
+
 	class Tree extends React.PureComponent {
+		componentDidUpdate() {
+			if (this.props.renderingCompletedCB) {
+				this.props.renderingCompletedCB();
+			}
+		}
+
 		render() {
 			const contentWidth =
 				this.props.width - this.props.margins.left - this.props.margins.right;
@@ -572,7 +625,20 @@
 				clone(this.props.data),
 				this.props.getChildren
 			);
-			let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
+			let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data); //TO DO : optimize
+
+			let levelWidth = [1];
+			childCountB(0, root, levelWidth);
+			let newHeight = Math.max(...levelWidth) * 70; // 70 pixels per line
+
+			let levelDepth = childCountD(root, 1);
+			let newWidth = levelDepth * 120; // 120 pixels per line
+
+			root = d3Hierarchy
+				.tree()
+				.size([Math.max(newHeight, contentHeight), Math.max(newWidth, 0)])(
+				data
+			);
 			let nodes = root.descendants();
 			let links = root.links();
 			nodes.forEach((node) => {
@@ -610,8 +676,8 @@
 			);
 		}
 	}
-	Tree.propTypes = propTypes$4;
-	Tree.defaultProps = defaultProps$1;
+	Tree.propTypes = propTypes;
+	Tree.defaultProps = defaultProps;
 
 	return Tree;
 });

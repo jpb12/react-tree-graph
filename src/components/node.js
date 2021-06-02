@@ -9,6 +9,7 @@ const propTypes = {
 	labelProp: PropTypes.string.isRequired,
 	shape: PropTypes.string.isRequired,
 	nodeProps: PropTypes.object.isRequired,
+	partner: PropTypes.object,
 	gProps: PropTypes.object.isRequired,
 	textProps: PropTypes.object.isRequired
 };
@@ -49,11 +50,14 @@ export default class Node extends React.PureComponent {
 			this.props[this.props.keyProp]
 		);
 
+		const fontSize = wrappedTextProps.fontSize;
 		return (
-			<g {...wrappedGProps} transform={this.getTransform()}>
+			<g {...wrappedGProps} transform={this.getTransform()} id={this.props[this.props.keyProp]}>
 				<this.props.shape {...wrappedNodeProps}/>
-				<text dx={offset + 0.5} dy={5} {...wrappedTextProps}>
-					{this.props[this.props.labelProp]}
+				<text {...wrappedTextProps} dx={offset + 0.5}>
+					{(!this.props.partner.name || !this.props.partner.name.length) && <tspan dy={fontSize / 2.5}>{this.props[this.props.labelProp]}</tspan>}
+					{this.props.partner.name && this.props.partner.name.length && <tspan dy={-fontSize / 2.5}>{this.props[this.props.labelProp]}</tspan>}
+					{this.props.partner.name && this.props.partner.name.length && <tspan x={offset + 0.5} dy={fontSize + 0.5}>{this.props.partner.name}</tspan>}
 				</text>
 			</g>);
 	}
