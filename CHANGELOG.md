@@ -1,3 +1,6 @@
+## 6.0.1 (17 Jun 2021)
+* Removing unneeded files from npm package
+
 ## 6.0.0 (9 Feb 2021)
 * Breaking change: Dropped support for IE (reduces bundle size by about 1/3)
 * Updated to d3 2.0.0
