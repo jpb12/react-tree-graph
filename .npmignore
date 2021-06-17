@@ -1,4 +1,6 @@
 .babelrc
+.browserslistrc
+.editorconfig
 .eslintrc.js
 .gitignore
 .npmignore
