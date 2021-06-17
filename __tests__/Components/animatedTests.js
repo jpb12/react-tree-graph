@@ -62,7 +62,7 @@ describe('<Animated>', () => {
 	test('animates node when moved', () => {
 		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		expect(tree.state().nodes[1].x).toBe(100);
 		expect(tree.state().nodes[1].y).toBe(50);
@@ -80,12 +80,12 @@ describe('<Animated>', () => {
 			]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[1].x).toBe(115);
 		expect(tree.state().nodes[1].y).toBe(72.5);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[1].x).toBe(120);
 		expect(tree.state().nodes[1].y).toBe(80);
@@ -94,7 +94,7 @@ describe('<Animated>', () => {
 	test('animates link when moved', () => {
 		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		expect(tree.state().links[0].source.x).toBe(1);
 		expect(tree.state().links[0].source.y).toBe(2);
@@ -120,14 +120,14 @@ describe('<Animated>', () => {
 			}]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links[0].source.x).toBe(4);
 		expect(tree.state().links[0].source.y).toBe(8);
 		expect(tree.state().links[0].target.x).toBe(175);
 		expect(tree.state().links[0].target.y).toBe(87.5);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links[0].source.x).toBe(5);
 		expect(tree.state().links[0].source.y).toBe(10);
@@ -152,12 +152,12 @@ describe('<Animated>', () => {
 			]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[2].x).toBe(90.25);
 		expect(tree.state().nodes[2].y).toBe(60.5);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[2].x).toBe(120);
 		expect(tree.state().nodes[2].y).toBe(80);
@@ -166,7 +166,7 @@ describe('<Animated>', () => {
 	test('animates node from parent when added', () => {
 		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		tree.setProps({
 			nodes: [
@@ -193,12 +193,12 @@ describe('<Animated>', () => {
 			]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[2].x).toBe(115);
 		expect(tree.state().nodes[2].y).toBe(72.5);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[2].x).toBe(120);
 		expect(tree.state().nodes[2].y).toBe(80);
@@ -229,14 +229,14 @@ describe('<Animated>', () => {
 			]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links[1].source.x).toBe(4);
 		expect(tree.state().links[1].source.y).toBe(8);
 		expect(tree.state().links[1].target.x).toBe(150.25);
 		expect(tree.state().links[1].target.y).toBe(75.5);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links[1].source.x).toBe(5);
 		expect(tree.state().links[1].source.y).toBe(10);
@@ -247,7 +247,7 @@ describe('<Animated>', () => {
 	test('animates node when removed', () => {
 		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		tree.setProps({
 			nodes: [
@@ -255,12 +255,12 @@ describe('<Animated>', () => {
 			]
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes[1].x).toBe(25.75);
 		expect(tree.state().nodes[1].y).toBe(14);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().nodes.length).toBe(1);
 	});
@@ -268,20 +268,20 @@ describe('<Animated>', () => {
 	test('animates link when removed', () => {
 		const tree = mount(<Animated {...defaultProps} steps={2} duration={100}/>);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		tree.setProps({
 			links: []
 		});
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links[0].source.x).toBe(75.25);
 		expect(tree.state().links[0].source.y).toBe(38);
 		expect(tree.state().links[0].target.x).toBe(100);
 		expect(tree.state().links[0].target.y).toBe(50);
 
-		jest.runTimersToTime(50);
+		jest.advanceTimersByTime(50);
 
 		expect(tree.state().links.length).toBe(0);
 	});
@@ -292,7 +292,7 @@ describe('<Animated>', () => {
 		expect(tree.state().nodes[1].x).toBe(1);
 		expect(tree.state().nodes[1].y).toBe(2);
 
-		jest.runTimersToTime(100);
+		jest.advanceTimersByTime(100);
 
 		expect(tree.state().nodes[1].x).toBe(100);
 		expect(tree.state().nodes[1].y).toBe(50);

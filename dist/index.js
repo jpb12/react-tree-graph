@@ -8,13 +8,10 @@
 				require('react')
 		  ))
 		: typeof define === 'function' && define.amd
-		? define([
-				'clone',
-				'd3-ease',
-				'd3-hierarchy',
-				'prop-types',
-				'react',
-		  ], factory)
+		? define(
+				['clone', 'd3-ease', 'd3-hierarchy', 'prop-types', 'react'],
+				factory
+		  )
 		: ((global =
 				typeof globalThis !== 'undefined' ? globalThis : global || self),
 		  (global.ReactTreeGraph = factory(
@@ -65,7 +62,7 @@
 		return { ...props, ...wrappedHandlers };
 	}
 
-	const propTypes = {
+	const propTypes$4 = {
 		source: PropTypes.object.isRequired,
 		target: PropTypes.object.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -81,7 +78,7 @@
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
 
-	const defaultProps = {
+	const defaultProps$1 = {
 		pathFunc: diagonal,
 	};
 	class Link extends React.PureComponent {
@@ -105,10 +102,10 @@
 			);
 		}
 	}
-	Link.defaultProps = defaultProps;
-	Link.propTypes = propTypes;
+	Link.defaultProps = defaultProps$1;
+	Link.propTypes = propTypes$4;
 
-	const propTypes$1 = {
+	const propTypes$3 = {
 		x: PropTypes.number.isRequired,
 		y: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -184,7 +181,7 @@
 			);
 		}
 	}
-	Node.propTypes = propTypes$1;
+	Node.propTypes = propTypes$3;
 
 	const propTypes$2 = {
 		children: PropTypes.node,
@@ -263,7 +260,7 @@
 	}
 	Container.propTypes = propTypes$2;
 
-	const propTypes$3 = {
+	const propTypes$1 = {
 		animated: PropTypes.bool.isRequired,
 		getChildren: PropTypes.func.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -511,9 +508,9 @@
 			);
 		}
 	}
-	Animated.propTypes = propTypes$3;
+	Animated.propTypes = propTypes$1;
 
-	const propTypes$4 = {
+	const propTypes = {
 		data: PropTypes.object.isRequired,
 		animated: PropTypes.bool.isRequired,
 		children: PropTypes.node,
@@ -540,7 +537,7 @@
 		svgProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
 	};
-	const defaultProps$1 = {
+	const defaultProps = {
 		animated: false,
 		duration: 500,
 		easing: d3Ease.easeQuadOut,
@@ -610,8 +607,8 @@
 			);
 		}
 	}
-	Tree.propTypes = propTypes$4;
-	Tree.defaultProps = defaultProps$1;
+	Tree.propTypes = propTypes;
+	Tree.defaultProps = defaultProps;
 
 	return Tree;
 });
