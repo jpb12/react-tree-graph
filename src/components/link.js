@@ -11,7 +11,9 @@ const propTypes = {
 	y1: PropTypes.number.isRequired,
 	y2: PropTypes.number.isRequired,
 	pathFunc: PropTypes.func.isRequired,
-	pathProps: PropTypes.object.isRequired
+	pathProps: PropTypes.object.isRequired,
+	getLinkText: PropTypes.func,
+	linkTextProps: PropTypes.object
 };
 
 function diagonal(x1, y1, x2, y2) {
@@ -22,6 +24,7 @@ const defaultProps = {
 	pathFunc: diagonal
 };
 
+let cnt = 0;
 export default class Link extends React.PureComponent {
 	render() {
 		const wrappedProps = wrapHandlers(
@@ -36,8 +39,19 @@ export default class Link extends React.PureComponent {
 			this.props.x2,
 			this.props.y2
 		);
-
-		return <path {...wrappedProps} d={d}/>;
+		
+		const id = ++cnt+"link";
+		return (
+			<React.Fragment>
+			<path {...wrappedProps} id={id} d={d}/>
+			{this.props.getLinkText && 
+			<text id={id+"text"} {...this.props.linkTextProps}>
+				<textPath xlinkHref={'#'+id} startOffset="50%" text-anchor="middle">
+				{this.props.getLinkText(this.props.source.data[this.props.keyProp], this.props.target.data[this.props.keyProp])}
+				</textPath>
+          	</text>}
+			</React.Fragment>
+		);
 	}
 }
 

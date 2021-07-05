@@ -30,7 +30,9 @@ const propTypes = {
 	pathProps: PropTypes.object.isRequired,
 	svgProps: PropTypes.object.isRequired,
 	textProps: PropTypes.object.isRequired,
-	renderingCompletedCB: PropTypes.func
+	renderingCompletedCB: PropTypes.func,
+	linkTextProps: PropTypes.object,
+	getLinkText: PropTypes.func
 };
 
 const defaultProps = {
@@ -122,6 +124,8 @@ export default class Tree extends React.PureComponent {
 				pathProps={{ className: 'link', ...this.props.pathProps }}
 				svgProps={this.props.svgProps}
 				textProps={this.props.textProps}
+				linkTextProps={this.props.linkTextProps}
+				getLinkText={this.props.getLinkText}
 				animationCompleted={this.props.renderingCompletedCB}>
 				{ this.props.children }
 			</Animated>);

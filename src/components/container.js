@@ -19,7 +19,9 @@ const propTypes = {
 	gProps: PropTypes.object.isRequired,
 	pathProps: PropTypes.object.isRequired,
 	svgProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
+	textProps: PropTypes.object.isRequired,
+	linkTextProps: PropTypes.object,
+	getLinkText: PropTypes.func
 };
 
 export default class Container extends React.PureComponent {
@@ -39,6 +41,8 @@ export default class Container extends React.PureComponent {
 							x2={link.target.x}
 							y1={link.source.y}
 							y2={link.target.y}
+							getLinkText={this.props.getLinkText}
+							linkTextProps={this.props.linkTextProps}
 							pathProps={{ ...this.props.pathProps, ...link.target.data.pathProps }}/>)
 					}
 					{ this.props.nodes.map(node =>

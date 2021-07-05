@@ -72,6 +72,8 @@
 		y2: PropTypes.number.isRequired,
 		pathFunc: PropTypes.func.isRequired,
 		pathProps: PropTypes.object.isRequired,
+		getLinkText: PropTypes.func,
+		linkTextProps: PropTypes.object,
 	};
 
 	function diagonal(x1, y1, x2, y2) {
@@ -81,6 +83,7 @@
 	const defaultProps$1 = {
 		pathFunc: diagonal,
 	};
+	let cnt = 0;
 	class Link extends React.PureComponent {
 		render() {
 			const wrappedProps = wrapHandlers(
@@ -94,11 +97,39 @@
 				this.props.x2,
 				this.props.y2
 			);
+			const id = ++cnt + 'link';
 			return /*#__PURE__*/ React.createElement(
-				'path',
-				_extends({}, wrappedProps, {
-					d: d,
-				})
+				React.Fragment,
+				null,
+				/*#__PURE__*/ React.createElement(
+					'path',
+					_extends({}, wrappedProps, {
+						id: id,
+						d: d,
+					})
+				),
+				this.props.getLinkText &&
+					/*#__PURE__*/ React.createElement(
+						'text',
+						_extends(
+							{
+								id: id + 'text',
+							},
+							this.props.linkTextProps
+						),
+						/*#__PURE__*/ React.createElement(
+							'textPath',
+							{
+								xlinkHref: '#' + id,
+								startOffset: '50%',
+								'text-anchor': 'middle',
+							},
+							this.props.getLinkText(
+								this.props.source.data[this.props.keyProp],
+								this.props.target.data[this.props.keyProp]
+							)
+						)
+					)
 			);
 		}
 	}
@@ -225,6 +256,8 @@
 		pathProps: PropTypes.object.isRequired,
 		svgProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
+		linkTextProps: PropTypes.object,
+		getLinkText: PropTypes.func,
 	};
 	class Container extends React.PureComponent {
 		render() {
@@ -249,6 +282,8 @@
 							x2: link.target.x,
 							y1: link.source.y,
 							y2: link.target.y,
+							getLinkText: this.props.getLinkText,
+							linkTextProps: this.props.linkTextProps,
 							pathProps: {
 								...this.props.pathProps,
 								...link.target.data.pathProps,
@@ -565,6 +600,8 @@
 		svgProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
 		renderingCompletedCB: PropTypes.func,
+		linkTextProps: PropTypes.object,
+		getLinkText: PropTypes.func,
 	};
 	const defaultProps = {
 		animated: false,
@@ -667,6 +704,8 @@
 					},
 					svgProps: this.props.svgProps,
 					textProps: this.props.textProps,
+					linkTextProps: this.props.linkTextProps,
+					getLinkText: this.props.getLinkText,
 					animationCompleted: this.props.renderingCompletedCB,
 				},
 				this.props.children
