@@ -24,6 +24,10 @@ const defaultProps = {
 	y2: 9
 };
 
+function straightPath(x1, y1, x2, y2) {
+	return `M${y1},${x1} ${y2},${x2}`;
+}
+
 describe('<Link>', () => {
 	test('renders correctly', () => {
 		const tree = shallow(<Link {...defaultProps}/>);
@@ -31,9 +35,6 @@ describe('<Link>', () => {
 	});
 
 	test('renders correctly with custom path', () => {
-		function straightPath(x1, y1, x2, y2) {
-			return `M${y1},${x1} ${y2},${x2}`;
-		}
 		const tree = shallow(<Link {...defaultProps} pathFunc={straightPath}/>);
 		expect(tree).toMatchSnapshot();
 	});
