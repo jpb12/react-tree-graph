@@ -1,11 +1,10 @@
 module.exports = {
 	'env': {
-		'browser': true,
-		'es6': true
+		'browser': true
 	},
 	'extends': ['eslint:recommended', 'plugin:react/recommended'],
 	'parserOptions': {
-		'ecmaVersion': 2018,
+		'ecmaVersion': 2021,
 		'ecmaFeatures': {
 			'jsx': true
 		},
@@ -103,7 +102,7 @@ module.exports = {
 	},
 	'settings': {
 		'react': {
-			'version': '15.3'
+			'version': '18'
 		}
 	}
 };

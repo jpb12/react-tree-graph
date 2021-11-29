@@ -299,7 +299,7 @@ describe('<Animated>', () => {
 	});
 
 	test('does nothing when not enabled', () => {
-		const tree = mount(<Animated {...defaultProps} animated={false}/>);
+		const tree = shallow(<Animated {...defaultProps} animated={false}/>);
 
 		tree.setProps({
 			nodes: [

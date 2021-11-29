@@ -38,24 +38,24 @@ export default class Animated extends React.PureComponent {
 
 	componentDidMount() {
 		if (this.props.animated) {
-			this.animate(this.props);
+			this.animate();
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.nodes === this.props.nodes && nextProps.links === this.props.links) {
+	componentDidUpdate(prevProps) {
+		if (prevProps.nodes === this.props.nodes && prevProps.links === this.props.links) {
 			return;
 		}
 
-		if (!nextProps.animated) {
-			this.setState({ nodes: nextProps.nodes, links: nextProps.links });
+		if (!this.props.animated) {
+			this.setState({ nodes: this.props.nodes, links: this.props.links });
 			return;
 		}
 
-		this.animate(nextProps);
+		this.animate();
 	}
 
-	animate(props) {
+	animate() {
 		// Stop previous animation if one is already in progress.  We will start the next animation
 		// from the position we are currently in
 		clearInterval(this.animation);
@@ -63,20 +63,20 @@ export default class Animated extends React.PureComponent {
 		let counter = 0;
 
 		// Do as much one-time calculation outside of the animation step, which needs to be fast
-		let animationContext = this.getAnimationContext(this.state, props);
+		let animationContext = this.getAnimationContext(this.state, this.props);
 
 		this.animation = setInterval(() => {
 			counter++;
 
-			if (counter === props.steps) {
+			if (counter === this.props.steps) {
 				clearInterval(this.animation);
 				this.animation = null;
-				this.setState({ nodes: props.nodes, links: props.links });
+				this.setState({ nodes: this.props.nodes, links: this.props.links });
 				return;
 			}
 
-			this.setState(this.calculateNewState(animationContext, counter / props.steps));
-		}, props.duration / props.steps);
+			this.setState(this.calculateNewState(animationContext, counter / this.props.steps));
+		}, this.props.duration / this.props.steps);
 	}
 
 	getAnimationContext(initialState, newState) {
