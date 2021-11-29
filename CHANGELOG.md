@@ -1,3 +1,6 @@
+## 6.1.0 (29 Nov 2021)
+* Support for react 18
+
 ## 6.0.1 (17 Jun 2021)
 * Removing unneeded files from npm package
 
