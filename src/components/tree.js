@@ -5,56 +5,56 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Animated from './animated';
 
-const propTypes = {
-	data: PropTypes.object.isRequired,
-	animated: PropTypes.bool.isRequired,
-	children: PropTypes.node,
-	duration: PropTypes.number.isRequired,
-	easing: PropTypes.func.isRequired,
-	steps: PropTypes.number.isRequired,
-	height: PropTypes.number.isRequired,
-	width: PropTypes.number.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	labelProp: PropTypes.string.isRequired,
-	getChildren: PropTypes.func.isRequired,
-	margins: PropTypes.shape({
-		bottom: PropTypes.number.isRequired,
-		left: PropTypes.number.isRequired,
-		right: PropTypes.number.isRequired,
-		top: PropTypes.number.isRequired
-	}).isRequired,
-	pathFunc: PropTypes.func,
-	nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect']).isRequired,
-	nodeProps: PropTypes.object.isRequired,
-	gProps: PropTypes.object.isRequired,
-	pathProps: PropTypes.object.isRequired,
-	svgProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
-};
-
-const defaultProps = {
-	animated: false,
-	duration: 500,
-	easing: easeQuadOut,
-	getChildren: n => n.children,
-	steps: 20,
-	keyProp: 'name',
-	labelProp: 'name',
-	margins: {
-		bottom: 10,
-		left: 20,
-		right: 150,
-		top: 10
-	},
-	nodeShape: 'circle',
-	nodeProps: {},
-	gProps: {},
-	pathProps: {},
-	svgProps: {},
-	textProps: {}
-};
-
 export default class Tree extends React.PureComponent {
+	static propTypes = {
+		data: PropTypes.object.isRequired,
+		animated: PropTypes.bool.isRequired,
+		children: PropTypes.node,
+		duration: PropTypes.number.isRequired,
+		easing: PropTypes.func.isRequired,
+		steps: PropTypes.number.isRequired,
+		height: PropTypes.number.isRequired,
+		width: PropTypes.number.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		labelProp: PropTypes.string.isRequired,
+		getChildren: PropTypes.func.isRequired,
+		margins: PropTypes.shape({
+			bottom: PropTypes.number.isRequired,
+			left: PropTypes.number.isRequired,
+			right: PropTypes.number.isRequired,
+			top: PropTypes.number.isRequired
+		}).isRequired,
+		pathFunc: PropTypes.func,
+		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect']).isRequired,
+		nodeProps: PropTypes.object.isRequired,
+		gProps: PropTypes.object.isRequired,
+		pathProps: PropTypes.object.isRequired,
+		svgProps: PropTypes.object.isRequired,
+		textProps: PropTypes.object.isRequired
+	};
+
+	static defaultProps = {
+		animated: false,
+		duration: 500,
+		easing: easeQuadOut,
+		getChildren: n => n.children,
+		steps: 20,
+		keyProp: 'name',
+		labelProp: 'name',
+		margins: {
+			bottom: 10,
+			left: 20,
+			right: 150,
+			top: 10
+		},
+		nodeShape: 'circle',
+		nodeProps: {},
+		gProps: {},
+		pathProps: {},
+		svgProps: {},
+		textProps: {}
+	};
+
 	render() {
 		const contentWidth = this.props.width - this.props.margins.left - this.props.margins.right;
 		const contentHeight = this.props.height - this.props.margins.top - this.props.margins.bottom;
@@ -94,6 +94,3 @@ export default class Tree extends React.PureComponent {
 			</Animated>);
 	}
 }
-
-Tree.propTypes = propTypes;
-Tree.defaultProps = defaultProps;

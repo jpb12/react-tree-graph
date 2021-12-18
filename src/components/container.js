@@ -3,25 +3,25 @@ import React from 'react';
 import Link from './link';
 import Node from './node';
 
-const propTypes = {
-	children: PropTypes.node,
-	height: PropTypes.number.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	labelProp: PropTypes.string.isRequired,
-	links: PropTypes.array.isRequired,
-	nodes: PropTypes.array.isRequired,
-	nodeClassName: PropTypes.string,
-	nodeShape: PropTypes.string.isRequired,
-	nodeProps: PropTypes.object.isRequired,
-	pathFunc: PropTypes.func,
-	width: PropTypes.number.isRequired,
-	gProps: PropTypes.object.isRequired,
-	pathProps: PropTypes.object.isRequired,
-	svgProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
-};
-
 export default class Container extends React.PureComponent {
+	static propTypes = {
+		children: PropTypes.node,
+		height: PropTypes.number.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		labelProp: PropTypes.string.isRequired,
+		links: PropTypes.array.isRequired,
+		nodes: PropTypes.array.isRequired,
+		nodeClassName: PropTypes.string,
+		nodeShape: PropTypes.string.isRequired,
+		nodeProps: PropTypes.object.isRequired,
+		pathFunc: PropTypes.func,
+		width: PropTypes.number.isRequired,
+		gProps: PropTypes.object.isRequired,
+		pathProps: PropTypes.object.isRequired,
+		svgProps: PropTypes.object.isRequired,
+		textProps: PropTypes.object.isRequired
+	};
+
 	render() {
 		return (
 			<svg {...this.props.svgProps} height={this.props.height} width={this.props.width}>
@@ -57,5 +57,3 @@ export default class Container extends React.PureComponent {
 			</svg>);
 	}
 }
-
-Container.propTypes = propTypes;

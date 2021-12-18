@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Container from './container';
 
-const propTypes = {
-	animated: PropTypes.bool.isRequired,
-	getChildren: PropTypes.func.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	links: PropTypes.array.isRequired,
-	nodes: PropTypes.array.isRequired,
-	duration: PropTypes.number.isRequired,
-	easing: PropTypes.func.isRequired,
-	steps: PropTypes.number.isRequired
-};
-
 export default class Animated extends React.PureComponent {
+	static propTypes = {
+		animated: PropTypes.bool.isRequired,
+		getChildren: PropTypes.func.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		links: PropTypes.array.isRequired,
+		nodes: PropTypes.array.isRequired,
+		duration: PropTypes.number.isRequired,
+		easing: PropTypes.func.isRequired,
+		steps: PropTypes.number.isRequired
+	};
+
 	constructor(props) {
 		super(props);
 		if (props.animated) {
@@ -88,7 +88,7 @@ export default class Animated extends React.PureComponent {
 
 		// The base determines which node/link the data (like classes and labels) comes from for rendering
 
-		// We only run this once at the start of the animation, so optimization is less important
+		// We only run this once at the start of the animation, so optimisation is less important
 		let addedNodes = newState.nodes
 			.filter(n1 => initialState.nodes.every(n2 => !this.areNodesSame(n1, n2)))
 			.map(n1 => ({ base: n1, old: this.getClosestAncestor(n1, newState, initialState), new: n1 }));
@@ -177,5 +177,3 @@ export default class Animated extends React.PureComponent {
 		return <Container {...this.props} {...this.state}/>;
 	}
 }
-
-Animated.propTypes = propTypes;

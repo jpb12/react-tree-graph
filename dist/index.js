@@ -24,6 +24,21 @@
 })(this, function (clone, d3Ease, d3Hierarchy, PropTypes, React) {
 	'use strict';
 
+	function _defineProperty(obj, key, value) {
+		if (key in obj) {
+			Object.defineProperty(obj, key, {
+				value: value,
+				enumerable: true,
+				configurable: true,
+				writable: true,
+			});
+		} else {
+			obj[key] = value;
+		}
+
+		return obj;
+	}
+
 	function _extends() {
 		_extends =
 			Object.assign ||
@@ -72,25 +87,10 @@
 		return { ...props, ...wrappedHandlers };
 	}
 
-	const propTypes$4 = {
-		source: PropTypes.object.isRequired,
-		target: PropTypes.object.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		x1: PropTypes.number.isRequired,
-		x2: PropTypes.number.isRequired,
-		y1: PropTypes.number.isRequired,
-		y2: PropTypes.number.isRequired,
-		pathFunc: PropTypes.func.isRequired,
-		pathProps: PropTypes.object.isRequired,
-	};
-
 	function diagonal(x1, y1, x2, y2) {
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
 
-	const defaultProps$1 = {
-		pathFunc: diagonal,
-	};
 	class Link extends React.PureComponent {
 		render() {
 			const wrappedProps = wrapHandlers(
@@ -112,19 +112,23 @@
 			);
 		}
 	}
-	Link.defaultProps = defaultProps$1;
-	Link.propTypes = propTypes$4;
 
-	const propTypes$3 = {
-		x: PropTypes.number.isRequired,
-		y: PropTypes.number.isRequired,
+	_defineProperty(Link, 'propTypes', {
+		source: PropTypes.object.isRequired,
+		target: PropTypes.object.isRequired,
 		keyProp: PropTypes.string.isRequired,
-		labelProp: PropTypes.string.isRequired,
-		shape: PropTypes.string.isRequired,
-		nodeProps: PropTypes.object.isRequired,
-		gProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired,
-	};
+		x1: PropTypes.number.isRequired,
+		x2: PropTypes.number.isRequired,
+		y1: PropTypes.number.isRequired,
+		y2: PropTypes.number.isRequired,
+		pathFunc: PropTypes.func.isRequired,
+		pathProps: PropTypes.object.isRequired,
+	});
+
+	_defineProperty(Link, 'defaultProps', {
+		pathFunc: diagonal,
+	});
+
 	class Node extends React.PureComponent {
 		getTransform() {
 			return `translate(${this.props.y}, ${this.props.x})`;
@@ -191,25 +195,18 @@
 			);
 		}
 	}
-	Node.propTypes = propTypes$3;
 
-	const propTypes$2 = {
-		children: PropTypes.node,
-		height: PropTypes.number.isRequired,
+	_defineProperty(Node, 'propTypes', {
+		x: PropTypes.number.isRequired,
+		y: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		labelProp: PropTypes.string.isRequired,
-		links: PropTypes.array.isRequired,
-		nodes: PropTypes.array.isRequired,
-		nodeClassName: PropTypes.string,
-		nodeShape: PropTypes.string.isRequired,
+		shape: PropTypes.string.isRequired,
 		nodeProps: PropTypes.object.isRequired,
-		pathFunc: PropTypes.func,
-		width: PropTypes.number.isRequired,
 		gProps: PropTypes.object.isRequired,
-		pathProps: PropTypes.object.isRequired,
-		svgProps: PropTypes.object.isRequired,
 		textProps: PropTypes.object.isRequired,
-	};
+	});
+
 	class Container extends React.PureComponent {
 		render() {
 			return /*#__PURE__*/ React.createElement(
@@ -268,18 +265,25 @@
 			);
 		}
 	}
-	Container.propTypes = propTypes$2;
 
-	const propTypes$1 = {
-		animated: PropTypes.bool.isRequired,
-		getChildren: PropTypes.func.isRequired,
+	_defineProperty(Container, 'propTypes', {
+		children: PropTypes.node,
+		height: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
+		labelProp: PropTypes.string.isRequired,
 		links: PropTypes.array.isRequired,
 		nodes: PropTypes.array.isRequired,
-		duration: PropTypes.number.isRequired,
-		easing: PropTypes.func.isRequired,
-		steps: PropTypes.number.isRequired,
-	};
+		nodeClassName: PropTypes.string,
+		nodeShape: PropTypes.string.isRequired,
+		nodeProps: PropTypes.object.isRequired,
+		pathFunc: PropTypes.func,
+		width: PropTypes.number.isRequired,
+		gProps: PropTypes.object.isRequired,
+		pathProps: PropTypes.object.isRequired,
+		svgProps: PropTypes.object.isRequired,
+		textProps: PropTypes.object.isRequired,
+	});
+
 	class Animated extends React.PureComponent {
 		constructor(props) {
 			super(props);
@@ -362,7 +366,7 @@
 			// Nodes/links only in the new state are being added, and should be moved from the position of
 			// the closest ancestor that previously existed, or the old root
 			// The base determines which node/link the data (like classes and labels) comes from for rendering
-			// We only run this once at the start of the animation, so optimization is less important
+			// We only run this once at the start of the animation, so optimisation is less important
 			let addedNodes = newState.nodes
 				.filter((n1) =>
 					initialState.nodes.every((n2) => !this.areNodesSame(n1, n2))
@@ -518,56 +522,18 @@
 			);
 		}
 	}
-	Animated.propTypes = propTypes$1;
 
-	const propTypes = {
-		data: PropTypes.object.isRequired,
+	_defineProperty(Animated, 'propTypes', {
 		animated: PropTypes.bool.isRequired,
-		children: PropTypes.node,
+		getChildren: PropTypes.func.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		links: PropTypes.array.isRequired,
+		nodes: PropTypes.array.isRequired,
 		duration: PropTypes.number.isRequired,
 		easing: PropTypes.func.isRequired,
 		steps: PropTypes.number.isRequired,
-		height: PropTypes.number.isRequired,
-		width: PropTypes.number.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		labelProp: PropTypes.string.isRequired,
-		getChildren: PropTypes.func.isRequired,
-		margins: PropTypes.shape({
-			bottom: PropTypes.number.isRequired,
-			left: PropTypes.number.isRequired,
-			right: PropTypes.number.isRequired,
-			top: PropTypes.number.isRequired,
-		}).isRequired,
-		pathFunc: PropTypes.func,
-		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect'])
-			.isRequired,
-		nodeProps: PropTypes.object.isRequired,
-		gProps: PropTypes.object.isRequired,
-		pathProps: PropTypes.object.isRequired,
-		svgProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired,
-	};
-	const defaultProps = {
-		animated: false,
-		duration: 500,
-		easing: d3Ease.easeQuadOut,
-		getChildren: (n) => n.children,
-		steps: 20,
-		keyProp: 'name',
-		labelProp: 'name',
-		margins: {
-			bottom: 10,
-			left: 20,
-			right: 150,
-			top: 10,
-		},
-		nodeShape: 'circle',
-		nodeProps: {},
-		gProps: {},
-		pathProps: {},
-		svgProps: {},
-		textProps: {},
-	};
+	});
+
 	class Tree extends React.PureComponent {
 		render() {
 			const contentWidth =
@@ -617,8 +583,56 @@
 			);
 		}
 	}
-	Tree.propTypes = propTypes;
-	Tree.defaultProps = defaultProps;
+
+	_defineProperty(Tree, 'propTypes', {
+		data: PropTypes.object.isRequired,
+		animated: PropTypes.bool.isRequired,
+		children: PropTypes.node,
+		duration: PropTypes.number.isRequired,
+		easing: PropTypes.func.isRequired,
+		steps: PropTypes.number.isRequired,
+		height: PropTypes.number.isRequired,
+		width: PropTypes.number.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		labelProp: PropTypes.string.isRequired,
+		getChildren: PropTypes.func.isRequired,
+		margins: PropTypes.shape({
+			bottom: PropTypes.number.isRequired,
+			left: PropTypes.number.isRequired,
+			right: PropTypes.number.isRequired,
+			top: PropTypes.number.isRequired,
+		}).isRequired,
+		pathFunc: PropTypes.func,
+		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect'])
+			.isRequired,
+		nodeProps: PropTypes.object.isRequired,
+		gProps: PropTypes.object.isRequired,
+		pathProps: PropTypes.object.isRequired,
+		svgProps: PropTypes.object.isRequired,
+		textProps: PropTypes.object.isRequired,
+	});
+
+	_defineProperty(Tree, 'defaultProps', {
+		animated: false,
+		duration: 500,
+		easing: d3Ease.easeQuadOut,
+		getChildren: (n) => n.children,
+		steps: 20,
+		keyProp: 'name',
+		labelProp: 'name',
+		margins: {
+			bottom: 10,
+			left: 20,
+			right: 150,
+			top: 10,
+		},
+		nodeShape: 'circle',
+		nodeProps: {},
+		gProps: {},
+		pathProps: {},
+		svgProps: {},
+		textProps: {},
+	});
 
 	return Tree;
 });

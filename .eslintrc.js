@@ -3,6 +3,7 @@ module.exports = {
 		'browser': true
 	},
 	'extends': ['eslint:recommended', 'plugin:react/recommended'],
+	'parser': '@babel/eslint-parser',
 	'parserOptions': {
 		'ecmaVersion': 2021,
 		'ecmaFeatures': {

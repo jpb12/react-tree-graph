@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers';
 
-const propTypes = {
-	x: PropTypes.number.isRequired,
-	y: PropTypes.number.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	labelProp: PropTypes.string.isRequired,
-	shape: PropTypes.string.isRequired,
-	nodeProps: PropTypes.object.isRequired,
-	gProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
-};
-
 export default class Node extends React.PureComponent {
+	static propTypes = {
+		x: PropTypes.number.isRequired,
+		y: PropTypes.number.isRequired,
+		keyProp: PropTypes.string.isRequired,
+		labelProp: PropTypes.string.isRequired,
+		shape: PropTypes.string.isRequired,
+		nodeProps: PropTypes.object.isRequired,
+		gProps: PropTypes.object.isRequired,
+		textProps: PropTypes.object.isRequired
+	};
+
 	getTransform() {
 		return `translate(${this.props.y}, ${this.props.x})`;
 	}
@@ -58,5 +58,3 @@ export default class Node extends React.PureComponent {
 			</g>);
 	}
 }
-
-Node.propTypes = propTypes;
