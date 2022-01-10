@@ -1,5 +1,5 @@
 import React from 'react';
-import Tree from 'react-tree-graph';
+import { Tree } from 'react-tree-graph';
 import Example from './example';
 
 const data = {

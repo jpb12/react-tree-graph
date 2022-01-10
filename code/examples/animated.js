@@ -1,5 +1,5 @@
 import React from 'react';
-import Tree from 'react-tree-graph';
+import { AnimatedTree } from 'react-tree-graph';
 import Example from './example';
 
 const order = [0, 1, 0, 2];
@@ -38,11 +38,10 @@ const data = [
 	}
 ];
 
-const code = `<Tree
+const code = `<AnimatedTree
 	data={data}
 	height={200}
-	width={400}
-	animated/>`;
+	width={400}/>`;
 
 export default class AnimatedExample extends React.PureComponent {
 	constructor(props) {
@@ -66,11 +65,10 @@ export default class AnimatedExample extends React.PureComponent {
 	render() {
 		return (
 			<Example code={code} id="animation" title="Animation">
-				<Tree
+				<AnimatedTree
 					data={this.state.data}
 					height={200}
-					width={400}
-					animated/>
+					width={400}/>
 			</Example>);
 	}
 }

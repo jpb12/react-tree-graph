@@ -1,6 +1,6 @@
 import { easeElastic } from 'd3-ease';
 import React from 'react';
-import Tree from 'react-tree-graph';
+import { AnimatedTree } from 'react-tree-graph';
 import Example from './example';
 
 const order = [0, 1, 0, 2];
@@ -41,11 +41,10 @@ const data = [
 
 const code = `import { easeElastic } from 'd3-ease';
 
-<Tree
+<AnimatedTree
 	data={data}
 	height={200}
 	width={400}
-	animated
 	duration={1000}
 	easing={easeElastic}/>`;
 
@@ -73,11 +72,10 @@ export default class EasingExample extends React.PureComponent {
 	render() {
 		return (
 			<Example code={code} id="easing" title="Custom easing" description={description}>
-				<Tree
+				<AnimatedTree
 					data={this.state.data}
 					height={200}
 					width={400}
-					animated
 					duration={1000}
 					easing={easeElastic}/>
 			</Example>);
