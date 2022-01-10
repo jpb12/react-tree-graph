@@ -1,7 +1,7 @@
 ## 7.0.0 (10 Jan 2022)
 * Breaking change: Single default export replaced with two named exports
 * Support for tree shaking
-* Significantly reduces bundle size when not using animations, slightly reduces bundle size otherwise
+* Significantly reduces bundle size, reduced even further if not using animations
 
 ### Migrating:
 * If you were using `animated=true`, use the named `AnimatedTree` export
