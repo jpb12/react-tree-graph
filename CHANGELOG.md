@@ -1,3 +1,13 @@
+## 7.0.0 (10 Jan 2022)
+* Breaking change: Single default export replaced with two named exports
+* Support for tree shaking
+* Significantly reduces bundle size when not using animations, slightly reduces bundle size otherwise
+
+### Migrating:
+* If you were using `animated=true`, use the named `AnimatedTree` export
+* Otherwise, use the named `Tree` export
+* The `animated` prop is no longer used and can be removed
+
 ## 6.1.0 (29 Nov 2021)
 * Support for react 18
 
@@ -21,11 +31,11 @@
 * Breaking change: Wrapping nodes and links in a <g> node for easier transformations
 
 ### Migrating:
-* If you were using `circleProps`, use `nodeProps` instead. The format is the same.
-* If you were using `nodeRadius`, instead pass an `r` prop through `nodeProps`.
-* If you were using `nodeOffset`, instead pass a `dy` prop through `textProps`.
-* If you had css selectors relying on the `path` and `g` nodes being immediate children of `svg`, you will have to modify these due to the additional `g` node inbetween.
-* If you weren't using `nodeOffset`, node text position will change slightly.
+* If you were using `circleProps`, use `nodeProps` instead. The format is the same
+* If you were using `nodeRadius`, instead pass an `r` prop through `nodeProps`
+* If you were using `nodeOffset`, instead pass a `dy` prop through `textProps`
+* If you had css selectors relying on the `path` and `g` nodes being immediate children of `svg`, you will have to modify these due to the additional `g` node inbetween
+* If you weren't using `nodeOffset`, node text position will change slightly
 
 ## 4.1.1 (5 Jun 2020)
 
