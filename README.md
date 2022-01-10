@@ -17,6 +17,7 @@ Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo
 
 Older Versions
 --------------
+[6.X](https://github.com/jpb12/react-tree-graph/tree/v6.1.0)
 [5.X](https://github.com/jpb12/react-tree-graph/tree/v5.1.1)
 [4.X](https://github.com/jpb12/react-tree-graph/tree/v4.1.1)
 [3.X](https://github.com/jpb12/react-tree-graph/tree/v3.3.0)
@@ -33,7 +34,7 @@ Usage
 -----
 
 ```javascript
-import Tree from 'react-tree-graph';
+import { Tree } from 'react-tree-graph';
 
 let data = {
 	name: 'Parent',
@@ -45,6 +46,13 @@ let data = {
 };
 
 <Tree
+	data={data}
+	height={400}
+	width={400}/>);
+
+import { AnimatedTree } from 'react-tree-graph';
+
+<AnimatedTree
 	data={data}
 	height={400}
 	width={400}/>);
@@ -61,6 +69,8 @@ Alternatively, both the JavaScript and CSS can be included directly from the dis
 Configuration
 -------------
 
+Tree
+
 | Property | Type | Mandatory | Default | Description |
 |:---|:---|:---|:---|:---|
 | `data` | object | yes | | The data to be rendered as a tree. Must be in a format accepted by [d3.hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md#hierarchy). |
@@ -68,10 +78,6 @@ Configuration
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
 | `children` | node | | | Will be rendered as children of the SVG, before the links and nodes. |
-| `animated` | boolean | | false | If true, the tree will animate. |
-| `duration` | number | | 500 | The duration in milliseconds of animations. |
-| `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |
-| `steps` | number | | 20 | The number of steps in animations. |
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
 | `keyProp` | string | | "name" | The property on each node to use as a key. |
 | `labelProp` | string | | "name" | The property on each node to render as label text. |
@@ -82,6 +88,14 @@ Configuration
 | `pathFunc` | function(x1,y1,x2,y2) | | curved | Function to calculate the co-ordinates of the path between nodes. |
 | `svgProps` | object | | `{}` | Props to be added to the `<svg>` element. |
 | `textProps` | object | | `{}` | Props to be added to the `<text>` element. |
+
+AnimatedTree has the following properties in addition to the above.
+
+| Property | Type | Mandatory | Default | Description |
+|:---|:---|:---|:---|:---|
+| `duration` | number | | 500 | The duration in milliseconds of animations. |
+| `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |
+| `steps` | number | | 20 | The number of steps in animations. |
 
 ### Events
 

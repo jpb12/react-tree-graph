@@ -2,7 +2,6 @@
 
 exports[`<Animated> does not animate when props other than nodes or links change 1`] = `
 <Container
-  animated={true}
   duration={1}
   easing={[Function]}
   gProps={Object {}}
@@ -58,67 +57,8 @@ exports[`<Animated> does not animate when props other than nodes or links change
 />
 `;
 
-exports[`<Animated> does nothing when not enabled 1`] = `
-<Container
-  animated={false}
-  duration={1}
-  easing={[Function]}
-  gProps={Object {}}
-  getChildren={[Function]}
-  height={100}
-  keyProp="name"
-  labelProp="name"
-  links={
-    Array [
-      Object {
-        "source": Object {
-          "data": Object {
-            "name": "Colour",
-          },
-          "x": 1,
-          "y": 2,
-        },
-        "target": Object {
-          "data": Object {
-            "name": "Black",
-          },
-          "x": 100,
-          "y": 50,
-        },
-      },
-    ]
-  }
-  nodeProps={Object {}}
-  nodeShape="circle"
-  nodes={
-    Array [
-      Object {
-        "data": Object {
-          "name": "Colour",
-        },
-        "x": 1,
-        "y": 2,
-      },
-      Object {
-        "data": Object {
-          "name": "Black",
-        },
-        "x": 120,
-        "y": 80,
-      },
-    ]
-  }
-  pathProps={Object {}}
-  steps={1}
-  svgProps={Object {}}
-  textProps={Object {}}
-  width={100}
-/>
-`;
-
 exports[`<Animated> renders correctly and sets initial state 1`] = `
 <Container
-  animated={true}
   duration={1}
   easing={[Function]}
   gProps={Object {}}

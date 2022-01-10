@@ -28,7 +28,6 @@ const links = [{
 }];
 
 const defaultProps = {
-	animated: true,
 	getChildren: n => n.children,
 	height: 100,
 	width: 100,
@@ -296,29 +295,6 @@ describe('<Animated>', () => {
 
 		expect(tree.state().nodes[1].x).toBe(100);
 		expect(tree.state().nodes[1].y).toBe(50);
-	});
-
-	test('does nothing when not enabled', () => {
-		const tree = shallow(<Animated {...defaultProps} animated={false}/>);
-
-		tree.setProps({
-			nodes: [
-				nodes[0],
-				{
-					x: 120,
-					y: 80,
-					data: {
-						name: 'Black'
-					}
-				}
-			]
-		});
-
-
-		expect(tree.state().nodes[1].x).toBe(120);
-		expect(tree.state().nodes[1].y).toBe(80);
-
-		expect(tree).toMatchSnapshot();
 	});
 
 	test('does not animate when props other than nodes or links change', () => {

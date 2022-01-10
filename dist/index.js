@@ -1,28 +1,38 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined'
-		? (module.exports = factory(
-				require('clone'),
+		? factory(
+				exports,
 				require('d3-ease'),
-				require('d3-hierarchy'),
 				require('prop-types'),
-				require('react')
-		  ))
+				require('react'),
+				require('clone'),
+				require('d3-hierarchy')
+		  )
 		: typeof define === 'function' && define.amd
 		? define(
-				['clone', 'd3-ease', 'd3-hierarchy', 'prop-types', 'react'],
+				['exports', 'd3-ease', 'prop-types', 'react', 'clone', 'd3-hierarchy'],
 				factory
 		  )
 		: ((global =
 				typeof globalThis !== 'undefined' ? globalThis : global || self),
-		  (global.ReactTreeGraph = factory(
-				global.clone,
-				global.d3,
+		  factory(
+				(global.ReactTreeGraph = {}),
 				global.d3,
 				global.PropTypes,
-				global.React
-		  )));
-})(this, function (clone, d3Ease, d3Hierarchy, PropTypes, React) {
+				global.React,
+				global.clone,
+				global.d3
+		  ));
+})(this, function (exports, d3Ease, PropTypes, React, clone, d3Hierarchy) {
 	'use strict';
+
+	function _interopDefault(e) {
+		return e && e.__esModule ? e : { default: e };
+	}
+
+	var PropTypes__default = /*#__PURE__*/ _interopDefault(PropTypes);
+	var React__default = /*#__PURE__*/ _interopDefault(React);
+	var clone__default = /*#__PURE__*/ _interopDefault(clone);
 
 	function _defineProperty(obj, key, value) {
 		if (key in obj) {
@@ -59,6 +69,27 @@
 		return _extends.apply(this, arguments);
 	}
 
+	function getTreeData(props) {
+		const contentWidth = props.width - props.margins.left - props.margins.right;
+		const contentHeight =
+			props.height - props.margins.top - props.margins.bottom; // data is cloned because d3 will mutate the object passed in
+
+		let data = d3Hierarchy.hierarchy(
+			clone__default['default'](props.data),
+			props.getChildren
+		);
+		let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
+		let nodes = root.descendants();
+		let links = root.links();
+		nodes.forEach((node) => {
+			node.y += props.margins.top;
+		});
+		return {
+			nodes,
+			links,
+		};
+	}
+
 	const regex = /on[A-Z]/;
 
 	function wrapper(func, args) {
@@ -91,7 +122,7 @@
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
 
-	class Link extends React.PureComponent {
+	class Link extends React__default['default'].PureComponent {
 		render() {
 			const wrappedProps = wrapHandlers(
 				this.props.pathProps,
@@ -104,7 +135,7 @@
 				this.props.x2,
 				this.props.y2
 			);
-			return /*#__PURE__*/ React.createElement(
+			return /*#__PURE__*/ React__default['default'].createElement(
 				'path',
 				_extends({}, wrappedProps, {
 					d: d,
@@ -114,22 +145,22 @@
 	}
 
 	_defineProperty(Link, 'propTypes', {
-		source: PropTypes.object.isRequired,
-		target: PropTypes.object.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		x1: PropTypes.number.isRequired,
-		x2: PropTypes.number.isRequired,
-		y1: PropTypes.number.isRequired,
-		y2: PropTypes.number.isRequired,
-		pathFunc: PropTypes.func.isRequired,
-		pathProps: PropTypes.object.isRequired,
+		source: PropTypes__default['default'].object.isRequired,
+		target: PropTypes__default['default'].object.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		x1: PropTypes__default['default'].number.isRequired,
+		x2: PropTypes__default['default'].number.isRequired,
+		y1: PropTypes__default['default'].number.isRequired,
+		y2: PropTypes__default['default'].number.isRequired,
+		pathFunc: PropTypes__default['default'].func.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
 	});
 
 	_defineProperty(Link, 'defaultProps', {
 		pathFunc: diagonal,
 	});
 
-	class Node extends React.PureComponent {
+	class Node extends React__default['default'].PureComponent {
 		getTransform() {
 			return `translate(${this.props.y}, ${this.props.x})`;
 		}
@@ -175,13 +206,16 @@
 				this.props.textProps,
 				this.props[this.props.keyProp]
 			);
-			return /*#__PURE__*/ React.createElement(
+			return /*#__PURE__*/ React__default['default'].createElement(
 				'g',
 				_extends({}, wrappedGProps, {
 					transform: this.getTransform(),
 				}),
-				/*#__PURE__*/ React.createElement(this.props.shape, wrappedNodeProps),
-				/*#__PURE__*/ React.createElement(
+				/*#__PURE__*/ React__default['default'].createElement(
+					this.props.shape,
+					wrappedNodeProps
+				),
+				/*#__PURE__*/ React__default['default'].createElement(
 					'text',
 					_extends(
 						{
@@ -197,30 +231,30 @@
 	}
 
 	_defineProperty(Node, 'propTypes', {
-		x: PropTypes.number.isRequired,
-		y: PropTypes.number.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		labelProp: PropTypes.string.isRequired,
-		shape: PropTypes.string.isRequired,
-		nodeProps: PropTypes.object.isRequired,
-		gProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired,
+		x: PropTypes__default['default'].number.isRequired,
+		y: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		shape: PropTypes__default['default'].string.isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
 	});
 
-	class Container extends React.PureComponent {
+	class Container extends React__default['default'].PureComponent {
 		render() {
-			return /*#__PURE__*/ React.createElement(
+			return /*#__PURE__*/ React__default['default'].createElement(
 				'svg',
 				_extends({}, this.props.svgProps, {
 					height: this.props.height,
 					width: this.props.width,
 				}),
 				this.props.children,
-				/*#__PURE__*/ React.createElement(
+				/*#__PURE__*/ React__default['default'].createElement(
 					'g',
 					null,
 					this.props.links.map((link) =>
-						/*#__PURE__*/ React.createElement(Link, {
+						/*#__PURE__*/ React__default['default'].createElement(Link, {
 							key: link.target.data[this.props.keyProp],
 							keyProp: this.props.keyProp,
 							pathFunc: this.props.pathFunc,
@@ -237,7 +271,7 @@
 						})
 					),
 					this.props.nodes.map((node) =>
-						/*#__PURE__*/ React.createElement(
+						/*#__PURE__*/ React__default['default'].createElement(
 							Node,
 							_extends(
 								{
@@ -267,51 +301,41 @@
 	}
 
 	_defineProperty(Container, 'propTypes', {
-		children: PropTypes.node,
-		height: PropTypes.number.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		labelProp: PropTypes.string.isRequired,
-		links: PropTypes.array.isRequired,
-		nodes: PropTypes.array.isRequired,
-		nodeClassName: PropTypes.string,
-		nodeShape: PropTypes.string.isRequired,
-		nodeProps: PropTypes.object.isRequired,
-		pathFunc: PropTypes.func,
-		width: PropTypes.number.isRequired,
-		gProps: PropTypes.object.isRequired,
-		pathProps: PropTypes.object.isRequired,
-		svgProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired,
+		children: PropTypes__default['default'].node,
+		height: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		links: PropTypes__default['default'].array.isRequired,
+		nodes: PropTypes__default['default'].array.isRequired,
+		nodeClassName: PropTypes__default['default'].string,
+		nodeShape: PropTypes__default['default'].string.isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		width: PropTypes__default['default'].number.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
 	});
 
-	class Animated extends React.PureComponent {
+	class Animated extends React__default['default'].PureComponent {
 		constructor(props) {
-			super(props);
+			super(props); // If we are animating, we set the initial positions of the nodes and links to be the position of the root node
+			// and animate from there
 
-			if (props.animated) {
-				// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
-				// and animate from there
-				let initialX = props.nodes[0].x;
-				let initialY = props.nodes[0].y;
-				this.state = {
-					nodes: props.nodes.map((n) => ({ ...n, x: initialX, y: initialY })),
-					links: props.links.map((l) => ({
-						source: { ...l.source, x: initialX, y: initialY },
-						target: { ...l.target, x: initialX, y: initialY },
-					})),
-				};
-			} else {
-				this.state = {
-					nodes: props.nodes,
-					links: props.links,
-				};
-			}
+			let initialX = props.nodes[0].x;
+			let initialY = props.nodes[0].y;
+			this.state = {
+				nodes: props.nodes.map((n) => ({ ...n, x: initialX, y: initialY })),
+				links: props.links.map((l) => ({
+					source: { ...l.source, x: initialX, y: initialY },
+					target: { ...l.target, x: initialX, y: initialY },
+				})),
+			};
 		}
 
 		componentDidMount() {
-			if (this.props.animated) {
-				this.animate();
-			}
+			this.animate();
 		}
 
 		componentDidUpdate(prevProps) {
@@ -319,14 +343,6 @@
 				prevProps.nodes === this.props.nodes &&
 				prevProps.links === this.props.links
 			) {
-				return;
-			}
-
-			if (!this.props.animated) {
-				this.setState({
-					nodes: this.props.nodes,
-					links: this.props.links,
-				});
 				return;
 			}
 
@@ -516,7 +532,7 @@
 		}
 
 		render() {
-			return /*#__PURE__*/ React.createElement(
+			return /*#__PURE__*/ React__default['default'].createElement(
 				Container,
 				_extends({}, this.props, this.state)
 			);
@@ -524,96 +540,82 @@
 	}
 
 	_defineProperty(Animated, 'propTypes', {
-		animated: PropTypes.bool.isRequired,
-		getChildren: PropTypes.func.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		links: PropTypes.array.isRequired,
-		nodes: PropTypes.array.isRequired,
-		duration: PropTypes.number.isRequired,
-		easing: PropTypes.func.isRequired,
-		steps: PropTypes.number.isRequired,
+		getChildren: PropTypes__default['default'].func.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		links: PropTypes__default['default'].array.isRequired,
+		nodes: PropTypes__default['default'].array.isRequired,
+		duration: PropTypes__default['default'].number.isRequired,
+		easing: PropTypes__default['default'].func.isRequired,
+		steps: PropTypes__default['default'].number.isRequired,
 	});
 
-	class Tree extends React.PureComponent {
+	class AnimatedTree extends React__default['default'].PureComponent {
 		render() {
-			const contentWidth =
-				this.props.width - this.props.margins.left - this.props.margins.right;
-			const contentHeight =
-				this.props.height - this.props.margins.top - this.props.margins.bottom; // data is cloned because d3 will mutate the object passed in
-
-			let data = d3Hierarchy.hierarchy(
-				clone(this.props.data),
-				this.props.getChildren
-			);
-			let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
-			let nodes = root.descendants();
-			let links = root.links();
-			nodes.forEach((node) => {
-				node.y += this.props.margins.top;
-			});
-			return /*#__PURE__*/ React.createElement(
+			return /*#__PURE__*/ React__default['default'].createElement(
 				Animated,
-				{
-					animated: this.props.animated,
-					duration: this.props.duration,
-					easing: this.props.easing,
-					getChildren: this.props.getChildren,
-					height: this.props.height,
-					keyProp: this.props.keyProp,
-					labelProp: this.props.labelProp,
-					links: links,
-					nodes: nodes,
-					nodeShape: this.props.nodeShape,
-					nodeProps: this.props.nodeProps,
-					pathFunc: this.props.pathFunc,
-					steps: this.props.steps,
-					width: this.props.width,
-					gProps: {
-						className: 'node',
-						...this.props.gProps,
+				_extends(
+					{
+						duration: this.props.duration,
+						easing: this.props.easing,
+						getChildren: this.props.getChildren,
+						height: this.props.height,
+						keyProp: this.props.keyProp,
+						labelProp: this.props.labelProp,
+						nodeShape: this.props.nodeShape,
+						nodeProps: this.props.nodeProps,
+						pathFunc: this.props.pathFunc,
+						steps: this.props.steps,
+						width: this.props.width,
+						gProps: {
+							className: 'node',
+							...this.props.gProps,
+						},
+						pathProps: {
+							className: 'link',
+							...this.props.pathProps,
+						},
+						svgProps: this.props.svgProps,
+						textProps: this.props.textProps,
 					},
-					pathProps: {
-						className: 'link',
-						...this.props.pathProps,
-					},
-					svgProps: this.props.svgProps,
-					textProps: this.props.textProps,
-				},
+					getTreeData(this.props)
+				),
 				this.props.children
 			);
 		}
 	}
 
-	_defineProperty(Tree, 'propTypes', {
-		data: PropTypes.object.isRequired,
-		animated: PropTypes.bool.isRequired,
-		children: PropTypes.node,
-		duration: PropTypes.number.isRequired,
-		easing: PropTypes.func.isRequired,
-		steps: PropTypes.number.isRequired,
-		height: PropTypes.number.isRequired,
-		width: PropTypes.number.isRequired,
-		keyProp: PropTypes.string.isRequired,
-		labelProp: PropTypes.string.isRequired,
-		getChildren: PropTypes.func.isRequired,
-		margins: PropTypes.shape({
-			bottom: PropTypes.number.isRequired,
-			left: PropTypes.number.isRequired,
-			right: PropTypes.number.isRequired,
-			top: PropTypes.number.isRequired,
+	_defineProperty(AnimatedTree, 'propTypes', {
+		data: PropTypes__default['default'].object.isRequired,
+		children: PropTypes__default['default'].node,
+		duration: PropTypes__default['default'].number.isRequired,
+		easing: PropTypes__default['default'].func.isRequired,
+		steps: PropTypes__default['default'].number.isRequired,
+		height: PropTypes__default['default'].number.isRequired,
+		width: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		getChildren: PropTypes__default['default'].func.isRequired,
+		margins: PropTypes__default['default'].shape({
+			bottom: PropTypes__default['default'].number.isRequired,
+			left: PropTypes__default['default'].number.isRequired,
+			right: PropTypes__default['default'].number.isRequired,
+			top: PropTypes__default['default'].number.isRequired,
 		}).isRequired,
-		pathFunc: PropTypes.func,
-		nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect'])
-			.isRequired,
-		nodeProps: PropTypes.object.isRequired,
-		gProps: PropTypes.object.isRequired,
-		pathProps: PropTypes.object.isRequired,
-		svgProps: PropTypes.object.isRequired,
-		textProps: PropTypes.object.isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		nodeShape: PropTypes__default['default'].oneOf([
+			'circle',
+			'image',
+			'polygon',
+			'rect',
+		]).isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
 	});
 
-	_defineProperty(Tree, 'defaultProps', {
-		animated: false,
+	_defineProperty(AnimatedTree, 'defaultProps', {
 		duration: 500,
 		easing: d3Ease.easeQuadOut,
 		getChildren: (n) => n.children,
@@ -634,5 +636,89 @@
 		textProps: {},
 	});
 
-	return Tree;
+	class Tree extends React__default['default'].PureComponent {
+		render() {
+			return /*#__PURE__*/ React__default['default'].createElement(
+				Container,
+				_extends(
+					{
+						animated: this.props.animated,
+						getChildren: this.props.getChildren,
+						height: this.props.height,
+						keyProp: this.props.keyProp,
+						labelProp: this.props.labelProp,
+						nodeShape: this.props.nodeShape,
+						nodeProps: this.props.nodeProps,
+						pathFunc: this.props.pathFunc,
+						width: this.props.width,
+						gProps: {
+							className: 'node',
+							...this.props.gProps,
+						},
+						pathProps: {
+							className: 'link',
+							...this.props.pathProps,
+						},
+						svgProps: this.props.svgProps,
+						textProps: this.props.textProps,
+					},
+					getTreeData(this.props)
+				),
+				this.props.children
+			);
+		}
+	}
+
+	_defineProperty(Tree, 'propTypes', {
+		data: PropTypes__default['default'].object.isRequired,
+		animated: PropTypes__default['default'].bool.isRequired,
+		children: PropTypes__default['default'].node,
+		height: PropTypes__default['default'].number.isRequired,
+		width: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		getChildren: PropTypes__default['default'].func.isRequired,
+		margins: PropTypes__default['default'].shape({
+			bottom: PropTypes__default['default'].number.isRequired,
+			left: PropTypes__default['default'].number.isRequired,
+			right: PropTypes__default['default'].number.isRequired,
+			top: PropTypes__default['default'].number.isRequired,
+		}).isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		nodeShape: PropTypes__default['default'].oneOf([
+			'circle',
+			'image',
+			'polygon',
+			'rect',
+		]).isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
+	});
+
+	_defineProperty(Tree, 'defaultProps', {
+		animated: false,
+		getChildren: (n) => n.children,
+		keyProp: 'name',
+		labelProp: 'name',
+		margins: {
+			bottom: 10,
+			left: 20,
+			right: 150,
+			top: 10,
+		},
+		nodeShape: 'circle',
+		nodeProps: {},
+		gProps: {},
+		pathProps: {},
+		svgProps: {},
+		textProps: {},
+	});
+
+	exports.AnimatedTree = AnimatedTree;
+	exports.Tree = Tree;
+
+	Object.defineProperty(exports, '__esModule', { value: true });
 });

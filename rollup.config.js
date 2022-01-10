@@ -1,11 +1,23 @@
 import babel from 'rollup-plugin-babel';
 import clear from 'rollup-plugin-clear';
+import ignore from 'rollup-plugin-ignore';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
 import { terser } from 'rollup-plugin-terser';
 
 import clone from 'clone';
+
+const defaultOutput = {
+	globals: {
+		'prop-types': 'PropTypes',
+		react: 'React',
+		clone: 'clone',
+		'd3-ease': 'd3',
+		'd3-hierarchy': 'd3'
+	},
+	interop: 'auto'
+};
 
 const defaultConfig = {
 	external: [
@@ -16,18 +28,6 @@ const defaultConfig = {
 		'react'
 	],
 	input: 'src/index.js',
-	output: {
-		format: 'umd',
-		globals: {
-			'prop-types': 'PropTypes',
-			react: 'React',
-			clone: 'clone',
-			'd3-ease': 'd3',
-			'd3-hierarchy': 'd3'
-		},
-		interop: false,
-		name: 'ReactTreeGraph'
-	},
 	plugins: [
 		babel({
 			exclude: 'node_modules/**'
@@ -40,7 +40,12 @@ const defaultConfig = {
 };
 
 const devConfig = clone(defaultConfig);
-devConfig.output.file = 'dist/index.js';
+devConfig.output = {
+	...defaultOutput,
+	file: 'dist/index.js',
+	format: 'umd',
+	name: 'ReactTreeGraph'
+};
 devConfig.plugins.push(prettier({
 	singleQuote: true,
 	useTabs: true
@@ -49,8 +54,22 @@ devConfig.plugins.unshift(postcss({
 	extract: 'style.css'
 }));
 
+const moduleConfig = clone(defaultConfig);
+moduleConfig.output = {
+	...defaultOutput,
+	dir: 'dist/module',
+	format: 'esm',
+	preserveModules: true
+};
+moduleConfig.plugins.unshift(ignore(['../styles/style.css']));
+
 const prodConfig = clone(defaultConfig);
-prodConfig.output.file = 'dist/index.min.js';
+prodConfig.output = {
+	...defaultOutput,
+	file: 'dist/index.min.js',
+	format: 'umd',
+	name: 'ReactTreeGraph'
+};
 prodConfig.plugins.push(terser());
 prodConfig.plugins.unshift(postcss({
 	extract: 'style.min.css',
@@ -59,5 +78,6 @@ prodConfig.plugins.unshift(postcss({
 
 export default [
 	devConfig,
+	moduleConfig,
 	prodConfig
 ];

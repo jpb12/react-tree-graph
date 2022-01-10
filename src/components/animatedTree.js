@@ -1,13 +1,16 @@
+import { easeQuadOut } from 'd3-ease';
 import PropTypes from 'prop-types';
 import React from 'react';
 import getTreeData from '../d3';
-import Container from './container';
+import Animated from './animated';
 
-export default class Tree extends React.PureComponent {
+export default class AnimatedTree extends React.PureComponent {
 	static propTypes = {
 		data: PropTypes.object.isRequired,
-		animated: PropTypes.bool.isRequired,
 		children: PropTypes.node,
+		duration: PropTypes.number.isRequired,
+		easing: PropTypes.func.isRequired,
+		steps: PropTypes.number.isRequired,
 		height: PropTypes.number.isRequired,
 		width: PropTypes.number.isRequired,
 		keyProp: PropTypes.string.isRequired,
@@ -29,8 +32,10 @@ export default class Tree extends React.PureComponent {
 	};
 
 	static defaultProps = {
-		animated: false,
+		duration: 500,
+		easing: easeQuadOut,
 		getChildren: n => n.children,
+		steps: 20,
 		keyProp: 'name',
 		labelProp: 'name',
 		margins: {
@@ -49,8 +54,9 @@ export default class Tree extends React.PureComponent {
 
 	render() {
 		return (
-			<Container
-				animated={this.props.animated}
+			<Animated
+				duration={this.props.duration}
+				easing={this.props.easing}
 				getChildren={this.props.getChildren}
 				height={this.props.height}
 				keyProp={this.props.keyProp}
@@ -58,6 +64,7 @@ export default class Tree extends React.PureComponent {
 				nodeShape={this.props.nodeShape}
 				nodeProps={this.props.nodeProps}
 				pathFunc={this.props.pathFunc}
+				steps={this.props.steps}
 				width={this.props.width}
 				gProps={{ className: 'node', ...this.props.gProps }}
 				pathProps={{ className: 'link', ...this.props.pathProps }}
@@ -65,6 +72,6 @@ export default class Tree extends React.PureComponent {
 				textProps={this.props.textProps}
 				{...getTreeData(this.props)}>
 				{ this.props.children }
-			</Container>);
+			</Animated>);
 	}
 }

@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tree> renders correctly 1`] = `
-<Container
-  animated={false}
+exports[`<AnimatedTree> renders correctly 1`] = `
+<Animated
+  duration={500}
+  easing={[Function]}
   gProps={
     Object {
       "className": "node",
@@ -137,6 +138,7 @@ exports[`<Tree> renders correctly 1`] = `
       "className": "link",
     }
   }
+  steps={20}
   svgProps={Object {}}
   textProps={Object {}}
   width={200}

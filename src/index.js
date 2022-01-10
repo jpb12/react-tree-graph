@@ -1,3 +1,4 @@
 import '../styles/style.css';
 
-export { default } from './components/tree';
+export { default as AnimatedTree } from './components/animatedTree';
+export { default as Tree } from './components/tree';

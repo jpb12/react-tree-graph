@@ -4,7 +4,6 @@ import Container from './container';
 
 export default class Animated extends React.PureComponent {
 	static propTypes = {
-		animated: PropTypes.bool.isRequired,
 		getChildren: PropTypes.func.isRequired,
 		keyProp: PropTypes.string.isRequired,
 		links: PropTypes.array.isRequired,
@@ -16,39 +15,25 @@ export default class Animated extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
-		if (props.animated) {
-			// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
-			// and animate from there
-			let initialX = props.nodes[0].x;
-			let initialY = props.nodes[0].y;
-			this.state = {
-				nodes: props.nodes.map(n => ({ ...n, x: initialX, y: initialY })),
-				links: props.links.map(l => ({
-					source: { ...l.source, x: initialX, y: initialY },
-					target: { ...l.target, x: initialX, y: initialY }
-				}))
-			};
-		} else {
-			this.state = {
-				nodes: props.nodes,
-				links: props.links
-			};
-		}
+		// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
+		// and animate from there
+		let initialX = props.nodes[0].x;
+		let initialY = props.nodes[0].y;
+		this.state = {
+			nodes: props.nodes.map(n => ({ ...n, x: initialX, y: initialY })),
+			links: props.links.map(l => ({
+				source: { ...l.source, x: initialX, y: initialY },
+				target: { ...l.target, x: initialX, y: initialY }
+			}))
+		};
 	}
 
 	componentDidMount() {
-		if (this.props.animated) {
-			this.animate();
-		}
+		this.animate();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.nodes === this.props.nodes && prevProps.links === this.props.links) {
-			return;
-		}
-
-		if (!this.props.animated) {
-			this.setState({ nodes: this.props.nodes, links: this.props.links });
 			return;
 		}
 
