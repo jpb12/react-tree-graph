@@ -1,9 +1,19 @@
-import { extends as _extends, defineProperty as _defineProperty } from '../_virtual/_rollupPluginBabelHelpers.js';
+import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Container from './container.js';
 
 class Animated extends React.PureComponent {
+  static propTypes = {
+    getChildren: PropTypes.func.isRequired,
+    keyProp: PropTypes.string.isRequired,
+    links: PropTypes.array.isRequired,
+    nodes: PropTypes.array.isRequired,
+    duration: PropTypes.number.isRequired,
+    easing: PropTypes.func.isRequired,
+    steps: PropTypes.number.isRequired
+  };
+
   constructor(props) {
     super(props); // If we are animating, we set the initial positions of the nodes and links to be the position of the root node
     // and animate from there
@@ -168,15 +178,5 @@ class Animated extends React.PureComponent {
   }
 
 }
-
-_defineProperty(Animated, "propTypes", {
-  getChildren: PropTypes.func.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
-  nodes: PropTypes.array.isRequired,
-  duration: PropTypes.number.isRequired,
-  easing: PropTypes.func.isRequired,
-  steps: PropTypes.number.isRequired
-});
 
 export { Animated as default };

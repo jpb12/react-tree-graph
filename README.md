@@ -1,9 +1,3 @@
-<!--
-  Title: React Tree Graph
-  Description: A react library for generating a tree graph from data using d3.
-  Author: James Brierley
--->
-
 react-tree-graph
 ================
 

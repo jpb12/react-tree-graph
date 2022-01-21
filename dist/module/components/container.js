@@ -1,10 +1,28 @@
-import { extends as _extends, defineProperty as _defineProperty } from '../_virtual/_rollupPluginBabelHelpers.js';
+import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link.js';
 import Node from './node.js';
 
 class Container extends React.PureComponent {
+  static propTypes = {
+    children: PropTypes.node,
+    height: PropTypes.number.isRequired,
+    keyProp: PropTypes.string.isRequired,
+    labelProp: PropTypes.string.isRequired,
+    links: PropTypes.array.isRequired,
+    nodes: PropTypes.array.isRequired,
+    nodeClassName: PropTypes.string,
+    nodeShape: PropTypes.string.isRequired,
+    nodeProps: PropTypes.object.isRequired,
+    pathFunc: PropTypes.func,
+    width: PropTypes.number.isRequired,
+    gProps: PropTypes.object.isRequired,
+    pathProps: PropTypes.object.isRequired,
+    svgProps: PropTypes.object.isRequired,
+    textProps: PropTypes.object.isRequired
+  };
+
   render() {
     return /*#__PURE__*/React.createElement("svg", _extends({}, this.props.svgProps, {
       height: this.props.height,
@@ -42,23 +60,5 @@ class Container extends React.PureComponent {
   }
 
 }
-
-_defineProperty(Container, "propTypes", {
-  children: PropTypes.node,
-  height: PropTypes.number.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  labelProp: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
-  nodes: PropTypes.array.isRequired,
-  nodeClassName: PropTypes.string,
-  nodeShape: PropTypes.string.isRequired,
-  nodeProps: PropTypes.object.isRequired,
-  pathFunc: PropTypes.func,
-  width: PropTypes.number.isRequired,
-  gProps: PropTypes.object.isRequired,
-  pathProps: PropTypes.object.isRequired,
-  svgProps: PropTypes.object.isRequired,
-  textProps: PropTypes.object.isRequired
-});
 
 export { Container as default };
