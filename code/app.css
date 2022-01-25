@@ -25,10 +25,12 @@ div.header {
 	z-index: 1000;
 }
 
-div.header span {
+div.header h1 {
 	font-size: 20pt;
 	font-weight: bold;
+	margin: 0;
 	margin-right: 10px;
+	display: inline-block;
 }
 
 div.header a {

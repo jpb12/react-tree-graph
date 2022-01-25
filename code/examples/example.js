@@ -29,9 +29,9 @@ export default class Example extends React.PureComponent {
 		};
 
 		return (
-			<div id={this.props.id}>
+			<div id={this.props.id} data-nosnippet>
 				<a className="header" href={`#${this.props.id}`}><h2>{this.props.title}</h2></a>
-				{ this.props.description && <div className="description" data-nosnippet>{this.props.description}</div> }
+				{ this.props.description && <div className="description">{this.props.description}</div> }
 				<div className="example">
 					<div className="code">
 						<CodeMirror value={this.props.code} options={options}/>

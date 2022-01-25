@@ -3,7 +3,7 @@ import React from 'react';
 export default class SidePanel extends React.PureComponent {
 	render() {
 		return (
-			<div className="sidepanel">
+			<div className="sidepanel" data-nosnippet>
 				<div><a href="#basic">Basic</a></div>
 				<div><a href="#clicking">Click events</a></div>
 				<div><a href="#rect">Rectangular nodes</a></div>
