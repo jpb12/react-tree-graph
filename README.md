@@ -74,7 +74,7 @@ Tree
 | `children` | node | | | Will be rendered as children of the SVG, before the links and nodes. |
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
 | `keyProp` | string | | "name" | The property on each node to use as a key. |
-| `labelProp` | string | | "name" | The property on each node to render as label text. |
+| `labelProp` | string | | "name" | The property on each node to render as a label. |
 | `nodeShape` | `circle`,`image`,`polygon`,`rect` | | `circle` | The shape of the node icons |
 | `nodeProps` | object | | `{}` | Props to be added to the `<circle>`, `<image>`, `<polygon>` or `<rect>` element. These will take priority over the default `r` added to `circle` and `height`, `width`, `x` and `y` added to `image` and `rect` |
 | `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |

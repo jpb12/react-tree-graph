@@ -1,3 +1,6 @@
+## 7.0.1 (9 Feb 2022)
+* Fixing non-string node labels
+
 ## 7.0.0 (10 Jan 2022)
 * Breaking change: Single default export replaced with two named exports
 * Support for tree shaking
