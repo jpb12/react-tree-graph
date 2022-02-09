@@ -1,3 +1,6 @@
+## 7.0.2 (9 Feb 2022)
+* Fixing preinstall script causes install failure
+
 ## 7.0.1 (9 Feb 2022)
 * Fixing non-string node labels
 

@@ -1,6 +1,6 @@
 {
   "name": "react-tree-graph",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "A react library for generating a graphical tree from data using d3",
   "main": "dist/index.js",
   "module": "dist/module/index.js",
@@ -77,7 +77,6 @@
     "build": "rollup --config",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint src __tests__",
-    "preinstall": "npx browserslist@latest --update-db",
     "test": "jest",
     "version": "npm run build"
   },
