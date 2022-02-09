@@ -49,12 +49,15 @@ export default class Node extends React.PureComponent {
 			this.props[this.props.keyProp]
 		);
 
+		const label = typeof this.props[this.props.labelProp] === 'string'
+			? <text dx={offset + 0.5} dy={5} {...wrappedTextProps}>{this.props[this.props.labelProp]}</text>
+			: <g transform={`translate(${offset + 0.5}, 5)`} {...wrappedTextProps}>{this.props[this.props.labelProp]}</g>;
+
+
 		return (
 			<g {...wrappedGProps} transform={this.getTransform()}>
 				<this.props.shape {...wrappedNodeProps}/>
-				<text dx={offset + 0.5} dy={5} {...wrappedTextProps}>
-					{this.props[this.props.labelProp]}
-				</text>
+				{ label }
 			</g>);
 	}
 }

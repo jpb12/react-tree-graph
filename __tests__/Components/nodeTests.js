@@ -50,6 +50,13 @@ describe('<Node>', () => {
 		expect(tree).toMatchSnapshot();
 	});
 
+	test('renders custom label correctly', () => {
+		const tree = shallow(
+			<Node {...defaultProps} labelProp="label" label={<circle r="5"/>}/>
+		);
+		expect(tree).toMatchSnapshot();
+	});
+
 	test('click event has correct parameters', () => {
 		const clickMock = jest.fn();
 		const event = {};

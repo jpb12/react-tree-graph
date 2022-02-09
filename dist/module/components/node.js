@@ -51,12 +51,15 @@ class Node extends React.PureComponent {
     const wrappedNodeProps = wrapHandlers(nodePropsWithDefaults, this.props[this.props.keyProp]);
     const wrappedGProps = wrapHandlers(this.props.gProps, this.props[this.props.keyProp]);
     const wrappedTextProps = wrapHandlers(this.props.textProps, this.props[this.props.keyProp]);
-    return /*#__PURE__*/React.createElement("g", _extends({}, wrappedGProps, {
-      transform: this.getTransform()
-    }), /*#__PURE__*/React.createElement(this.props.shape, wrappedNodeProps), /*#__PURE__*/React.createElement("text", _extends({
+    const label = typeof this.props[this.props.labelProp] === 'string' ? /*#__PURE__*/React.createElement("text", _extends({
       dx: offset + 0.5,
       dy: 5
-    }, wrappedTextProps), this.props[this.props.labelProp]));
+    }, wrappedTextProps), this.props[this.props.labelProp]) : /*#__PURE__*/React.createElement("g", _extends({
+      transform: `translate(${offset + 0.5}, 5)`
+    }, wrappedTextProps), this.props[this.props.labelProp]);
+    return /*#__PURE__*/React.createElement("g", _extends({}, wrappedGProps, {
+      transform: this.getTransform()
+    }), /*#__PURE__*/React.createElement(this.props.shape, wrappedNodeProps), label);
   }
 
 }

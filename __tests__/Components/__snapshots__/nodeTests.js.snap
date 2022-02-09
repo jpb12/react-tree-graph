@@ -53,6 +53,24 @@ exports[`<Node> renders circle correctly with custom radius 1`] = `
 </g>
 `;
 
+exports[`<Node> renders custom label correctly 1`] = `
+<g
+  className="test"
+  transform="translate(2, 1)"
+>
+  <circle
+    r={5}
+  />
+  <g
+    transform="translate(5.5, 5)"
+  >
+    <circle
+      r="5"
+    />
+  </g>
+</g>
+`;
+
 exports[`<Node> renders image correctly 1`] = `
 <g
   className="test"

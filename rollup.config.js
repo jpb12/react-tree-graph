@@ -1,27 +1,26 @@
-import babel from 'rollup-plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import clear from 'rollup-plugin-clear';
 import ignore from 'rollup-plugin-ignore';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
 import { terser } from 'rollup-plugin-terser';
+import rfdc from 'rfdc';
 
-import clone from 'clone';
+const clone = rfdc();
 
 const defaultOutput = {
 	globals: {
-		'prop-types': 'PropTypes',
-		react: 'React',
-		clone: 'clone',
 		'd3-ease': 'd3',
-		'd3-hierarchy': 'd3'
+		'd3-hierarchy': 'd3',
+		'prop-types': 'PropTypes',
+		react: 'React'
 	},
 	interop: 'auto'
 };
 
 const defaultConfig = {
 	external: [
-		'clone',
 		'd3-hierarchy',
 		'd3-ease',
 		'prop-types',

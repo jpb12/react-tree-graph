@@ -5,12 +5,11 @@
 				require('d3-ease'),
 				require('prop-types'),
 				require('react'),
-				require('clone'),
 				require('d3-hierarchy')
 		  )
 		: typeof define === 'function' && define.amd
 		? define(
-				['exports', 'd3-ease', 'prop-types', 'react', 'clone', 'd3-hierarchy'],
+				['exports', 'd3-ease', 'prop-types', 'react', 'd3-hierarchy'],
 				factory
 		  )
 		: ((global =
@@ -20,10 +19,9 @@
 				global.d3,
 				global.PropTypes,
 				global.React,
-				global.clone,
 				global.d3
 		  ));
-})(this, function (exports, d3Ease, PropTypes, React, clone, d3Hierarchy) {
+})(this, function (exports, d3Ease, PropTypes, React, d3Hierarchy) {
 	'use strict';
 
 	function _interopDefault(e) {
@@ -32,7 +30,6 @@
 
 	var PropTypes__default = /*#__PURE__*/ _interopDefault(PropTypes);
 	var React__default = /*#__PURE__*/ _interopDefault(React);
-	var clone__default = /*#__PURE__*/ _interopDefault(clone);
 
 	function _extends() {
 		_extends =
@@ -57,12 +54,8 @@
 	function getTreeData(props) {
 		const contentWidth = props.width - props.margins.left - props.margins.right;
 		const contentHeight =
-			props.height - props.margins.top - props.margins.bottom; // data is cloned because d3 will mutate the object passed in
-
-		let data = d3Hierarchy.hierarchy(
-			clone__default['default'](props.data),
-			props.getChildren
-		);
+			props.height - props.margins.top - props.margins.bottom;
+		let data = d3Hierarchy.hierarchy(props.data, props.getChildren);
 		let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
 		let nodes = root.descendants();
 		let links = root.links();
@@ -201,6 +194,29 @@
 				this.props.textProps,
 				this.props[this.props.keyProp]
 			);
+			const label =
+				typeof this.props[this.props.labelProp] === 'string'
+					? /*#__PURE__*/ React__default['default'].createElement(
+							'text',
+							_extends(
+								{
+									dx: offset + 0.5,
+									dy: 5,
+								},
+								wrappedTextProps
+							),
+							this.props[this.props.labelProp]
+					  )
+					: /*#__PURE__*/ React__default['default'].createElement(
+							'g',
+							_extends(
+								{
+									transform: `translate(${offset + 0.5}, 5)`,
+								},
+								wrappedTextProps
+							),
+							this.props[this.props.labelProp]
+					  );
 			return /*#__PURE__*/ React__default['default'].createElement(
 				'g',
 				_extends({}, wrappedGProps, {
@@ -210,17 +226,7 @@
 					this.props.shape,
 					wrappedNodeProps
 				),
-				/*#__PURE__*/ React__default['default'].createElement(
-					'text',
-					_extends(
-						{
-							dx: offset + 0.5,
-							dy: 5,
-						},
-						wrappedTextProps
-					),
-					this.props[this.props.labelProp]
-				)
+				label
 			);
 		}
 	}

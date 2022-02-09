@@ -1,5 +1,7 @@
-import clone from 'clone';
+import rfdc from 'rfdc';
 import getTreeData from '../src/d3';
+
+const clone = rfdc();
 
 const defaultProps = {
 	getChildren: n => n.children,
