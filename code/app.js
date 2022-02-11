@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import AnimatedExample from './examples/animated';
 import ChildrenExample from './examples/children';
 import ClickingExample from './examples/clicking';
+import CustomLabelsExample from './examples/customLabels';
 import EasingExample from './examples/easing';
 import ImageExample from './examples/image';
 import NodePropsExample from './examples/nodeProps';
@@ -28,6 +29,7 @@ class App extends React.PureComponent {
 				<div className="centre">
 					<SimpleExample/>
 					<ClickingExample/>
+					<CustomLabelsExample/>
 					<RectExample/>
 					<PolygonExample/>
 					<ImageExample/>

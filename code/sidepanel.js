@@ -6,6 +6,7 @@ export default class SidePanel extends React.PureComponent {
 			<div className="sidepanel" data-nosnippet>
 				<div><a href="#basic">Basic</a></div>
 				<div><a href="#clicking">Click events</a></div>
+				<div><a href="#custom-labels">Custom labels</a></div>
 				<div><a href="#rect">Rectangular nodes</a></div>
 				<div><a href="#polygon">Polygon nodes</a></div>
 				<div><a href="#image">Image nodes</a></div>
