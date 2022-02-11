@@ -1,3 +1,6 @@
+## 7.0.3 (11 Feb 2022)
+* Moving RFDC from dependency to dev dependency
+
 ## 7.0.2 (9 Feb 2022)
 * Fixing preinstall script causes install failure
 

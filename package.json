@@ -1,6 +1,6 @@
 {
   "name": "react-tree-graph",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "A react library for generating a graphical tree from data using d3",
   "main": "dist/index.js",
   "module": "dist/module/index.js",
