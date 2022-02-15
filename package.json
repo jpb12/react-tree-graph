@@ -4,10 +4,10 @@
   "description": "Working examples with source code for the react-tree-graph JavaScript library",
   "main": "code/index.js",
   "scripts": {
-    "build": "build-storybook -c .storybook -s ./.storybook/images -o docs",
+    "build": "build-storybook -c .storybook -o docs",
     "eslint": "eslint code",
     "preinstall": "npx browserslist@latest --update-db",
-    "watch": "start-storybook -c .storybook -s ./.storybook/images --port 9000"
+    "watch": "start-storybook -c .storybook --port 9000"
   },
   "repository": {
     "type": "git",
