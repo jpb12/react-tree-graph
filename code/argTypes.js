@@ -1,4 +1,37 @@
+import {
+	easeBack,
+	easeBackIn,
+	easeBackOut,
+	easeBounce,
+	easeBounceIn,
+	easeBounceInOut,
+	easeCircle,
+	easeCircleIn,
+	easeCircleOut,
+	easeCubic,
+	easeCubicIn,
+	easeCubicOut,
+	easeElastic,
+	easeElasticIn,
+	easeElasticInOut,
+	easeExp,
+	easeExpIn,
+	easeExpOut,
+	easeLinear,
+	easePoly,
+	easePolyIn,
+	easePolyOut,
+	easeQuad,
+	easeQuadIn,
+	easeQuadOut,
+	easeSin,
+	easeSinIn,
+	easeSinOut
+} from 'd3-ease';
+
+
 const categories = {
+	animation: 'Animation',
 	data: 'Data',
 	properties: 'SVG Properties',
 	rendering: 'Tree Rendering'
@@ -105,4 +138,92 @@ export const TreeArgTypes = {
 		type: { name: 'object' },
 		description: 'Props to be added to the `<text>` element.'
 	}
+};
+
+export const AnimatedTreeArgTypes = {
+	duration: {
+		table: {
+			category: categories.animation,
+			defaultValue: { summary: 500 }
+		},
+		type: { name: 'number' },
+		description: 'The duration in milliseconds of animations.'
+	},
+	easing: {
+		mapping: {
+			easeBack,
+			easeBackIn,
+			easeBackOut,
+			easeBounce,
+			easeBounceIn,
+			easeBounceInOut,
+			easeCircle,
+			easeCircleIn,
+			easeCircleOut,
+			easeCubic,
+			easeCubicIn,
+			easeCubicOut,
+			easeElastic,
+			easeElasticIn,
+			easeElasticInOut,
+			easeExp,
+			easeExpIn,
+			easeExpOut,
+			easeLinear,
+			easePoly,
+			easePolyIn,
+			easePolyOut,
+			easeQuad,
+			easeQuadIn,
+			easeQuadOut,
+			easeSin,
+			easeSinIn,
+			easeSinOut
+		},
+		options: [
+			'easeBack',
+			'easeBackIn',
+			'easeBackOut',
+			'easeBounce',
+			'easeBounceIn',
+			'easeBounceInOut',
+			'easeCircle',
+			'easeCircleIn',
+			'easeCircleOut',
+			'easeCubic',
+			'easeCubicIn',
+			'easeCubicOut',
+			'easeElastic',
+			'easeElasticIn',
+			'easeElasticInOut',
+			'easeExp',
+			'easeExpIn',
+			'easeExpOut',
+			'easeLinear',
+			'easePoly',
+			'easePolyIn',
+			'easePolyOut',
+			'easeQuad',
+			'easeQuadIn',
+			'easeQuadOut',
+			'easeSin',
+			'easeSinIn',
+			'easeSinOut'
+		],
+		table: {
+			category: categories.animation,
+			defaultValue: { summary: 'easeQuadOut' }
+		},
+		type: { name: 'select' },
+		description: 'The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. The options here are all from the d3-ease library.'
+	},
+	steps: {
+		table: {
+			category: categories.animation,
+			defaultValue: { summary: 20 }
+		},
+		type: { name: 'number' },
+		description: 'The number of steps in animations. A higher number will result in a smoother animation, but too high will cause performance issues.'
+	},
+	...TreeArgTypes
 };

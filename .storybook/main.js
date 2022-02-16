@@ -5,6 +5,7 @@ module.exports = {
 		{
 			name: '@storybook/addon-essentials',
 			options: {
+				actions: false,
 				backgrounds: false,
 				measure: false,
 				outline: false,
