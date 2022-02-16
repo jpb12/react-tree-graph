@@ -8,3 +8,15 @@
    ga('send', 'pageview');
 </script>
 <link rel="icon" href="favicon.png">
+<script>
+	new MutationObserver(function(mutations) {
+	  if (document.title.match(/Storybook$/)) {
+		 document.title = document.title.replace('Storybook', 'react-tree-graph');
+	  }
+	}).observe(document.querySelector("title"), {
+	  childList: true,
+	  subtree: true,
+	  characterData: true
+	});
+	document.title = document.title.replace('Storybook', 'react-tree-graph');
+ </script>

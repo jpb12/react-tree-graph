@@ -118,7 +118,7 @@ export const TreeArgTypes = {
 	nodeProps: {
 		table: { category: categories.properties },
 		type: { name: 'object' },
-		description: 'Props to be added to the `<circle>`, <image>, <polygon> or <rect> element. These will take priority over the default r added to circle and height, width, x and y added to image and rect.'
+		description: 'Props to be added to the `<circle>`, `<image>`, `<polygon>` or `<rect>` element. These will take priority over the default r added to circle and height, width, x and y added to image and rect.'
 	},
 	pathProps: {
 		table: {

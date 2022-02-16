@@ -43,7 +43,16 @@
    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
    ga('create', 'UA-102379613-1', 'auto');
-   ga('send', 'pageview');</script><link rel="icon" href="favicon.png"><style>#root[hidden],
+   ga('send', 'pageview');</script><link rel="icon" href="favicon.png"><script>new MutationObserver(function(mutations) {
+	  if (document.title.match(/Storybook$/)) {
+		 document.title = document.title.replace('Storybook', 'react-tree-graph');
+	  }
+	}).observe(document.querySelector("title"), {
+	  childList: true,
+	  subtree: true,
+	  characterData: true
+	});
+	document.title = document.title.replace('Storybook', 'react-tree-graph');</script><style>#root[hidden],
       #docs-root[hidden] {
         display: none !important;
       }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['CONFIG_TYPE'] = "PRODUCTION";

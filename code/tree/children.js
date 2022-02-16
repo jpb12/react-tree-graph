@@ -17,11 +17,7 @@ CustomChildren.args = {
 		}]
 	},
 	children: (
-		<text
-			dy="15"
-			dx="5"
-			stroke="#000000"
-			fill="#000000">
+		<text dy="15" dx="5">
 			Custom Title
 		</text>)
 };

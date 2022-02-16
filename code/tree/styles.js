@@ -21,5 +21,10 @@ CustomStyles.args = {
 };
 
 CustomStyles.parameters = {
-	controls: { include: ['data', 'svgProps'] }
+	controls: { include: ['data', 'svgProps'] },
+	docs: {
+		description: {
+			story: 'CSS used here is available at https://github.com/jpb12/react-tree-graph/blob/gh-pages/code/tree/styles.css'
+		}
+	}
 };

@@ -30,7 +30,7 @@ CustomNodeProps.parameters = {
 	controls: { include: ['data', 'nodeProps', 'gProps', 'pathProps', 'textProps', 'labelProp', 'keyProp', 'nodeShape'] },
 	docs: {
 		description: {
-			story: 'You can override props for individual nodes. `nodeProps`, `gProps`, `pathProps` (taken from the target node) and `textProps` on each node will be combined with those passed into `<Tree>`. `keyProp`, `labelProp` and `shape` (overrides `nodeShape`) will override those passed into `<Tree>`'
+			story: 'You can override props for individual nodes by setting them inside the `data` prop. `nodeProps`, `gProps`, `pathProps` (taken from the target node) and `textProps` on each node will be combined with those passed into `<Tree>`. `keyProp`, `labelProp` and `shape` (overrides `nodeShape`) will override those passed into `<Tree>`'
 		}
 	}
 };

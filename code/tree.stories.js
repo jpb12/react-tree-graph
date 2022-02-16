@@ -33,12 +33,7 @@ Simple.args = {
 };
 
 export { Events } from './tree/events';
-export { CustomLabels } from './tree/labels';
-export { RectangularNodes } from './tree/rect';
-export { PolygonNodes } from './tree/polygon';
-export { ImageNodes } from './tree/image';
 export { CustomChildren } from './tree/children';
-export { CustomNodeProps } from './tree/nodeProps';
 export { CustomPaths } from './tree/path';
 export { Transformations } from './tree/transformations';
 export { CustomStyles } from './tree/styles';

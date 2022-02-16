@@ -3,13 +3,13 @@ import { AnimatedTree } from 'react-tree-graph';
 import { AnimatedTreeArgTypes } from './argTypes';
 
 export default {
-	title: 'AnimatedTree',
+	title: 'AnimatedTree/Animations',
 	component: AnimatedTree,
 	argTypes: AnimatedTreeArgTypes,
 	parameters: {
 		docs: {
 			description: {
-				component: 'The AnimatedTree component has all the same props as the Tree component, and additional props to customise animation behaviour.'
+				component: 'The AnimatedTree component has all the same props as the Tree component, and additional props to customise animation behaviour. Animations are automatically triggered when changes to the `data` prop are made. This demo works by using `setTimeout` to change the `data` prop every 2 seconds.'
 			}
 		}
 	}
@@ -51,7 +51,7 @@ const data = [
 	}
 ];
 
-export function Simple(args) {
+export function Animations(args) {
 	const [position, setPosition] = useState(0);
 
 	useEffect(() => {
@@ -66,11 +66,11 @@ export function Simple(args) {
 	return <AnimatedTree data={data[order[position]]} {...args}/>;
 }
 
-Simple.args = {
+Animations.args = {
 	height: 400,
 	width: 600
 };
 
-Simple.parameters = {
+Animations.parameters = {
 	controls: { include: ['duration', 'easing', 'steps'] }
 };
