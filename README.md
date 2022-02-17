@@ -1,5 +1,5 @@
-react-tree-graph
-================
+react-tree-graph [![Github](https://img.shields.io/github/stars/jpb12/react-tree-graph?style=social)](https://github.com/jpb12/react-tree-graph)
+================================================================================================================================================
 
 [![Build Status](https://travis-ci.com/jpb12/react-tree-graph.svg?branch=master)](https://app.travis-ci.com/github/jpb12/react-tree-graph) [![Coverage Status](https://coveralls.io/repos/github/jpb12/react-tree-graph/badge.svg?branch=master)](https://coveralls.io/github/jpb12/react-tree-graph?branch=master) [![npm version](https://img.shields.io/npm/v/react-tree-graph.svg)](https://www.npmjs.com/package/react-tree-graph) [![npm](https://img.shields.io/npm/dt/react-tree-graph.svg)](https://www.npmjs.com/package/react-tree-graph) [![bundle size](https://img.shields.io/bundlephobia/minzip/react-tree-graph)](https://bundlephobia.com/result?p=react-tree-graph) [![license](https://img.shields.io/npm/l/react-tree-graph)](https://github.com/jpb12/react-tree-graph/blob/master/LICENSE)
 
@@ -18,7 +18,7 @@ Older Versions
 [2.X](https://github.com/jpb12/react-tree-graph/tree/v2.0.0)
 [1.X](https://github.com/jpb12/react-tree-graph/tree/v1.7.2)
 
-Installing
+Installation
 ----------
 ```sh
 npm install react-tree-graph --save
@@ -30,7 +30,7 @@ Usage
 ```javascript
 import { Tree } from 'react-tree-graph';
 
-let data = {
+const data = {
 	name: 'Parent',
 	children: [{
 		name: 'Child One'
@@ -72,13 +72,13 @@ Tree
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
 | `children` | node | | | Will be rendered as children of the SVG, before the links and nodes. |
-| `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist |
+| `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist. |
 | `keyProp` | string | | "name" | The property on each node to use as a key. |
 | `labelProp` | string | | "name" | The property on each node to render as a label. |
-| `nodeShape` | `circle`,`image`,`polygon`,`rect` | | `circle` | The shape of the node icons |
-| `nodeProps` | object | | `{}` | Props to be added to the `<circle>`, `<image>`, `<polygon>` or `<rect>` element. These will take priority over the default `r` added to `circle` and `height`, `width`, `x` and `y` added to `image` and `rect` |
-| `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. |
-| `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. |
+| `nodeShape` | `circle`,`image`,`polygon`,`rect` | | `circle` | The shape of the node icons. |
+| `nodeProps` | object | | `{}` | Props to be added to the `<circle>`, `<image>`, `<polygon>` or `<rect>` element. These will take priority over the default `r` added to `circle` and `height`, `width`, `x` and `y` added to `image` and `rect`. |
+| `gProps` | object | | `{ className: 'node' }` | Props to be added to the `<g>` element. The default className will still be applied if a className property is not set. |
+| `pathProps` | object | | `{ className: 'link' }` | Props to be added to the `<path>` element. The default className will still be applied if a className property is not set. |
 | `pathFunc` | function(x1,y1,x2,y2) | | curved | Function to calculate the co-ordinates of the path between nodes. |
 | `svgProps` | object | | `{}` | Props to be added to the `<svg>` element. |
 | `textProps` | object | | `{}` | Props to be added to the `<text>` element. |
@@ -88,8 +88,8 @@ AnimatedTree has the following properties in addition to the above.
 | Property | Type | Mandatory | Default | Description |
 |:---|:---|:---|:---|:---|
 | `duration` | number | | 500 | The duration in milliseconds of animations. |
-| `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1 and returns a number between 0 and 1. |
-| `steps` | number | | 20 | The number of steps in animations. |
+| `easing` | function(interval) | | [d3-ease](https://www.npmjs.com/package/d3-ease).easeQuadOut | The easing function for animations. Takes in a number between 0 and 1, and returns a number between 0 and 1. |
+| `steps` | number | | 20 | The number of steps in animations. A higher number will result in a smoother animation, but too high will cause performance issues. |
 
 ### Events
 
