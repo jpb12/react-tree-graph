@@ -15,7 +15,7 @@ module.exports = {
 	],
 	framework: '@storybook/react',
 	staticDirs: ['./images'],
-	stories: ['../code/**/*.stories.js'],
+	stories: ['../code/**/*.stories.(js|mdx)'],
 	webpackFinal: config => {
 		return {
 			...config,
