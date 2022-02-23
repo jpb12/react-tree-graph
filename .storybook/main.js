@@ -24,5 +24,5 @@ module.exports = {
 				rules: [...custom.module.rules, ...config.module.rules]
 			}
 		};
-	},
+	}
 }
