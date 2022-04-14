@@ -17,14 +17,14 @@
   "license": "MIT",
   "homepage": "http://jpb12.github.io/react-tree-graph/",
   "devDependencies": {
-    "@babel/core": "^7.17.4",
+    "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "@storybook/addon-essentials": "^6.4.19",
-    "@storybook/react": "^6.4.19",
-    "eslint": "^8.9.0",
-    "eslint-plugin-react": "^7.28.0"
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "eslint": "^8.13.0",
+    "eslint-plugin-react": "^7.29.4"
   },
   "dependencies": {
     "d3-ease": "^2.0.0",
