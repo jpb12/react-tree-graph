@@ -4,7 +4,7 @@ exports[`<Tree> renders correctly 1`] = `
 <Container
   animated={false}
   gProps={
-    Object {
+    {
       "className": "node",
     }
   }
@@ -13,12 +13,12 @@ exports[`<Tree> renders correctly 1`] = `
   keyProp="name"
   labelProp="name"
   links={
-    Array [
-      Object {
+    [
+      {
         "source": Node {
-          "children": Array [
+          "children": [
             Node {
-              "data": Object {
+              "data": {
                 "name": "Black",
               },
               "depth": 1,
@@ -28,9 +28,9 @@ exports[`<Tree> renders correctly 1`] = `
               "y": 40,
             },
           ],
-          "data": Object {
-            "childs": Array [
-              Object {
+          "data": {
+            "childs": [
+              {
                 "name": "Black",
               },
             ],
@@ -43,18 +43,18 @@ exports[`<Tree> renders correctly 1`] = `
           "y": 10,
         },
         "target": Node {
-          "data": Object {
+          "data": {
             "name": "Black",
           },
           "depth": 1,
           "height": 0,
           "parent": Node {
-            "children": Array [
+            "children": [
               [Circular],
             ],
-            "data": Object {
-              "childs": Array [
-                Object {
+            "data": {
+              "childs": [
+                {
                   "name": "Black",
                 },
               ],
@@ -72,14 +72,14 @@ exports[`<Tree> renders correctly 1`] = `
       },
     ]
   }
-  nodeProps={Object {}}
+  nodeProps={{}}
   nodeShape="circle"
   nodes={
-    Array [
+    [
       Node {
-        "children": Array [
+        "children": [
           Node {
-            "data": Object {
+            "data": {
               "name": "Black",
             },
             "depth": 1,
@@ -89,9 +89,9 @@ exports[`<Tree> renders correctly 1`] = `
             "y": 40,
           },
         ],
-        "data": Object {
-          "childs": Array [
-            Object {
+        "data": {
+          "childs": [
+            {
               "name": "Black",
             },
           ],
@@ -104,18 +104,18 @@ exports[`<Tree> renders correctly 1`] = `
         "y": 10,
       },
       Node {
-        "data": Object {
+        "data": {
           "name": "Black",
         },
         "depth": 1,
         "height": 0,
         "parent": Node {
-          "children": Array [
+          "children": [
             [Circular],
           ],
-          "data": Object {
-            "childs": Array [
-              Object {
+          "data": {
+            "childs": [
+              {
                 "name": "Black",
               },
             ],
@@ -133,12 +133,12 @@ exports[`<Tree> renders correctly 1`] = `
     ]
   }
   pathProps={
-    Object {
+    {
       "className": "link",
     }
   }
-  svgProps={Object {}}
-  textProps={Object {}}
+  svgProps={{}}
+  textProps={{}}
   width={200}
 />
 `;

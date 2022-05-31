@@ -54,6 +54,7 @@ export default class Container extends React.PureComponent {
 							{...node.data}/>)
 					}
 				</g>
-			</svg>);
+			</svg>
+		);
 	}
 }

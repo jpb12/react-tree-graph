@@ -1,4 +1,4 @@
-import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
+import _extends from '@babel/runtime/helpers/extends';
 import PropTypes from 'prop-types';
 import React from 'react';
 import getTreeData from '../d3.js';
@@ -46,7 +46,6 @@ class Tree extends React.PureComponent {
     svgProps: {},
     textProps: {}
   };
-
   render() {
     return /*#__PURE__*/React.createElement(Container, _extends({
       animated: this.props.animated,
@@ -70,7 +69,6 @@ class Tree extends React.PureComponent {
       textProps: this.props.textProps
     }, getTreeData(this.props)), this.props.children);
   }
-
 }
 
 export { Tree as default };

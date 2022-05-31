@@ -24,10 +24,10 @@ exports[`<Container> renders children 1`] = `
       key="Black"
       keyProp="name"
       pathFunc={[Function]}
-      pathProps={Object {}}
+      pathProps={{}}
       source={
-        Object {
-          "data": Object {
+        {
+          "data": {
             "name": "Colour",
           },
           "x": 1,
@@ -35,8 +35,8 @@ exports[`<Container> renders children 1`] = `
         }
       }
       target={
-        Object {
-          "data": Object {
+        {
+          "data": {
             "name": "Black",
           },
           "x": 100,
@@ -49,26 +49,26 @@ exports[`<Container> renders children 1`] = `
       y2={50}
     />
     <Node
-      gProps={Object {}}
+      gProps={{}}
       key="Colour"
       keyProp="name"
       labelProp="name"
       name="Colour"
-      nodeProps={Object {}}
+      nodeProps={{}}
       shape="circle"
-      textProps={Object {}}
+      textProps={{}}
       x={1}
       y={2}
     />
     <Node
-      gProps={Object {}}
+      gProps={{}}
       key="Black"
       keyProp="name"
       labelProp="name"
       name="Black"
-      nodeProps={Object {}}
+      nodeProps={{}}
       shape="circle"
-      textProps={Object {}}
+      textProps={{}}
       x={100}
       y={50}
     />
@@ -86,10 +86,10 @@ exports[`<Container> renders correctly 1`] = `
       key="Black"
       keyProp="name"
       pathFunc={[Function]}
-      pathProps={Object {}}
+      pathProps={{}}
       source={
-        Object {
-          "data": Object {
+        {
+          "data": {
             "name": "Colour",
           },
           "x": 1,
@@ -97,8 +97,8 @@ exports[`<Container> renders correctly 1`] = `
         }
       }
       target={
-        Object {
-          "data": Object {
+        {
+          "data": {
             "name": "Black",
           },
           "x": 100,
@@ -111,26 +111,26 @@ exports[`<Container> renders correctly 1`] = `
       y2={50}
     />
     <Node
-      gProps={Object {}}
+      gProps={{}}
       key="Colour"
       keyProp="name"
       labelProp="name"
       name="Colour"
-      nodeProps={Object {}}
+      nodeProps={{}}
       shape="circle"
-      textProps={Object {}}
+      textProps={{}}
       x={1}
       y={2}
     />
     <Node
-      gProps={Object {}}
+      gProps={{}}
       key="Black"
       keyProp="name"
       labelProp="name"
       name="Black"
-      nodeProps={Object {}}
+      nodeProps={{}}
       shape="circle"
-      textProps={Object {}}
+      textProps={{}}
       x={100}
       y={50}
     />

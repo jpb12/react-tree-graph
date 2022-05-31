@@ -2,6 +2,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined'
 		? factory(
 				exports,
+				require('@babel/runtime/helpers/extends'),
 				require('d3-ease'),
 				require('prop-types'),
 				require('react'),
@@ -9,47 +10,36 @@
 		  )
 		: typeof define === 'function' && define.amd
 		? define(
-				['exports', 'd3-ease', 'prop-types', 'react', 'd3-hierarchy'],
+				[
+					'exports',
+					'@babel/runtime/helpers/extends',
+					'd3-ease',
+					'prop-types',
+					'react',
+					'd3-hierarchy',
+				],
 				factory
 		  )
 		: ((global =
 				typeof globalThis !== 'undefined' ? globalThis : global || self),
 		  factory(
 				(global.ReactTreeGraph = {}),
+				global._extends,
 				global.d3,
 				global.PropTypes,
 				global.React,
 				global.d3
 		  ));
-})(this, function (exports, d3Ease, PropTypes, React, d3Hierarchy) {
+})(this, function (exports, _extends, d3Ease, PropTypes, React, d3Hierarchy) {
 	'use strict';
 
 	function _interopDefault(e) {
 		return e && e.__esModule ? e : { default: e };
 	}
 
+	var _extends__default = /*#__PURE__*/ _interopDefault(_extends);
 	var PropTypes__default = /*#__PURE__*/ _interopDefault(PropTypes);
 	var React__default = /*#__PURE__*/ _interopDefault(React);
-
-	function _extends() {
-		_extends =
-			Object.assign ||
-			function (target) {
-				for (var i = 1; i < arguments.length; i++) {
-					var source = arguments[i];
-
-					for (var key in source) {
-						if (Object.prototype.hasOwnProperty.call(source, key)) {
-							target[key] = source[key];
-						}
-					}
-				}
-
-				return target;
-			};
-
-		return _extends.apply(this, arguments);
-	}
 
 	function getTreeData(props) {
 		const contentWidth = props.width - props.margins.left - props.margins.right;
@@ -69,11 +59,11 @@
 	}
 
 	const regex = /on[A-Z]/;
-
 	function wrapper(func, args) {
 		return (event) => func(event, ...args);
-	} // Wraps any event handlers passed in as props with a function that passes additional arguments
+	}
 
+	// Wraps any event handlers passed in as props with a function that passes additional arguments
 	function wrapHandlers(props) {
 		for (
 			var _len = arguments.length,
@@ -84,7 +74,6 @@
 		) {
 			args[_key - 1] = arguments[_key];
 		}
-
 		const handlers = Object.keys(props).filter(
 			(propName) =>
 				regex.test(propName) && typeof props[propName] === 'function'
@@ -93,13 +82,15 @@
 			acc[handler] = wrapper(props[handler], args);
 			return acc;
 		}, {});
-		return { ...props, ...wrappedHandlers };
+		return {
+			...props,
+			...wrappedHandlers,
+		};
 	}
 
 	function diagonal(x1, y1, x2, y2) {
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
-
 	class Link extends React__default['default'].PureComponent {
 		static propTypes = {
 			source: PropTypes__default['default'].object.isRequired,
@@ -115,7 +106,6 @@
 		static defaultProps = {
 			pathFunc: diagonal,
 		};
-
 		render() {
 			const wrappedProps = wrapHandlers(
 				this.props.pathProps,
@@ -130,7 +120,7 @@
 			);
 			return /*#__PURE__*/ React__default['default'].createElement(
 				'path',
-				_extends({}, wrappedProps, {
+				_extends__default['default']({}, wrappedProps, {
 					d: d,
 				})
 			);
@@ -148,15 +138,12 @@
 			gProps: PropTypes__default['default'].object.isRequired,
 			textProps: PropTypes__default['default'].object.isRequired,
 		};
-
 		getTransform() {
 			return `translate(${this.props.y}, ${this.props.x})`;
 		}
-
 		render() {
 			let offset = 0;
 			let nodePropsWithDefaults = this.props.nodeProps;
-
 			switch (this.props.shape) {
 				case 'circle':
 					nodePropsWithDefaults = {
@@ -165,7 +152,6 @@
 					};
 					offset = nodePropsWithDefaults.r;
 					break;
-
 				case 'image':
 				case 'rect':
 					nodePropsWithDefaults = {
@@ -181,7 +167,6 @@
 					offset = nodePropsWithDefaults.width / 2;
 					break;
 			}
-
 			const wrappedNodeProps = wrapHandlers(
 				nodePropsWithDefaults,
 				this.props[this.props.keyProp]
@@ -198,7 +183,7 @@
 				typeof this.props[this.props.labelProp] === 'string'
 					? /*#__PURE__*/ React__default['default'].createElement(
 							'text',
-							_extends(
+							_extends__default['default'](
 								{
 									dx: offset + 0.5,
 									dy: 5,
@@ -209,7 +194,7 @@
 					  )
 					: /*#__PURE__*/ React__default['default'].createElement(
 							'g',
-							_extends(
+							_extends__default['default'](
 								{
 									transform: `translate(${offset + 0.5}, 5)`,
 								},
@@ -219,7 +204,7 @@
 					  );
 			return /*#__PURE__*/ React__default['default'].createElement(
 				'g',
-				_extends({}, wrappedGProps, {
+				_extends__default['default']({}, wrappedGProps, {
 					transform: this.getTransform(),
 				}),
 				/*#__PURE__*/ React__default['default'].createElement(
@@ -249,11 +234,10 @@
 			svgProps: PropTypes__default['default'].object.isRequired,
 			textProps: PropTypes__default['default'].object.isRequired,
 		};
-
 		render() {
 			return /*#__PURE__*/ React__default['default'].createElement(
 				'svg',
-				_extends({}, this.props.svgProps, {
+				_extends__default['default']({}, this.props.svgProps, {
 					height: this.props.height,
 					width: this.props.width,
 				}),
@@ -281,7 +265,7 @@
 					this.props.nodes.map((node) =>
 						/*#__PURE__*/ React__default['default'].createElement(
 							Node,
-							_extends(
+							_extends__default['default'](
 								{
 									key: node.data[this.props.keyProp],
 									keyProp: this.props.keyProp,
@@ -293,7 +277,10 @@
 										...this.props.nodeProps,
 										...node.data.nodeProps,
 									},
-									gProps: { ...this.props.gProps, ...node.data.gProps },
+									gProps: {
+										...this.props.gProps,
+										...node.data.gProps,
+									},
 									textProps: {
 										...this.props.textProps,
 										...node.data.textProps,
@@ -318,26 +305,35 @@
 			easing: PropTypes__default['default'].func.isRequired,
 			steps: PropTypes__default['default'].number.isRequired,
 		};
-
 		constructor(props) {
-			super(props); // If we are animating, we set the initial positions of the nodes and links to be the position of the root node
+			super(props);
+			// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
 			// and animate from there
-
 			let initialX = props.nodes[0].x;
 			let initialY = props.nodes[0].y;
 			this.state = {
-				nodes: props.nodes.map((n) => ({ ...n, x: initialX, y: initialY })),
+				nodes: props.nodes.map((n) => ({
+					...n,
+					x: initialX,
+					y: initialY,
+				})),
 				links: props.links.map((l) => ({
-					source: { ...l.source, x: initialX, y: initialY },
-					target: { ...l.target, x: initialX, y: initialY },
+					source: {
+						...l.source,
+						x: initialX,
+						y: initialY,
+					},
+					target: {
+						...l.target,
+						x: initialX,
+						y: initialY,
+					},
 				})),
 			};
 		}
-
 		componentDidMount() {
 			this.animate();
 		}
-
 		componentDidUpdate(prevProps) {
 			if (
 				prevProps.nodes === this.props.nodes &&
@@ -345,20 +341,18 @@
 			) {
 				return;
 			}
-
 			this.animate();
 		}
-
 		animate() {
 			// Stop previous animation if one is already in progress.  We will start the next animation
 			// from the position we are currently in
 			clearInterval(this.animation);
-			let counter = 0; // Do as much one-time calculation outside of the animation step, which needs to be fast
+			let counter = 0;
 
+			// Do as much one-time calculation outside of the animation step, which needs to be fast
 			let animationContext = this.getAnimationContext(this.state, this.props);
 			this.animation = setInterval(() => {
 				counter++;
-
 				if (counter === this.props.steps) {
 					clearInterval(this.animation);
 					this.animation = null;
@@ -368,20 +362,20 @@
 					});
 					return;
 				}
-
 				this.setState(
 					this.calculateNewState(animationContext, counter / this.props.steps)
 				);
 			}, this.props.duration / this.props.steps);
 		}
-
 		getAnimationContext(initialState, newState) {
 			// Nodes/links that are in both states need to be moved from the old position to the new one
 			// Nodes/links only in the initial state are being removed, and should be moved to the position
 			// of the closest ancestor that still exists, or the new root
 			// Nodes/links only in the new state are being added, and should be moved from the position of
 			// the closest ancestor that previously existed, or the old root
+
 			// The base determines which node/link the data (like classes and labels) comes from for rendering
+
 			// We only run this once at the start of the animation, so optimisation is less important
 			let addedNodes = newState.nodes
 				.filter((n1) =>
@@ -442,33 +436,26 @@
 				links: changedLinks.concat(addedLinks).concat(removedLinks),
 			};
 		}
-
 		getClosestAncestor(node, stateWithNode, stateWithoutNode) {
 			let oldParent = node;
-
 			while (oldParent) {
 				let newParent = stateWithoutNode.nodes.find((n) =>
 					this.areNodesSame(oldParent, n)
 				);
-
 				if (newParent) {
 					return newParent;
 				}
-
 				oldParent = stateWithNode.nodes.find((n) =>
 					(this.props.getChildren(n) || []).some((c) =>
 						this.areNodesSame(oldParent, c)
 					)
 				);
 			}
-
 			return stateWithoutNode.nodes[0];
 		}
-
 		areNodesSame(a, b) {
 			return a.data[this.props.keyProp] === b.data[this.props.keyProp];
 		}
-
 		areLinksSame(a, b) {
 			return (
 				a.source.data[this.props.keyProp] ===
@@ -476,7 +463,6 @@
 				a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp]
 			);
 		}
-
 		calculateNewState(animationContext, interval) {
 			return {
 				nodes: animationContext.nodes.map((n) =>
@@ -487,7 +473,6 @@
 				),
 			};
 		}
-
 		calculateNodePosition(node, start, end, interval) {
 			return {
 				...node,
@@ -495,7 +480,6 @@
 				y: this.calculateNewValue(start.y, end.y, interval),
 			};
 		}
-
 		calculateLinkPosition(link, start, end, interval) {
 			return {
 				source: {
@@ -526,15 +510,13 @@
 				},
 			};
 		}
-
 		calculateNewValue(start, end, interval) {
 			return start + (end - start) * this.props.easing(interval);
 		}
-
 		render() {
 			return /*#__PURE__*/ React__default['default'].createElement(
 				Container,
-				_extends({}, this.props, this.state)
+				_extends__default['default']({}, this.props, this.state)
 			);
 		}
 	}
@@ -590,11 +572,10 @@
 			svgProps: {},
 			textProps: {},
 		};
-
 		render() {
 			return /*#__PURE__*/ React__default['default'].createElement(
 				Animated,
-				_extends(
+				_extends__default['default'](
 					{
 						duration: this.props.duration,
 						easing: this.props.easing,
@@ -672,11 +653,10 @@
 			svgProps: {},
 			textProps: {},
 		};
-
 		render() {
 			return /*#__PURE__*/ React__default['default'].createElement(
 				Container,
-				_extends(
+				_extends__default['default'](
 					{
 						animated: this.props.animated,
 						getChildren: this.props.getChildren,

@@ -1,4 +1,4 @@
-import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
+import _extends from '@babel/runtime/helpers/extends';
 import { easeQuadOut } from 'd3-ease';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -51,7 +51,6 @@ class AnimatedTree extends React.PureComponent {
     svgProps: {},
     textProps: {}
   };
-
   render() {
     return /*#__PURE__*/React.createElement(Animated, _extends({
       duration: this.props.duration,
@@ -77,7 +76,6 @@ class AnimatedTree extends React.PureComponent {
       textProps: this.props.textProps
     }, getTreeData(this.props)), this.props.children);
   }
-
 }
 
 export { AnimatedTree as default };

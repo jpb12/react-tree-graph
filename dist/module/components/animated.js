@@ -1,4 +1,4 @@
-import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
+import _extends from '@babel/runtime/helpers/extends';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Container from './container.js';
@@ -13,53 +13,51 @@ class Animated extends React.PureComponent {
     easing: PropTypes.func.isRequired,
     steps: PropTypes.number.isRequired
   };
-
   constructor(props) {
-    super(props); // If we are animating, we set the initial positions of the nodes and links to be the position of the root node
+    super(props);
+    // If we are animating, we set the initial positions of the nodes and links to be the position of the root node
     // and animate from there
-
     let initialX = props.nodes[0].x;
     let initialY = props.nodes[0].y;
     this.state = {
-      nodes: props.nodes.map(n => ({ ...n,
+      nodes: props.nodes.map(n => ({
+        ...n,
         x: initialX,
         y: initialY
       })),
       links: props.links.map(l => ({
-        source: { ...l.source,
+        source: {
+          ...l.source,
           x: initialX,
           y: initialY
         },
-        target: { ...l.target,
+        target: {
+          ...l.target,
           x: initialX,
           y: initialY
         }
       }))
     };
   }
-
   componentDidMount() {
     this.animate();
   }
-
   componentDidUpdate(prevProps) {
     if (prevProps.nodes === this.props.nodes && prevProps.links === this.props.links) {
       return;
     }
-
     this.animate();
   }
-
   animate() {
     // Stop previous animation if one is already in progress.  We will start the next animation
     // from the position we are currently in
     clearInterval(this.animation);
-    let counter = 0; // Do as much one-time calculation outside of the animation step, which needs to be fast
+    let counter = 0;
 
+    // Do as much one-time calculation outside of the animation step, which needs to be fast
     let animationContext = this.getAnimationContext(this.state, this.props);
     this.animation = setInterval(() => {
       counter++;
-
       if (counter === this.props.steps) {
         clearInterval(this.animation);
         this.animation = null;
@@ -69,18 +67,18 @@ class Animated extends React.PureComponent {
         });
         return;
       }
-
       this.setState(this.calculateNewState(animationContext, counter / this.props.steps));
     }, this.props.duration / this.props.steps);
   }
-
   getAnimationContext(initialState, newState) {
     // Nodes/links that are in both states need to be moved from the old position to the new one
     // Nodes/links only in the initial state are being removed, and should be moved to the position
     // of the closest ancestor that still exists, or the new root
     // Nodes/links only in the new state are being added, and should be moved from the position of
     // the closest ancestor that previously existed, or the old root
+
     // The base determines which node/link the data (like classes and labels) comes from for rendering
+
     // We only run this once at the start of the animation, so optimisation is less important
     let addedNodes = newState.nodes.filter(n1 => initialState.nodes.every(n2 => !this.areNodesSame(n1, n2))).map(n1 => ({
       base: n1,
@@ -117,66 +115,56 @@ class Animated extends React.PureComponent {
       links: changedLinks.concat(addedLinks).concat(removedLinks)
     };
   }
-
   getClosestAncestor(node, stateWithNode, stateWithoutNode) {
     let oldParent = node;
-
     while (oldParent) {
       let newParent = stateWithoutNode.nodes.find(n => this.areNodesSame(oldParent, n));
-
       if (newParent) {
         return newParent;
       }
-
       oldParent = stateWithNode.nodes.find(n => (this.props.getChildren(n) || []).some(c => this.areNodesSame(oldParent, c)));
     }
-
     return stateWithoutNode.nodes[0];
   }
-
   areNodesSame(a, b) {
     return a.data[this.props.keyProp] === b.data[this.props.keyProp];
   }
-
   areLinksSame(a, b) {
     return a.source.data[this.props.keyProp] === b.source.data[this.props.keyProp] && a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp];
   }
-
   calculateNewState(animationContext, interval) {
     return {
       nodes: animationContext.nodes.map(n => this.calculateNodePosition(n.base, n.old, n.new, interval)),
       links: animationContext.links.map(l => this.calculateLinkPosition(l.base, l.old, l.new, interval))
     };
   }
-
   calculateNodePosition(node, start, end, interval) {
-    return { ...node,
+    return {
+      ...node,
       x: this.calculateNewValue(start.x, end.x, interval),
       y: this.calculateNewValue(start.y, end.y, interval)
     };
   }
-
   calculateLinkPosition(link, start, end, interval) {
     return {
-      source: { ...link.source,
+      source: {
+        ...link.source,
         x: this.calculateNewValue(start.source ? start.source.x : start.x, end.source ? end.source.x : end.x, interval),
         y: this.calculateNewValue(start.source ? start.source.y : start.y, end.source ? end.source.y : end.y, interval)
       },
-      target: { ...link.target,
+      target: {
+        ...link.target,
         x: this.calculateNewValue(start.target ? start.target.x : start.x, end.target ? end.target.x : end.x, interval),
         y: this.calculateNewValue(start.target ? start.target.y : start.y, end.target ? end.target.y : end.y, interval)
       }
     };
   }
-
   calculateNewValue(start, end, interval) {
     return start + (end - start) * this.props.easing(interval);
   }
-
   render() {
     return /*#__PURE__*/React.createElement(Container, _extends({}, this.props, this.state));
   }
-
 }
 
 export { Animated as default };

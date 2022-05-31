@@ -65,6 +65,7 @@ export default class Tree extends React.PureComponent {
 				textProps={this.props.textProps}
 				{...getTreeData(this.props)}>
 				{ this.props.children }
-			</Container>);
+			</Container>
+		);
 	}
 }

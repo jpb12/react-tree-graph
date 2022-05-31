@@ -11,6 +11,7 @@ const clone = rfdc();
 
 const defaultOutput = {
 	globals: {
+		'@babel/runtime/helpers/extends': '_extends',
 		'd3-ease': 'd3',
 		'd3-hierarchy': 'd3',
 		'prop-types': 'PropTypes',
@@ -21,6 +22,7 @@ const defaultOutput = {
 
 const defaultConfig = {
 	external: [
+		'@babel/runtime/helpers/extends',
 		'd3-hierarchy',
 		'd3-ease',
 		'prop-types',
@@ -29,7 +31,9 @@ const defaultConfig = {
 	input: 'src/index.js',
 	plugins: [
 		babel({
-			exclude: 'node_modules/**'
+			babelHelpers: 'runtime',
+			exclude: 'node_modules/**',
+			plugins: ['@babel/plugin-transform-runtime']
 		}),
 		clear({
 			targets: ['dist']

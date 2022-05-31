@@ -1,4 +1,4 @@
-import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
+import _extends from '@babel/runtime/helpers/extends';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link.js';
@@ -22,7 +22,6 @@ class Container extends React.PureComponent {
     svgProps: PropTypes.object.isRequired,
     textProps: PropTypes.object.isRequired
   };
-
   render() {
     return /*#__PURE__*/React.createElement("svg", _extends({}, this.props.svgProps, {
       height: this.props.height,
@@ -37,7 +36,8 @@ class Container extends React.PureComponent {
       x2: link.target.x,
       y1: link.source.y,
       y2: link.target.y,
-      pathProps: { ...this.props.pathProps,
+      pathProps: {
+        ...this.props.pathProps,
         ...link.target.data.pathProps
       }
     })), this.props.nodes.map(node => /*#__PURE__*/React.createElement(Node, _extends({
@@ -47,18 +47,20 @@ class Container extends React.PureComponent {
       shape: this.props.nodeShape,
       x: node.x,
       y: node.y,
-      nodeProps: { ...this.props.nodeProps,
+      nodeProps: {
+        ...this.props.nodeProps,
         ...node.data.nodeProps
       },
-      gProps: { ...this.props.gProps,
+      gProps: {
+        ...this.props.gProps,
         ...node.data.gProps
       },
-      textProps: { ...this.props.textProps,
+      textProps: {
+        ...this.props.textProps,
         ...node.data.textProps
       }
     }, node.data)))));
   }
-
 }
 
 export { Container as default };

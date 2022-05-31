@@ -72,6 +72,7 @@ export default class AnimatedTree extends React.PureComponent {
 				textProps={this.props.textProps}
 				{...getTreeData(this.props)}>
 				{ this.props.children }
-			</Animated>);
+			</Animated>
+		);
 	}
 }

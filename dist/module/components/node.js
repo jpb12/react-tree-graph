@@ -1,4 +1,4 @@
-import { extends as _extends } from '../_virtual/_rollupPluginBabelHelpers.js';
+import _extends from '@babel/runtime/helpers/extends';
 import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers.js';
@@ -14,15 +14,12 @@ class Node extends React.PureComponent {
     gProps: PropTypes.object.isRequired,
     textProps: PropTypes.object.isRequired
   };
-
   getTransform() {
     return `translate(${this.props.y}, ${this.props.x})`;
   }
-
   render() {
     let offset = 0;
     let nodePropsWithDefaults = this.props.nodeProps;
-
     switch (this.props.shape) {
       case 'circle':
         nodePropsWithDefaults = {
@@ -31,7 +28,6 @@ class Node extends React.PureComponent {
         };
         offset = nodePropsWithDefaults.r;
         break;
-
       case 'image':
       case 'rect':
         nodePropsWithDefaults = {
@@ -47,7 +43,6 @@ class Node extends React.PureComponent {
         offset = nodePropsWithDefaults.width / 2;
         break;
     }
-
     const wrappedNodeProps = wrapHandlers(nodePropsWithDefaults, this.props[this.props.keyProp]);
     const wrappedGProps = wrapHandlers(this.props.gProps, this.props[this.props.keyProp]);
     const wrappedTextProps = wrapHandlers(this.props.textProps, this.props[this.props.keyProp]);
@@ -61,7 +56,6 @@ class Node extends React.PureComponent {
       transform: this.getTransform()
     }), /*#__PURE__*/React.createElement(this.props.shape, wrappedNodeProps), label);
   }
-
 }
 
 export { Node as default };

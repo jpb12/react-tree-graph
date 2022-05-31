@@ -58,6 +58,7 @@ export default class Node extends React.PureComponent {
 			<g {...wrappedGProps} transform={this.getTransform()}>
 				<this.props.shape {...wrappedNodeProps}/>
 				{ label }
-			</g>);
+			</g>
+		);
 	}
 }

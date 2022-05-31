@@ -4,23 +4,23 @@ exports[`<Animated> does not animate when props other than nodes or links change
 <Container
   duration={1}
   easing={[Function]}
-  gProps={Object {}}
+  gProps={{}}
   getChildren={[Function]}
   height={100}
   keyProp="name"
   labelProp="name"
   links={
-    Array [
-      Object {
-        "source": Object {
-          "data": Object {
+    [
+      {
+        "source": {
+          "data": {
             "name": "Colour",
           },
           "x": 1,
           "y": 2,
         },
-        "target": Object {
-          "data": Object {
+        "target": {
+          "data": {
             "name": "Black",
           },
           "x": 1,
@@ -29,19 +29,19 @@ exports[`<Animated> does not animate when props other than nodes or links change
       },
     ]
   }
-  nodeProps={Object {}}
+  nodeProps={{}}
   nodeShape="rect"
   nodes={
-    Array [
-      Object {
-        "data": Object {
+    [
+      {
+        "data": {
           "name": "Colour",
         },
         "x": 1,
         "y": 2,
       },
-      Object {
-        "data": Object {
+      {
+        "data": {
           "name": "Black",
         },
         "x": 1,
@@ -49,10 +49,10 @@ exports[`<Animated> does not animate when props other than nodes or links change
       },
     ]
   }
-  pathProps={Object {}}
+  pathProps={{}}
   steps={1}
-  svgProps={Object {}}
-  textProps={Object {}}
+  svgProps={{}}
+  textProps={{}}
   width={100}
 />
 `;
@@ -61,23 +61,23 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
 <Container
   duration={1}
   easing={[Function]}
-  gProps={Object {}}
+  gProps={{}}
   getChildren={[Function]}
   height={100}
   keyProp="name"
   labelProp="name"
   links={
-    Array [
-      Object {
-        "source": Object {
-          "data": Object {
+    [
+      {
+        "source": {
+          "data": {
             "name": "Colour",
           },
           "x": 1,
           "y": 2,
         },
-        "target": Object {
-          "data": Object {
+        "target": {
+          "data": {
             "name": "Black",
           },
           "x": 1,
@@ -86,19 +86,19 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
       },
     ]
   }
-  nodeProps={Object {}}
+  nodeProps={{}}
   nodeShape="circle"
   nodes={
-    Array [
-      Object {
-        "data": Object {
+    [
+      {
+        "data": {
           "name": "Colour",
         },
         "x": 1,
         "y": 2,
       },
-      Object {
-        "data": Object {
+      {
+        "data": {
           "name": "Black",
         },
         "x": 1,
@@ -106,10 +106,10 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
       },
     ]
   }
-  pathProps={Object {}}
+  pathProps={{}}
   steps={1}
-  svgProps={Object {}}
-  textProps={Object {}}
+  svgProps={{}}
+  textProps={{}}
   width={100}
 />
 `;
