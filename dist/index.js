@@ -313,20 +313,19 @@
 
 			// Do as much one-time calculation outside of the animation step, which needs to be fast
 			let animationContext = getAnimationContext(state, props);
-			setAnimation(
-				setInterval(() => {
-					counter++;
-					if (counter === props.steps) {
-						clearInterval(animation);
-						setState({
-							nodes: props.nodes,
-							links: props.links,
-						});
-						return;
-					}
-					setState(calculateNewState(animationContext, counter / props.steps));
-				}, props.duration / props.steps)
-			);
+			const interval = setInterval(() => {
+				counter++;
+				if (counter === props.steps) {
+					clearInterval(interval);
+					setState({
+						nodes: props.nodes,
+						links: props.links,
+					});
+					return;
+				}
+				setState(calculateNewState(animationContext, counter / props.steps));
+			}, props.duration / props.steps);
+			setAnimation(interval);
 			return () => clearInterval(animation);
 		}
 		function getAnimationContext(initialState, newState) {
