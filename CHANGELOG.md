@@ -1,8 +1,12 @@
+## 7.0.6 (21 Oct 2022)
+* Fixing cleanup of finished animations
+
 ## 7.0.5 (21 Oct 2022)
 * Fixing cleanup of unfinished animations
 
 ## 7.0.4 (21 Oct 2022)
 * Reducing bundle size
+* Rewriting to use functional components
 
 ## 7.0.3 (11 Feb 2022)
 * Moving RFDC from dependency to dev dependency
