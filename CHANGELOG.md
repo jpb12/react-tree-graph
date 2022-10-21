@@ -1,3 +1,6 @@
+## 7.0.5 (21 Oct 2022)
+* Fixing cleanup of unfinished animations
+
 ## 7.0.4 (21 Oct 2022)
 * Reducing bundle size
 
