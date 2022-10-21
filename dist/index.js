@@ -91,283 +91,243 @@
 	function diagonal(x1, y1, x2, y2) {
 		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
 	}
-	class Link extends React__default['default'].PureComponent {
-		static propTypes = {
-			source: PropTypes__default['default'].object.isRequired,
-			target: PropTypes__default['default'].object.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			x1: PropTypes__default['default'].number.isRequired,
-			x2: PropTypes__default['default'].number.isRequired,
-			y1: PropTypes__default['default'].number.isRequired,
-			y2: PropTypes__default['default'].number.isRequired,
-			pathFunc: PropTypes__default['default'].func.isRequired,
-			pathProps: PropTypes__default['default'].object.isRequired,
-		};
-		static defaultProps = {
-			pathFunc: diagonal,
-		};
-		render() {
-			const wrappedProps = wrapHandlers(
-				this.props.pathProps,
-				this.props.source.data[this.props.keyProp],
-				this.props.target.data[this.props.keyProp]
-			);
-			const d = this.props.pathFunc(
-				this.props.x1,
-				this.props.y1,
-				this.props.x2,
-				this.props.y2
-			);
-			return /*#__PURE__*/ React__default['default'].createElement(
-				'path',
-				_extends__default['default']({}, wrappedProps, {
-					d: d,
-				})
-			);
-		}
+	function Link(props) {
+		const wrappedProps = wrapHandlers(
+			props.pathProps,
+			props.source.data[props.keyProp],
+			props.target.data[props.keyProp]
+		);
+		const d = props.pathFunc(props.x1, props.y1, props.x2, props.y2);
+		return /*#__PURE__*/ React__default['default'].createElement(
+			'path',
+			_extends__default['default']({}, wrappedProps, {
+				d: d,
+			})
+		);
 	}
+	Link.propTypes = {
+		source: PropTypes__default['default'].object.isRequired,
+		target: PropTypes__default['default'].object.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		x1: PropTypes__default['default'].number.isRequired,
+		x2: PropTypes__default['default'].number.isRequired,
+		y1: PropTypes__default['default'].number.isRequired,
+		y2: PropTypes__default['default'].number.isRequired,
+		pathFunc: PropTypes__default['default'].func.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+	};
+	Link.defaultProps = {
+		pathFunc: diagonal,
+	};
 
-	class Node extends React__default['default'].PureComponent {
-		static propTypes = {
-			x: PropTypes__default['default'].number.isRequired,
-			y: PropTypes__default['default'].number.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			labelProp: PropTypes__default['default'].string.isRequired,
-			shape: PropTypes__default['default'].string.isRequired,
-			nodeProps: PropTypes__default['default'].object.isRequired,
-			gProps: PropTypes__default['default'].object.isRequired,
-			textProps: PropTypes__default['default'].object.isRequired,
-		};
-		getTransform() {
-			return `translate(${this.props.y}, ${this.props.x})`;
+	function Node(props) {
+		function getTransform() {
+			return `translate(${props.y}, ${props.x})`;
 		}
-		render() {
-			let offset = 0;
-			let nodePropsWithDefaults = this.props.nodeProps;
-			switch (this.props.shape) {
-				case 'circle':
-					nodePropsWithDefaults = {
-						r: 5,
-						...nodePropsWithDefaults,
-					};
-					offset = nodePropsWithDefaults.r;
-					break;
-				case 'image':
-				case 'rect':
-					nodePropsWithDefaults = {
-						height: 10,
-						width: 10,
-						...nodePropsWithDefaults,
-					};
-					nodePropsWithDefaults = {
-						x: -nodePropsWithDefaults.width / 2,
-						y: -nodePropsWithDefaults.height / 2,
-						...nodePropsWithDefaults,
-					};
-					offset = nodePropsWithDefaults.width / 2;
-					break;
-			}
-			const wrappedNodeProps = wrapHandlers(
-				nodePropsWithDefaults,
-				this.props[this.props.keyProp]
-			);
-			const wrappedGProps = wrapHandlers(
-				this.props.gProps,
-				this.props[this.props.keyProp]
-			);
-			const wrappedTextProps = wrapHandlers(
-				this.props.textProps,
-				this.props[this.props.keyProp]
-			);
-			const label =
-				typeof this.props[this.props.labelProp] === 'string'
-					? /*#__PURE__*/ React__default['default'].createElement(
-							'text',
-							_extends__default['default'](
-								{
-									dx: offset + 0.5,
-									dy: 5,
-								},
-								wrappedTextProps
-							),
-							this.props[this.props.labelProp]
-					  )
-					: /*#__PURE__*/ React__default['default'].createElement(
-							'g',
-							_extends__default['default'](
-								{
-									transform: `translate(${offset + 0.5}, 5)`,
-								},
-								wrappedTextProps
-							),
-							this.props[this.props.labelProp]
-					  );
-			return /*#__PURE__*/ React__default['default'].createElement(
-				'g',
-				_extends__default['default']({}, wrappedGProps, {
-					transform: this.getTransform(),
-				}),
-				/*#__PURE__*/ React__default['default'].createElement(
-					this.props.shape,
-					wrappedNodeProps
-				),
-				label
-			);
+		let offset = 0;
+		let nodePropsWithDefaults = props.nodeProps;
+		switch (props.shape) {
+			case 'circle':
+				nodePropsWithDefaults = {
+					r: 5,
+					...nodePropsWithDefaults,
+				};
+				offset = nodePropsWithDefaults.r;
+				break;
+			case 'image':
+			case 'rect':
+				nodePropsWithDefaults = {
+					height: 10,
+					width: 10,
+					...nodePropsWithDefaults,
+				};
+				nodePropsWithDefaults = {
+					x: -nodePropsWithDefaults.width / 2,
+					y: -nodePropsWithDefaults.height / 2,
+					...nodePropsWithDefaults,
+				};
+				offset = nodePropsWithDefaults.width / 2;
+				break;
 		}
-	}
-
-	class Container extends React__default['default'].PureComponent {
-		static propTypes = {
-			children: PropTypes__default['default'].node,
-			height: PropTypes__default['default'].number.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			labelProp: PropTypes__default['default'].string.isRequired,
-			links: PropTypes__default['default'].array.isRequired,
-			nodes: PropTypes__default['default'].array.isRequired,
-			nodeClassName: PropTypes__default['default'].string,
-			nodeShape: PropTypes__default['default'].string.isRequired,
-			nodeProps: PropTypes__default['default'].object.isRequired,
-			pathFunc: PropTypes__default['default'].func,
-			width: PropTypes__default['default'].number.isRequired,
-			gProps: PropTypes__default['default'].object.isRequired,
-			pathProps: PropTypes__default['default'].object.isRequired,
-			svgProps: PropTypes__default['default'].object.isRequired,
-			textProps: PropTypes__default['default'].object.isRequired,
-		};
-		render() {
-			return /*#__PURE__*/ React__default['default'].createElement(
-				'svg',
-				_extends__default['default']({}, this.props.svgProps, {
-					height: this.props.height,
-					width: this.props.width,
-				}),
-				this.props.children,
-				/*#__PURE__*/ React__default['default'].createElement(
-					'g',
-					null,
-					this.props.links.map((link) =>
-						/*#__PURE__*/ React__default['default'].createElement(Link, {
-							key: link.target.data[this.props.keyProp],
-							keyProp: this.props.keyProp,
-							pathFunc: this.props.pathFunc,
-							source: link.source,
-							target: link.target,
-							x1: link.source.x,
-							x2: link.target.x,
-							y1: link.source.y,
-							y2: link.target.y,
-							pathProps: {
-								...this.props.pathProps,
-								...link.target.data.pathProps,
+		const wrappedNodeProps = wrapHandlers(
+			nodePropsWithDefaults,
+			props[props.keyProp]
+		);
+		const wrappedGProps = wrapHandlers(props.gProps, props[props.keyProp]);
+		const wrappedTextProps = wrapHandlers(
+			props.textProps,
+			props[props.keyProp]
+		);
+		const label =
+			typeof props[props.labelProp] === 'string'
+				? /*#__PURE__*/ React__default['default'].createElement(
+						'text',
+						_extends__default['default'](
+							{
+								dx: offset + 0.5,
+								dy: 5,
 							},
-						})
-					),
-					this.props.nodes.map((node) =>
-						/*#__PURE__*/ React__default['default'].createElement(
-							Node,
-							_extends__default['default'](
-								{
-									key: node.data[this.props.keyProp],
-									keyProp: this.props.keyProp,
-									labelProp: this.props.labelProp,
-									shape: this.props.nodeShape,
-									x: node.x,
-									y: node.y,
-									nodeProps: {
-										...this.props.nodeProps,
-										...node.data.nodeProps,
-									},
-									gProps: {
-										...this.props.gProps,
-										...node.data.gProps,
-									},
-									textProps: {
-										...this.props.textProps,
-										...node.data.textProps,
-									},
+							wrappedTextProps
+						),
+						props[props.labelProp]
+				  )
+				: /*#__PURE__*/ React__default['default'].createElement(
+						'g',
+						_extends__default['default'](
+							{
+								transform: `translate(${offset + 0.5}, 5)`,
+							},
+							wrappedTextProps
+						),
+						props[props.labelProp]
+				  );
+		return /*#__PURE__*/ React__default['default'].createElement(
+			'g',
+			_extends__default['default']({}, wrappedGProps, {
+				transform: getTransform(),
+			}),
+			/*#__PURE__*/ React__default['default'].createElement(
+				props.shape,
+				wrappedNodeProps
+			),
+			label
+		);
+	}
+	Node.propTypes = {
+		x: PropTypes__default['default'].number.isRequired,
+		y: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		shape: PropTypes__default['default'].string.isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
+	};
+
+	function Container(props) {
+		return /*#__PURE__*/ React__default['default'].createElement(
+			'svg',
+			_extends__default['default']({}, props.svgProps, {
+				height: props.height,
+				width: props.width,
+			}),
+			props.children,
+			/*#__PURE__*/ React__default['default'].createElement(
+				'g',
+				null,
+				props.links.map((link) =>
+					/*#__PURE__*/ React__default['default'].createElement(Link, {
+						key: link.target.data[props.keyProp],
+						keyProp: props.keyProp,
+						pathFunc: props.pathFunc,
+						source: link.source,
+						target: link.target,
+						x1: link.source.x,
+						x2: link.target.x,
+						y1: link.source.y,
+						y2: link.target.y,
+						pathProps: {
+							...props.pathProps,
+							...link.target.data.pathProps,
+						},
+					})
+				),
+				props.nodes.map((node) =>
+					/*#__PURE__*/ React__default['default'].createElement(
+						Node,
+						_extends__default['default'](
+							{
+								key: node.data[props.keyProp],
+								keyProp: props.keyProp,
+								labelProp: props.labelProp,
+								shape: props.nodeShape,
+								x: node.x,
+								y: node.y,
+								nodeProps: {
+									...props.nodeProps,
+									...node.data.nodeProps,
 								},
-								node.data
-							)
+								gProps: {
+									...props.gProps,
+									...node.data.gProps,
+								},
+								textProps: {
+									...props.textProps,
+									...node.data.textProps,
+								},
+							},
+							node.data
 						)
 					)
 				)
-			);
-		}
+			)
+		);
 	}
+	Container.propTypes = {
+		children: PropTypes__default['default'].node,
+		height: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		links: PropTypes__default['default'].array.isRequired,
+		nodes: PropTypes__default['default'].array.isRequired,
+		nodeClassName: PropTypes__default['default'].string,
+		nodeShape: PropTypes__default['default'].string.isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		width: PropTypes__default['default'].number.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
+	};
 
-	class Animated extends React__default['default'].PureComponent {
-		static propTypes = {
-			getChildren: PropTypes__default['default'].func.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			links: PropTypes__default['default'].array.isRequired,
-			nodes: PropTypes__default['default'].array.isRequired,
-			duration: PropTypes__default['default'].number.isRequired,
-			easing: PropTypes__default['default'].func.isRequired,
-			steps: PropTypes__default['default'].number.isRequired,
-		};
-		constructor(props) {
-			super(props);
-			// If we are animating, we set the initial positions of the nodes and links to be the position of the root node
-			// and animate from there
-			let initialX = props.nodes[0].x;
-			let initialY = props.nodes[0].y;
-			this.state = {
-				nodes: props.nodes.map((n) => ({
-					...n,
+	function Animated(props) {
+		let animation = null;
+		let initialX = props.nodes[0].x;
+		let initialY = props.nodes[0].y;
+		const [state, setState] = React.useState({
+			nodes: props.nodes.map((n) => ({
+				...n,
+				x: initialX,
+				y: initialY,
+			})),
+			links: props.links.map((l) => ({
+				source: {
+					...l.source,
 					x: initialX,
 					y: initialY,
-				})),
-				links: props.links.map((l) => ({
-					source: {
-						...l.source,
-						x: initialX,
-						y: initialY,
-					},
-					target: {
-						...l.target,
-						x: initialX,
-						y: initialY,
-					},
-				})),
-			};
-		}
-		componentDidMount() {
-			this.animate();
-		}
-		componentDidUpdate(prevProps) {
-			if (
-				prevProps.nodes === this.props.nodes &&
-				prevProps.links === this.props.links
-			) {
-				return;
-			}
-			this.animate();
-		}
-		animate() {
+				},
+				target: {
+					...l.target,
+					x: initialX,
+					y: initialY,
+				},
+			})),
+		});
+		React.useEffect(animate, [props.nodes, props.links]);
+		function animate() {
 			// Stop previous animation if one is already in progress.  We will start the next animation
 			// from the position we are currently in
-			clearInterval(this.animation);
+			clearInterval(animation);
 			let counter = 0;
 
 			// Do as much one-time calculation outside of the animation step, which needs to be fast
-			let animationContext = this.getAnimationContext(this.state, this.props);
-			this.animation = setInterval(() => {
+			let animationContext = getAnimationContext(state, props);
+			animation = setInterval(() => {
 				counter++;
-				if (counter === this.props.steps) {
-					clearInterval(this.animation);
-					this.animation = null;
-					this.setState({
-						nodes: this.props.nodes,
-						links: this.props.links,
+				if (counter === props.steps) {
+					clearInterval(animation);
+					animation = null;
+					setState({
+						nodes: props.nodes,
+						links: props.links,
 					});
 					return;
 				}
-				this.setState(
-					this.calculateNewState(animationContext, counter / this.props.steps)
-				);
-			}, this.props.duration / this.props.steps);
+				setState(calculateNewState(animationContext, counter / props.steps));
+			}, props.duration / props.steps);
 		}
-		getAnimationContext(initialState, newState) {
+		function getAnimationContext(initialState, newState) {
 			// Nodes/links that are in both states need to be moved from the old position to the new one
 			// Nodes/links only in the initial state are being removed, and should be moved to the position
 			// of the closest ancestor that still exists, or the new root
@@ -378,118 +338,96 @@
 
 			// We only run this once at the start of the animation, so optimisation is less important
 			let addedNodes = newState.nodes
-				.filter((n1) =>
-					initialState.nodes.every((n2) => !this.areNodesSame(n1, n2))
-				)
+				.filter((n1) => initialState.nodes.every((n2) => !areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
-					old: this.getClosestAncestor(n1, newState, initialState),
+					old: getClosestAncestor(n1, newState, initialState),
 					new: n1,
 				}));
 			let changedNodes = newState.nodes
-				.filter((n1) =>
-					initialState.nodes.some((n2) => this.areNodesSame(n1, n2))
-				)
+				.filter((n1) => initialState.nodes.some((n2) => areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
-					old: initialState.nodes.find((n2) => this.areNodesSame(n1, n2)),
+					old: initialState.nodes.find((n2) => areNodesSame(n1, n2)),
 					new: n1,
 				}));
 			let removedNodes = initialState.nodes
-				.filter((n1) =>
-					newState.nodes.every((n2) => !this.areNodesSame(n1, n2))
-				)
+				.filter((n1) => newState.nodes.every((n2) => !areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
 					old: n1,
-					new: this.getClosestAncestor(n1, initialState, newState),
+					new: getClosestAncestor(n1, initialState, newState),
 				}));
 			let addedLinks = newState.links
-				.filter((l1) =>
-					initialState.links.every((l2) => !this.areLinksSame(l1, l2))
-				)
+				.filter((l1) => initialState.links.every((l2) => !areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
-					old: this.getClosestAncestor(l1.target, newState, initialState),
+					old: getClosestAncestor(l1.target, newState, initialState),
 					new: l1,
 				}));
 			let changedLinks = newState.links
-				.filter((l1) =>
-					initialState.links.some((l2) => this.areLinksSame(l1, l2))
-				)
+				.filter((l1) => initialState.links.some((l2) => areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
-					old: initialState.links.find((l2) => this.areLinksSame(l1, l2)),
+					old: initialState.links.find((l2) => areLinksSame(l1, l2)),
 					new: l1,
 				}));
 			let removedLinks = initialState.links
-				.filter((l1) =>
-					newState.links.every((l2) => !this.areLinksSame(l1, l2))
-				)
+				.filter((l1) => newState.links.every((l2) => !areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
 					old: l1,
-					new: this.getClosestAncestor(l1.target, initialState, newState),
+					new: getClosestAncestor(l1.target, initialState, newState),
 				}));
 			return {
 				nodes: changedNodes.concat(addedNodes).concat(removedNodes),
 				links: changedLinks.concat(addedLinks).concat(removedLinks),
 			};
 		}
-		getClosestAncestor(node, stateWithNode, stateWithoutNode) {
+		function getClosestAncestor(node, stateWithNode, stateWithoutNode) {
 			let oldParent = node;
 			while (oldParent) {
 				let newParent = stateWithoutNode.nodes.find((n) =>
-					this.areNodesSame(oldParent, n)
+					areNodesSame(oldParent, n)
 				);
 				if (newParent) {
 					return newParent;
 				}
 				oldParent = stateWithNode.nodes.find((n) =>
-					(this.props.getChildren(n) || []).some((c) =>
-						this.areNodesSame(oldParent, c)
-					)
+					(props.getChildren(n) || []).some((c) => areNodesSame(oldParent, c))
 				);
 			}
 			return stateWithoutNode.nodes[0];
 		}
-		areNodesSame(a, b) {
-			return a.data[this.props.keyProp] === b.data[this.props.keyProp];
+		function areNodesSame(a, b) {
+			return a.data[props.keyProp] === b.data[props.keyProp];
 		}
-		areLinksSame(a, b) {
+		function areLinksSame(a, b) {
 			return (
-				a.source.data[this.props.keyProp] ===
-					b.source.data[this.props.keyProp] &&
-				a.target.data[this.props.keyProp] === b.target.data[this.props.keyProp]
+				a.source.data[props.keyProp] === b.source.data[props.keyProp] &&
+				a.target.data[props.keyProp] === b.target.data[props.keyProp]
 			);
 		}
-		calculateNewState(animationContext, interval) {
+		function calculateNewState(animationContext, interval) {
 			return {
 				nodes: animationContext.nodes.map((n) =>
-					this.calculateNodePosition(n.base, n.old, n.new, interval)
+					calculateNodePosition(n.base, n.old, n.new, interval)
 				),
 				links: animationContext.links.map((l) =>
-					this.calculateLinkPosition(l.base, l.old, l.new, interval)
+					calculateLinkPosition(l.base, l.old, l.new, interval)
 				),
 			};
 		}
-		calculateNodePosition(node, start, end, interval) {
-			return {
-				...node,
-				x: this.calculateNewValue(start.x, end.x, interval),
-				y: this.calculateNewValue(start.y, end.y, interval),
-			};
-		}
-		calculateLinkPosition(link, start, end, interval) {
+		function calculateLinkPosition(link, start, end, interval) {
 			return {
 				source: {
 					...link.source,
-					x: this.calculateNewValue(
+					x: calculateNewValue(
 						start.source ? start.source.x : start.x,
 						end.source ? end.source.x : end.x,
 						interval
 					),
-					y: this.calculateNewValue(
+					y: calculateNewValue(
 						start.source ? start.source.y : start.y,
 						end.source ? end.source.y : end.y,
 						interval
@@ -497,12 +435,12 @@
 				},
 				target: {
 					...link.target,
-					x: this.calculateNewValue(
+					x: calculateNewValue(
 						start.target ? start.target.x : start.x,
 						end.target ? end.target.x : end.x,
 						interval
 					),
-					y: this.calculateNewValue(
+					y: calculateNewValue(
 						start.target ? start.target.y : start.y,
 						end.target ? end.target.y : end.y,
 						interval
@@ -510,180 +448,190 @@
 				},
 			};
 		}
-		calculateNewValue(start, end, interval) {
-			return start + (end - start) * this.props.easing(interval);
+		function calculateNodePosition(node, start, end, interval) {
+			return {
+				...node,
+				x: calculateNewValue(start.x, end.x, interval),
+				y: calculateNewValue(start.y, end.y, interval),
+			};
 		}
-		render() {
-			return /*#__PURE__*/ React__default['default'].createElement(
-				Container,
-				_extends__default['default']({}, this.props, this.state)
-			);
+		function calculateNewValue(start, end, interval) {
+			return start + (end - start) * props.easing(interval);
 		}
+		return /*#__PURE__*/ React__default['default'].createElement(
+			Container,
+			_extends__default['default']({}, props, state)
+		);
 	}
+	Animated.propTypes = {
+		getChildren: PropTypes__default['default'].func.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		links: PropTypes__default['default'].array.isRequired,
+		nodes: PropTypes__default['default'].array.isRequired,
+		duration: PropTypes__default['default'].number.isRequired,
+		easing: PropTypes__default['default'].func.isRequired,
+		steps: PropTypes__default['default'].number.isRequired,
+	};
 
-	class AnimatedTree extends React__default['default'].PureComponent {
-		static propTypes = {
-			data: PropTypes__default['default'].object.isRequired,
-			children: PropTypes__default['default'].node,
-			duration: PropTypes__default['default'].number.isRequired,
-			easing: PropTypes__default['default'].func.isRequired,
-			steps: PropTypes__default['default'].number.isRequired,
-			height: PropTypes__default['default'].number.isRequired,
-			width: PropTypes__default['default'].number.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			labelProp: PropTypes__default['default'].string.isRequired,
-			getChildren: PropTypes__default['default'].func.isRequired,
-			margins: PropTypes__default['default'].shape({
-				bottom: PropTypes__default['default'].number.isRequired,
-				left: PropTypes__default['default'].number.isRequired,
-				right: PropTypes__default['default'].number.isRequired,
-				top: PropTypes__default['default'].number.isRequired,
-			}).isRequired,
-			pathFunc: PropTypes__default['default'].func,
-			nodeShape: PropTypes__default['default'].oneOf([
-				'circle',
-				'image',
-				'polygon',
-				'rect',
-			]).isRequired,
-			nodeProps: PropTypes__default['default'].object.isRequired,
-			gProps: PropTypes__default['default'].object.isRequired,
-			pathProps: PropTypes__default['default'].object.isRequired,
-			svgProps: PropTypes__default['default'].object.isRequired,
-			textProps: PropTypes__default['default'].object.isRequired,
-		};
-		static defaultProps = {
-			duration: 500,
-			easing: d3Ease.easeQuadOut,
-			getChildren: (n) => n.children,
-			steps: 20,
-			keyProp: 'name',
-			labelProp: 'name',
-			margins: {
-				bottom: 10,
-				left: 20,
-				right: 150,
-				top: 10,
-			},
-			nodeShape: 'circle',
-			nodeProps: {},
-			gProps: {},
-			pathProps: {},
-			svgProps: {},
-			textProps: {},
-		};
-		render() {
-			return /*#__PURE__*/ React__default['default'].createElement(
-				Animated,
-				_extends__default['default'](
-					{
-						duration: this.props.duration,
-						easing: this.props.easing,
-						getChildren: this.props.getChildren,
-						height: this.props.height,
-						keyProp: this.props.keyProp,
-						labelProp: this.props.labelProp,
-						nodeShape: this.props.nodeShape,
-						nodeProps: this.props.nodeProps,
-						pathFunc: this.props.pathFunc,
-						steps: this.props.steps,
-						width: this.props.width,
-						gProps: {
-							className: 'node',
-							...this.props.gProps,
-						},
-						pathProps: {
-							className: 'link',
-							...this.props.pathProps,
-						},
-						svgProps: this.props.svgProps,
-						textProps: this.props.textProps,
+	function AnimatedTree(props) {
+		return /*#__PURE__*/ React__default['default'].createElement(
+			Animated,
+			_extends__default['default'](
+				{
+					duration: props.duration,
+					easing: props.easing,
+					getChildren: props.getChildren,
+					height: props.height,
+					keyProp: props.keyProp,
+					labelProp: props.labelProp,
+					nodeShape: props.nodeShape,
+					nodeProps: props.nodeProps,
+					pathFunc: props.pathFunc,
+					steps: props.steps,
+					width: props.width,
+					gProps: {
+						className: 'node',
+						...props.gProps,
 					},
-					getTreeData(this.props)
-				),
-				this.props.children
-			);
-		}
+					pathProps: {
+						className: 'link',
+						...props.pathProps,
+					},
+					svgProps: props.svgProps,
+					textProps: props.textProps,
+				},
+				getTreeData(props)
+			),
+			props.children
+		);
 	}
+	AnimatedTree.propTypes = {
+		data: PropTypes__default['default'].object.isRequired,
+		children: PropTypes__default['default'].node,
+		duration: PropTypes__default['default'].number.isRequired,
+		easing: PropTypes__default['default'].func.isRequired,
+		steps: PropTypes__default['default'].number.isRequired,
+		height: PropTypes__default['default'].number.isRequired,
+		width: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		getChildren: PropTypes__default['default'].func.isRequired,
+		margins: PropTypes__default['default'].shape({
+			bottom: PropTypes__default['default'].number.isRequired,
+			left: PropTypes__default['default'].number.isRequired,
+			right: PropTypes__default['default'].number.isRequired,
+			top: PropTypes__default['default'].number.isRequired,
+		}).isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		nodeShape: PropTypes__default['default'].oneOf([
+			'circle',
+			'image',
+			'polygon',
+			'rect',
+		]).isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
+	};
+	AnimatedTree.defaultProps = {
+		duration: 500,
+		easing: d3Ease.easeQuadOut,
+		getChildren: (n) => n.children,
+		steps: 20,
+		keyProp: 'name',
+		labelProp: 'name',
+		margins: {
+			bottom: 10,
+			left: 20,
+			right: 150,
+			top: 10,
+		},
+		nodeShape: 'circle',
+		nodeProps: {},
+		gProps: {},
+		pathProps: {},
+		svgProps: {},
+		textProps: {},
+	};
 
-	class Tree extends React__default['default'].PureComponent {
-		static propTypes = {
-			data: PropTypes__default['default'].object.isRequired,
-			animated: PropTypes__default['default'].bool.isRequired,
-			children: PropTypes__default['default'].node,
-			height: PropTypes__default['default'].number.isRequired,
-			width: PropTypes__default['default'].number.isRequired,
-			keyProp: PropTypes__default['default'].string.isRequired,
-			labelProp: PropTypes__default['default'].string.isRequired,
-			getChildren: PropTypes__default['default'].func.isRequired,
-			margins: PropTypes__default['default'].shape({
-				bottom: PropTypes__default['default'].number.isRequired,
-				left: PropTypes__default['default'].number.isRequired,
-				right: PropTypes__default['default'].number.isRequired,
-				top: PropTypes__default['default'].number.isRequired,
-			}).isRequired,
-			pathFunc: PropTypes__default['default'].func,
-			nodeShape: PropTypes__default['default'].oneOf([
-				'circle',
-				'image',
-				'polygon',
-				'rect',
-			]).isRequired,
-			nodeProps: PropTypes__default['default'].object.isRequired,
-			gProps: PropTypes__default['default'].object.isRequired,
-			pathProps: PropTypes__default['default'].object.isRequired,
-			svgProps: PropTypes__default['default'].object.isRequired,
-			textProps: PropTypes__default['default'].object.isRequired,
-		};
-		static defaultProps = {
-			animated: false,
-			getChildren: (n) => n.children,
-			keyProp: 'name',
-			labelProp: 'name',
-			margins: {
-				bottom: 10,
-				left: 20,
-				right: 150,
-				top: 10,
-			},
-			nodeShape: 'circle',
-			nodeProps: {},
-			gProps: {},
-			pathProps: {},
-			svgProps: {},
-			textProps: {},
-		};
-		render() {
-			return /*#__PURE__*/ React__default['default'].createElement(
-				Container,
-				_extends__default['default'](
-					{
-						animated: this.props.animated,
-						getChildren: this.props.getChildren,
-						height: this.props.height,
-						keyProp: this.props.keyProp,
-						labelProp: this.props.labelProp,
-						nodeShape: this.props.nodeShape,
-						nodeProps: this.props.nodeProps,
-						pathFunc: this.props.pathFunc,
-						width: this.props.width,
-						gProps: {
-							className: 'node',
-							...this.props.gProps,
-						},
-						pathProps: {
-							className: 'link',
-							...this.props.pathProps,
-						},
-						svgProps: this.props.svgProps,
-						textProps: this.props.textProps,
+	function Tree(props) {
+		return /*#__PURE__*/ React__default['default'].createElement(
+			Container,
+			_extends__default['default'](
+				{
+					animated: props.animated,
+					getChildren: props.getChildren,
+					height: props.height,
+					keyProp: props.keyProp,
+					labelProp: props.labelProp,
+					nodeShape: props.nodeShape,
+					nodeProps: props.nodeProps,
+					pathFunc: props.pathFunc,
+					width: props.width,
+					gProps: {
+						className: 'node',
+						...props.gProps,
 					},
-					getTreeData(this.props)
-				),
-				this.props.children
-			);
-		}
+					pathProps: {
+						className: 'link',
+						...props.pathProps,
+					},
+					svgProps: props.svgProps,
+					textProps: props.textProps,
+				},
+				getTreeData(props)
+			),
+			props.children
+		);
 	}
+	Tree.propTypes = {
+		data: PropTypes__default['default'].object.isRequired,
+		animated: PropTypes__default['default'].bool.isRequired,
+		children: PropTypes__default['default'].node,
+		height: PropTypes__default['default'].number.isRequired,
+		width: PropTypes__default['default'].number.isRequired,
+		keyProp: PropTypes__default['default'].string.isRequired,
+		labelProp: PropTypes__default['default'].string.isRequired,
+		getChildren: PropTypes__default['default'].func.isRequired,
+		margins: PropTypes__default['default'].shape({
+			bottom: PropTypes__default['default'].number.isRequired,
+			left: PropTypes__default['default'].number.isRequired,
+			right: PropTypes__default['default'].number.isRequired,
+			top: PropTypes__default['default'].number.isRequired,
+		}).isRequired,
+		pathFunc: PropTypes__default['default'].func,
+		nodeShape: PropTypes__default['default'].oneOf([
+			'circle',
+			'image',
+			'polygon',
+			'rect',
+		]).isRequired,
+		nodeProps: PropTypes__default['default'].object.isRequired,
+		gProps: PropTypes__default['default'].object.isRequired,
+		pathProps: PropTypes__default['default'].object.isRequired,
+		svgProps: PropTypes__default['default'].object.isRequired,
+		textProps: PropTypes__default['default'].object.isRequired,
+	};
+	Tree.defaultProps = {
+		animated: false,
+		getChildren: (n) => n.children,
+		keyProp: 'name',
+		labelProp: 'name',
+		margins: {
+			bottom: 10,
+			left: 20,
+			right: 150,
+			top: 10,
+		},
+		nodeShape: 'circle',
+		nodeProps: {},
+		gProps: {},
+		pathProps: {},
+		svgProps: {},
+		textProps: {},
+	};
 
 	exports.AnimatedTree = AnimatedTree;
 	exports.Tree = Tree;
