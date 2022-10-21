@@ -1,3 +1,6 @@
+## 7.0.4 (21 Oct 2022)
+* Reducing bundle size
+
 ## 7.0.3 (11 Feb 2022)
 * Moving RFDC from dependency to dev dependency
 
