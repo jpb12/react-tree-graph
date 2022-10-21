@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Container from './container.js';
 
 function Animated(props) {
-  let animation = null;
   let initialX = props.nodes[0].x;
   let initialY = props.nodes[0].y;
   const [state, setState] = useState({
@@ -26,6 +25,7 @@ function Animated(props) {
       }
     }))
   });
+  const [animation, setAnimation] = useState(null);
   useEffect(animate, [props.nodes, props.links]);
   function animate() {
     // Stop previous animation if one is already in progress.  We will start the next animation
@@ -35,11 +35,10 @@ function Animated(props) {
 
     // Do as much one-time calculation outside of the animation step, which needs to be fast
     let animationContext = getAnimationContext(state, props);
-    animation = setInterval(() => {
+    setAnimation(setInterval(() => {
       counter++;
       if (counter === props.steps) {
         clearInterval(animation);
-        animation = null;
         setState({
           nodes: props.nodes,
           links: props.links
@@ -47,7 +46,8 @@ function Animated(props) {
         return;
       }
       setState(calculateNewState(animationContext, counter / props.steps));
-    }, props.duration / props.steps);
+    }, props.duration / props.steps));
+    return () => clearInterval(animation);
   }
   function getAnimationContext(initialState, newState) {
     // Nodes/links that are in both states need to be moved from the old position to the new one

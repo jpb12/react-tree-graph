@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Container from './container';
 
 export default function Animated(props) {
-	let animation = null;
-
 	let initialX = props.nodes[0].x;
 	let initialY = props.nodes[0].y;
 
@@ -15,6 +13,8 @@ export default function Animated(props) {
 			target: { ...l.target, x: initialX, y: initialY }
 		}))
 	});
+
+	const [animation, setAnimation] = useState(null);
 
 	useEffect(animate, [props.nodes, props.links]);
 
@@ -28,18 +28,19 @@ export default function Animated(props) {
 		// Do as much one-time calculation outside of the animation step, which needs to be fast
 		let animationContext = getAnimationContext(state, props);
 
-		animation = setInterval(() => {
+		setAnimation(setInterval(() => {
 			counter++;
 
 			if (counter === props.steps) {
 				clearInterval(animation);
-				animation = null;
 				setState({ nodes: props.nodes, links: props.links });
 				return;
 			}
 
 			setState(calculateNewState(animationContext, counter / props.steps));
-		}, props.duration / props.steps);
+		}, props.duration / props.steps));
+
+		return () => clearInterval(animation);
 	}
 
 	function getAnimationContext(initialState, newState) {
