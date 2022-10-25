@@ -11,6 +11,7 @@ Check out the [examples](https://jpb12.github.io/react-tree-graph) and the [demo
 
 Older Versions
 --------------
+[7.X](https://github.com/jpb12/react-tree-graph/tree/v7.0.6)
 [6.X](https://github.com/jpb12/react-tree-graph/tree/v6.1.0)
 [5.X](https://github.com/jpb12/react-tree-graph/tree/v5.1.1)
 [4.X](https://github.com/jpb12/react-tree-graph/tree/v4.1.1)
@@ -71,6 +72,7 @@ Tree
 | `margins` | object | | `{ bottom : 10, left : 20, right : 150, top : 10}` | The margins around the content. The right margin should be larger to include the rendered label text. |
 | `height` | number | yes | | The height of the rendered tree, including margins. |
 | `width` | number | yes | | The width of the rendered tree, including margins. |
+| `direction` | `ltr`,`rtl` | | `ltr` | The direction the tree will be rendered in. Either left-to-right or right-to-left. |
 | `children` | node | | | Will be rendered as children of the SVG, before the links and nodes. |
 | `getChildren` | function(node) | | node => node.children | A function that returns the children for a node, or null/undefined if no children exist. |
 | `keyProp` | string | | "name" | The property on each node to use as a key. |
