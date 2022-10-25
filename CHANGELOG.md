@@ -1,3 +1,8 @@
+## 8.0.0 (25 Oct 2022)
+* Breaking change: Fixed x and y co-ordinates being flipped in pathfunc
+* Right-to-left support
+* Fixed margins not being applied properly
+
 ## 7.0.6 (21 Oct 2022)
 * Fixing cleanup of finished animations
 
