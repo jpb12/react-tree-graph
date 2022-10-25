@@ -5,9 +5,9 @@ import wrapHandlers from '../wrapHandlers.js';
 
 function Node(props) {
   function getTransform() {
-    return `translate(${props.y}, ${props.x})`;
+    return `translate(${props.x}, ${props.y})`;
   }
-  let offset = 0;
+  let offset = 0.5;
   let nodePropsWithDefaults = props.nodeProps;
   switch (props.shape) {
     case 'circle':
@@ -15,7 +15,7 @@ function Node(props) {
         r: 5,
         ...nodePropsWithDefaults
       };
-      offset = nodePropsWithDefaults.r;
+      offset += nodePropsWithDefaults.r;
       break;
     case 'image':
     case 'rect':
@@ -29,20 +29,24 @@ function Node(props) {
         y: -nodePropsWithDefaults.height / 2,
         ...nodePropsWithDefaults
       };
-      offset = nodePropsWithDefaults.width / 2;
+      offset += nodePropsWithDefaults.width / 2;
       break;
+  }
+  if (props.direction === 'rtl') {
+    offset = -offset;
   }
   const wrappedNodeProps = wrapHandlers(nodePropsWithDefaults, props[props.keyProp]);
   const wrappedGProps = wrapHandlers(props.gProps, props[props.keyProp]);
   const wrappedTextProps = wrapHandlers(props.textProps, props[props.keyProp]);
   const label = typeof props[props.labelProp] === 'string' ? /*#__PURE__*/React.createElement("text", _extends({
-    dx: offset + 0.5,
+    dx: offset,
     dy: 5
   }, wrappedTextProps), props[props.labelProp]) : /*#__PURE__*/React.createElement("g", _extends({
-    transform: `translate(${offset + 0.5}, 5)`
+    transform: `translate(${offset}, 5)`
   }, wrappedTextProps), props[props.labelProp]);
   return /*#__PURE__*/React.createElement("g", _extends({}, wrappedGProps, {
-    transform: getTransform()
+    transform: getTransform(),
+    direction: props.direction === 'rtl' ? 'rtl' : null
   }), /*#__PURE__*/React.createElement(props.shape, wrappedNodeProps), label);
 }
 Node.propTypes = {
@@ -50,6 +54,7 @@ Node.propTypes = {
   y: PropTypes.number.isRequired,
   keyProp: PropTypes.string.isRequired,
   labelProp: PropTypes.string.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
   shape: PropTypes.string.isRequired,
   nodeProps: PropTypes.object.isRequired,
   gProps: PropTypes.object.isRequired,

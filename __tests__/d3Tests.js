@@ -5,14 +5,9 @@ const clone = rfdc();
 
 const defaultProps = {
 	getChildren: n => n.children,
-	margins: {
-		bottom: 10,
-		left: 20,
-		right: 150,
-		top: 10
-	},
+	direction: 'ltr',
 	height: 100,
-	width: 100
+	width: 300
 };
 
 describe('getTreeData', () => {
@@ -38,11 +33,30 @@ describe('getTreeData', () => {
 		const result = getTreeData({ ...defaultProps, data });
 		expect(result).toMatchObject({
 			nodes: [{
-				x: 40,
-				y: 10
+				x: 0,
+				y: 40
 			}, {
-				x: 40,
-				y: -60
+				x: 130,
+				y: 40
+			}]
+		});
+	});
+
+	test('calculates rtl tree data correctly', () => {
+		const data = {
+			name: 'Colour',
+			children: [{
+				name: 'Black'
+			}]
+		};
+		const result = getTreeData({ ...defaultProps, data, direction: 'rtl' });
+		expect(result).toMatchObject({
+			nodes: [{
+				x: 130,
+				y: 40
+			}, {
+				x: 0,
+				y: 40
 			}]
 		});
 	});

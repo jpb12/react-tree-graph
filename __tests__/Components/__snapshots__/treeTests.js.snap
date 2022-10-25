@@ -2,7 +2,7 @@
 
 exports[`<Tree> renders correctly 1`] = `
 <Container
-  animated={false}
+  direction="ltr"
   gProps={
     {
       "className": "node",
@@ -15,7 +15,7 @@ exports[`<Tree> renders correctly 1`] = `
   links={
     [
       {
-        "source": Node {
+        "source": {
           "children": [
             Node {
               "data": {
@@ -23,9 +23,24 @@ exports[`<Tree> renders correctly 1`] = `
               },
               "depth": 1,
               "height": 0,
-              "parent": [Circular],
+              "parent": Node {
+                "children": [Circular],
+                "data": {
+                  "childs": [
+                    {
+                      "name": "Black",
+                    },
+                  ],
+                  "name": "Colour",
+                },
+                "depth": 0,
+                "height": 1,
+                "parent": null,
+                "x": 40,
+                "y": 0,
+              },
               "x": 40,
-              "y": 40,
+              "y": 30,
             },
           ],
           "data": {
@@ -39,10 +54,10 @@ exports[`<Tree> renders correctly 1`] = `
           "depth": 0,
           "height": 1,
           "parent": null,
-          "x": 40,
-          "y": 10,
+          "x": 0,
+          "y": 40,
         },
-        "target": Node {
+        "target": {
           "data": {
             "name": "Black",
           },
@@ -50,7 +65,16 @@ exports[`<Tree> renders correctly 1`] = `
           "height": 0,
           "parent": Node {
             "children": [
-              [Circular],
+              Node {
+                "data": {
+                  "name": "Black",
+                },
+                "depth": 1,
+                "height": 0,
+                "parent": [Circular],
+                "x": 40,
+                "y": 30,
+              },
             ],
             "data": {
               "childs": [
@@ -64,19 +88,27 @@ exports[`<Tree> renders correctly 1`] = `
             "height": 1,
             "parent": null,
             "x": 40,
-            "y": 10,
+            "y": 0,
           },
-          "x": 40,
+          "x": 30,
           "y": 40,
         },
       },
     ]
   }
+  margins={
+    {
+      "bottom": 10,
+      "left": 20,
+      "right": 150,
+      "top": 10,
+    }
+  }
   nodeProps={{}}
   nodeShape="circle"
   nodes={
     [
-      Node {
+      {
         "children": [
           Node {
             "data": {
@@ -84,9 +116,24 @@ exports[`<Tree> renders correctly 1`] = `
             },
             "depth": 1,
             "height": 0,
-            "parent": [Circular],
+            "parent": Node {
+              "children": [Circular],
+              "data": {
+                "childs": [
+                  {
+                    "name": "Black",
+                  },
+                ],
+                "name": "Colour",
+              },
+              "depth": 0,
+              "height": 1,
+              "parent": null,
+              "x": 40,
+              "y": 0,
+            },
             "x": 40,
-            "y": 40,
+            "y": 30,
           },
         ],
         "data": {
@@ -100,10 +147,10 @@ exports[`<Tree> renders correctly 1`] = `
         "depth": 0,
         "height": 1,
         "parent": null,
-        "x": 40,
-        "y": 10,
+        "x": 0,
+        "y": 40,
       },
-      Node {
+      {
         "data": {
           "name": "Black",
         },
@@ -111,7 +158,16 @@ exports[`<Tree> renders correctly 1`] = `
         "height": 0,
         "parent": Node {
           "children": [
-            [Circular],
+            Node {
+              "data": {
+                "name": "Black",
+              },
+              "depth": 1,
+              "height": 0,
+              "parent": [Circular],
+              "x": 40,
+              "y": 30,
+            },
           ],
           "data": {
             "childs": [
@@ -125,9 +181,9 @@ exports[`<Tree> renders correctly 1`] = `
           "height": 1,
           "parent": null,
           "x": 40,
-          "y": 10,
+          "y": 0,
         },
-        "x": 40,
+        "x": 30,
         "y": 40,
       },
     ]

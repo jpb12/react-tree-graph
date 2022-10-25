@@ -24,9 +24,11 @@ const nodes = [
 const defaultProps = {
 	nodes: [],
 	links: [],
+	direction: 'ltr',
 	height: 100,
 	keyProp: 'name',
 	labelProp: 'name',
+	margins: { top: 10, left: 20 },
 	nodeShape: 'circle',
 	width: 200,
 	nodeProps: {},

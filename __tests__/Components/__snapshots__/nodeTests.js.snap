@@ -3,7 +3,8 @@
 exports[`<Node> htmlProps applied to all elements 1`] = `
 <g
   className="g"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <circle
     className="circle"
@@ -22,7 +23,8 @@ exports[`<Node> htmlProps applied to all elements 1`] = `
 exports[`<Node> renders circle correctly 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <circle
     r={5}
@@ -39,7 +41,8 @@ exports[`<Node> renders circle correctly 1`] = `
 exports[`<Node> renders circle correctly with custom radius 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <circle
     r={10}
@@ -56,7 +59,8 @@ exports[`<Node> renders circle correctly with custom radius 1`] = `
 exports[`<Node> renders custom label correctly 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <circle
     r={5}
@@ -74,7 +78,8 @@ exports[`<Node> renders custom label correctly 1`] = `
 exports[`<Node> renders image correctly 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <image
     height={10}
@@ -95,7 +100,8 @@ exports[`<Node> renders image correctly 1`] = `
 exports[`<Node> renders image correctly with custom size 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <image
     height={20}
@@ -116,7 +122,8 @@ exports[`<Node> renders image correctly with custom size 1`] = `
 exports[`<Node> renders rect correctly 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <rect
     height={10}
@@ -136,7 +143,8 @@ exports[`<Node> renders rect correctly 1`] = `
 exports[`<Node> renders rect correctly with custom size 1`] = `
 <g
   className="test"
-  transform="translate(2, 1)"
+  direction={null}
+  transform="translate(1, 2)"
 >
   <rect
     height={20}
@@ -146,6 +154,24 @@ exports[`<Node> renders rect correctly with custom size 1`] = `
   />
   <text
     dx={15.5}
+    dy={5}
+  >
+    Test Node
+  </text>
+</g>
+`;
+
+exports[`<Node> renders rtl correctly 1`] = `
+<g
+  className="test"
+  direction="rtl"
+  transform="translate(1, 2)"
+>
+  <circle
+    r={5}
+  />
+  <text
+    dx={-5.5}
     dy={5}
   >
     Test Node

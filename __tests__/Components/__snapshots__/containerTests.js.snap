@@ -7,7 +7,9 @@ exports[`<Container> html tree props added 1`] = `
   stoke="none"
   width={200}
 >
-  <g />
+  <g
+    transform="translate(20, 10)"
+  />
 </svg>
 `;
 
@@ -19,7 +21,9 @@ exports[`<Container> renders children 1`] = `
   <text>
     Extra child
   </text>
-  <g>
+  <g
+    transform="translate(20, 10)"
+  >
     <Link
       key="Black"
       keyProp="name"
@@ -49,6 +53,7 @@ exports[`<Container> renders children 1`] = `
       y2={50}
     />
     <Node
+      direction="ltr"
       gProps={{}}
       key="Colour"
       keyProp="name"
@@ -61,6 +66,7 @@ exports[`<Container> renders children 1`] = `
       y={2}
     />
     <Node
+      direction="ltr"
       gProps={{}}
       key="Black"
       keyProp="name"
@@ -81,7 +87,9 @@ exports[`<Container> renders correctly 1`] = `
   height={100}
   width={200}
 >
-  <g>
+  <g
+    transform="translate(20, 10)"
+  >
     <Link
       key="Black"
       keyProp="name"
@@ -111,6 +119,7 @@ exports[`<Container> renders correctly 1`] = `
       y2={50}
     />
     <Node
+      direction="ltr"
       gProps={{}}
       key="Colour"
       keyProp="name"
@@ -123,6 +132,7 @@ exports[`<Container> renders correctly 1`] = `
       y={2}
     />
     <Node
+      direction="ltr"
       gProps={{}}
       key="Black"
       keyProp="name"

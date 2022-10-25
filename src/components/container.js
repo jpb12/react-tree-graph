@@ -7,7 +7,7 @@ export default function Container(props) {
 	return (
 		<svg {...props.svgProps} height={props.height} width={props.width}>
 			{ props.children }
-			<g>
+			<g transform={`translate(${props.margins.left}, ${props.margins.top})`}>
 				{ props.links.map(link =>
 					<Link
 						key={link.target.data[props.keyProp]}
@@ -26,6 +26,7 @@ export default function Container(props) {
 						key={node.data[props.keyProp]}
 						keyProp={props.keyProp}
 						labelProp={props.labelProp}
+						direction={props.direction}
 						shape={props.nodeShape}
 						x={node.x}
 						y={node.y}
@@ -41,10 +42,15 @@ export default function Container(props) {
 
 Container.propTypes = {
 	children: PropTypes.node,
+	direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
 	height: PropTypes.number.isRequired,
 	keyProp: PropTypes.string.isRequired,
 	labelProp: PropTypes.string.isRequired,
 	links: PropTypes.array.isRequired,
+	margins: PropTypes.shape({
+		left: PropTypes.number.isRequired,
+		top: PropTypes.number.isRequired
+	}).isRequired,
 	nodes: PropTypes.array.isRequired,
 	nodeClassName: PropTypes.string,
 	nodeShape: PropTypes.string.isRequired,

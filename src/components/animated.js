@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Container from './container';
 
 export default function Animated(props) {
-	let initialX = props.nodes[0].x;
-	let initialY = props.nodes[0].y;
+	const initialX = props.nodes[0].x;
+	const initialY = props.nodes[0].y;
 
 	const [state, setState] = useState({
 		nodes: props.nodes.map(n => ({ ...n, x: initialX, y: initialY })),
@@ -26,7 +26,7 @@ export default function Animated(props) {
 		let counter = 0;
 
 		// Do as much one-time calculation outside of the animation step, which needs to be fast
-		let animationContext = getAnimationContext(state, props);
+		const animationContext = getAnimationContext(state, props);
 
 		const interval = setInterval(() => {
 			counter++;
@@ -54,23 +54,23 @@ export default function Animated(props) {
 		// The base determines which node/link the data (like classes and labels) comes from for rendering
 
 		// We only run this once at the start of the animation, so optimisation is less important
-		let addedNodes = newState.nodes
+		const addedNodes = newState.nodes
 			.filter(n1 => initialState.nodes.every(n2 => !areNodesSame(n1, n2)))
 			.map(n1 => ({ base: n1, old: getClosestAncestor(n1, newState, initialState), new: n1 }));
-		let changedNodes = newState.nodes
+		const changedNodes = newState.nodes
 			.filter(n1 => initialState.nodes.some(n2 => areNodesSame(n1, n2)))
 			.map(n1 => ({ base: n1, old: initialState.nodes.find(n2 => areNodesSame(n1, n2)), new: n1 }));
-		let removedNodes = initialState.nodes
+		const removedNodes = initialState.nodes
 			.filter(n1 => newState.nodes.every(n2 => !areNodesSame(n1, n2)))
 			.map(n1 => ({ base: n1, old: n1, new: getClosestAncestor(n1, initialState, newState) }));
 
-		let addedLinks = newState.links
+		const addedLinks = newState.links
 			.filter(l1 => initialState.links.every(l2 => !areLinksSame(l1, l2)))
 			.map(l1 => ({ base: l1, old: getClosestAncestor(l1.target, newState, initialState), new: l1 }));
-		let changedLinks = newState.links
+		const changedLinks = newState.links
 			.filter(l1 => initialState.links.some(l2 => areLinksSame(l1, l2)))
 			.map(l1 => ({ base: l1, old: initialState.links.find(l2 => areLinksSame(l1, l2)), new: l1 }));
-		let removedLinks = initialState.links
+		const removedLinks = initialState.links
 			.filter(l1 => newState.links.every(l2 => !areLinksSame(l1, l2)))
 			.map(l1 => ({ base: l1, old: l1, new: getClosestAncestor(l1.target, initialState, newState) }));
 

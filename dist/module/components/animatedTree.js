@@ -10,6 +10,7 @@ function AnimatedTree(props) {
     duration: props.duration,
     easing: props.easing,
     getChildren: props.getChildren,
+    direction: props.direction,
     height: props.height,
     keyProp: props.keyProp,
     labelProp: props.labelProp,
@@ -33,6 +34,7 @@ function AnimatedTree(props) {
 AnimatedTree.propTypes = {
   data: PropTypes.object.isRequired,
   children: PropTypes.node,
+  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
   duration: PropTypes.number.isRequired,
   easing: PropTypes.func.isRequired,
   steps: PropTypes.number.isRequired,
@@ -46,7 +48,7 @@ AnimatedTree.propTypes = {
     left: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired
-  }).isRequired,
+  }),
   pathFunc: PropTypes.func,
   nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect']).isRequired,
   nodeProps: PropTypes.object.isRequired,
@@ -56,18 +58,13 @@ AnimatedTree.propTypes = {
   textProps: PropTypes.object.isRequired
 };
 AnimatedTree.defaultProps = {
+  direction: 'ltr',
   duration: 500,
   easing: easeQuadOut,
   getChildren: n => n.children,
   steps: 20,
   keyProp: 'name',
   labelProp: 'name',
-  margins: {
-    bottom: 10,
-    left: 20,
-    right: 150,
-    top: 10
-  },
   nodeShape: 'circle',
   nodeProps: {},
   gProps: {},

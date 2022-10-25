@@ -25,7 +25,7 @@ const defaultProps = {
 };
 
 function straightPath(x1, y1, x2, y2) {
-	return `M${y1},${x1} ${y2},${x2}`;
+	return `M${x1},${y1} ${x2},${y2}`;
 }
 
 describe('<Link>', () => {

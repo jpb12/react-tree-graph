@@ -6,8 +6,8 @@ import Container from './container.js';
 
 function Tree(props) {
   return /*#__PURE__*/React.createElement(Container, _extends({
-    animated: props.animated,
     getChildren: props.getChildren,
+    direction: props.direction,
     height: props.height,
     keyProp: props.keyProp,
     labelProp: props.labelProp,
@@ -29,8 +29,8 @@ function Tree(props) {
 }
 Tree.propTypes = {
   data: PropTypes.object.isRequired,
-  animated: PropTypes.bool.isRequired,
   children: PropTypes.node,
+  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   keyProp: PropTypes.string.isRequired,
@@ -41,7 +41,7 @@ Tree.propTypes = {
     left: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired
-  }).isRequired,
+  }),
   pathFunc: PropTypes.func,
   nodeShape: PropTypes.oneOf(['circle', 'image', 'polygon', 'rect']).isRequired,
   nodeProps: PropTypes.object.isRequired,
@@ -51,16 +51,10 @@ Tree.propTypes = {
   textProps: PropTypes.object.isRequired
 };
 Tree.defaultProps = {
-  animated: false,
+  direction: 'ltr',
   getChildren: n => n.children,
   keyProp: 'name',
   labelProp: 'name',
-  margins: {
-    bottom: 10,
-    left: 20,
-    right: 150,
-    top: 10
-  },
   nodeShape: 'circle',
   nodeProps: {},
   gProps: {},

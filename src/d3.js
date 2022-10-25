@@ -1,21 +1,45 @@
 import { hierarchy, tree } from 'd3-hierarchy';
 
 export default function getTreeData(props) {
-	const contentWidth = props.width - props.margins.left - props.margins.right;
-	const contentHeight = props.height - props.margins.top - props.margins.bottom;
+	const margins = props.margins
+		|| {
+			bottom: 10,
+			left: props.direction !== 'rtl' ? 20 : 150,
+			right: props.direction !== 'rtl' ? 150 : 20,
+			top: 10
+		};
 
-	let data = hierarchy(props.data, props.getChildren);
+	const contentWidth = props.width - margins.left - margins.right;
+	const contentHeight = props.height - margins.top - margins.bottom;
 
-	let root = tree().size([contentHeight, contentWidth])(data);
-	let nodes = root.descendants();
-	let links = root.links();
+	const data = hierarchy(props.data, props.getChildren);
 
-	nodes.forEach(node => {
-		node.y += props.margins.top;
-	});
+	const root = tree().size([contentHeight, contentWidth])(data);
+
+	// d3 gives us a top to down tree, but we will display it left to right/right to left, so x and y need to be swapped
+	const links = root.links().map(link => ({
+		...link,
+		source: {
+			...link.source,
+			x: props.direction !== 'rtl' ? link.source.y : contentWidth - link.source.y,
+			y: link.source.x
+		},
+		target: {
+			...link.target,
+			x: props.direction !== 'rtl' ? link.target.y : contentWidth - link.target.y,
+			y: link.target.x
+		}
+	}));
+
+	const nodes = root.descendants().map(node => ({
+		...node,
+		x: props.direction !== 'rtl' ? node.y : contentWidth - node.y,
+		y: node.x
+	}));
 
 	return {
-		nodes,
-		links
+		links,
+		margins,
+		nodes
 	};
 }

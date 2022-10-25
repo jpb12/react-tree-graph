@@ -2,6 +2,7 @@
 
 exports[`<Animated> does not animate when props other than nodes or links change 1`] = `
 <Container
+  direction="ltr"
   duration={1}
   easing={[Function]}
   gProps={{}}
@@ -28,6 +29,12 @@ exports[`<Animated> does not animate when props other than nodes or links change
         },
       },
     ]
+  }
+  margins={
+    {
+      "left": 20,
+      "top": 10,
+    }
   }
   nodeProps={{}}
   nodeShape="rect"
@@ -59,6 +66,7 @@ exports[`<Animated> does not animate when props other than nodes or links change
 
 exports[`<Animated> renders correctly and sets initial state 1`] = `
 <Container
+  direction="ltr"
   duration={1}
   easing={[Function]}
   gProps={{}}
@@ -85,6 +93,12 @@ exports[`<Animated> renders correctly and sets initial state 1`] = `
         },
       },
     ]
+  }
+  margins={
+    {
+      "left": 20,
+      "top": 10,
+    }
   }
   nodeProps={{}}
   nodeShape="circle"

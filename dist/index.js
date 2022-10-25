@@ -42,19 +42,46 @@
 	var React__default = /*#__PURE__*/ _interopDefault(React);
 
 	function getTreeData(props) {
-		const contentWidth = props.width - props.margins.left - props.margins.right;
-		const contentHeight =
-			props.height - props.margins.top - props.margins.bottom;
-		let data = d3Hierarchy.hierarchy(props.data, props.getChildren);
-		let root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
-		let nodes = root.descendants();
-		let links = root.links();
-		nodes.forEach((node) => {
-			node.y += props.margins.top;
-		});
+		const margins = props.margins || {
+			bottom: 10,
+			left: props.direction !== 'rtl' ? 20 : 150,
+			right: props.direction !== 'rtl' ? 150 : 20,
+			top: 10,
+		};
+		const contentWidth = props.width - margins.left - margins.right;
+		const contentHeight = props.height - margins.top - margins.bottom;
+		const data = d3Hierarchy.hierarchy(props.data, props.getChildren);
+		const root = d3Hierarchy.tree().size([contentHeight, contentWidth])(data);
+
+		// d3 gives us a top to down tree, but we will display it left to right/right to left, so x and y need to be swapped
+		const links = root.links().map((link) => ({
+			...link,
+			source: {
+				...link.source,
+				x:
+					props.direction !== 'rtl'
+						? link.source.y
+						: contentWidth - link.source.y,
+				y: link.source.x,
+			},
+			target: {
+				...link.target,
+				x:
+					props.direction !== 'rtl'
+						? link.target.y
+						: contentWidth - link.target.y,
+				y: link.target.x,
+			},
+		}));
+		const nodes = root.descendants().map((node) => ({
+			...node,
+			x: props.direction !== 'rtl' ? node.y : contentWidth - node.y,
+			y: node.x,
+		}));
 		return {
-			nodes,
 			links,
+			margins,
+			nodes,
 		};
 	}
 
@@ -89,7 +116,7 @@
 	}
 
 	function diagonal(x1, y1, x2, y2) {
-		return `M${y1},${x1}C${(y1 + y2) / 2},${x1} ${(y1 + y2) / 2},${x2} ${y2},${x2}`;
+		return `M${x1},${y1}C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}`;
 	}
 	function Link(props) {
 		const wrappedProps = wrapHandlers(
@@ -122,9 +149,9 @@
 
 	function Node(props) {
 		function getTransform() {
-			return `translate(${props.y}, ${props.x})`;
+			return `translate(${props.x}, ${props.y})`;
 		}
-		let offset = 0;
+		let offset = 0.5;
 		let nodePropsWithDefaults = props.nodeProps;
 		switch (props.shape) {
 			case 'circle':
@@ -132,7 +159,7 @@
 					r: 5,
 					...nodePropsWithDefaults,
 				};
-				offset = nodePropsWithDefaults.r;
+				offset += nodePropsWithDefaults.r;
 				break;
 			case 'image':
 			case 'rect':
@@ -146,8 +173,11 @@
 					y: -nodePropsWithDefaults.height / 2,
 					...nodePropsWithDefaults,
 				};
-				offset = nodePropsWithDefaults.width / 2;
+				offset += nodePropsWithDefaults.width / 2;
 				break;
+		}
+		if (props.direction === 'rtl') {
+			offset = -offset;
 		}
 		const wrappedNodeProps = wrapHandlers(
 			nodePropsWithDefaults,
@@ -164,7 +194,7 @@
 						'text',
 						_extends__default['default'](
 							{
-								dx: offset + 0.5,
+								dx: offset,
 								dy: 5,
 							},
 							wrappedTextProps
@@ -175,7 +205,7 @@
 						'g',
 						_extends__default['default'](
 							{
-								transform: `translate(${offset + 0.5}, 5)`,
+								transform: `translate(${offset}, 5)`,
 							},
 							wrappedTextProps
 						),
@@ -185,6 +215,7 @@
 			'g',
 			_extends__default['default']({}, wrappedGProps, {
 				transform: getTransform(),
+				direction: props.direction === 'rtl' ? 'rtl' : null,
 			}),
 			/*#__PURE__*/ React__default['default'].createElement(
 				props.shape,
@@ -198,6 +229,7 @@
 		y: PropTypes__default['default'].number.isRequired,
 		keyProp: PropTypes__default['default'].string.isRequired,
 		labelProp: PropTypes__default['default'].string.isRequired,
+		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
 		shape: PropTypes__default['default'].string.isRequired,
 		nodeProps: PropTypes__default['default'].object.isRequired,
 		gProps: PropTypes__default['default'].object.isRequired,
@@ -214,7 +246,9 @@
 			props.children,
 			/*#__PURE__*/ React__default['default'].createElement(
 				'g',
-				null,
+				{
+					transform: `translate(${props.margins.left}, ${props.margins.top})`,
+				},
 				props.links.map((link) =>
 					/*#__PURE__*/ React__default['default'].createElement(Link, {
 						key: link.target.data[props.keyProp],
@@ -240,6 +274,7 @@
 								key: node.data[props.keyProp],
 								keyProp: props.keyProp,
 								labelProp: props.labelProp,
+								direction: props.direction,
 								shape: props.nodeShape,
 								x: node.x,
 								y: node.y,
@@ -265,10 +300,15 @@
 	}
 	Container.propTypes = {
 		children: PropTypes__default['default'].node,
+		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
 		height: PropTypes__default['default'].number.isRequired,
 		keyProp: PropTypes__default['default'].string.isRequired,
 		labelProp: PropTypes__default['default'].string.isRequired,
 		links: PropTypes__default['default'].array.isRequired,
+		margins: PropTypes__default['default'].shape({
+			left: PropTypes__default['default'].number.isRequired,
+			top: PropTypes__default['default'].number.isRequired,
+		}).isRequired,
 		nodes: PropTypes__default['default'].array.isRequired,
 		nodeClassName: PropTypes__default['default'].string,
 		nodeShape: PropTypes__default['default'].string.isRequired,
@@ -282,8 +322,8 @@
 	};
 
 	function Animated(props) {
-		let initialX = props.nodes[0].x;
-		let initialY = props.nodes[0].y;
+		const initialX = props.nodes[0].x;
+		const initialY = props.nodes[0].y;
 		const [state, setState] = React.useState({
 			nodes: props.nodes.map((n) => ({
 				...n,
@@ -312,7 +352,7 @@
 			let counter = 0;
 
 			// Do as much one-time calculation outside of the animation step, which needs to be fast
-			let animationContext = getAnimationContext(state, props);
+			const animationContext = getAnimationContext(state, props);
 			const interval = setInterval(() => {
 				counter++;
 				if (counter === props.steps) {
@@ -338,42 +378,42 @@
 			// The base determines which node/link the data (like classes and labels) comes from for rendering
 
 			// We only run this once at the start of the animation, so optimisation is less important
-			let addedNodes = newState.nodes
+			const addedNodes = newState.nodes
 				.filter((n1) => initialState.nodes.every((n2) => !areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
 					old: getClosestAncestor(n1, newState, initialState),
 					new: n1,
 				}));
-			let changedNodes = newState.nodes
+			const changedNodes = newState.nodes
 				.filter((n1) => initialState.nodes.some((n2) => areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
 					old: initialState.nodes.find((n2) => areNodesSame(n1, n2)),
 					new: n1,
 				}));
-			let removedNodes = initialState.nodes
+			const removedNodes = initialState.nodes
 				.filter((n1) => newState.nodes.every((n2) => !areNodesSame(n1, n2)))
 				.map((n1) => ({
 					base: n1,
 					old: n1,
 					new: getClosestAncestor(n1, initialState, newState),
 				}));
-			let addedLinks = newState.links
+			const addedLinks = newState.links
 				.filter((l1) => initialState.links.every((l2) => !areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
 					old: getClosestAncestor(l1.target, newState, initialState),
 					new: l1,
 				}));
-			let changedLinks = newState.links
+			const changedLinks = newState.links
 				.filter((l1) => initialState.links.some((l2) => areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
 					old: initialState.links.find((l2) => areLinksSame(l1, l2)),
 					new: l1,
 				}));
-			let removedLinks = initialState.links
+			const removedLinks = initialState.links
 				.filter((l1) => newState.links.every((l2) => !areLinksSame(l1, l2)))
 				.map((l1) => ({
 					base: l1,
@@ -482,6 +522,7 @@
 					duration: props.duration,
 					easing: props.easing,
 					getChildren: props.getChildren,
+					direction: props.direction,
 					height: props.height,
 					keyProp: props.keyProp,
 					labelProp: props.labelProp,
@@ -509,6 +550,7 @@
 	AnimatedTree.propTypes = {
 		data: PropTypes__default['default'].object.isRequired,
 		children: PropTypes__default['default'].node,
+		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
 		duration: PropTypes__default['default'].number.isRequired,
 		easing: PropTypes__default['default'].func.isRequired,
 		steps: PropTypes__default['default'].number.isRequired,
@@ -522,7 +564,7 @@
 			left: PropTypes__default['default'].number.isRequired,
 			right: PropTypes__default['default'].number.isRequired,
 			top: PropTypes__default['default'].number.isRequired,
-		}).isRequired,
+		}),
 		pathFunc: PropTypes__default['default'].func,
 		nodeShape: PropTypes__default['default'].oneOf([
 			'circle',
@@ -537,18 +579,13 @@
 		textProps: PropTypes__default['default'].object.isRequired,
 	};
 	AnimatedTree.defaultProps = {
+		direction: 'ltr',
 		duration: 500,
 		easing: d3Ease.easeQuadOut,
 		getChildren: (n) => n.children,
 		steps: 20,
 		keyProp: 'name',
 		labelProp: 'name',
-		margins: {
-			bottom: 10,
-			left: 20,
-			right: 150,
-			top: 10,
-		},
 		nodeShape: 'circle',
 		nodeProps: {},
 		gProps: {},
@@ -562,8 +599,8 @@
 			Container,
 			_extends__default['default'](
 				{
-					animated: props.animated,
 					getChildren: props.getChildren,
+					direction: props.direction,
 					height: props.height,
 					keyProp: props.keyProp,
 					labelProp: props.labelProp,
@@ -589,8 +626,8 @@
 	}
 	Tree.propTypes = {
 		data: PropTypes__default['default'].object.isRequired,
-		animated: PropTypes__default['default'].bool.isRequired,
 		children: PropTypes__default['default'].node,
+		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
 		height: PropTypes__default['default'].number.isRequired,
 		width: PropTypes__default['default'].number.isRequired,
 		keyProp: PropTypes__default['default'].string.isRequired,
@@ -601,7 +638,7 @@
 			left: PropTypes__default['default'].number.isRequired,
 			right: PropTypes__default['default'].number.isRequired,
 			top: PropTypes__default['default'].number.isRequired,
-		}).isRequired,
+		}),
 		pathFunc: PropTypes__default['default'].func,
 		nodeShape: PropTypes__default['default'].oneOf([
 			'circle',
@@ -616,16 +653,10 @@
 		textProps: PropTypes__default['default'].object.isRequired,
 	};
 	Tree.defaultProps = {
-		animated: false,
+		direction: 'ltr',
 		getChildren: (n) => n.children,
 		keyProp: 'name',
 		labelProp: 'name',
-		margins: {
-			bottom: 10,
-			left: 20,
-			right: 150,
-			top: 10,
-		},
 		nodeShape: 'circle',
 		nodeProps: {},
 		gProps: {},

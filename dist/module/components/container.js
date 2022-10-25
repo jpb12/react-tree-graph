@@ -8,7 +8,9 @@ function Container(props) {
   return /*#__PURE__*/React.createElement("svg", _extends({}, props.svgProps, {
     height: props.height,
     width: props.width
-  }), props.children, /*#__PURE__*/React.createElement("g", null, props.links.map(link => /*#__PURE__*/React.createElement(Link, {
+  }), props.children, /*#__PURE__*/React.createElement("g", {
+    transform: `translate(${props.margins.left}, ${props.margins.top})`
+  }, props.links.map(link => /*#__PURE__*/React.createElement(Link, {
     key: link.target.data[props.keyProp],
     keyProp: props.keyProp,
     pathFunc: props.pathFunc,
@@ -26,6 +28,7 @@ function Container(props) {
     key: node.data[props.keyProp],
     keyProp: props.keyProp,
     labelProp: props.labelProp,
+    direction: props.direction,
     shape: props.nodeShape,
     x: node.x,
     y: node.y,
@@ -45,10 +48,15 @@ function Container(props) {
 }
 Container.propTypes = {
   children: PropTypes.node,
+  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
   height: PropTypes.number.isRequired,
   keyProp: PropTypes.string.isRequired,
   labelProp: PropTypes.string.isRequired,
   links: PropTypes.array.isRequired,
+  margins: PropTypes.shape({
+    left: PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired
+  }).isRequired,
   nodes: PropTypes.array.isRequired,
   nodeClassName: PropTypes.string,
   nodeShape: PropTypes.string.isRequired,

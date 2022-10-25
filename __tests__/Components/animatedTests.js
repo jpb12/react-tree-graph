@@ -30,6 +30,7 @@ const links = [{
 }];
 
 const defaultProps = {
+	direction: 'ltr',
 	getChildren: n => n.children,
 	height: 100,
 	width: 100,
@@ -40,6 +41,7 @@ const defaultProps = {
 	easing: easeQuadOut,
 	links: links,
 	nodes: nodes,
+	margins: { top: 10, left: 20 },
 	steps: 1,
 	nodeProps: {},
 	gProps: {},

@@ -8,6 +8,7 @@ const defaultProps = {
 	y: 2,
 	keyProp: '',
 	labelProp: 'name',
+	direction: 'ltr',
 	shape: 'circle',
 	gProps: {
 		className: 'test'
@@ -54,6 +55,11 @@ describe('<Node>', () => {
 		const tree = shallow(
 			<Node {...defaultProps} labelProp="label" label={<circle r="5"/>}/>
 		);
+		expect(tree).toMatchSnapshot();
+	});
+
+	test('renders rtl correctly', () => {
+		const tree = shallow(<Node {...defaultProps} direction="rtl"/>);
 		expect(tree).toMatchSnapshot();
 	});
 

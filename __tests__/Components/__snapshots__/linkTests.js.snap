@@ -3,13 +3,13 @@
 exports[`<Link> renders correctly 1`] = `
 <path
   className="Link"
-  d="M2,1C5.5,1 5.5,5 9,5"
+  d="M1,2C3,2 3,9 5,9"
 />
 `;
 
 exports[`<Link> renders correctly with custom path 1`] = `
 <path
   className="Link"
-  d="M2,1 9,5"
+  d="M1,2 5,9"
 />
 `;
