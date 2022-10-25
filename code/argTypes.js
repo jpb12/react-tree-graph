@@ -51,6 +51,15 @@ export const TreeArgTypes = {
 		},
 		description: 'A function that returns the children for a node, or null/undefined if no children exist.'
 	},
+	direction: {
+		options: ['ltr', 'rtl'],
+		table: {
+			category: categories.rendering,
+			defaultValue: { summary: 'ltr' }
+		},
+		type: { name: 'string' },
+		description: 'The direction of the tree, left-to-right or right-to-left.'
+	},
 	keyProp: {
 		table: {
 			category: categories.data,

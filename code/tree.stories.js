@@ -35,5 +35,6 @@ Simple.args = {
 export { Events } from './tree/events';
 export { CustomChildren } from './tree/children';
 export { CustomPaths } from './tree/path';
+export { RightToLeft } from './tree/rtl';
 export { Transformations } from './tree/transformations';
 export { CustomStyles } from './tree/styles';

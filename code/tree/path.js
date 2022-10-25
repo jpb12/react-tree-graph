@@ -16,7 +16,7 @@ CustomPaths.args = {
 			name: 'Child Two'
 		}]
 	},
-	pathFunc: (x1, y1, x2, y2) => `M${y1},${x1} ${y2},${x2}`
+	pathFunc: (x1, y1, x2, y2) => `M${x1},${y1} ${x2},${y2}`
 };
 
 CustomPaths.parameters = {
