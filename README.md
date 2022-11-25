@@ -121,5 +121,3 @@ The following object properties, if set on individual nodes, will be combined wi
 | `gProps` | |
 | `pathProps` | Props for a path are taken from the target node. |
 | `textProps` | |
-
-[![Verified on Openbase](https://badges.openbase.com/js/verified/react-tree-graph.svg?token=h3k3mS5ATcfDYGKLGOn/eeIEKnOA21UyZGtwNvBNQTA=)](https://openbase.com/js/react-tree-graph?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
