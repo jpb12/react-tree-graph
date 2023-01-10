@@ -19,10 +19,12 @@ CustomNodeProps.args = {
 		}, {
 			name: 'Child Two',
 			gProps: {
-				className: 'red-node',
-				onClick: (event, node) => alert(`Clicked ${node}!`)
+				className: 'red-node'
 			}
 		}]
+	},
+	gProps: {
+		onClick: (event, node) => alert(`Clicked ${node}!`)
 	}
 };
 
