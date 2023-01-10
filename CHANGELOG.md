@@ -1,3 +1,6 @@
+## 8.0.1 (10 Jan 2023)
+* Fixing overriding of unrelated props
+
 ## 8.0.0 (25 Oct 2022)
 * Breaking change: Fixed x and y co-ordinates being flipped in pathfunc
 * Right-to-left support
