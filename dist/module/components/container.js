@@ -31,7 +31,8 @@ function Container(props) {
     direction: props.direction,
     shape: props.nodeShape,
     x: node.x,
-    y: node.y,
+    y: node.y
+  }, node.data, {
     nodeProps: {
       ...props.nodeProps,
       ...node.data.nodeProps
@@ -44,7 +45,7 @@ function Container(props) {
       ...props.textProps,
       ...node.data.textProps
     }
-  }, node.data)))));
+  })))));
 }
 Container.propTypes = {
   children: PropTypes.node,

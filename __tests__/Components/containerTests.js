@@ -105,18 +105,20 @@ describe('<Container>', () => {
 	});
 
 	test('node props combined', () => {
+		function onClick() { }
+
 		const props = {
 			nodes: [
-				{ ...nodes[0], data: { name: 1, gProps: { className: 'default' } } },
+				{ ...nodes[0], data: { name: 1 } },
 				{ ...nodes[1], data: { name: 2, gProps: { className: 'override' } } }
 			]
 		};
 
-		const tree = shallow(<Container {...defaultProps} {...props}/>);
+		const tree = shallow(<Container {...defaultProps} {...props} gProps={{ className: 'default', onClick }}/>);
 
 		const domNodes = tree.find(Node);
 		expect(domNodes.length).toBe(2);
-		expect(domNodes.at(0).props().gProps).toEqual({ className: 'default' });
-		expect(domNodes.at(1).props().gProps).toEqual({ className: 'override' });
+		expect(domNodes.at(0).props().gProps).toEqual({ className: 'default', onClick });
+		expect(domNodes.at(1).props().gProps).toEqual({ className: 'override', onClick });
 	});
 });

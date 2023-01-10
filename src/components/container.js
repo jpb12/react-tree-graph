@@ -30,10 +30,10 @@ export default function Container(props) {
 						shape={props.nodeShape}
 						x={node.x}
 						y={node.y}
+						{...node.data}
 						nodeProps={{ ...props.nodeProps, ...node.data.nodeProps }}
 						gProps={{ ...props.gProps, ...node.data.gProps }}
-						textProps={{ ...props.textProps, ...node.data.textProps }}
-						{...node.data}/>)
+						textProps={{ ...props.textProps, ...node.data.textProps }}/>)
 				}
 			</g>
 		</svg>
