@@ -1,10 +1,10 @@
 import { babel } from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
 import clear from 'rollup-plugin-clear';
 import ignore from 'rollup-plugin-ignore';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
-import { terser } from 'rollup-plugin-terser';
 import rfdc from 'rfdc';
 
 const clone = rfdc();

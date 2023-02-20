@@ -125,23 +125,23 @@
 			props.target.data[props.keyProp]
 		);
 		const d = props.pathFunc(props.x1, props.y1, props.x2, props.y2);
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			'path',
-			_extends__default['default']({}, wrappedProps, {
+			_extends__default.default({}, wrappedProps, {
 				d: d,
 			})
 		);
 	}
 	Link.propTypes = {
-		source: PropTypes__default['default'].object.isRequired,
-		target: PropTypes__default['default'].object.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		x1: PropTypes__default['default'].number.isRequired,
-		x2: PropTypes__default['default'].number.isRequired,
-		y1: PropTypes__default['default'].number.isRequired,
-		y2: PropTypes__default['default'].number.isRequired,
-		pathFunc: PropTypes__default['default'].func.isRequired,
-		pathProps: PropTypes__default['default'].object.isRequired,
+		source: PropTypes__default.default.object.isRequired,
+		target: PropTypes__default.default.object.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		x1: PropTypes__default.default.number.isRequired,
+		x2: PropTypes__default.default.number.isRequired,
+		y1: PropTypes__default.default.number.isRequired,
+		y2: PropTypes__default.default.number.isRequired,
+		pathFunc: PropTypes__default.default.func.isRequired,
+		pathProps: PropTypes__default.default.object.isRequired,
 	};
 	Link.defaultProps = {
 		pathFunc: diagonal,
@@ -190,9 +190,9 @@
 		);
 		const label =
 			typeof props[props.labelProp] === 'string'
-				? /*#__PURE__*/ React__default['default'].createElement(
+				? /*#__PURE__*/ React__default.default.createElement(
 						'text',
-						_extends__default['default'](
+						_extends__default.default(
 							{
 								dx: offset,
 								dy: 5,
@@ -201,9 +201,9 @@
 						),
 						props[props.labelProp]
 				  )
-				: /*#__PURE__*/ React__default['default'].createElement(
+				: /*#__PURE__*/ React__default.default.createElement(
 						'g',
-						_extends__default['default'](
+						_extends__default.default(
 							{
 								transform: `translate(${offset}, 5)`,
 							},
@@ -211,13 +211,13 @@
 						),
 						props[props.labelProp]
 				  );
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			'g',
-			_extends__default['default']({}, wrappedGProps, {
+			_extends__default.default({}, wrappedGProps, {
 				transform: getTransform(),
 				direction: props.direction === 'rtl' ? 'rtl' : null,
 			}),
-			/*#__PURE__*/ React__default['default'].createElement(
+			/*#__PURE__*/ React__default.default.createElement(
 				props.shape,
 				wrappedNodeProps
 			),
@@ -225,32 +225,32 @@
 		);
 	}
 	Node.propTypes = {
-		x: PropTypes__default['default'].number.isRequired,
-		y: PropTypes__default['default'].number.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		labelProp: PropTypes__default['default'].string.isRequired,
-		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
-		shape: PropTypes__default['default'].string.isRequired,
-		nodeProps: PropTypes__default['default'].object.isRequired,
-		gProps: PropTypes__default['default'].object.isRequired,
-		textProps: PropTypes__default['default'].object.isRequired,
+		x: PropTypes__default.default.number.isRequired,
+		y: PropTypes__default.default.number.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		labelProp: PropTypes__default.default.string.isRequired,
+		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
+		shape: PropTypes__default.default.string.isRequired,
+		nodeProps: PropTypes__default.default.object.isRequired,
+		gProps: PropTypes__default.default.object.isRequired,
+		textProps: PropTypes__default.default.object.isRequired,
 	};
 
 	function Container(props) {
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			'svg',
-			_extends__default['default']({}, props.svgProps, {
+			_extends__default.default({}, props.svgProps, {
 				height: props.height,
 				width: props.width,
 			}),
 			props.children,
-			/*#__PURE__*/ React__default['default'].createElement(
+			/*#__PURE__*/ React__default.default.createElement(
 				'g',
 				{
 					transform: `translate(${props.margins.left}, ${props.margins.top})`,
 				},
 				props.links.map((link) =>
-					/*#__PURE__*/ React__default['default'].createElement(Link, {
+					/*#__PURE__*/ React__default.default.createElement(Link, {
 						key: link.target.data[props.keyProp],
 						keyProp: props.keyProp,
 						pathFunc: props.pathFunc,
@@ -267,9 +267,9 @@
 					})
 				),
 				props.nodes.map((node) =>
-					/*#__PURE__*/ React__default['default'].createElement(
+					/*#__PURE__*/ React__default.default.createElement(
 						Node,
-						_extends__default['default'](
+						_extends__default.default(
 							{
 								key: node.data[props.keyProp],
 								keyProp: props.keyProp,
@@ -301,26 +301,26 @@
 		);
 	}
 	Container.propTypes = {
-		children: PropTypes__default['default'].node,
-		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
-		height: PropTypes__default['default'].number.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		labelProp: PropTypes__default['default'].string.isRequired,
-		links: PropTypes__default['default'].array.isRequired,
-		margins: PropTypes__default['default'].shape({
-			left: PropTypes__default['default'].number.isRequired,
-			top: PropTypes__default['default'].number.isRequired,
+		children: PropTypes__default.default.node,
+		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
+		height: PropTypes__default.default.number.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		labelProp: PropTypes__default.default.string.isRequired,
+		links: PropTypes__default.default.array.isRequired,
+		margins: PropTypes__default.default.shape({
+			left: PropTypes__default.default.number.isRequired,
+			top: PropTypes__default.default.number.isRequired,
 		}).isRequired,
-		nodes: PropTypes__default['default'].array.isRequired,
-		nodeClassName: PropTypes__default['default'].string,
-		nodeShape: PropTypes__default['default'].string.isRequired,
-		nodeProps: PropTypes__default['default'].object.isRequired,
-		pathFunc: PropTypes__default['default'].func,
-		width: PropTypes__default['default'].number.isRequired,
-		gProps: PropTypes__default['default'].object.isRequired,
-		pathProps: PropTypes__default['default'].object.isRequired,
-		svgProps: PropTypes__default['default'].object.isRequired,
-		textProps: PropTypes__default['default'].object.isRequired,
+		nodes: PropTypes__default.default.array.isRequired,
+		nodeClassName: PropTypes__default.default.string,
+		nodeShape: PropTypes__default.default.string.isRequired,
+		nodeProps: PropTypes__default.default.object.isRequired,
+		pathFunc: PropTypes__default.default.func,
+		width: PropTypes__default.default.number.isRequired,
+		gProps: PropTypes__default.default.object.isRequired,
+		pathProps: PropTypes__default.default.object.isRequired,
+		svgProps: PropTypes__default.default.object.isRequired,
+		textProps: PropTypes__default.default.object.isRequired,
 	};
 
 	function Animated(props) {
@@ -501,25 +501,25 @@
 		function calculateNewValue(start, end, interval) {
 			return start + (end - start) * props.easing(interval);
 		}
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			Container,
-			_extends__default['default']({}, props, state)
+			_extends__default.default({}, props, state)
 		);
 	}
 	Animated.propTypes = {
-		getChildren: PropTypes__default['default'].func.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		links: PropTypes__default['default'].array.isRequired,
-		nodes: PropTypes__default['default'].array.isRequired,
-		duration: PropTypes__default['default'].number.isRequired,
-		easing: PropTypes__default['default'].func.isRequired,
-		steps: PropTypes__default['default'].number.isRequired,
+		getChildren: PropTypes__default.default.func.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		links: PropTypes__default.default.array.isRequired,
+		nodes: PropTypes__default.default.array.isRequired,
+		duration: PropTypes__default.default.number.isRequired,
+		easing: PropTypes__default.default.func.isRequired,
+		steps: PropTypes__default.default.number.isRequired,
 	};
 
 	function AnimatedTree(props) {
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			Animated,
-			_extends__default['default'](
+			_extends__default.default(
 				{
 					duration: props.duration,
 					easing: props.easing,
@@ -550,35 +550,35 @@
 		);
 	}
 	AnimatedTree.propTypes = {
-		data: PropTypes__default['default'].object.isRequired,
-		children: PropTypes__default['default'].node,
-		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
-		duration: PropTypes__default['default'].number.isRequired,
-		easing: PropTypes__default['default'].func.isRequired,
-		steps: PropTypes__default['default'].number.isRequired,
-		height: PropTypes__default['default'].number.isRequired,
-		width: PropTypes__default['default'].number.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		labelProp: PropTypes__default['default'].string.isRequired,
-		getChildren: PropTypes__default['default'].func.isRequired,
-		margins: PropTypes__default['default'].shape({
-			bottom: PropTypes__default['default'].number.isRequired,
-			left: PropTypes__default['default'].number.isRequired,
-			right: PropTypes__default['default'].number.isRequired,
-			top: PropTypes__default['default'].number.isRequired,
+		data: PropTypes__default.default.object.isRequired,
+		children: PropTypes__default.default.node,
+		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
+		duration: PropTypes__default.default.number.isRequired,
+		easing: PropTypes__default.default.func.isRequired,
+		steps: PropTypes__default.default.number.isRequired,
+		height: PropTypes__default.default.number.isRequired,
+		width: PropTypes__default.default.number.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		labelProp: PropTypes__default.default.string.isRequired,
+		getChildren: PropTypes__default.default.func.isRequired,
+		margins: PropTypes__default.default.shape({
+			bottom: PropTypes__default.default.number.isRequired,
+			left: PropTypes__default.default.number.isRequired,
+			right: PropTypes__default.default.number.isRequired,
+			top: PropTypes__default.default.number.isRequired,
 		}),
-		pathFunc: PropTypes__default['default'].func,
-		nodeShape: PropTypes__default['default'].oneOf([
+		pathFunc: PropTypes__default.default.func,
+		nodeShape: PropTypes__default.default.oneOf([
 			'circle',
 			'image',
 			'polygon',
 			'rect',
 		]).isRequired,
-		nodeProps: PropTypes__default['default'].object.isRequired,
-		gProps: PropTypes__default['default'].object.isRequired,
-		pathProps: PropTypes__default['default'].object.isRequired,
-		svgProps: PropTypes__default['default'].object.isRequired,
-		textProps: PropTypes__default['default'].object.isRequired,
+		nodeProps: PropTypes__default.default.object.isRequired,
+		gProps: PropTypes__default.default.object.isRequired,
+		pathProps: PropTypes__default.default.object.isRequired,
+		svgProps: PropTypes__default.default.object.isRequired,
+		textProps: PropTypes__default.default.object.isRequired,
 	};
 	AnimatedTree.defaultProps = {
 		direction: 'ltr',
@@ -597,9 +597,9 @@
 	};
 
 	function Tree(props) {
-		return /*#__PURE__*/ React__default['default'].createElement(
+		return /*#__PURE__*/ React__default.default.createElement(
 			Container,
-			_extends__default['default'](
+			_extends__default.default(
 				{
 					getChildren: props.getChildren,
 					direction: props.direction,
@@ -627,32 +627,32 @@
 		);
 	}
 	Tree.propTypes = {
-		data: PropTypes__default['default'].object.isRequired,
-		children: PropTypes__default['default'].node,
-		direction: PropTypes__default['default'].oneOf(['ltr', 'rtl']).isRequired,
-		height: PropTypes__default['default'].number.isRequired,
-		width: PropTypes__default['default'].number.isRequired,
-		keyProp: PropTypes__default['default'].string.isRequired,
-		labelProp: PropTypes__default['default'].string.isRequired,
-		getChildren: PropTypes__default['default'].func.isRequired,
-		margins: PropTypes__default['default'].shape({
-			bottom: PropTypes__default['default'].number.isRequired,
-			left: PropTypes__default['default'].number.isRequired,
-			right: PropTypes__default['default'].number.isRequired,
-			top: PropTypes__default['default'].number.isRequired,
+		data: PropTypes__default.default.object.isRequired,
+		children: PropTypes__default.default.node,
+		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
+		height: PropTypes__default.default.number.isRequired,
+		width: PropTypes__default.default.number.isRequired,
+		keyProp: PropTypes__default.default.string.isRequired,
+		labelProp: PropTypes__default.default.string.isRequired,
+		getChildren: PropTypes__default.default.func.isRequired,
+		margins: PropTypes__default.default.shape({
+			bottom: PropTypes__default.default.number.isRequired,
+			left: PropTypes__default.default.number.isRequired,
+			right: PropTypes__default.default.number.isRequired,
+			top: PropTypes__default.default.number.isRequired,
 		}),
-		pathFunc: PropTypes__default['default'].func,
-		nodeShape: PropTypes__default['default'].oneOf([
+		pathFunc: PropTypes__default.default.func,
+		nodeShape: PropTypes__default.default.oneOf([
 			'circle',
 			'image',
 			'polygon',
 			'rect',
 		]).isRequired,
-		nodeProps: PropTypes__default['default'].object.isRequired,
-		gProps: PropTypes__default['default'].object.isRequired,
-		pathProps: PropTypes__default['default'].object.isRequired,
-		svgProps: PropTypes__default['default'].object.isRequired,
-		textProps: PropTypes__default['default'].object.isRequired,
+		nodeProps: PropTypes__default.default.object.isRequired,
+		gProps: PropTypes__default.default.object.isRequired,
+		pathProps: PropTypes__default.default.object.isRequired,
+		svgProps: PropTypes__default.default.object.isRequired,
+		textProps: PropTypes__default.default.object.isRequired,
 	};
 	Tree.defaultProps = {
 		direction: 'ltr',
@@ -669,6 +669,4 @@
 
 	exports.AnimatedTree = AnimatedTree;
 	exports.Tree = Tree;
-
-	Object.defineProperty(exports, '__esModule', { value: true });
 });
