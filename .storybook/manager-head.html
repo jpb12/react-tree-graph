@@ -6,7 +6,6 @@
   gtag('js', new Date());
   gtag('config', 'G-4Q99HWK6MC');
 </script>
-<link rel="icon" href="favicon.png">
 <script>
 	new MutationObserver(function(mutations) {
 	  if (document.title.match(/Storybook$/)) {
@@ -18,4 +17,6 @@
 	  characterData: true
 	});
 	document.title = document.title.replace('Storybook', 'react-tree-graph');
+	const link = document.querySelector("link[rel~='icon']");
+	link.href = './favicon.png'
  </script>

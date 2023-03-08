@@ -51,26 +51,26 @@ const data = [
 	}
 ];
 
-export function Animations(args) {
-	const [position, setPosition] = useState(0);
+export const Animations = {
+	args: {
+		height: 400,
+		width: 600
+	},
+	parameters: {
+		controls: { include: ['duration', 'easing', 'steps'] }
+	},
+	render: args => {
+		const [position, setPosition] = useState(0);
 
-	useEffect(() => {
-		setTimeout(() => {
-			if (position >= order.length - 1) {
-				return setPosition(0);
-			}
-			return setPosition(position + 1);
-		}, 2000);
-	});
+		useEffect(() => {
+			setTimeout(() => {
+				if (position >= order.length - 1) {
+					return setPosition(0);
+				}
+				return setPosition(position + 1);
+			}, 2000);
+		});
 
-	return <AnimatedTree data={data[order[position]]} {...args}/>;
-}
-
-Animations.args = {
-	height: 400,
-	width: 600
-};
-
-Animations.parameters = {
-	controls: { include: ['duration', 'easing', 'steps'] }
+		return <AnimatedTree data={data[order[position]]} {...args}/>;
+	}
 };

@@ -1,15 +1,27 @@
-import { addParameters } from '@storybook/client-api';
+import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
 import '../styles/style.css';
 
-addParameters({
-	viewMode: 'docs'
-});
-
-export const parameters = {
-	controls: { expanded: true },
-	options: {
-		storySort: {
-			order: ['Introduction', 'Tree', 'AnimatedTree']
-		}
+export default {
+	parameters: {
+		controls: { expanded: true },
+		docs: {
+			page: () => (
+				<>
+					<Title/>
+					<Subtitle/>
+					<Description/>
+					<Primary/>
+					<Controls/>
+					<Stories includePrimary={false}/>
+				</>
+			)
+		},
+		layout: 'centered',
+		options: {
+			storySort: {
+				order: ['Introduction', 'Tree', 'AnimatedTree']
+			}
+		},
+		viewMode: 'docs'
 	}
 };

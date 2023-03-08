@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	addons: [
 		{
 			name: '@storybook/addon-essentials',
@@ -11,7 +11,17 @@ module.exports = {
 			}
 		}
 	],
-	framework: '@storybook/react',
+	docs: {
+		autodocs: true
+	},
+	framework: {
+		name: '@storybook/react-webpack5',
+		options: {}
+	},
 	staticDirs: ['./images'],
-	stories: ['./stories/**/*.stories.(js|mdx)']
+	stories: ['./stories/**/*.stories.(js|mdx)'],
+	webpackFinal(config) {
+		config.target = 'web';
+		return config;
+	}
 };
