@@ -1,9 +1,9 @@
-name: Unit Test
+name: Build
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ 'master' ]
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ 'master' ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +24,4 @@ jobs:
     - name: Build
       run: npm run build
     - name: Test
-      run: npm test -- --coverage
-    - name: Coveralls
-      uses: coverallsapp/github-action@v2.0.0
+      run: npm test
