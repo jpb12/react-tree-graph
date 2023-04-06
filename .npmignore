@@ -6,7 +6,6 @@
 .gitignore
 .npmignore
 .storybook
-.travis.yml
 docs
 rollup.config.mjs
 src

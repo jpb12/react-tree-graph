@@ -1,4 +1,4 @@
-name: Build
+name: Test
 on:
   push:
     branches: [ 'master' ]
@@ -7,18 +7,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x, 19.x ]
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: 18.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install
       run: npm ci
-    - name: Lint
-      run: npm run eslint
-    - name: Build
-      run: npm run build
     - name: Test
       run: npm test
