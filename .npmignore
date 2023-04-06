@@ -2,9 +2,9 @@
 .browserslistrc
 .editorconfig
 .eslintrc.js
+.github
 .gitignore
 .npmignore
-.travis.yml
 rollup.config.js
 __tests__
 coverage
