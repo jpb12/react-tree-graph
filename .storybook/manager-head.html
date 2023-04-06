@@ -1,0 +1,22 @@
+<meta name="description" content="Working examples with source code for the react-tree-graph JavaScript library"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4Q99HWK6MC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4Q99HWK6MC');
+</script>
+<script>
+	new MutationObserver(function(mutations) {
+	  if (document.title.match(/Storybook$/)) {
+		 document.title = document.title.replace('Storybook', 'react-tree-graph');
+	  }
+	}).observe(document.querySelector("title"), {
+	  childList: true,
+	  subtree: true,
+	  characterData: true
+	});
+	document.title = document.title.replace('Storybook', 'react-tree-graph');
+	const link = document.querySelector("link[rel~='icon']");
+	link.href = './favicon.png'
+ </script>

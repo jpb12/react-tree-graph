@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>@storybook/cli - Storybook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+
+    <link href="./sb-manager/runtime.mjs" rel="modulepreload" />
+
+    
+    <link href="./sb-addons/essentials-controls-0/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-toolbars-1/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-2/manager-bundle.mjs" rel="modulepreload" />
+      <meta name="description" content="Working examples with source code for the react-tree-graph JavaScript library"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4Q99HWK6MC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4Q99HWK6MC');
+</script>
+<script>
+	new MutationObserver(function(mutations) {
+	  if (document.title.match(/Storybook$/)) {
+		 document.title = document.title.replace('Storybook', 'react-tree-graph');
+	  }
+	}).observe(document.querySelector("title"), {
+	  childList: true,
+	  subtree: true,
+	  characterData: true
+	});
+	document.title = document.title.replace('Storybook', 'react-tree-graph');
+	const link = document.querySelector("link[rel~='icon']");
+	link.href = './favicon.png'
+ </script> 
+
+    <style>
+      #storybook-root[hidden] {
+        display: none !important;
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    <div id="root"></div>
+
+    
+    <script>
+      
+        
+          window['FEATURES'] = {
+  "warnOnLegacyHierarchySeparator": true,
+  "buildStoriesJson": false,
+  "storyStoreV7": true,
+  "argTypeTargetsV7": true,
+  "legacyDecoratorFileOrder": false
+};
+        
+      
+        
+          window['REFS'] = {};
+        
+      
+        
+          window['LOGLEVEL'] = "info";
+        
+      
+        
+          window['DOCS_OPTIONS'] = {
+  "defaultName": "Docs",
+  "autodocs": true
+};
+        
+      
+        
+          window['CONFIG_TYPE'] = "PRODUCTION";
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </script>
+    
+
+    <script type="module">
+      import './sb-manager/runtime.mjs';
+
+      
+      import './sb-addons/essentials-controls-0/manager-bundle.mjs';
+      
+      import './sb-addons/essentials-toolbars-1/manager-bundle.mjs';
+      
+      import './sb-addons/storybook-2/manager-bundle.mjs';
+      
+    </script>
+
+    <link href="./sb-preview/runtime.mjs" rel="prefetch" as="script" />
+  </body>
+</html>

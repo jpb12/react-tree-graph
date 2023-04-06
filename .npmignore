@@ -1,10 +1,14 @@
 .babelrc
 .browserslistrc
 .editorconfig
-.eslintrc.js
+.eslintrc.json
 .github
 .gitignore
 .npmignore
-rollup.config.js
+.storybook
+docs
+rollup.config.mjs
+src
+styles
 __tests__
 coverage

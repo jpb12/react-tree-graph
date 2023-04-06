@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction"/>
+
+# react-tree-graph [![Github](https://img.shields.io/github/stars/jpb12/react-tree-graph?style=social)](https://github.com/jpb12/react-tree-graph)
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jpb12/react-tree-graph/build.yml)](https://github.com/jpb12/react-tree-graph/actions/workflows/build.yml?query=branch%3Amaster) [![Coverage Status](https://coveralls.io/repos/github/jpb12/react-tree-graph/badge.svg?branch=master)](https://coveralls.io/github/jpb12/react-tree-graph?branch=master) [![npm version](https://img.shields.io/npm/v/react-tree-graph.svg)](https://www.npmjs.com/package/react-tree-graph) [![npm](https://img.shields.io/npm/dt/react-tree-graph.svg)](https://www.npmjs.com/package/react-tree-graph) [![bundle size](https://img.shields.io/bundlephobia/minzip/react-tree-graph)](https://bundlephobia.com/result?p=react-tree-graph) [![license](https://img.shields.io/npm/l/react-tree-graph)](https://github.com/jpb12/react-tree-graph/blob/master/LICENSE)
+
+A simple react component which renders data as a tree using svg.
+
+The source code for these examples can be found on [github](https://github.com/jpb12/react-tree-graph/tree/master/.storybook/stories).
+
+## Installation
+
+```sh
+npm install react-tree-graph --save
+```
+
+## Usage
+
+```javascript
+import { Tree } from 'react-tree-graph';
+
+const data = {
+	name: 'Parent',
+	children: [{
+		name: 'Child One'
+	}, {
+		name: 'Child Two'
+	}]
+};
+
+<Tree
+	data={data}
+	height={400}
+	width={400}/>);
+
+import { AnimatedTree } from 'react-tree-graph';
+
+<AnimatedTree
+	data={data}
+	height={400}
+	width={400}/>);
+```
+
+If you are using webpack, and have [css-loader](https://www.npmjs.com/package/css-loader), you can include some default styles with:
+
+```javascript
+import 'react-tree-graph/dist/style.css'
+```
+
+Alternatively, both the JavaScript and CSS can be included directly from the dist folder with script tags.
