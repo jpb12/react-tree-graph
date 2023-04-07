@@ -122,7 +122,7 @@ export const CustomStyles = {
 		controls: { include: ['data', 'svgProps'] },
 		docs: {
 			description: {
-				story: 'CSS used here is available at https://github.com/jpb12/react-tree-graph/blob/master/code/.storybook/styles/styles.css'
+				story: 'CSS used here is available at https://github.com/jpb12/react-tree-graph/blob/master/.storybook/styles/styles.css'
 			}
 		}
 	},
