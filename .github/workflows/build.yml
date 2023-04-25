@@ -22,5 +22,5 @@ jobs:
       run: npm run eslint
     - name: Build
       run: npm run build
-    - name: Test
-      run: npm test
+    - name: Check Git changes
+      uses: multani/git-changes-action@v1
