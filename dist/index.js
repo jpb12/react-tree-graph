@@ -6,30 +6,30 @@
 				require('d3-ease'),
 				require('prop-types'),
 				require('react'),
-				require('d3-hierarchy')
+				require('d3-hierarchy'),
 		  )
 		: typeof define === 'function' && define.amd
-		? define(
-				[
-					'exports',
-					'@babel/runtime/helpers/extends',
-					'd3-ease',
-					'prop-types',
-					'react',
-					'd3-hierarchy',
-				],
-				factory
-		  )
-		: ((global =
-				typeof globalThis !== 'undefined' ? globalThis : global || self),
-		  factory(
-				(global.ReactTreeGraph = {}),
-				global._extends,
-				global.d3,
-				global.PropTypes,
-				global.React,
-				global.d3
-		  ));
+		  ? define(
+					[
+						'exports',
+						'@babel/runtime/helpers/extends',
+						'd3-ease',
+						'prop-types',
+						'react',
+						'd3-hierarchy',
+					],
+					factory,
+		    )
+		  : ((global =
+					typeof globalThis !== 'undefined' ? globalThis : global || self),
+		    factory(
+					(global.ReactTreeGraph = {}),
+					global._extends,
+					global.d3,
+					global.PropTypes,
+					global.React,
+					global.d3,
+		    ));
 })(this, function (exports, _extends, d3Ease, PropTypes, React, d3Hierarchy) {
 	'use strict';
 
@@ -91,19 +91,10 @@
 	}
 
 	// Wraps any event handlers passed in as props with a function that passes additional arguments
-	function wrapHandlers(props) {
-		for (
-			var _len = arguments.length,
-				args = new Array(_len > 1 ? _len - 1 : 0),
-				_key = 1;
-			_key < _len;
-			_key++
-		) {
-			args[_key - 1] = arguments[_key];
-		}
+	function wrapHandlers(props, ...args) {
 		const handlers = Object.keys(props).filter(
 			(propName) =>
-				regex.test(propName) && typeof props[propName] === 'function'
+				regex.test(propName) && typeof props[propName] === 'function',
 		);
 		const wrappedHandlers = handlers.reduce((acc, handler) => {
 			acc[handler] = wrapper(props[handler], args);
@@ -116,20 +107,22 @@
 	}
 
 	function diagonal(x1, y1, x2, y2) {
-		return `M${x1},${y1}C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}`;
+		return `M${x1},${y1}C${(x1 + x2) / 2},${y1} ${
+			(x1 + x2) / 2
+		},${y2} ${x2},${y2}`;
 	}
 	function Link(props) {
 		const wrappedProps = wrapHandlers(
 			props.pathProps,
 			props.source.data[props.keyProp],
-			props.target.data[props.keyProp]
+			props.target.data[props.keyProp],
 		);
 		const d = props.pathFunc(props.x1, props.y1, props.x2, props.y2);
 		return /*#__PURE__*/ React__default.default.createElement(
 			'path',
 			_extends__default.default({}, wrappedProps, {
 				d: d,
-			})
+			}),
 		);
 	}
 	Link.propTypes = {
@@ -181,12 +174,12 @@
 		}
 		const wrappedNodeProps = wrapHandlers(
 			nodePropsWithDefaults,
-			props[props.keyProp]
+			props[props.keyProp],
 		);
 		const wrappedGProps = wrapHandlers(props.gProps, props[props.keyProp]);
 		const wrappedTextProps = wrapHandlers(
 			props.textProps,
-			props[props.keyProp]
+			props[props.keyProp],
 		);
 		const label =
 			typeof props[props.labelProp] === 'string'
@@ -197,9 +190,9 @@
 								dx: offset,
 								dy: 5,
 							},
-							wrappedTextProps
+							wrappedTextProps,
 						),
-						props[props.labelProp]
+						props[props.labelProp],
 				  )
 				: /*#__PURE__*/ React__default.default.createElement(
 						'g',
@@ -207,9 +200,9 @@
 							{
 								transform: `translate(${offset}, 5)`,
 							},
-							wrappedTextProps
+							wrappedTextProps,
 						),
-						props[props.labelProp]
+						props[props.labelProp],
 				  );
 		return /*#__PURE__*/ React__default.default.createElement(
 			'g',
@@ -219,9 +212,9 @@
 			}),
 			/*#__PURE__*/ React__default.default.createElement(
 				props.shape,
-				wrappedNodeProps
+				wrappedNodeProps,
 			),
-			label
+			label,
 		);
 	}
 	Node.propTypes = {
@@ -264,7 +257,7 @@
 							...props.pathProps,
 							...link.target.data.pathProps,
 						},
-					})
+					}),
 				),
 				props.nodes.map((node) =>
 					/*#__PURE__*/ React__default.default.createElement(
@@ -293,11 +286,11 @@
 									...props.textProps,
 									...node.data.textProps,
 								},
-							}
-						)
-					)
-				)
-			)
+							},
+						),
+					),
+				),
+			),
 		);
 	}
 	Container.propTypes = {
@@ -431,13 +424,13 @@
 			let oldParent = node;
 			while (oldParent) {
 				let newParent = stateWithoutNode.nodes.find((n) =>
-					areNodesSame(oldParent, n)
+					areNodesSame(oldParent, n),
 				);
 				if (newParent) {
 					return newParent;
 				}
 				oldParent = stateWithNode.nodes.find((n) =>
-					(props.getChildren(n) || []).some((c) => areNodesSame(oldParent, c))
+					(props.getChildren(n) || []).some((c) => areNodesSame(oldParent, c)),
 				);
 			}
 			return stateWithoutNode.nodes[0];
@@ -454,10 +447,10 @@
 		function calculateNewState(animationContext, interval) {
 			return {
 				nodes: animationContext.nodes.map((n) =>
-					calculateNodePosition(n.base, n.old, n.new, interval)
+					calculateNodePosition(n.base, n.old, n.new, interval),
 				),
 				links: animationContext.links.map((l) =>
-					calculateLinkPosition(l.base, l.old, l.new, interval)
+					calculateLinkPosition(l.base, l.old, l.new, interval),
 				),
 			};
 		}
@@ -468,12 +461,12 @@
 					x: calculateNewValue(
 						start.source ? start.source.x : start.x,
 						end.source ? end.source.x : end.x,
-						interval
+						interval,
 					),
 					y: calculateNewValue(
 						start.source ? start.source.y : start.y,
 						end.source ? end.source.y : end.y,
-						interval
+						interval,
 					),
 				},
 				target: {
@@ -481,12 +474,12 @@
 					x: calculateNewValue(
 						start.target ? start.target.x : start.x,
 						end.target ? end.target.x : end.x,
-						interval
+						interval,
 					),
 					y: calculateNewValue(
 						start.target ? start.target.y : start.y,
 						end.target ? end.target.y : end.y,
-						interval
+						interval,
 					),
 				},
 			};
@@ -503,7 +496,7 @@
 		}
 		return /*#__PURE__*/ React__default.default.createElement(
 			Container,
-			_extends__default.default({}, props, state)
+			_extends__default.default({}, props, state),
 		);
 	}
 	Animated.propTypes = {
@@ -544,9 +537,9 @@
 					svgProps: props.svgProps,
 					textProps: props.textProps,
 				},
-				getTreeData(props)
+				getTreeData(props),
 			),
-			props.children
+			props.children,
 		);
 	}
 	AnimatedTree.propTypes = {
@@ -621,9 +614,9 @@
 					svgProps: props.svgProps,
 					textProps: props.textProps,
 				},
-				getTreeData(props)
+				getTreeData(props),
 			),
-			props.children
+			props.children,
 		);
 	}
 	Tree.propTypes = {

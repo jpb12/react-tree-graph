@@ -50,6 +50,7 @@ devConfig.output = {
 	name: 'ReactTreeGraph'
 };
 devConfig.plugins.push(prettier({
+	parser: 'babel',
 	singleQuote: true,
 	useTabs: true
 }));
