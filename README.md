@@ -121,3 +121,8 @@ The following object properties, if set on individual nodes, will be combined wi
 | `gProps` | |
 | `pathProps` | Props for a path are taken from the target node. |
 | `textProps` | |
+
+TypeScript
+----------
+
+[Type definitions](https://www.npmjs.com/package/@types/react-tree-graph) are available as a separate package. (thanks @PCOffline)
