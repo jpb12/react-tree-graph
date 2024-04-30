@@ -27,7 +27,6 @@ exports[`<Container> renders children 1`] = `
     <Link
       key="Black"
       keyProp="name"
-      pathFunc={[Function]}
       pathProps={{}}
       source={
         {
@@ -93,7 +92,6 @@ exports[`<Container> renders correctly 1`] = `
     <Link
       key="Black"
       keyProp="name"
-      pathFunc={[Function]}
       pathProps={{}}
       source={
         {

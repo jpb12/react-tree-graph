@@ -7,9 +7,9 @@
 				require('prop-types'),
 				require('react'),
 				require('d3-hierarchy'),
-		  )
+			)
 		: typeof define === 'function' && define.amd
-		  ? define(
+			? define(
 					[
 						'exports',
 						'@babel/runtime/helpers/extends',
@@ -19,17 +19,17 @@
 						'd3-hierarchy',
 					],
 					factory,
-		    )
-		  : ((global =
+				)
+			: ((global =
 					typeof globalThis !== 'undefined' ? globalThis : global || self),
-		    factory(
+				factory(
 					(global.ReactTreeGraph = {}),
 					global._extends,
 					global.d3,
 					global.PropTypes,
 					global.React,
 					global.d3,
-		    ));
+				));
 })(this, function (exports, _extends, d3Ease, PropTypes, React, d3Hierarchy) {
 	'use strict';
 
@@ -107,9 +107,7 @@
 	}
 
 	function diagonal(x1, y1, x2, y2) {
-		return `M${x1},${y1}C${(x1 + x2) / 2},${y1} ${
-			(x1 + x2) / 2
-		},${y2} ${x2},${y2}`;
+		return `M${x1},${y1}C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}`;
 	}
 	function Link(props) {
 		const wrappedProps = wrapHandlers(
@@ -117,7 +115,8 @@
 			props.source.data[props.keyProp],
 			props.target.data[props.keyProp],
 		);
-		const d = props.pathFunc(props.x1, props.y1, props.x2, props.y2);
+		const pathFunc = props.pathFunc || diagonal;
+		const d = pathFunc(props.x1, props.y1, props.x2, props.y2);
 		return /*#__PURE__*/ React__default.default.createElement(
 			'path',
 			_extends__default.default({}, wrappedProps, {
@@ -133,11 +132,8 @@
 		x2: PropTypes__default.default.number.isRequired,
 		y1: PropTypes__default.default.number.isRequired,
 		y2: PropTypes__default.default.number.isRequired,
-		pathFunc: PropTypes__default.default.func.isRequired,
+		pathFunc: PropTypes__default.default.func,
 		pathProps: PropTypes__default.default.object.isRequired,
-	};
-	Link.defaultProps = {
-		pathFunc: diagonal,
 	};
 
 	function Node(props) {
@@ -193,7 +189,7 @@
 							wrappedTextProps,
 						),
 						props[props.labelProp],
-				  )
+					)
 				: /*#__PURE__*/ React__default.default.createElement(
 						'g',
 						_extends__default.default(
@@ -203,7 +199,7 @@
 							wrappedTextProps,
 						),
 						props[props.labelProp],
-				  );
+					);
 		return /*#__PURE__*/ React__default.default.createElement(
 			'g',
 			_extends__default.default({}, wrappedGProps, {

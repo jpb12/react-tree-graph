@@ -1,5 +1,4 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { easeQuadOut } from 'd3-ease';

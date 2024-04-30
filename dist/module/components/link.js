@@ -8,7 +8,8 @@ function diagonal(x1, y1, x2, y2) {
 }
 function Link(props) {
   const wrappedProps = wrapHandlers(props.pathProps, props.source.data[props.keyProp], props.target.data[props.keyProp]);
-  const d = props.pathFunc(props.x1, props.y1, props.x2, props.y2);
+  const pathFunc = props.pathFunc || diagonal;
+  const d = pathFunc(props.x1, props.y1, props.x2, props.y2);
   return /*#__PURE__*/React.createElement("path", _extends({}, wrappedProps, {
     d: d
   }));
@@ -21,11 +22,8 @@ Link.propTypes = {
   x2: PropTypes.number.isRequired,
   y1: PropTypes.number.isRequired,
   y2: PropTypes.number.isRequired,
-  pathFunc: PropTypes.func.isRequired,
+  pathFunc: PropTypes.func,
   pathProps: PropTypes.object.isRequired
-};
-Link.defaultProps = {
-  pathFunc: diagonal
 };
 
 export { Link as default };

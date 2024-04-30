@@ -13,7 +13,8 @@ export default function Link(props) {
 		props.target.data[props.keyProp]
 	);
 
-	const d = props.pathFunc(
+	const pathFunc = props.pathFunc || diagonal;
+	const d = pathFunc(
 		props.x1,
 		props.y1,
 		props.x2,
@@ -31,10 +32,6 @@ Link.propTypes = {
 	x2: PropTypes.number.isRequired,
 	y1: PropTypes.number.isRequired,
 	y2: PropTypes.number.isRequired,
-	pathFunc: PropTypes.func.isRequired,
+	pathFunc: PropTypes.func,
 	pathProps: PropTypes.object.isRequired
-};
-
-Link.defaultProps = {
-	pathFunc: diagonal
 };
