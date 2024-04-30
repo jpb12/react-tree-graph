@@ -1,3 +1,7 @@
+## 8.0.2 (30 Apr 2024)
+* Support for react 19
+* Dropped support for react < 16.8 (already broken in a pervious update)
+
 ## 8.0.1 (10 Jan 2023)
 * Fixing overriding of unrelated props
 
