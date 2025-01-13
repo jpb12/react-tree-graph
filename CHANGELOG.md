@@ -1,67 +1,91 @@
+# Changelog
+
+## 8.0.3 (13 Jan 2025)
+
+* Fixing defaultProps error in react 19
+
 ## 8.0.2 (30 Apr 2024)
+
 * Support for react 19
 * Dropped support for react < 16.8 (already broken in a pervious update)
 
 ## 8.0.1 (10 Jan 2023)
+
 * Fixing overriding of unrelated props
 
 ## 8.0.0 (25 Oct 2022)
+
 * Breaking change: Fixed x and y co-ordinates being flipped in pathfunc
 * Right-to-left support
 * Fixed margins not being applied properly
 
 ## 7.0.6 (21 Oct 2022)
+
 * Fixing cleanup of finished animations
 
 ## 7.0.5 (21 Oct 2022)
+
 * Fixing cleanup of unfinished animations
 
 ## 7.0.4 (21 Oct 2022)
+
 * Reducing bundle size
 * Rewriting to use functional components
 
 ## 7.0.3 (11 Feb 2022)
+
 * Moving RFDC from dependency to dev dependency
 
 ## 7.0.2 (9 Feb 2022)
+
 * Fixing preinstall script causes install failure
 
 ## 7.0.1 (9 Feb 2022)
+
 * Fixing non-string node labels
 
 ## 7.0.0 (10 Jan 2022)
+
 * Breaking change: Single default export replaced with two named exports
 * Support for tree shaking
 * Significantly reduces bundle size, reduced even further if not using animations
 
-### Migrating:
+### Migrating
+
 * If you were using `animated=true`, use the named `AnimatedTree` export
 * Otherwise, use the named `Tree` export
 * The `animated` prop is no longer used and can be removed
 
 ## 6.1.0 (29 Nov 2021)
+
 * Support for react 18
 
 ## 6.0.1 (17 Jun 2021)
+
 * Removing unneeded files from npm package
 
 ## 6.0.0 (9 Feb 2021)
+
 * Breaking change: Dropped support for IE (reduces bundle size by about 1/3)
 * Updated to d3 2.0.0
 
 ## 5.1.1 (8 Feb 2021)
+
 * Added support for react 17 as a peer dependency
 
 ## 5.1.0 (27 Jun 2020)
+
 * Adding support for image
 
 ## 5.0.0 (19 Jun 2020)
+
 * Breaking change: Adding support for rect and polygon
 * Breaking change: Allowing textProps to override default offsets
 * Breaking change: Fixing incorrect default offsets
 * Breaking change: Wrapping nodes and links in a <g> node for easier transformations
 
-### Migrating:
+### Migrating
+
 * If you were using `circleProps`, use `nodeProps` instead. The format is the same
 * If you were using `nodeRadius`, instead pass an `r` prop through `nodeProps`
 * If you were using `nodeOffset`, instead pass a `dy` prop through `textProps`
@@ -104,25 +128,25 @@
 ## 3.0.0 (16 Dec 2017)
 
 * New props for adding any prop to any DOM element
-	* circleProps
-	* gProps
-	* pathProps
-	* svgProps
-	* textProps
+ 	* circleProps
+ 	* gProps
+ 	* pathProps
+ 	* svgProps
+ 	* textProps
 * Redundant props have been removed
-	* linkClassName
-	* linkClassHandler
-	* nodeClassName
-	* nodeClassHandler
-	* treeClassName
-	* treeClickHandler
+ 	* linkClassName
+ 	* linkClassHandler
+ 	* nodeClassName
+ 	* nodeClassHandler
+ 	* treeClassName
+ 	* treeClickHandler
 
 ## 2.0.0 (12 Jul 2017)
 
 * Animations
-	* Significant performance improvements on large trees (tested with > 150 nodes)
-	* Added nodes now animate from the position of the closest, previously visible, ancestor
-	* Removed nodes now animate to the position of the closest, remaining ancestor
+ 	* Significant performance improvements on large trees (tested with > 150 nodes)
+ 	* Added nodes now animate from the position of the closest, previously visible, ancestor
+ 	* Removed nodes now animate to the position of the closest, remaining ancestor
 * Renamed Class props to ClassName props
 * Added importing of polyfills for IE support
 
