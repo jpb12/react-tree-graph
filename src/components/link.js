@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers';
 
@@ -23,15 +22,3 @@ export default function Link(props) {
 
 	return <path {...wrappedProps} d={d}/>;
 }
-
-Link.propTypes = {
-	source: PropTypes.object.isRequired,
-	target: PropTypes.object.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	x1: PropTypes.number.isRequired,
-	x2: PropTypes.number.isRequired,
-	y1: PropTypes.number.isRequired,
-	y2: PropTypes.number.isRequired,
-	pathFunc: PropTypes.func,
-	pathProps: PropTypes.object.isRequired
-};

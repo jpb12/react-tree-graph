@@ -14,7 +14,6 @@ const defaultOutput = {
 		'@babel/runtime/helpers/extends': '_extends',
 		'd3-ease': 'd3',
 		'd3-hierarchy': 'd3',
-		'prop-types': 'PropTypes',
 		react: 'React'
 	},
 	interop: 'auto'
@@ -25,7 +24,6 @@ const defaultConfig = {
 		'@babel/runtime/helpers/extends',
 		'd3-hierarchy',
 		'd3-ease',
-		'prop-types',
 		'react'
 	],
 	input: 'src/index.js',

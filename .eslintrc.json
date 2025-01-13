@@ -166,12 +166,6 @@
    "error",
    "single"
   ],
-  "react/default-props-match-prop-types": [
-   "error",
-   {
-    "allowRequiredDefaults": true
-   }
-  ],
   "react/jsx-boolean-value": "error",
   "react/jsx-closing-bracket-location": [
    "error",
@@ -206,9 +200,9 @@
   ],
   "react/no-access-state-in-setstate": "error",
   "react/no-typos": "error",
-  "react/no-unused-prop-types": "error",
   "react/no-unused-state": "error",
   "react/prefer-es6-class": "error",
+  "react/prop-types": "off",
   "react/self-closing-comp": "error",
   "react/sort-comp": "error",
   "react/style-prop-object": "error",

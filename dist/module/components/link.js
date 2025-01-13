@@ -1,5 +1,4 @@
 import _extends from '@babel/runtime/helpers/extends';
-import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers.js';
 
@@ -14,16 +13,5 @@ function Link(props) {
     d: d
   }));
 }
-Link.propTypes = {
-  source: PropTypes.object.isRequired,
-  target: PropTypes.object.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  x1: PropTypes.number.isRequired,
-  x2: PropTypes.number.isRequired,
-  y1: PropTypes.number.isRequired,
-  y2: PropTypes.number.isRequired,
-  pathFunc: PropTypes.func,
-  pathProps: PropTypes.object.isRequired
-};
 
 export { Link as default };

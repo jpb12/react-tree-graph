@@ -4,7 +4,6 @@
 				exports,
 				require('@babel/runtime/helpers/extends'),
 				require('d3-ease'),
-				require('prop-types'),
 				require('react'),
 				require('d3-hierarchy'),
 			)
@@ -14,7 +13,6 @@
 						'exports',
 						'@babel/runtime/helpers/extends',
 						'd3-ease',
-						'prop-types',
 						'react',
 						'd3-hierarchy',
 					],
@@ -26,11 +24,10 @@
 					(global.ReactTreeGraph = {}),
 					global._extends,
 					global.d3,
-					global.PropTypes,
 					global.React,
 					global.d3,
 				));
-})(this, function (exports, _extends, d3Ease, PropTypes, React, d3Hierarchy) {
+})(this, function (exports, _extends, d3Ease, React, d3Hierarchy) {
 	'use strict';
 
 	function _interopDefault(e) {
@@ -38,7 +35,6 @@
 	}
 
 	var _extends__default = /*#__PURE__*/ _interopDefault(_extends);
-	var PropTypes__default = /*#__PURE__*/ _interopDefault(PropTypes);
 	var React__default = /*#__PURE__*/ _interopDefault(React);
 
 	function getTreeData(props) {
@@ -124,17 +120,6 @@
 			}),
 		);
 	}
-	Link.propTypes = {
-		source: PropTypes__default.default.object.isRequired,
-		target: PropTypes__default.default.object.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		x1: PropTypes__default.default.number.isRequired,
-		x2: PropTypes__default.default.number.isRequired,
-		y1: PropTypes__default.default.number.isRequired,
-		y2: PropTypes__default.default.number.isRequired,
-		pathFunc: PropTypes__default.default.func,
-		pathProps: PropTypes__default.default.object.isRequired,
-	};
 
 	function Node(props) {
 		function getTransform() {
@@ -213,17 +198,6 @@
 			label,
 		);
 	}
-	Node.propTypes = {
-		x: PropTypes__default.default.number.isRequired,
-		y: PropTypes__default.default.number.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		labelProp: PropTypes__default.default.string.isRequired,
-		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
-		shape: PropTypes__default.default.string.isRequired,
-		nodeProps: PropTypes__default.default.object.isRequired,
-		gProps: PropTypes__default.default.object.isRequired,
-		textProps: PropTypes__default.default.object.isRequired,
-	};
 
 	function Container(props) {
 		return /*#__PURE__*/ React__default.default.createElement(
@@ -289,28 +263,6 @@
 			),
 		);
 	}
-	Container.propTypes = {
-		children: PropTypes__default.default.node,
-		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
-		height: PropTypes__default.default.number.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		labelProp: PropTypes__default.default.string.isRequired,
-		links: PropTypes__default.default.array.isRequired,
-		margins: PropTypes__default.default.shape({
-			left: PropTypes__default.default.number.isRequired,
-			top: PropTypes__default.default.number.isRequired,
-		}).isRequired,
-		nodes: PropTypes__default.default.array.isRequired,
-		nodeClassName: PropTypes__default.default.string,
-		nodeShape: PropTypes__default.default.string.isRequired,
-		nodeProps: PropTypes__default.default.object.isRequired,
-		pathFunc: PropTypes__default.default.func,
-		width: PropTypes__default.default.number.isRequired,
-		gProps: PropTypes__default.default.object.isRequired,
-		pathProps: PropTypes__default.default.object.isRequired,
-		svgProps: PropTypes__default.default.object.isRequired,
-		textProps: PropTypes__default.default.object.isRequired,
-	};
 
 	function Animated(props) {
 		const initialX = props.nodes[0].x;
@@ -495,166 +447,100 @@
 			_extends__default.default({}, props, state),
 		);
 	}
-	Animated.propTypes = {
-		getChildren: PropTypes__default.default.func.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		links: PropTypes__default.default.array.isRequired,
-		nodes: PropTypes__default.default.array.isRequired,
-		duration: PropTypes__default.default.number.isRequired,
-		easing: PropTypes__default.default.func.isRequired,
-		steps: PropTypes__default.default.number.isRequired,
-	};
 
 	function AnimatedTree(props) {
+		const propsWithDefaults = {
+			direction: 'ltr',
+			duration: 500,
+			easing: d3Ease.easeQuadOut,
+			getChildren: (n) => n.children,
+			steps: 20,
+			keyProp: 'name',
+			labelProp: 'name',
+			nodeShape: 'circle',
+			nodeProps: {},
+			gProps: {},
+			pathProps: {},
+			svgProps: {},
+			textProps: {},
+			...props,
+		};
 		return /*#__PURE__*/ React__default.default.createElement(
 			Animated,
 			_extends__default.default(
 				{
-					duration: props.duration,
-					easing: props.easing,
-					getChildren: props.getChildren,
-					direction: props.direction,
-					height: props.height,
-					keyProp: props.keyProp,
-					labelProp: props.labelProp,
-					nodeShape: props.nodeShape,
-					nodeProps: props.nodeProps,
-					pathFunc: props.pathFunc,
-					steps: props.steps,
-					width: props.width,
+					duration: propsWithDefaults.duration,
+					easing: propsWithDefaults.easing,
+					getChildren: propsWithDefaults.getChildren,
+					direction: propsWithDefaults.direction,
+					height: propsWithDefaults.height,
+					keyProp: propsWithDefaults.keyProp,
+					labelProp: propsWithDefaults.labelProp,
+					nodeShape: propsWithDefaults.nodeShape,
+					nodeProps: propsWithDefaults.nodeProps,
+					pathFunc: propsWithDefaults.pathFunc,
+					steps: propsWithDefaults.steps,
+					width: propsWithDefaults.width,
 					gProps: {
 						className: 'node',
-						...props.gProps,
+						...propsWithDefaults.gProps,
 					},
 					pathProps: {
 						className: 'link',
-						...props.pathProps,
+						...propsWithDefaults.pathProps,
 					},
-					svgProps: props.svgProps,
-					textProps: props.textProps,
+					svgProps: propsWithDefaults.svgProps,
+					textProps: propsWithDefaults.textProps,
 				},
-				getTreeData(props),
+				getTreeData(propsWithDefaults),
 			),
-			props.children,
+			propsWithDefaults.children,
 		);
 	}
-	AnimatedTree.propTypes = {
-		data: PropTypes__default.default.object.isRequired,
-		children: PropTypes__default.default.node,
-		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
-		duration: PropTypes__default.default.number.isRequired,
-		easing: PropTypes__default.default.func.isRequired,
-		steps: PropTypes__default.default.number.isRequired,
-		height: PropTypes__default.default.number.isRequired,
-		width: PropTypes__default.default.number.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		labelProp: PropTypes__default.default.string.isRequired,
-		getChildren: PropTypes__default.default.func.isRequired,
-		margins: PropTypes__default.default.shape({
-			bottom: PropTypes__default.default.number.isRequired,
-			left: PropTypes__default.default.number.isRequired,
-			right: PropTypes__default.default.number.isRequired,
-			top: PropTypes__default.default.number.isRequired,
-		}),
-		pathFunc: PropTypes__default.default.func,
-		nodeShape: PropTypes__default.default.oneOf([
-			'circle',
-			'image',
-			'polygon',
-			'rect',
-		]).isRequired,
-		nodeProps: PropTypes__default.default.object.isRequired,
-		gProps: PropTypes__default.default.object.isRequired,
-		pathProps: PropTypes__default.default.object.isRequired,
-		svgProps: PropTypes__default.default.object.isRequired,
-		textProps: PropTypes__default.default.object.isRequired,
-	};
-	AnimatedTree.defaultProps = {
-		direction: 'ltr',
-		duration: 500,
-		easing: d3Ease.easeQuadOut,
-		getChildren: (n) => n.children,
-		steps: 20,
-		keyProp: 'name',
-		labelProp: 'name',
-		nodeShape: 'circle',
-		nodeProps: {},
-		gProps: {},
-		pathProps: {},
-		svgProps: {},
-		textProps: {},
-	};
 
 	function Tree(props) {
+		const propsWithDefaults = {
+			direction: 'ltr',
+			getChildren: (n) => n.children,
+			keyProp: 'name',
+			labelProp: 'name',
+			nodeShape: 'circle',
+			nodeProps: {},
+			gProps: {},
+			pathProps: {},
+			svgProps: {},
+			textProps: {},
+			...props,
+		};
 		return /*#__PURE__*/ React__default.default.createElement(
 			Container,
 			_extends__default.default(
 				{
-					getChildren: props.getChildren,
-					direction: props.direction,
-					height: props.height,
-					keyProp: props.keyProp,
-					labelProp: props.labelProp,
-					nodeShape: props.nodeShape,
-					nodeProps: props.nodeProps,
-					pathFunc: props.pathFunc,
-					width: props.width,
+					getChildren: propsWithDefaults.getChildren,
+					direction: propsWithDefaults.direction,
+					height: propsWithDefaults.height,
+					keyProp: propsWithDefaults.keyProp,
+					labelProp: propsWithDefaults.labelProp,
+					nodeShape: propsWithDefaults.nodeShape,
+					nodeProps: propsWithDefaults.nodeProps,
+					pathFunc: propsWithDefaults.pathFunc,
+					width: propsWithDefaults.width,
 					gProps: {
 						className: 'node',
-						...props.gProps,
+						...propsWithDefaults.gProps,
 					},
 					pathProps: {
 						className: 'link',
-						...props.pathProps,
+						...propsWithDefaults.pathProps,
 					},
-					svgProps: props.svgProps,
-					textProps: props.textProps,
+					svgProps: propsWithDefaults.svgProps,
+					textProps: propsWithDefaults.textProps,
 				},
-				getTreeData(props),
+				getTreeData(propsWithDefaults),
 			),
-			props.children,
+			propsWithDefaults.children,
 		);
 	}
-	Tree.propTypes = {
-		data: PropTypes__default.default.object.isRequired,
-		children: PropTypes__default.default.node,
-		direction: PropTypes__default.default.oneOf(['ltr', 'rtl']).isRequired,
-		height: PropTypes__default.default.number.isRequired,
-		width: PropTypes__default.default.number.isRequired,
-		keyProp: PropTypes__default.default.string.isRequired,
-		labelProp: PropTypes__default.default.string.isRequired,
-		getChildren: PropTypes__default.default.func.isRequired,
-		margins: PropTypes__default.default.shape({
-			bottom: PropTypes__default.default.number.isRequired,
-			left: PropTypes__default.default.number.isRequired,
-			right: PropTypes__default.default.number.isRequired,
-			top: PropTypes__default.default.number.isRequired,
-		}),
-		pathFunc: PropTypes__default.default.func,
-		nodeShape: PropTypes__default.default.oneOf([
-			'circle',
-			'image',
-			'polygon',
-			'rect',
-		]).isRequired,
-		nodeProps: PropTypes__default.default.object.isRequired,
-		gProps: PropTypes__default.default.object.isRequired,
-		pathProps: PropTypes__default.default.object.isRequired,
-		svgProps: PropTypes__default.default.object.isRequired,
-		textProps: PropTypes__default.default.object.isRequired,
-	};
-	Tree.defaultProps = {
-		direction: 'ltr',
-		getChildren: (n) => n.children,
-		keyProp: 'name',
-		labelProp: 'name',
-		nodeShape: 'circle',
-		nodeProps: {},
-		gProps: {},
-		pathProps: {},
-		svgProps: {},
-		textProps: {},
-	};
 
 	exports.AnimatedTree = AnimatedTree;
 	exports.Tree = Tree;

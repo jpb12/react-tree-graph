@@ -1,5 +1,4 @@
 import _extends from '@babel/runtime/helpers/extends';
-import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers.js';
 
@@ -49,16 +48,5 @@ function Node(props) {
     direction: props.direction === 'rtl' ? 'rtl' : null
   }), /*#__PURE__*/React.createElement(props.shape, wrappedNodeProps), label);
 }
-Node.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  labelProp: PropTypes.string.isRequired,
-  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
-  shape: PropTypes.string.isRequired,
-  nodeProps: PropTypes.object.isRequired,
-  gProps: PropTypes.object.isRequired,
-  textProps: PropTypes.object.isRequired
-};
 
 export { Node as default };

@@ -28,7 +28,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
               "parent": Node {
                 "children": [Circular],
                 "data": {
-                  "childs": [
+                  "children": [
                     {
                       "name": "Black",
                     },
@@ -46,7 +46,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
             },
           ],
           "data": {
-            "childs": [
+            "children": [
               {
                 "name": "Black",
               },
@@ -79,7 +79,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
               },
             ],
             "data": {
-              "childs": [
+              "children": [
                 {
                   "name": "Black",
                 },
@@ -121,7 +121,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
             "parent": Node {
               "children": [Circular],
               "data": {
-                "childs": [
+                "children": [
                   {
                     "name": "Black",
                   },
@@ -139,7 +139,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
           },
         ],
         "data": {
-          "childs": [
+          "children": [
             {
               "name": "Black",
             },
@@ -172,7 +172,7 @@ exports[`<AnimatedTree> renders correctly 1`] = `
             },
           ],
           "data": {
-            "childs": [
+            "children": [
               {
                 "name": "Black",
               },

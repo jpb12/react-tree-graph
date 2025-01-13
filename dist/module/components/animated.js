@@ -1,5 +1,4 @@
 import _extends from '@babel/runtime/helpers/extends';
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import Container from './container.js';
 
@@ -144,14 +143,5 @@ function Animated(props) {
   }
   return /*#__PURE__*/React.createElement(Container, _extends({}, props, state));
 }
-Animated.propTypes = {
-  getChildren: PropTypes.func.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
-  nodes: PropTypes.array.isRequired,
-  duration: PropTypes.number.isRequired,
-  easing: PropTypes.func.isRequired,
-  steps: PropTypes.number.isRequired
-};
 
 export { Animated as default };

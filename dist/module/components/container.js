@@ -1,5 +1,4 @@
 import _extends from '@babel/runtime/helpers/extends';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link.js';
 import Node from './node.js';
@@ -47,27 +46,5 @@ function Container(props) {
     }
   })))));
 }
-Container.propTypes = {
-  children: PropTypes.node,
-  direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
-  height: PropTypes.number.isRequired,
-  keyProp: PropTypes.string.isRequired,
-  labelProp: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
-  margins: PropTypes.shape({
-    left: PropTypes.number.isRequired,
-    top: PropTypes.number.isRequired
-  }).isRequired,
-  nodes: PropTypes.array.isRequired,
-  nodeClassName: PropTypes.string,
-  nodeShape: PropTypes.string.isRequired,
-  nodeProps: PropTypes.object.isRequired,
-  pathFunc: PropTypes.func,
-  width: PropTypes.number.isRequired,
-  gProps: PropTypes.object.isRequired,
-  pathProps: PropTypes.object.isRequired,
-  svgProps: PropTypes.object.isRequired,
-  textProps: PropTypes.object.isRequired
-};
 
 export { Container as default };

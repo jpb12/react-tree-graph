@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link';
 import Node from './node';
@@ -39,26 +38,3 @@ export default function Container(props) {
 		</svg>
 	);
 }
-
-Container.propTypes = {
-	children: PropTypes.node,
-	direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
-	height: PropTypes.number.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	labelProp: PropTypes.string.isRequired,
-	links: PropTypes.array.isRequired,
-	margins: PropTypes.shape({
-		left: PropTypes.number.isRequired,
-		top: PropTypes.number.isRequired
-	}).isRequired,
-	nodes: PropTypes.array.isRequired,
-	nodeClassName: PropTypes.string,
-	nodeShape: PropTypes.string.isRequired,
-	nodeProps: PropTypes.object.isRequired,
-	pathFunc: PropTypes.func,
-	width: PropTypes.number.isRequired,
-	gProps: PropTypes.object.isRequired,
-	pathProps: PropTypes.object.isRequired,
-	svgProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
-};

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Container from './container';
 
@@ -140,13 +139,3 @@ export default function Animated(props) {
 
 	return <Container {...props} {...state}/>;
 }
-
-Animated.propTypes = {
-	getChildren: PropTypes.func.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	links: PropTypes.array.isRequired,
-	nodes: PropTypes.array.isRequired,
-	duration: PropTypes.number.isRequired,
-	easing: PropTypes.func.isRequired,
-	steps: PropTypes.number.isRequired
-};

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import wrapHandlers from '../wrapHandlers';
 
@@ -53,15 +52,3 @@ export default function Node(props) {
 		</g>
 	);
 }
-
-Node.propTypes = {
-	x: PropTypes.number.isRequired,
-	y: PropTypes.number.isRequired,
-	keyProp: PropTypes.string.isRequired,
-	labelProp: PropTypes.string.isRequired,
-	direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
-	shape: PropTypes.string.isRequired,
-	nodeProps: PropTypes.object.isRequired,
-	gProps: PropTypes.object.isRequired,
-	textProps: PropTypes.object.isRequired
-};
