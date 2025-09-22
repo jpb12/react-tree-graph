@@ -5,9 +5,6 @@ import ignore from 'rollup-plugin-ignore';
 import postcss from 'rollup-plugin-postcss';
 import prettier from 'rollup-plugin-prettier';
 import progress from 'rollup-plugin-progress';
-import rfdc from 'rfdc';
-
-const clone = rfdc();
 
 const defaultOutput = {
 	globals: {
@@ -40,43 +37,58 @@ const defaultConfig = {
 	]
 };
 
-const devConfig = clone(defaultConfig);
-devConfig.output = {
-	...defaultOutput,
-	file: 'dist/index.js',
-	format: 'umd',
-	name: 'ReactTreeGraph'
+const devConfig = {
+	...defaultConfig,
+	output: {
+		...defaultOutput,
+		file: 'dist/index.js',
+		format: 'umd',
+		name: 'ReactTreeGraph'
+	},
+	plugins: [
+		postcss({
+			extract: 'style.css'
+		}),
+		...defaultConfig.plugins,
+		prettier({
+			parser: 'babel',
+			singleQuote: true,
+			useTabs: true
+		})
+	]
 };
-devConfig.plugins.push(prettier({
-	parser: 'babel',
-	singleQuote: true,
-	useTabs: true
-}));
-devConfig.plugins.unshift(postcss({
-	extract: 'style.css'
-}));
 
-const moduleConfig = clone(defaultConfig);
-moduleConfig.output = {
-	...defaultOutput,
-	dir: 'dist/module',
-	format: 'esm',
-	preserveModules: true
+const moduleConfig = {
+	...defaultConfig,
+	output: {
+		...defaultOutput,
+		dir: 'dist/module',
+		format: 'esm',
+		preserveModules: true
+	},
+	plugins: [
+		ignore(['../styles/style.css']),
+		...defaultConfig.plugins
+	]
 };
-moduleConfig.plugins.unshift(ignore(['../styles/style.css']));
 
-const prodConfig = clone(defaultConfig);
-prodConfig.output = {
-	...defaultOutput,
-	file: 'dist/index.min.js',
-	format: 'umd',
-	name: 'ReactTreeGraph'
+const prodConfig = {
+	...defaultConfig,
+	output: {
+		...defaultOutput,
+		file: 'dist/index.min.js',
+		format: 'umd',
+		name: 'ReactTreeGraph'
+	},
+	plugins: [
+		postcss({
+			extract: 'style.min.css',
+			minimize: true
+		}),
+		...defaultConfig.plugins,
+		terser()
+	]
 };
-prodConfig.plugins.push(terser());
-prodConfig.plugins.unshift(postcss({
-	extract: 'style.min.css',
-	minimize: true
-}));
 
 export default [
 	devConfig,

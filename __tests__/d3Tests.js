@@ -1,7 +1,4 @@
-import rfdc from 'rfdc';
 import getTreeData from '../src/d3';
-
-const clone = rfdc();
 
 const defaultProps = {
 	getChildren: n => n.children,
@@ -18,7 +15,7 @@ describe('getTreeData', () => {
 				name: 'Black'
 			}]
 		};
-		const clonedData = clone(data);
+		const clonedData = structuredClone(data);
 		getTreeData({ ...defaultProps, data });
 		expect(data).toMatchObject(clonedData);
 	});

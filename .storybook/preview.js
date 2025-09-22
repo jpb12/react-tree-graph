@@ -1,4 +1,5 @@
-import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
+import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/addon-docs/blocks';
+import React from 'react';
 import '../styles/style.css';
 
 export default {
@@ -23,5 +24,6 @@ export default {
 			}
 		},
 		viewMode: 'docs'
-	}
+	},
+	tags: ['autodocs']
 };

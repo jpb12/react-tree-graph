@@ -12,7 +12,7 @@ describe('wrapHandlers', () => {
 			const handlerMock = jest.fn();
 			const result = wrapHandlers({ [name]: handlerMock }, 1, 2);
 			result[name](0);
-			expect(handlerMock).toBeCalledWith(0, 1, 2);
+			expect(handlerMock).toHaveBeenCalledWith(0, 1, 2);
 		}
 	);
 });
